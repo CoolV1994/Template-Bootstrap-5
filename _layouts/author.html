@@ -1,0 +1,69 @@
+---
+layout: default
+css:
+  - '/assets/css/profile.css'
+scripts: []
+title: Profile: {{ page.name }}
+---
+
+<div class="b-example-divider">
+</div>
+
+<div class="container px-4 py-5" id="custom-cards">
+	<h2 class="pb-2 border-bottom">Author Profile</h2>
+	<div class="row align-items-stretch g-4 py-5">
+		<div class="col">
+			<div class="card card-cover overflow-hidden text-bg-dark rounded-4 shadow-lg" style="width:256px;height:256px;display:block;background-image: url('{{ page.avatar }}');">
+			</div>
+		</div>
+		<div class="col col-6 d-flex flex-column align-items-start gap-2">
+			<h2 class="fw-bold text-body-emphasis">{{ page.name }}</h2>
+			<h6 class="fw-bold text-body-emphasis">{{ page.title }}</h6>
+			<p class="text-body-secondary">
+{{ content }}
+			</p>
+		</div>
+		<div class="col">
+<!--{% if page.contact %}-->
+			<a href="{{ page.contact }}" class="btn btn-primary btn-lg">Contact</a>
+<!--{% endif %}-->
+			<br><br>
+			<ul class="list-unstyled">
+{% for link in page.links %}
+				<li>
+					<a href="{{ link.url }}" class="icon-link">
+						<svg class="bi" aria-hidden="true"><use xlink:href="#chevron-right"></use></svg>
+						{{ link.name }}
+					</a>
+				</li>
+{% endfor %}
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="b-example-divider">
+</div>
+
+<div class="container px-4 py-5" id="icon-grid">
+	<h2 class="pb-2 border-bottom">Recent Posts</h2>
+	<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
+{% for post in site.posts limit:8 %}
+	{% if post.author %}
+		{% if page.author == post.author %}
+		<!-- Start Post -->
+		<div class="col d-flex align-items-start">
+			<div>
+				<h3 class="fw-bold mb-0 fs-4 text-body-emphasis"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h3>
+				<p>{{ post.excerpt }}</p>
+			</div>
+		</div>
+		<!-- End Post -->
+		{% endif %}
+	{% endif %}
+{% endfor %}
+	</div>
+</div>
+
+<div class="b-example-divider">
+</div>

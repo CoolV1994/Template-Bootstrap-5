@@ -1,0 +1,10 @@
+				<div class="p-4">
+					<h4 class="fst-italic">Tags</h4>
+					<ol class="list-unstyled mb-0">
+
+{% for tag in site.tags %}
+						<li><a href="{{ tag | first | prepend: 'categories.html#' | prepend: site.baseurl }}">{{ tag | first }}</a></li>
+{% endfor %}
+
+					</ol>
+				</div>

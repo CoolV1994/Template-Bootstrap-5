@@ -1,0 +1,13 @@
+---
+layout: default
+css:
+  - '/assets/css/blog.css'
+scripts: []
+sidebar: []
+---
+
+{{ content }}
+
+{% if page.sidebar %}
+{% include sidebar.html %}
+{% endif %}

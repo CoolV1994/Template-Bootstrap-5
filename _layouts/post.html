@@ -1,0 +1,26 @@
+---
+layout: blog
+---
+
+	<div id="blog" class="row g-5">
+		<div id="blog-posts" class="col-md-8">
+
+			<article id="post-{{ page.id }}" class="blog-post">
+				<h2 class="display-5 link-body-emphasis mb-1"><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></h2>
+				<p class="blog-post-meta">
+					{{ page.date | date: "%b %-d, %Y" }}
+{% if page.author %}
+	{% for author in site.authors %}
+		{% if author == page.author %}
+					 by <a href="{{ author.url | prepend: site.baseurl }}">{{ author.name }}</a>
+		{% endif %}
+	{% endfor %}
+{% endif %}
+				</p>
+
+{{ content }}
+
+			</article>
+
+		</div><!-- /#blog-posts -->
+	</div><!-- /#blog -->

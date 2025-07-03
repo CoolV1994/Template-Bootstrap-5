@@ -1,0 +1,7 @@
+<!-- Bootstrap JavaScript -->
+<script src="{{ '/assets/dist/js/bootstrap.bundle.min.js' | prepend: site.baseurl }}" class="astro-vvvwv3sm"></script>
+
+<!-- Page Defined JavaScript -->
+{% for script in page.scripts %}
+	<script src="{{ script | prepend: site.baseurl }}" class="astro-vvvwv3sm"></script>
+{% endfor %}

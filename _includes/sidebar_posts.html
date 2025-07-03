@@ -1,0 +1,20 @@
+				<div>
+					<h4 class="fst-italic">Recent posts</h4>
+					<ul class="list-unstyled">
+
+{% for post in site.posts limit:5 %}
+						<li>
+							<a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="{{ post.url | prepend: site.baseurl }}">
+								<svg aria-hidden="true" class="bd-placeholder-img " height="96" preserveAspectRatio="xMidYMid slice" width="100%" xmlns="http://www.w3.org/2000/svg">
+									<rect width="100%" height="100%" fill="#777"></rect>
+								</svg>
+								<div class="col-lg-8">
+									<h6 class="mb-0">{{ post.title }}</h6>
+									<small class="text-body-secondary">{{ post.date | date: "%b %-d, %Y" }}</small>
+								</div>
+							</a>
+						</li>
+{% endfor %}
+
+					</ul>
+				</div>

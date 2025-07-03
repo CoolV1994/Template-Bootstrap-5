@@ -1,0 +1,52 @@
+---
+layout: default
+title: Categories
+---
+
+<div class="page-header">
+	<h1>Index: Tags</h1>
+</div><!-- /.title -->
+
+<div class="row">
+
+	<div class="col-sm-3 blog-sidebar">
+		<div class="sidebar-module">
+			<div class="panel panel-default" id="index">
+				<div class="panel-heading">
+					<h3 class="panel-title">Tags</h3>
+				</div><!-- /.heading -->
+				<div class="panel-body">
+					<ul class="list-unstyled">
+					{% for tag in site.tags %}
+						<li><a href="#{{ tag | first }}">{{ tag | first }}</a></li>
+					{% endfor %}
+					</ul>
+				</div><!-- /.body -->
+			</div><!-- /.panel -->
+		</div><!-- /.module -->
+	</div><!-- /.sidebar -->
+
+	<div class="col-sm-9 blog-main">
+
+	{% for tag in site.tags %}
+	<div class="panel panel-default" id="{{ tag | first }}">
+		<div class="panel-heading">
+			<h3 class="panel-title">{{ tag | first }}</h3>
+		</div><!-- /.heading -->
+		<div class="panel-body">
+			<ul class="list-unstyled">
+			{% for posts in tag %}
+				{% for post in posts %}
+				{% if post.url %}
+				<li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
+				{% endif %}
+				{% endfor %}
+			{% endfor %}
+			</ul>
+		</div><!-- /.body -->
+		</div><!-- /.panel -->
+{	% endfor %}
+
+	</div><!-- /.main -->
+
+</div><!-- /.row -->

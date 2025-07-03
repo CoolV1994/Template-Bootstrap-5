@@ -1,0 +1,24 @@
+# Site settings
+name: Bootstrap 5 Template
+title: Bootstrap 5 Template
+author: CoolV1994
+description: >
+  Bootstrap 5.3.7 Template for GitHub Pages / Jekyll
+baseurl: "/Bootstrap5"
+url: "https://coolv1994.github.io"
+
+# Build settings
+markdown: kramdown
+
+# Pagination
+paginate: 10
+paginate_path: "/:collection/page:num/"
+
+# Collections
+collections:
+  authors:
+    output: true
+    url: /authors/
+  album:
+    output: true
+    url: /album/
