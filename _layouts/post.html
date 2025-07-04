@@ -15,6 +15,8 @@ Posted: {{ page.date | date: "%b %-d, %Y" }}
 {% assign author_file = page.author | append: '.md' %}
 {% assign author = site.authors | find_exp: "doc", "doc.name == author_file" | first %}
  by <a href="{{ author.url | prepend: site.baseurl }}">{{ author.name }}</a>
+{% assign author = site.authors | find_exp: "doc", "doc.name == {{ page.author | append: '.md' }}" | first %}
+ by <a href="{{ author.url | prepend: site.baseurl }}">{{ author.name }}</a>
 {% endif %}
 {% if page.categories %}
 &nbsp;&mdash;&nbsp;Category:
