@@ -2,7 +2,7 @@
 					<h4 class="fst-italic">Categories</h4>
 					<ul class="list-unstyled">
 {% for category in site.categories %}
-						<li><a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center link-body-emphasis" href="{% link categories.html | append: '#' | append: category[0] %}">{{ category[0]] }}</a></li>
+						<li><a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center link-body-emphasis" href="{{ site.baseurl }}/categories.html#{{ category[0] }}">{{ category[0]] }}</a></li>
 {% endfor %}
 					</ul>
 				</div>
