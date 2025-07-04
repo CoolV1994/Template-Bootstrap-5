@@ -63,6 +63,13 @@ sidebar:
 {% assign author = site.data.authors[post.author] %}
 					 by <a href="{{ author.url | prepend: site.baseurl }}">{{ author.name }}</a>
 {% endif %}
+{% if post.categories %}
+&nbsp;&mdash;&nbsp;Category:
+{% for category in post.categories %}
+ <a href="{{ category | prepend: '/categories.html#' | prepend: site.baseurl }}">{{ category }}</a>
+{% endfor %}
+{% endif %}
+
 				</p>
 {{ post.content }}
 			</article>
