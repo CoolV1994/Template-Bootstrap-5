@@ -3,7 +3,7 @@
 					<ol class="list-unstyled mb-0">
 
 {% for tag in site.tags %}
-						<li><a href="{{ tag | first | prepend: 'categories.html#' | prepend: site.baseurl }}">{{ tag | first }}</a></li>
+						<li><a href="{{ tag | first | prepend: '/tags.html#' | prepend: site.baseurl }}">{{ tag | first }}</a></li>
 {% endfor %}
 
 					</ol>
