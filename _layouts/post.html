@@ -12,7 +12,8 @@ css:
 				<p class="blog-post-meta">
 Posted: {{ page.date | date: "%b %-d, %Y" }}
 {% if page.author %}
-{%- assign author = site.authors.{{page.author}} -%}
+{{ site.authors.{{page.author}}.name }}
+{% assign author = site.authors.{{page.author}} %}
  by <a href="{{ author.url | prepend: site.baseurl }}">{{ author.name }}</a>
 {% endif %}
 {% if page.categories %}
