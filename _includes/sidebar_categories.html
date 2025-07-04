@@ -3,7 +3,7 @@
 					<ol class="list-unstyled mb-0">
 
 {% for category in site.categories %}
-						<li><a href="{{ category | first | prepend: 'categories.html#' | prepend: site.baseurl }}">{{ category | first }}</a></li>
+						<li><a href="{{ category | first | prepend: '/categories.html#' | prepend: site.baseurl }}">{{ category | first }}</a></li>
 {% endfor %}
 
 					</ol>
