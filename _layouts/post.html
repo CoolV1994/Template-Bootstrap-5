@@ -7,7 +7,7 @@ css:
 	<div id="blog" class="row g-5">
 		<div id="blog-posts" class="col-md-12">
 
-			<article id="post-{{ page.id }}" class="blog-post">
+			<article id="post_{{ post-name | replace: '.md', '' }}" class="blog-post">
 				<h2 class="display-5 link-body-emphasis mb-1">{{ page.title }}</h2>
 				<p class="blog-post-meta">
 Posted: {{ page.date | date: "%b %-d, %Y" }}
