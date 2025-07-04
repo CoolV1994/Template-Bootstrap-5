@@ -4,6 +4,7 @@ title: Album
 navbar: Album
 ---
 
+<!--
 	<section class="py-5 text-center container">
 		<div class="row py-lg-5">
 			<div class="col-lg-6 col-md-8 mx-auto">
@@ -12,15 +13,17 @@ navbar: Album
 			</div>
 		</div>
 	</section>
+-->
 
 	<div class="album py-5 bg-body-tertiary">
 		<div class="container">
 			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
 {% for post in site.album %}
+	{% unless post.image %}
 				<div class="col">
 					<div class="card shadow-sm">
-						<img src="{{ post.thumbnail }}" alt="{{ post.title }}" width="420" height="225">
+						<img src="{{ post.image }}" alt="{{ post.title }}" width="420" height="225">
 						<div class="card-body">
 							<p class="card-text">{{ post.excerpt }}</p>
 							<div class="d-flex justify-content-between align-items-center">
@@ -33,6 +36,7 @@ navbar: Album
 						</div>
 					</div>
 				</div>
+	{% endunless %}
 {% endfor %}
 
 			</div>
