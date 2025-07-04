@@ -1,5 +1,5 @@
 ---
-layout: profile
+layout: author
 name: Vinnie
 title: Owner
 email: The.CoolV1994@gmail.com
