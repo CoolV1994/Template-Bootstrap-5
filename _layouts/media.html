@@ -25,7 +25,7 @@ style: >
 
 <header class="mb-auto">
 	<div>
-		<h3 class="float-md-start mb-0">{{ page.title }}</h3>
+		<h3 class="float-md-start mb-0">{{ site.title }}</h3>
 		<nav class="nav nav-masthead justify-content-center float-md-end">
 			<a class="nav-link fw-bold py-1 px-0" href="{{ '/' | prepend: site.baseurl }}">Home</a>
 		</nav>
@@ -39,7 +39,7 @@ style: >
 </div>
 
 <div id="info">
-	<h4>{{ page.excerpt }}</h4>
+	<h4>{{ page.title }}</h4>
 	<p class="lead">{{ content }}</p>
 </div>
 
