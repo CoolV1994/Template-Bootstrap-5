@@ -15,10 +15,17 @@
 <script src="{{ '/assets/js/color-modes.js' | prepend: site.baseurl }}"></script>
 <meta name="theme-color" content="#712cf9">
 
+<!-- Layout Defined CSS -->
+{% if layout.css %}
+{% for css in layout.css %}
+<link href="{{ css | prepend: site.baseurl }}" rel="stylesheet">
+{% endfor %}
+{% endif %}
+
 <!-- Page Defined CSS -->
 {% if page.css %}
 {% for css in page.css %}
-	<link href="{{ css | prepend: site.baseurl }}" rel="stylesheet">
+<link href="{{ css | prepend: site.baseurl }}" rel="stylesheet">
 {% endfor %}
 {% endif %}
 
