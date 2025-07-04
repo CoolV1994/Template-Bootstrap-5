@@ -39,9 +39,11 @@ sidebar:
 						<svg class="bi" aria-hidden="true"><use xlink:href="#chevron-right"></use></svg>
 						</a>
 					</div>
+{% if post.thumbnail %}
 					<div class="col-auto d-none d-lg-block">
 						<img class="bd-placeholder-img" height="250" width="200" alt="Thumbnail" src="{{ post.thumbnail }}">
 					</div>
+{% endif %}
 				</div>
 			</div>
 {% endfor %}
