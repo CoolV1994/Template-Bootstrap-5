@@ -28,7 +28,8 @@ css:
 			<br><br>
 			<ul class="list-unstyled">
 {% for link in page.links %}
-				<li>
+				<li>{{ link | markdownify }}</li>
+				</li>
 					<a href="{{ link.url }}" class="icon-link">
 						<svg class="bi" aria-hidden="true"><use xlink:href="#chevron-right"></use></svg>
 						{{ link.name }}
@@ -48,7 +49,7 @@ css:
 	<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
 {% for post in site.posts limit:8 %}
 	{% if post.author %}
-		{% if page.author == post.author %}
+		{% if page.id contains post.author %}
 		<!-- Start Post -->
 		<div class="col d-flex align-items-start">
 			<div>
