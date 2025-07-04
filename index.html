@@ -65,13 +65,10 @@ sidebar:
 				<h2 class="display-5 link-body-emphasis mb-1"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
 				<p class="blog-post-meta">
 					{{ post.date | date: "%b %-d, %Y" }}
-		{% if post.author %}
-			{% for author in site.authors %}
-				{% if author.id contains post.author %}
+{% if post.author %}
+{% assign author = site.data.authors.{{ post.author }} %}
 					 by <a href="{{ author.url | prepend: site.baseurl }}">{{ author.name }}</a>
-				{% endif %}
-			{% endfor %}
-		{% endif %}
+{% endif %}
 				</p>
 {{ post.content }}
 			</article>
