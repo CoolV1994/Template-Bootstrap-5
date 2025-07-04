@@ -1,9 +1,11 @@
 left:
-  - name: About
+    name: About
     url: /about.html
+
 right:
-  - name: Contact
+    name: Contact
     url: /contact.html
+
 links:
   - name: Page 1
     url: /page-1.html

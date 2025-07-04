@@ -1,0 +1,8 @@
+recent: 10
+
+main:
+  - welcome.md
+
+featured:
+  - welcome.md
+  - welcome.md
