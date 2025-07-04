@@ -3,12 +3,12 @@ layout: default
 title: Categories
 ---
 
-	<div id="blog" class="row g-5">
+	<div class="row g-5">
 		<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
 
 		<div class="col-md-4">
 			<div class="position-sticky" style="top: 2rem;">
-				<div class="mb-3 bg-body-tertiary rounded">
+				<div class="p-4 mb-3 bg-body-tertiary rounded">
 					<h4 class="fst-italic">Index</h4>
 					<ul class="list-unstyled">
 {% for category in site.categories %}
@@ -19,9 +19,9 @@ title: Categories
 			</div>
 		</div>
 
-		<div id="blog-posts" class="col-md-8">
+		<div class="col-md-8">
 {% for category in site.categories %}
-			<article id="{{ category[0] }}" class="blog-post bg-body-tertiary rounded">
+			<article id="{{ category[0] }}" class="blog-post p-4 mb-3 bg-body-tertiary rounded">
 				<h2 class="display-5 link-body-emphasis mb-1">{{ category[0] | capitalize }}</h2>
 				<ul class="list-unstyled">
 {% for post in category[1] %}
