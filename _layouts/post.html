@@ -21,7 +21,7 @@ css:
 {% if page.categories %}
 					&nbsp;&mdash;&nbsp;Category:
 	{% for category in page.categories %}
-					 <a href="{{ category | prepend: 'categories.html#' | prepend: site.baseurl }}">{{ category }}</a>
+					 <a href="{{ category | prepend: '/categories.html#' | prepend: site.baseurl }}">{{ category }}</a>
 	{% endfor %}
 {% endif %}
 				</p>
@@ -32,7 +32,7 @@ css:
 {% if page.tags %}
 					Tags:
 	{% for tag in page.tags %}
-					 <a href="{{ tag | prepend: 'tags.html#' | prepend: site.baseurl }}">{{ tag }}</a>
+					 <a href="{{ tag | prepend: '/tags.html#' | prepend: site.baseurl }}">{{ tag }}</a>
 	{% endfor %}
 {% endif %}
 				</p>
