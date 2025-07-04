@@ -8,7 +8,7 @@ css:
 		<div id="blog-posts" class="col-md-12">
 
 			<article id="post-{{ page.id }}" class="blog-post">
-				<h2 class="display-5 link-body-emphasis mb-1"><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></h2>
+				<h2 class="display-5 link-body-emphasis mb-1">{{ page.title }}</h2>
 				<p class="blog-post-meta">
 					{{ page.date | date: "%b %-d, %Y" }}
 {% if page.author %}
@@ -18,9 +18,24 @@ css:
 		{% endif %}
 	{% endfor %}
 {% endif %}
+{% if page.categories %}
+					 Category:
+	{% for category in page.categories %}
+					 <a href="{{ category | first | prepend: 'categories.html#' | prepend: site.baseurl }}">{{ category | first }}</a>
+	{% endfor %}
+{% endif %}
 				</p>
 
 {{ content }}
+
+				<p class="blog-post-meta">
+{% if page.tags %}
+					Tags:
+	{% for tag in page.tags %}
+					 <a href="{{ tag | first | prepend: 'tags.html#' | prepend: site.baseurl }}">{{ tag | first }}</a>
+	{% endfor %}
+{% endif %}
+				</p>
 
 			</article>
 
