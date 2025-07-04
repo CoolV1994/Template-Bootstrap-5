@@ -10,8 +10,8 @@ sidebar:
   - tags
 ---
 
-{% for post in site.posts %}
-	{% if post.main %}
+{% for post_id in site.data.blog.main %}
+{% assign post = site.posts | find_exp: "doc", "doc.name == {{ post_id | append: '.md' }}" | first %}
 	<div id="post-main" class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
 		<div id="post-{{ post-id }}" class="col-lg-6 px-0">
 			<h1 class="display-4 fst-italic"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
@@ -19,15 +19,12 @@ sidebar:
 			<p class="lead mb-0"><a href="{{ post.url | prepend: site.baseurl }}" class="text-body-emphasis fw-bold">Continue reading...</a></p>
 		</div>
 	</div><!-- / #post-main -->
-	{% break %}
-	{% endif %}
 {% endfor %}
 
+{% if site.data.blog.featured %}
 	<div id="post-featured" class="row mb-2">
-{% assign featured = 0 %}
-{% for post in site.posts %}
-	{% if post.featured %}
-		{% increment featured %}
+{% for post_id in site.data.blog.featured %}
+{% assign post = site.posts | find_exp: "doc", "doc.name == {{ post_id | append: '.md' }}" | first %}
 			<div id="post-{{ post.id }}" class="col-md-6">
 				<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 					<div class="col p-4 d-flex flex-column position-static">
@@ -47,12 +44,9 @@ sidebar:
 					</div>
 				</div>
 			</div>
-	{% endif %}
-	{% if featured >= 2 %}
-		{% break %}
-	{% endif %}
 {% endfor %}
 	</div><!-- /#post-featured -->
+{% endif %}
 
 	<div id="blog" class="row g-5">
 		<div id="blog-posts" class="col-md-8">
@@ -60,7 +54,7 @@ sidebar:
 
 <!-- Start Posts -->
 {% for post in site.posts limit:10 %}
-	{% unless post.featured or post.main %}
+	{% unless site.data.blog.main contains post.name or site.data.blog.featured contains post.name %}
 			<article id="post-{{ post.id }}" class="blog-post">
 				<h2 class="display-5 link-body-emphasis mb-1"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
 				<p class="blog-post-meta">
