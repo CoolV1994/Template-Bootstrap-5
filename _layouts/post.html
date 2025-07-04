@@ -12,7 +12,8 @@ css:
 				<p class="blog-post-meta">
 Posted: {{ page.date | date: "%b %-d, %Y" }}
 {% if page.author %}
-{% assign author_test = site.collections['authors'][page.author | append: '.md'] %}
+{% assign author_file = page.author | append: '.md' %}
+{% assign author_test = site.collections['authors'][author_file] %}
  - <a href="{{ author_test.url | prepend: site.baseurl }}">{{ author_test.name }}</a> - 
 {% assign author_doc = page.author | prepend: '_authors/' | append: '.md' %}
 {% assign author_var = site.authors | find_exp: "doc", "doc.path == author_doc" | first %}
