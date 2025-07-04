@@ -14,6 +14,7 @@ Posted: {{ page.date | date: "%b %-d, %Y" }}
 {% if page.author %}
 {% assign author_doc = page.author | prepend: '_authors/' | append: '.md' %}
 {% assign author = site.authors | find_exp: "doc", "doc.path == author_doc" %}
+{{ author_doc }}-{{ author }}
  by <a href="{{ author.url | prepend: site.baseurl }}">{{ author.name }}</a>
 {% endif %}
 {% if page.categories %}
