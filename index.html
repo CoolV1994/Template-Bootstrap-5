@@ -65,7 +65,7 @@ sidebar:
 					{{ post.date | date: "%b %-d, %Y" }}
 		{% if post.author %}
 			{% for author in site.authors %}
-				{% if author == post.author %}
+				{% if author.id == post.author %}
 					 by <a href="{{ author.url | prepend: site.baseurl }}">{{ author.name }}</a>
 				{% endif %}
 			{% endfor %}
