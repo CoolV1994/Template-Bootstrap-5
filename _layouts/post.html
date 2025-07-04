@@ -11,7 +11,7 @@ layout: blog
 					{{ page.date | date: "%b %-d, %Y" }}
 {% if page.author %}
 	{% for author in site.authors %}
-		{% if author == page.author %}
+		{% if author.id contains page.author %}
 					 by <a href="{{ author.url | prepend: site.baseurl }}">{{ author.name }}</a>
 		{% endif %}
 	{% endfor %}
