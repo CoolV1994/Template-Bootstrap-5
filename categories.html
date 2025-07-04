@@ -3,48 +3,35 @@ layout: default
 title: Categories
 ---
 
-<div class="page-header">
-	<h1>Index: Categories</h1>
-</div><!-- /.title -->
+	<div id="blog" class="row g-5">
+		<div id="blog-posts" class="col-md-8">
+			<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
 
-<div class="row">
-
-	<div class="col-sm-3 blog-sidebar">
-		<div class="sidebar-module">
-			<div class="panel panel-default" id="index">
-				<div class="panel-heading">
-					<h3 class="panel-title">Categories</h3>
-				</div><!-- /.heading -->
-				<div class="panel-body">
-					<ul class="list-unstyled">
+			<div class="col-md-4">
+				<div class="position-sticky" style="top: 2rem;">
+					<div class="mb-3">
+						<h4 class="fst-italic">Tags</h4>
+						<ul class="list-unstyled">
 {% for category in site.categories %}
-						<li><a href="#{{ category[0] }}">{{ category[0] }}</a></li>
+							<li><a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center link-body-emphasis" href="#{{ category[0] }}">{{ category[0] | capitalize }}</a></li>
 {% endfor %}
-					</ul>
-				</div><!-- /.body -->
-			</div><!-- /.panel -->
-		</div><!-- /.module -->
-	</div><!-- /.sidebar -->
-
-	<div class="col-sm-9 blog-main">
+						</ul>
+					</div>
+				</div>
+			</div>
 
 {% for category in site.categories %}
-	<div class="panel panel-default" id="{{ category[0] }}">
-		<div class="panel-heading">
-			<h3 class="panel-title">{{ category[0] }}</h3>
-		</div><!-- /.heading -->
-		<div class="panel-body">
-			<ul class="list-unstyled">
+			<article id="{{ category[0] }}" class="blog-post">
+				<h2 class="display-5 link-body-emphasis mb-1">{{ category[0] | capitalize }}</h2>
+				<ul class="list-unstyled">
 {% for post in category[1] %}
 {% if post.url %}
-				<li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
+					<li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
 {% endif %}
 {% endfor %}
-			</ul>
-		</div><!-- /.body -->
-		</div><!-- /.panel -->
+				</ul>
+			</article>
 {% endfor %}
 
-	</div><!-- /.main -->
-
-</div><!-- /.row -->
+		</div>
+	</div>
