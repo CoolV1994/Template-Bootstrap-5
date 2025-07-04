@@ -1,8 +1,8 @@
-				<div class="p-4">
+				<div>
 					<h4 class="fst-italic">Tags</h4>
-					<ol class="list-unstyled mb-0">
+					<ul class="list-unstyled">
 {% for tag in site.tags %}
-						<li><a href="{{ tag | first | prepend: '/tags.html#' | prepend: site.baseurl }}">{{ tag | first }}</a></li>
+						<li><a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center link-body-emphasis" href="{{ tag | first | prepend: '/tags.html#' | prepend: site.baseurl }}">{{ tag | first }}</a></li>
 {% endfor %}
-					</ol>
+					</ul>
 				</div>
