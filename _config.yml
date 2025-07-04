@@ -7,13 +7,21 @@ description: >
 baseurl: "/Template-Bootstrap-5"
 url: "https://coolv1994.github.io"
 
-# Build settings
+# Build Settings
 markdown: kramdown
+
+# Site Defaults
+defaults:
+  - scope:
+      path: "images"
+    values:
+      album: gallery
 
 # Includes
 include:
  - _pages
 
+# SASS Stylesheets
 sass:
   sass_dir: _sass
   style: compressed
