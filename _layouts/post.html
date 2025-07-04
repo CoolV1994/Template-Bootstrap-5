@@ -10,19 +10,16 @@ css:
 			<article id="post-{{ page.id }}" class="blog-post">
 				<h2 class="display-5 link-body-emphasis mb-1">{{ page.title }}</h2>
 				<p class="blog-post-meta">
-					{{ page.date | date: "%b %-d, %Y" }}
+Posted: {{ page.date | date: "%b %-d, %Y" }}
 {% if page.author %}
-	{% for author in site.authors %}
-		{% if author.id contains page.author %}
-					&nbsp;by <a href="{{ author.url | prepend: site.baseurl }}">{{ author.name }}</a>
-		{% endif %}
-	{% endfor %}
+{%- assign author = site.authors.{{page.author}} -%}
+ by <a href="{{ author.url | prepend: site.baseurl }}">{{ author.name }}</a>
 {% endif %}
 {% if page.categories %}
-					&nbsp;&mdash;&nbsp;Category:
-	{% for category in page.categories %}
-					 <a href="{{ category | prepend: '/categories.html#' | prepend: site.baseurl }}">{{ category }}</a>
-	{% endfor %}
+&nbsp;&mdash;&nbsp;Category:
+{% for category in page.categories %}
+ <a href="{{ category | prepend: '/categories.html#' | prepend: site.baseurl }}">{{ category }}</a>
+{% endfor %}
 {% endif %}
 				</p>
 
@@ -30,10 +27,10 @@ css:
 
 				<p class="blog-post-meta">
 {% if page.tags %}
-					Tags:
-	{% for tag in page.tags %}
-					 <a href="{{ tag | prepend: '/tags.html#' | prepend: site.baseurl }}">{{ tag }}</a>
-	{% endfor %}
+Tags:
+{% for tag in page.tags %}
+ <a href="{{ tag | prepend: '/tags.html#' | prepend: site.baseurl }}">{{ tag }}</a>
+{% endfor %}
 {% endif %}
 				</p>
 
