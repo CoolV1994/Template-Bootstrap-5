@@ -17,9 +17,9 @@ title: Categories
 				</div><!-- /.heading -->
 				<div class="panel-body">
 					<ul class="list-unstyled">
-					{% for category in site.categories %}
-						<li><a href="#{{ category | first }}">{{ category | first }}</a></li>
-					{% endfor %}
+{% for category in site.categories %}
+						<li><a href="#{{ category[0] }}">{{ category[0] }}</a></li>
+{% endfor %}
 					</ul>
 				</div><!-- /.body -->
 			</div><!-- /.panel -->
@@ -28,20 +28,18 @@ title: Categories
 
 	<div class="col-sm-9 blog-main">
 
-	{% for category in site.categories %}
-	<div class="panel panel-default" id="{{ category | first }}">
+{% for category in site.categories %}
+	<div class="panel panel-default" id="{{ category[0] }}">
 		<div class="panel-heading">
-			<h3 class="panel-title">{{ category | first }}</h3>
+			<h3 class="panel-title">{{ category[0] }}</h3>
 		</div><!-- /.heading -->
 		<div class="panel-body">
 			<ul class="list-unstyled">
-			{% for posts in category %}
-				{% for post in posts %}
-				{% if post.url %}
+{% for post in category[1] %}
+{% if post.url %}
 				<li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
-				{% endif %}
-				{% endfor %}
-			{% endfor %}
+{% endif %}
+{% endfor %}
 			</ul>
 		</div><!-- /.body -->
 		</div><!-- /.panel -->

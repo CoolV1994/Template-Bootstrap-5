@@ -17,9 +17,9 @@ title: Tags
 				</div><!-- /.heading -->
 				<div class="panel-body">
 					<ul class="list-unstyled">
-					{% for tag in site.tags %}
-						<li><a href="#{{ tag | first }}">{{ tag | first }}</a></li>
-					{% endfor %}
+{% for tag in site.tags %}
+						<li><a href="#{{ tag[0] }}">{{ tag[0] }}</a></li>
+{% endfor %}
 					</ul>
 				</div><!-- /.body -->
 			</div><!-- /.panel -->
@@ -28,20 +28,18 @@ title: Tags
 
 	<div class="col-sm-9 blog-main">
 
-	{% for tag in site.tags %}
-	<div class="panel panel-default" id="{{ tag | first }}">
+{% for tag in site.tags %}
+	<div class="panel panel-default" id="{{ tag[0] }}">
 		<div class="panel-heading">
-			<h3 class="panel-title">{{ tag | first }}</h3>
+			<h3 class="panel-title">{{ tag[0] }}</h3>
 		</div><!-- /.heading -->
 		<div class="panel-body">
 			<ul class="list-unstyled">
-			{% for posts in tag %}
-				{% for post in posts %}
-				{% if post.url %}
+{% for post in tag[1] %}
+{% if post.url %}
 				<li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
-				{% endif %}
-				{% endfor %}
-			{% endfor %}
+{% endif %}
+{% endfor %}
 			</ul>
 		</div><!-- /.body -->
 		</div><!-- /.panel -->

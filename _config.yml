@@ -10,13 +10,6 @@ url: "https://coolv1994.github.io"
 # Build Settings
 markdown: kramdown
 
-# Site Defaults
-defaults:
-  - scope:
-      path: "images"
-    values:
-      album: gallery
-
 # Includes
 include:
  - _pages
@@ -35,6 +28,17 @@ collections:
   authors:
     output: true
     url: /authors/
-  album:
+  albums:
     output: true
-    url: /album/
+    url: /albums/
+
+# Defaults
+defaults:
+  - scope:
+      path: "albums/sample"
+    values:
+      album: sample
+  - scope:
+      path: "albums/icons"
+    values:
+      album: icons
