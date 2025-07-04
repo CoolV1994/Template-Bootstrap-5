@@ -4,22 +4,21 @@ title: Categories
 ---
 
 	<div id="blog" class="row g-5">
-		<div id="blog-posts" class="col-md-8">
-			<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
-
-			<div class="col-md-4">
-				<div class="position-sticky" style="top: 2rem;">
-					<div class="mb-3">
-						<h4 class="fst-italic">Tags</h4>
-						<ul class="list-unstyled">
+		<div class="col-md-4">
+			<div class="position-sticky" style="top: 2rem;">
+				<div class="mb-3">
+					<h4 class="fst-italic">Index</h4>
+					<ul class="list-unstyled">
 {% for category in site.categories %}
-							<li><a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center link-body-emphasis" href="#{{ category[0] }}">{{ category[0] | capitalize }}</a></li>
+						<li><a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center link-body-emphasis" href="#{{ category[0] }}">{{ category[0] | capitalize }}</a></li>
 {% endfor %}
-						</ul>
-					</div>
+					</ul>
 				</div>
 			</div>
+		</div>
 
+		<div id="blog-posts" class="col-md-8">
+			<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
 {% for category in site.categories %}
 			<article id="{{ category[0] }}" class="blog-post">
 				<h2 class="display-5 link-body-emphasis mb-1">{{ category[0] | capitalize }}</h2>
@@ -32,6 +31,5 @@ title: Categories
 				</ul>
 			</article>
 {% endfor %}
-
 		</div>
 	</div>
