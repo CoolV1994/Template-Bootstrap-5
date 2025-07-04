@@ -4,38 +4,16 @@ css:
   - '/assets/css/profile.css'
 ---
 
-<div class="b-example-divider">
-</div>
-
 <div class="container px-4 py-5" id="custom-cards">
-	<h2 class="pb-2 border-bottom">Author Profile</h2>
+	<h2 class="pb-2 border-bottom">{{ page.title }}</h2>
 	<div class="row align-items-stretch g-4 py-5">
 		<div class="col">
-			<div class="card card-cover overflow-hidden text-bg-dark rounded-4 shadow-lg" style="width:256px;height:256px;display:block;background-image: url('{{ page.avatar }}');">
-			</div>
+			<div class="card card-cover overflow-hidden text-bg-dark rounded-4 shadow-lg" style="width:256px;height:256px;display:block;background-image: url('{{ page.avatar }}');"></div>
 		</div>
-		<div class="col col-6 d-flex flex-column align-items-start gap-2">
-			<h2 class="fw-bold text-body-emphasis">{{ page.name }}</h2>
-			<h6 class="fw-bold text-body-emphasis">{{ page.title }}</h6>
-			<p class="text-body-secondary">
+		<div class="col col-9 d-flex flex-column align-items-start gap-2">
 {{ content }}
-			</p>
-		</div>
-		<div class="col">
-<!--{% if page.contact %}-->
-			<a href="mailto:{{ page.email }}" class="btn btn-primary btn-lg">E-Mail</a>
-<!--{% endif %}-->
-			<br><br>
-			<ul class="list-unstyled">
-{% for link in page.links %}
-				<li>{{ link | markdownify }}</li>
-{% endfor %}
-			</ul>
 		</div>
 	</div>
-</div>
-
-<div class="b-example-divider">
 </div>
 
 <div class="container px-4 py-5" id="icon-grid">
@@ -56,7 +34,4 @@ css:
 	{% endif %}
 {% endfor %}
 	</div>
-</div>
-
-<div class="b-example-divider">
 </div>
