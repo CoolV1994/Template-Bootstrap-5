@@ -10,6 +10,10 @@ url: "https://coolv1994.github.io"
 # Build settings
 markdown: kramdown
 
+# Includes
+include:
+ - _pages
+
 # Pagination
 paginate: 10
 paginate_path: "/:collection/page:num/"
