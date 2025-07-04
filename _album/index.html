@@ -20,7 +20,7 @@ navbar: Album
 			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
 {% for post in site.album %}
-	{% unless post.image %}
+	{% if post.image %}
 				<div class="col">
 					<div class="card shadow-sm">
 						<img src="{{ post.image }}" alt="{{ post.title }}" width="420" height="225">
@@ -36,7 +36,7 @@ navbar: Album
 						</div>
 					</div>
 				</div>
-	{% endunless %}
+	{% endif %}
 {% endfor %}
 
 			</div>
