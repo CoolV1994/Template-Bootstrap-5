@@ -53,7 +53,7 @@ sidebar:
 			<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
 
 <!-- Start Posts -->
-{% for post in site.posts limit:10 %}
+{% for post in site.posts limit:{{ site.data.blog.recent }} %}
 	{% unless site.data.blog.main contains post.name or site.data.blog.featured contains post.name %}
 			<article id="post-{{ post.id }}" class="blog-post">
 				<h2 class="display-5 link-body-emphasis mb-1"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
