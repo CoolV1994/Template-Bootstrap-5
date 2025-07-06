@@ -2,5 +2,9 @@ sample:
     name: Sample Album
     description: Default Sample Image Album
     images:
-    - '/images/Gawd Icon.jpg'
-    - '/album/server-icon.png'
+    - name: Gawd Icon
+      author: CoolV1994
+      url: '/images/Gawd Icon.jpg'
+    - name: Server Icon
+      author: CoolV1994
+      url: '/album/server-icon.png'
