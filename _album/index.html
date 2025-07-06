@@ -4,9 +4,7 @@ title: Album
 excerpt: Default Photo Album
 ---
 
-{% assign album_files = site.static_files | where: "collection", page.collection %}
-
-{% for file in album_files %}
+{% for file in site.album.files %}
 				<div class="col">
 					<div class="card shadow-sm">
 						<img src="{{ file.path | prepend: site.baseurl }}" alt="{{ file.name }}" width="200" height="200">
