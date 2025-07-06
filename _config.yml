@@ -31,6 +31,9 @@ collections:
   albums:
     output: true
     url: /albums/
+  album:
+    output: true
+    url: /album/
 
 # Defaults
 defaults:
