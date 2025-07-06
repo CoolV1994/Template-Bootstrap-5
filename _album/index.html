@@ -1,8 +1,7 @@
 ---
 layout: default
 title: Album
-excerpt: Image Gallery
-navbar: Album
+excerpt: Default Photo Album
 ---
 
 	<section class="py-5 text-center container">
@@ -20,19 +19,19 @@ navbar: Album
 		<div class="container">
 			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
-{% for post in site.album %}
-	{% if post.image %}
+{% for file in site.album %}
+	{% if file.basename == 'index.html' %}
+	{% else %}
 				<div class="col">
 					<div class="card shadow-sm">
-						<img src="{{ post.image }}" alt="{{ post.title }}" width="200" height="200">
+						<img src="{{ file.url }}" alt="{{ file.name }}" width="200" height="200">
 						<div class="card-body">
-							<p class="card-text">{{ post.title }}</p>
+							<p class="card-text">{{ file.basename }}</p>
 							<div class="d-flex justify-content-between align-items-center">
 								<div class="btn-group">
-									<a href="{{ post.image }}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
-									<a href="{{ post.url | prepend: site.baseurl }}"><button type="button" class="btn btn-sm btn-outline-secondary">Info</button></a>
+									<a href="{{ file.url | prepend: site.baseurl }}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
 								</div>
-								<small class="text-body-secondary">{{ post.author }}</small>
+								<small class="text-body-secondary">{{ post.date }}</small>
 							</div>
 						</div>
 					</div>
