@@ -1,22 +1,20 @@
 ---
 layout: album
-title: Icons
-excerpt: Icon Gallery
+title: Album
+excerpt: Image Gallery
 ---
 
-{% assign album_files = site.static_files | where: "collection", page.collection %}
-
-{% for file in album_files %}
+{% for image in site.data.albums.sample.images %}
 				<div class="col">
 					<div class="card shadow-sm">
-						<img src="{{ file.path | prepend: site.baseurl }}" alt="{{ file.name }}" width="200" height="200">
+						<img src="{{ image.url | prepend: site.baseurl }}" alt="{{ image.name }}" width="200" height="200">
 						<div class="card-body">
-							<p class="card-text">{{ file.name }}</p>
+							<p class="card-text">{{ image.name }}</p>
 							<div class="d-flex justify-content-between align-items-center">
 								<div class="btn-group">
-									<a href="{{ file.path | prepend: site.baseurl }}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+									<a href="{{ image.url | prepend: site.baseurl }}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
 								</div>
-								<small class="text-body-secondary">{{ file.modified_time }}</small>
+								<small class="text-body-secondary">{{ image.author }}</small>
 							</div>
 						</div>
 					</div>
