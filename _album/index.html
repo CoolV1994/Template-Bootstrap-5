@@ -4,7 +4,7 @@ title: Album
 excerpt: Default Photo Album
 ---
 
-{% for file in site.album %}
+{% for file in site.album.files %}
 				<div class="col">
 					<div class="card shadow-sm">
 						<img src="{{ file.url | prepend: site.baseurl }}" alt="{{ file.name }}" width="200" height="200">
