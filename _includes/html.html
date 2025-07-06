@@ -1,10 +1,10 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% elseif layout.description %}{{ layout.description | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+<meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
 <meta name="author" content="{% if page.author %}{{ page.author }}{% else %}{{ site.author }}{% endif %}">
 <meta name="generator" content="Jekyll v3.10.0">
-<title>{% if page.title %}{{ page.title | escape }}{% elseif layout.title %}{{ layout.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+<title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
 <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}">
 <link rel="icon" href="{{ '/favicon.ico' | prepend: site.baseurl }}">
@@ -25,12 +25,6 @@
 {% for css in page.css %}
 <link href="{{ css | prepend: site.baseurl }}" rel="stylesheet">
 {% endfor %}
-{% endif %}
-
-{% if layout.style %}
-<style>
-{{ layout.style }}
-</style>
 {% endif %}
 
 {% if page.style %}
