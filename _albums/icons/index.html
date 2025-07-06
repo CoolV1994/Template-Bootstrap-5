@@ -2,6 +2,23 @@
 layout: album
 title: Icons
 excerpt: Icon Gallery
-
 ---
 
+{% assign album_files = site.static_files | where: "collection", page.collection %}
+
+{% for file in album_files %}
+				<div class="col">
+					<div class="card shadow-sm">
+						<img src="{{ file.path | prepend: site.baseurl }}" alt="{{ file.name }}" width="200" height="200">
+						<div class="card-body">
+							<p class="card-text">{{ file.name }}</p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group">
+									<a href="{{ file.path | prepend: site.baseurl }}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+								</div>
+								<small class="text-body-secondary">{{ file.modified_time }}</small>
+							</div>
+						</div>
+					</div>
+				</div>
+{% endfor %}
