@@ -7,12 +7,12 @@ excerpt: Default Photo Album
 {% for file in site.album %}
 				<div class="col">
 					<div class="card shadow-sm">
-						<img src="{{ file.path | prepend: site.baseurl }}" alt="{{ file.name }}" width="200" height="200">
+						<img src="{{ file.url | prepend: site.baseurl }}" alt="{{ file.name }}" width="200" height="200">
 						<div class="card-body">
 							<p class="card-text">{{ file.name }}</p>
 							<div class="d-flex justify-content-between align-items-center">
 								<div class="btn-group">
-									<a href="{{ file.path | prepend: site.baseurl }}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+									<a href="{{ file.url | prepend: site.baseurl }}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
 								</div>
 								<small class="text-body-secondary">{{ file.modified_time }}</small>
 							</div>
