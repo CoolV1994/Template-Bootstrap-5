@@ -1,0 +1,6 @@
+sample:
+    name: Sample Album
+    description: Default Sample Image Album
+    images:
+    - '/images/Gawd Icon.jpg'
+    - '/album/server-icon.png'
