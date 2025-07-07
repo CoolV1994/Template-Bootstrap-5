@@ -1,0 +1,36 @@
+---
+layout: album
+title: Icons
+excerpt: GawdTech Icons Album
+thumbnail: '/albums/icons/Gawd Icon.jpg'
+images:
+  - name: Gawd Icon
+    author: CoolV1994
+    url: '/albums/icons/Gawd Icon.jpg'
+  - name: Gawd Icon
+    author: CoolV1994
+    url: '/albums/icons/GawdX-Gold-x512.png'
+  - name: Gawd Icon
+    author: CoolV1994
+    url: '/albums/icons/GawdX_512_BG.png'
+  - name: Server Icon
+    author: CoolV1994
+    url: '/albums/icons/server-icon.png'
+---
+
+{% for image in page.images %}
+				<div class="col">
+					<div class="card shadow-sm">
+						<img src="{{ image.url | prepend: site.baseurl }}" alt="{{ image.name }}" width="200" height="200">
+						<div class="card-body">
+							<p class="card-text">{{ image.name }}</p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group">
+									<a href="{{ image.url | prepend: site.baseurl }}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+								</div>
+								<small class="text-body-secondary">{{ image.author }}</small>
+							</div>
+						</div>
+					</div>
+				</div>
+{% endfor %}
