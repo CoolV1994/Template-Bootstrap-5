@@ -25,14 +25,14 @@ Posted: {{ page.date | date: "%b %-d, %Y" }}
 
 {{ content }}
 
-				<p class="blog-post-meta">
 {% if page.tags %}
+				<p class="blog-post-meta">
 Tags:
 {% for tag in page.tags %}
  <a href="{{ tag | prepend: '/tags.html#' | prepend: site.baseurl }}">{{ tag }}</a>
 {% endfor %}
-{% endif %}
 				</p>
+{% endif %}
 
 			</article>
 
