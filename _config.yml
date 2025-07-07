@@ -10,10 +10,6 @@ url: "https://coolv1994.github.io"
 # Build Settings
 markdown: kramdown
 
-# Includes
-include:
- - _pages
-
 # SASS Stylesheets
 sass:
   sass_dir: _sass
@@ -31,17 +27,3 @@ collections:
   albums:
     output: true
     url: /albums/
-  album:
-    output: true
-    url: /album/
-
-# Defaults
-defaults:
-  - scope:
-      path: "/albums/sample/"
-    values:
-      album: sample
-  - scope:
-      path: "/albums/icons/"
-    values:
-      album: icons
