@@ -1,8 +1,6 @@
 ---
 layout: page_sidebar
 title: About
-css:
-  - '/assets/css/blog.css'
 sidebar:
   - about
 ---
