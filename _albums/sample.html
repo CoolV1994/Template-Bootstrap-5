@@ -10,13 +10,15 @@ images:
   - name: Server Icon
     author: CoolV1994
     url: '/images/server-icon.png'
-style: ".image-container {width: 592px;height: 296px;} .image-container img {width: 100%;height: 100%;object-fit: contain;}"
+style: ".image-container {width: 100%;height: 100%;} .image-container img {width: 100%;height: 100%;object-fit: contain;}"
 ---
 
 {% for image in page.images %}
 				<div class="col">
-					<div class="card shadow-sm image-container">
+					<div class="card shadow-sm">
+						<div class="image-container">
 						<img src="{{ image.url | prepend: site.baseurl }}" alt="{{ image.name }}">
+						</div>
 						<div class="card-body">
 							<p class="card-text">{{ image.name }}</p>
 							<div class="d-flex justify-content-between align-items-center">
