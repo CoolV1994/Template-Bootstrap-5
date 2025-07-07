@@ -12,7 +12,7 @@ style: ".image-container {width: 592px;height: 296px;} .image-container img {wid
 	<div id="album_{{ page.name | replace: '.md', '' }}" class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
 		<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-300 position-relative">
 			<div class="col-lg-6 px-0 d-flex flex-column">
-				<h1 class="display-4 fst-italic"><a href="{{ post.url | prepend: site.baseurl }}">{{ page.title }}</a></h1>
+				<h1 class="display-4 fst-italic"><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></h1>
 				<p class="lead my-3">{{ page.excerpt }}</p>
 				<div class="align-bottom flex-grow-1 d-flex justify-content-center align-items-end">
 					<p class="lead mb-0"><a href="{{ page.url | prepend: site.baseurl }}" class="text-body-emphasis fw-bold">View Album</a></p>
