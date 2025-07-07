@@ -1,5 +1,4 @@
 # Site settings
-name: Bootstrap 5 Template
 title: Bootstrap 5 Template
 author: CoolV1994
 description: >
@@ -9,11 +8,6 @@ url: "https://coolv1994.github.io"
 
 # Build Settings
 markdown: kramdown
-
-# SASS Stylesheets
-sass:
-  sass_dir: _sass
-  style: compressed
 
 # Pagination
 paginate: 10
