@@ -1,0 +1,46 @@
+---
+layout: default
+css:
+  - '/assets/css/blog.css'
+---
+
+	<div class="row g-5">
+
+		<div class="col-md-8">
+			<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
+
+    <!-- Content -->
+			<article id="{{ page.name | replace: '.md', '' }}" class="blog-post">
+				<h2 class="display-5 link-body-emphasis mb-1"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
+				<p class="blog-post-meta">
+					{{ page.date | date: "%b %-d, %Y" }}
+{% if page.author %}
+{% assign author = site.data.authors[page.author] %}
+					 by <a href="{{ author.url | prepend: site.baseurl }}">{{ author.name }}</a>
+{% endif %}
+{% if post.categories %}
+&nbsp;&mdash;&nbsp;Category:
+{% for category in page.categories %}
+ <a href="{{ category | prepend: '/categories.html#' | prepend: site.baseurl }}">{{ category }}</a>
+{% endfor %}
+{% endif %}
+				</p>
+
+{{ content }}
+
+{% if page.tags %}
+				<p class="blog-post-meta">
+Tags:
+{% for tag in page.tags %}
+ <a href="{{ tag | prepend: '/tags.html#' | prepend: site.baseurl }}">{{ tag }}</a>
+{% endfor %}
+				</p>
+{% endif %}
+			</article>
+
+		</div>
+    <!-- End Content -->
+
+{% include sidebar.html %}
+
+	</div>
