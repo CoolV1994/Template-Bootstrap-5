@@ -11,7 +11,7 @@ images:
     url: '/album/server-icon.png'
 ---
 
-{% for image in images %}
+{% for image in page.images %}
 				<div class="col">
 					<div class="card shadow-sm">
 						<img src="{{ image.url | prepend: site.baseurl }}" alt="{{ image.name }}" width="200" height="200">
