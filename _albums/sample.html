@@ -1,10 +1,17 @@
 ---
 layout: album
-title: Album
-excerpt: Image Gallery
+title: Sample Album
+excerpt: Sample Image Album
+images:
+  - name: Gawd Icon
+    author: CoolV1994
+    url: '/images/Gawd Icon.jpg'
+  - name: Server Icon
+    author: CoolV1994
+    url: '/album/server-icon.png'
 ---
 
-{% for image in site.data.albums.sample.images %}
+{% for image in images %}
 				<div class="col">
 					<div class="card shadow-sm">
 						<img src="{{ image.url | prepend: site.baseurl }}" alt="{{ image.name }}" width="200" height="200">
