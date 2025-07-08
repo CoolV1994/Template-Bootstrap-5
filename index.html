@@ -64,7 +64,7 @@ sidebar:
 
 <!-- Start Posts -->
 {% for post in site.posts limit:{{ site.data.blog.recent }} %}
-	{% unless post.path contains site.data.blog.main or post.path contains site.data.blog.featured %}
+	{% unless site.data.blog.main contains post.path or site.data.blog.featured contains post.path %}
 			<article id="post_{{ post.id }}" class="blog-post">
 				<h2 class="display-5 link-body-emphasis mb-1"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
 				<p class="blog-post-meta">
