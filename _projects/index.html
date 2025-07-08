@@ -7,6 +7,7 @@ sidebar:
   - about
   - categories
   - tags
+index: true
 ---
 
 {% for post in site.posts %}
@@ -57,7 +58,7 @@ sidebar:
 
 <!-- Start Posts -->
 {% for post in site.projects %}
-	{% unless site.data.projects.skip contains post.path %}
+	{% unless post.index %}
 			<article id="{{ post.id | replace: '/', '-' }}" class="blog-post">
 				<h2 class="display-5 link-body-emphasis mb-1"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
 				<p class="blog-post-meta">
