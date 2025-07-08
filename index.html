@@ -22,12 +22,14 @@ sidebar:
 	</div><!-- / #post-main -->
 {% endif %}
 {% endfor %}
+{% break %}
 {% endfor %}
 
 {% if site.data.blog.featured %}
 	<div id="post-featured" class="row mb-2">
+{% for post in site.posts %}
 {% for post_id in site.data.blog.featured %}
-{% assign post = site.posts | find_exp: "doc", "doc.path == {{ post_id }}" | first %}
+{% if post.path contains post_id %}
 			<div id="post_{{ post.id }}" class="col-md-6">
 				<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 					<div class="col p-4 d-flex flex-column position-static">
@@ -49,6 +51,9 @@ sidebar:
 {% endif %}
 				</div>
 			</div>
+{% endif %}
+{% endfor %}
+{% break %}
 {% endfor %}
 	</div><!-- /#post-featured -->
 {% endif %}
