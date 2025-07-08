@@ -3,34 +3,44 @@ layout: default
 title: Tags
 ---
 
-	<div class="row g-5">
+<div class="py-5 text-center">
+	<h1 class="h2">Tags</h1>
+</div>
 
-		<div class="col-md-4">
-			<div class="position-sticky" style="top: 2rem;">
-				<div class="p-4 mb-3 bg-body-tertiary rounded">
-					<h4 class="fst-italic">Tags</h4>
-					<ul class="list-unstyled">
+<div class="row g-5">
+
+	<!-- Start Sidebar -->
+	<div class="col-md-5 col-lg-4 order-md-last">
+		<h4 class="d-flex justify-content-between align-items-center mb-3">
+			<span class="text-primary">Index</span>
+		</h4>
+		<ul class="list-group mb-3 bg-body-tertiary">
 {% for tag in site.tags %}
-						<li><a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center link-body-emphasis" href="#{{ tag[0] }}">{{ tag[0] | capitalize }}</a></li>
+			<li class="list-group-item d-flex justify-content-between">
+				<a href="#{{ tag[0] }}">{{ tag[0] | capitalize }}</a>
+			</li>
 {% endfor %}
-					</ul>
-				</div>
-			</div>
-		</div>
+		</ul>
+	</div>
+	<!-- End Sidebar -->
 
-		<div class="col-md-8">
+	<!-- Start Content -->
+	<div class="col-md-7 col-lg-8">
 {% for tag in site.tags %}
-			<article id="{{ tag[0] }}" class="blog-post p-4 mb-3 bg-body-tertiary rounded">
-				<h2 class="display-5 link-body-emphasis mb-1">{{ tag[0] | capitalize }}</h2>
-				<ul class="list-unstyled">
+		<article id="{{ category[0] }}" class="p-4 mb-3 rounded">
+			<h2 class="display-5 link-body-emphasis mb-1">
+				<span class="text-primary">{{ tag[0] | capitalize }}</span>
+			</h2>
+			<ul class="list-unstyled bg-body-tertiary">
 {% for post in tag[1] %}
 {% if post.url %}
-					<li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
+				<li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
 {% endif %}
 {% endfor %}
-				</ul>
-			</article>
+			</ul>
+		</article>
 {% endfor %}
-		</div>
-
 	</div>
+	<!-- End Content-->
+
+</div>
