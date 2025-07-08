@@ -11,7 +11,7 @@ sidebar:
 ---
 
 {% for post in site.posts %}
-{% if site.data.blog.main contains post.path %}
+{% if post.categories contains 'main' %}
 	<div id="post-main" class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
 		<div id="{{ post.id | replace: '/', '-' }}" class="col-lg-6 px-0">
 			<h1 class="display-4 fst-italic"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
@@ -25,7 +25,7 @@ sidebar:
 {% if site.data.blog.featured %}
 	<div id="post-featured" class="row mb-2">
 {% for post in site.posts %}
-{% if site.data.blog.featured contains post.path %}
+{% if post.categories contains 'featured' %}
 			<div id="{{ post.id | replace: '/', '-' }}" class="col-md-6">
 				<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 					<div class="col p-4 d-flex flex-column position-static">
@@ -63,8 +63,8 @@ sidebar:
 			<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
 
 <!-- Start Posts -->
-{% for post in site.posts limit:{{ site.data.blog.recent }} %}
-	{% unless site.data.blog.skip contains post.path %}
+{% for post in site.posts }} %}
+	{% unless post.categories contains 'featured' or post.categories contains 'main' %}
 			<article id="{{ post.id | replace: '/', '-' }}" class="blog-post">
 				<h2 class="display-5 link-body-emphasis mb-1"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
 				<p class="blog-post-meta">
