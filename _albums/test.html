@@ -8,7 +8,7 @@ excerpt: Images Gallery
 {% for image in image_files %}
 				<div class="col">
 					<div class="card shadow-sm">
-						<img src="{{ image.path | prepend: site.baseurl }}" alt="{{ image.name }}" width="256" height="256">
+						<img src="{{ image.path | prepend: site.baseurl }}" alt="{{ image.name }}" width="300" height="300">
 						<div class="card-body">
 							<p class="card-text">{{ image.name }}</p>
 							<div class="d-flex justify-content-between align-items-center">
