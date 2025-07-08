@@ -4,8 +4,8 @@ main:
   - '_posts/2016-04-12-welcome.md'
 
 featured:
-  - '_posts/2016-04-12-welcome.md'
-  - '_posts/2016-04-12-welcome.md'
+  - '_posts/2025-07-07-Sample.md'
+  - '_posts/2025-07-07-Sample2.md'
 
 skip:
   - '_posts/2016-04-12-welcome.md'
