@@ -11,8 +11,7 @@ sidebar:
 ---
 
 {% for post in site.posts %}
-{% for post_id in site.data.blog.main %}
-{% if post.path contains post_id %}
+{% if site.data.blog.main contains post.path %}
 	<div id="post-main" class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
 		<div id="{{ post.id | replace: '/', '-' }}" class="col-lg-6 px-0">
 			<h1 class="display-4 fst-italic"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
@@ -22,13 +21,11 @@ sidebar:
 	</div><!-- / #post-main -->
 {% endif %}
 {% endfor %}
-{% endfor %}
 
 {% if site.data.blog.featured %}
 	<div id="post-featured" class="row mb-2">
 {% for post in site.posts %}
-{% for post_id in site.data.blog.featured %}
-{% if post.path contains post_id %}
+{% if site.data.blog.featured contains post.path %}
 			<div id="{{ post.id | replace: '/', '-' }}" class="col-md-6">
 				<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 					<div class="col p-4 d-flex flex-column position-static">
@@ -52,7 +49,6 @@ sidebar:
 			</div>
 {% endif %}
 {% endfor %}
-{% endfor %}
 	</div><!-- /#post-featured -->
 {% endif %}
 
@@ -62,7 +58,7 @@ sidebar:
 
 <!-- Start Posts -->
 {% for post in site.posts limit:{{ site.data.blog.recent }} %}
-	{% unless site.data.blog.main contains post.path or site.data.blog.featured contains post.path %}
+	{% unless site.data.blog.skip contains post.path %}
 			<article id="{{ post.id | replace: '/', '-' }}" class="blog-post">
 				<h2 class="display-5 link-body-emphasis mb-1"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
 				<p class="blog-post-meta">
