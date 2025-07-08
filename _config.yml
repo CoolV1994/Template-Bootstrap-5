@@ -21,6 +21,9 @@ collections:
   albums:
     output: true
     url: /albums/
+  projects:
+    output: true
+    url: /projects/
 
 # Default Folder Data
 defaults:
