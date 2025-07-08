@@ -14,7 +14,7 @@ sidebar:
 {% for post_id in site.data.blog.main %}
 {% if post.path contains post_id %}
 	<div id="post-main" class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
-		<div id="post_{{ post.id | replace: '/', '-' }}" class="col-lg-6 px-0">
+		<div id="{{ post.id | replace: '/', '-' }}" class="col-lg-6 px-0">
 			<h1 class="display-4 fst-italic"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
 			<p class="lead my-3">{{ post.excerpt }}</p>
 			<p class="lead mb-0"><a href="{{ post.url | prepend: site.baseurl }}" class="text-body-emphasis fw-bold">Continue reading...</a></p>
@@ -29,7 +29,7 @@ sidebar:
 {% for post in site.posts %}
 {% for post_id in site.data.blog.featured %}
 {% if post.path contains post_id %}
-			<div id="post_{{ post.id | replace: '/', '-' }}" class="col-md-6">
+			<div id="{{ post.id | replace: '/', '-' }}" class="col-md-6">
 				<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 					<div class="col p-4 d-flex flex-column position-static">
 						<strong class="d-inline-block mb-2 text-primary-emphasis">{{ post.categories | first }}</strong>
@@ -63,7 +63,7 @@ sidebar:
 <!-- Start Posts -->
 {% for post in site.posts limit:{{ site.data.blog.recent }} %}
 	{% unless site.data.blog.main contains post.path or site.data.blog.featured contains post.path %}
-			<article id="post_{{ post.id | replace: '/', '-' }}" class="blog-post">
+			<article id="{{ post.id | replace: '/', '-' }}" class="blog-post">
 				<h2 class="display-5 link-body-emphasis mb-1"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
 				<p class="blog-post-meta">
 					{{ post.date | date: "%b %-d, %Y" }}
