@@ -10,8 +10,9 @@ sidebar:
   - tags
 ---
 
+{% for post in site.posts limit:{{ site.data.blog.recent }} %}
 {% for post_id in site.data.blog.main %}
-{% assign post = site.posts | find_exp: "doc", "doc.path == {{ post_id }}" | first %}
+{% if post.path contains page_id %}
 	<div id="post-main" class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
 		<div id="post_{{ post.id }}" class="col-lg-6 px-0">
 			<h1 class="display-4 fst-italic"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
@@ -19,6 +20,8 @@ sidebar:
 			<p class="lead mb-0"><a href="{{ post.url | prepend: site.baseurl }}" class="text-body-emphasis fw-bold">Continue reading...</a></p>
 		</div>
 	</div><!-- / #post-main -->
+{% endif %}
+{% endfor %}
 {% endfor %}
 
 {% if site.data.blog.featured %}
