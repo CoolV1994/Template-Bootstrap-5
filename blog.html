@@ -1,0 +1,99 @@
+---
+layout: default
+title: Blog
+css:
+  - '/assets/css/blog.css'
+sidebar:
+  - posts
+  - categories
+  - tags
+---
+
+{% for post in site.posts %}
+{% if site.data.blog.main contains post.path %}
+	<div id="post-main" class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
+		<div id="{{ post.id | replace: '/', '-' }}" class="col-lg-6 px-0">
+			<h1 class="display-4 fst-italic"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
+			<p class="lead my-3">{{ post.excerpt }}</p>
+			<p class="lead mb-0"><a href="{{ post.url | prepend: site.baseurl }}" class="text-body-emphasis fw-bold">Continue reading...</a></p>
+		</div>
+	</div><!-- / #post-main -->
+{% endif %}
+{% endfor %}
+
+{% if site.data.blog.featured %}
+	<div id="post-featured" class="row mb-2">
+{% for post in site.posts %}
+{% if site.data.blog.featured contains post.path %}
+			<div id="{{ post.id | replace: '/', '-' }}" class="col-md-6">
+				<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+					<div class="col p-4 d-flex flex-column position-static">
+{% if post.categories %}
+<strong class="d-inline-block mb-2 text-primary-emphasis">
+{% for category in post.categories %}
+ <a href="{{ category | prepend: '/categories.html#' | prepend: site.baseurl }}">{{ category }}</a> 
+{% endfor %}
+</strong>
+{% endif %}
+						<h3 class="mb-0"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h3>
+						<div class="mb-1 text-body-secondary">
+							{{ post.date | date: "%b %-d" }}
+						</div>
+						<p class="card-text mb-auto">{{ post.excerpt }}</p>
+						<a href="{{ post.url | prepend: site.baseurl }}" class="icon-link gap-1 icon-link-hover stretched-link">
+						Continue reading
+						<svg class="bi" aria-hidden="true"><use xlink:href="#chevron-right"></use></svg>
+						</a>
+					</div>
+{% if post.thumbnail %}
+					<div class="col-auto d-none d-lg-block">
+						<img class="bd-placeholder-img" height="250" width="200" alt="Thumbnail" src="{{ post.thumbnail }}">
+					</div>
+{% endif %}
+				</div>
+			</div>
+{% endif %}
+{% endfor %}
+	</div><!-- /#post-featured -->
+{% endif %}
+
+	<div id="blog" class="row g-5">
+		<div id="blog-posts" class="col-md-8">
+			<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
+
+<!-- Start Posts -->
+{% for post in site.posts limit:{{ site.data.blog.recent }} %}
+	{% unless site.data.blog.skip contains post.path %}
+			<article id="{{ post.id | replace: '/', '-' }}" class="blog-post">
+				<h2 class="display-5 link-body-emphasis mb-1"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
+				<p class="blog-post-meta">
+					{{ post.date | date: "%b %-d, %Y" }}
+{% if post.author %}
+{% assign author = site.data.authors[post.author] %}
+					 by <a href="{{ author.url | prepend: site.baseurl }}">{{ author.name }}</a>
+{% endif %}
+{% if post.categories %}
+&nbsp;&mdash;&nbsp;Category:
+{% for category in post.categories %}
+ <a href="{{ category | prepend: '/categories.html#' | prepend: site.baseurl }}">{{ category }}</a>
+{% endfor %}
+{% endif %}
+
+				</p>
+{{ post.content }}
+			</article>
+	{% endunless %}
+{% endfor %}
+<!-- End Posts -->
+
+			<nav class="blog-pagination" aria-label="Pagination">
+				<a class="btn btn-outline-primary rounded-pill" href="#">Older</a>
+				<a class="btn btn-outline-secondary rounded-pill disabled" aria-disabled="true">Newer</a>
+			</nav>
+
+		</div><!-- /#blog-posts -->
+
+{% include sidebar.html %}
+
+	</div><!-- /#blog -->
+ 
