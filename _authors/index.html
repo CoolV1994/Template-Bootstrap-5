@@ -12,12 +12,9 @@ css:
 		</div>
 	</div>
 
-{% for author in site.authors %}
-	{% assign mod = forloop.index0 | modulo:4 %}
-
-	{% if mod == 0 %}
 	<div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
-	{% endif %}
+
+{% for author in site.authors %}
 
 		<div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
 			<div class="my-3 py-3">
@@ -28,8 +25,6 @@ css:
 			</div>
 		</div>
 
-	{% if mod == 0 %}
-	</div>
-	{% endif %}
-
 {% endfor %}
+
+	</div>
