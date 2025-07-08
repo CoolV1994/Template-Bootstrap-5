@@ -10,7 +10,6 @@ layout: null
 		"date": "{{ post.date }}",
 		"author": "{{ post.author }}",
 		"url": "{{ post.url }}",
-		"excerpt": "{{ post.excerpt }}",
 		"thumbnail": "{{ post.thumbnail }}",
 		"categories": {
 {% for category in post.categories %}
@@ -22,7 +21,8 @@ layout: null
 			"{{ tag }}"{% if forloop.last == false %},{% endif %}
 {% endfor %}
 		},
-		"content": "{{ post.content }}"
+		"excerpt": "{{ post.excerpt | strip_html | strip_newlines }}",
+		"content": "{{ post.content | strip_html | strip_newlines }}"
 	}{% if forloop.last == false %},{% endif %}
 {% endfor %}
 }
