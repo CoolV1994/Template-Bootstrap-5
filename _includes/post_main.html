@@ -1,4 +1,4 @@
-{% assign source = page.collection ? page.collection : posts %}
+{% assign source = page.collection ? {{ page.collection }} : posts %}
 {% for post in site.{{ source }} %}
 {% if site.data.{{ cfg }}.main contains post.path %}
 	<div id="post-main" class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
