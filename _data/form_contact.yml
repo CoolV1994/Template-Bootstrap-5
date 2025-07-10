@@ -1,0 +1,61 @@
+title: Contect Form
+description: Send us a message.
+name: sample
+action: '#'
+method: post
+sections:
+  info:
+    title: Your Info
+    description: Info about you.
+    fields:
+      name:
+        title: Name
+        description: First and Last Name
+        placeholder: First Last
+        type: text
+        required: true
+      email:
+        title: E-Mail
+        description: E-Mail Address
+        placeholder: you@mail.com
+        type: text
+        required: true
+
+  message:
+    title: Your Message
+    description: Message Details
+    fields:
+      category:
+        title: Category
+        description: Message Reason
+        type: radio
+        required: true
+        selected: general
+        options:
+          general: General
+          support: Support
+          business: Business
+          feedback: Feedback
+      priority:
+        title: Priority
+        description: Message Importance
+        type: radio
+        required: true
+        selected: normal
+        options:
+          normal: Normal
+          low: Low
+          high: High
+          urgent: Urgent
+      subject:
+        title: Subject
+        description: Message Subject
+        placeholder: Message Title
+        type: text
+        required: true
+      message:
+        title: Message
+        description: Your Message
+        placeholder: you@mail.com
+        type: textarea
+        required: true

@@ -1,0 +1,23 @@
+left:
+    name: About
+    url: /about.html
+
+right:
+    name: Contact
+    url: /contact.html
+
+links:
+  - name: Facebook
+    url: '#'
+  - name: Instagram
+    url: '#'
+  - name: Twitter
+    url: '#'
+  - name: YouTube
+    url: '#'
+  - name: TikTok
+    url: '#'
+  - name: GitHub
+    url: '#'
+  - name: Patreon
+    url: '#'

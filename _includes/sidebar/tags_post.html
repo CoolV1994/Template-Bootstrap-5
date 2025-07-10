@@ -1,0 +1,8 @@
+				<div class="mb-3">
+					<h4 class="fst-italic">Tags</h4>
+					<ul class="list-unstyled">
+{% for tag in site.tags %}
+						<li><a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center link-body-emphasis" href="{{ site.baseurl }}/tags.html#{{ tag[0] }}">{{ tag[0] }}</a></li>
+{% endfor %}
+					</ul>
+				</div>

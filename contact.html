@@ -20,42 +20,54 @@ scripts:
 			<span class="text-primary">Contact Info</span>
 		</h4>
 
+{% if site.data.contact.links %}
+		<ul class="list-group mb-3">
+			<li class="list-group-item d-flex justify-content-between">
+				<h6 class="my-0 text-primary">Links</h6>
+			</li>
+{% for link in site.data.contact.links %}
+			<li class="list-group-item d-flex justify-content-between bg-body-tertiary">
+				<div>
+					<h6 class="my-0"><a href="{{ link.url }}">{{ link.name }}</a></h6>
+				</div>
+			</li>
+{% endfor %}
+		</ul>
+{% endif %}
+
+{% if site.data.contact.email %}
 		<ul class="list-group mb-3">
 			<li class="list-group-item d-flex justify-content-between">
 				<h6 class="my-0 text-primary">E-Mail</h6>
 			</li>
+{% for email in site.data.contact.email %}
 			<li class="list-group-item d-flex justify-content-between bg-body-tertiary">
 				<div>
-					<h6 class="my-0">Support</h6>
-					<small class="text-body-secondary">help@mail.com</small>
+					<h6 class="my-0">{{ email.name }}</h6>
+					<small class="text-body-secondary">{{ email.address }}</small>
 				</div>
 			</li>
-			<li class="list-group-item d-flex justify-content-between bg-body-tertiary">
-				<div>
-					<h6 class="my-0">Business</h6>
-					<small class="text-body-secondary">Sales@mail.com</small>
-				</div>
-			</li>
+{% endfor %}
 		</ul>
+{% endif %}
 
+{% if site.data.contact.phone %}
 		<ul class="list-group mb-3">
 			<li class="list-group-item d-flex justify-content-between">
 				<h6 class="my-0 text-primary">Telephone</h6>
 			</li>
-			<li class="list-group-item d-flex justify-content-between bg-body-tertiary">
-				<div class="text-success">
-					<h6 class="my-0">Main Office</h6>
-					<small class="text-body-secondary">+1 (555) 555-5555</small>
-				</div>
-			</li>
+{% for phone in site.data.contact.phone %}
 			<li class="list-group-item d-flex justify-content-between bg-body-tertiary">
 				<div>
-					<h6 class="my-0">Fax</h6>
-					<small class="text-body-secondary">+1 (555) 555-5555</small>
+					<h6 class="my-0">{{ phone.name }}</h6>
+					<small class="text-body-secondary">{{ phone.number }}</small>
 				</div>
 			</li>
+{% endfor %}
 		</ul>
+{% endif %}
 
+{% if site.data.contact.address %}
 		<ul class="list-group mb-3">
 			<li class="list-group-item d-flex justify-content-between">
 				<h6 class="my-0 text-primary">Address</h6>
@@ -63,15 +75,12 @@ scripts:
 			<li class="list-group-item d-flex justify-content-between bg-body-tertiary">
 				<div>
 <pre class="text-body-secondary">
-<b>Business Name</b>
-P.O. Box 123
-1234 Main St.
-City State, Zip
-Country
+{{ site.data.contact.address }}
 </pre>
 				</div>
 			</li>
 		</ul>
+{% endif %}
 
 	</div>
 	<!-- End Sidebar -->

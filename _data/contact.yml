@@ -1,0 +1,26 @@
+links:
+  - name: Online Chat
+    url: '#'
+  - name: Help Center
+    url: '#'
+  - name: FAQ
+    url: '#'
+
+email:
+  - name: Support
+    address: help@mail.com
+  - name: Business
+    address: sales@mail.com
+
+phone:
+  - name: Main Office
+    number: +1 (555) 555-5555
+  - name: Fax
+    number: +1 (555) 555-5555
+
+address: >
+  Company Name
+  P.O. Box 123
+  1234 Main St.
+  City State, Zip
+  Country

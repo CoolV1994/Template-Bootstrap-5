@@ -1,0 +1,168 @@
+title: Sample Form
+description: Form Input Demo
+name: sample
+action: '#'
+method: post
+sections:
+
+  - title: Selections
+    description: Selection Inputs
+    fields:
+
+      - name: dropdown
+        title: Dropdown
+        description: Dropdown Menu Selection
+        type: select
+        selected: opt1
+        options:
+          opt1: Option 1
+          opt2: Option 2
+          opt3: Option 3
+          opt4: Option 4
+        multiple: true
+        required: true
+
+      - name: radio
+        title: Radio
+        description: Radio Button Selection
+        type: radio
+        selected: opt1
+        options:
+          opt1: Option 1
+          opt2: Option 2
+          opt3: Option 3
+          opt4: Option 4
+        required: true
+
+      - name: checkbox
+        title: Checkbox
+        description: Checkbox Option
+        type: checkbox
+        selected: true
+
+      - name: number
+        title: Number
+        description: Number Selection
+        type: number
+        min: 0
+        max: 10
+        step: 1
+        value: 5
+
+      - name: slider
+        title: Slider
+        description: Range Selection
+        type: range
+        min: 0
+        max: 100
+        step: 10
+        value: 50
+
+
+
+  - title: Text
+    description: Text Inputs
+    fields:
+
+      - name: textbox
+        title: Text Box
+        description: Textbox Input
+        placeholder: Sample Text
+        type: text
+        required: true
+
+      - name: textarea
+        title: Text Area
+        description: Text Area Input
+        placeholder: Line 1\nLine 2\Line 3
+        type: textarea
+        required: true
+
+      - name: password
+        title: Password
+        description: Password Input
+        placeholder: Password
+        type: password
+        required: true
+
+      - name: email
+        title: E-Mail
+        description: E-Mail Address
+        placeholder: you@mail.com
+        type: email
+
+      - name: phone
+        title: Phone
+        description: Phone Number
+        placeholder: 123-456-7890
+        type: tel
+        pattern: '[0-9]{3}-[0-9]{3}-[0-9]{4}'
+
+
+
+  - title: Buttons
+    description: Button Samples
+    fields:
+
+      - name: button
+        title: Button
+        description: Submit Form
+        value: Button Text
+        type: button
+
+      - name: submit:
+        title: Submit
+        description: Submit Form
+        value: Submit Form
+        type: submit
+
+      - name: reset:
+        title: Reset
+        description: Submit Form
+        value: Reset Form
+        type: reset
+
+      - name: image:
+        title: Image
+        description: Image Input
+        type: image
+        alt: Submit Form
+        src: image.png
+
+
+
+  - title: Other
+    description: Other Input Types
+    fields:
+
+      - name: hidden
+        value: Default Value
+        type: hidden
+
+      - name: time
+        title: Time
+        description: Time Input
+        type: time
+
+      - name: date
+        title: Date
+        description: Date Input
+        type: date
+
+      - name: datetime
+        title: Date & Time
+        description: Date & Time Input
+        type: datetime-local
+
+
+      - name: file
+        title: File
+        description: File Input
+        type: file
+
+      - name: color
+        title: Color
+        description: Color Selection
+        type: color
+
+

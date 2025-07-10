@@ -1,0 +1,41 @@
+		<div class="col-md-4">
+			<div class="position-sticky" style="top: 2rem;">
+{% for module in page.sidebar %}
+
+{% include sidebar/{{module}}.html %}
+
+{% endfor %}
+			</div>
+		</div>
+
+
+
+
+<form name="{{ form.name }}" action="{{ form.action }}" method="{{ form.method }}">
+
+{% for section in form.sections %}
+	<fieldset>
+		<legend>{{ section.title }}</legend>
+{% for field in section.fields %}
+
+{% if field.title %}
+		<label for="fname">First name:</label><br>
+{% endif %}
+{% if field.type == "text" %}
+		<input type="text" id="{{ field.id }}" name="{{ field.name }}" placeholder="{{ field.placeholder }}" value="{{ field.value }}" required="{{ field.required }}"><br>
+{% elsif field.type == "textarea" %}
+		<textarea id="{{ field.id }}" name="{{ field.name }}" placeholder="{{ field.placeholder }}">{{ field.value }}</textarea><br>
+{% if field.type == "checkbox" %}
+		<input type="checkbox" id="{{ field.id }}" name="{{ field.name }}" selected="{{ field.selected }}"><br>
+{% if field.type == "radio" %}
+{% for option in field.options %}
+		<input type="radio" id="{{ option[0] }}" name="{{ field.name }}" value="{{ option[1] }}"><br>
+{% endfor %}
+{% else %}
+{% endif %}
+
+{% endfor %}
+	</fieldset>
+{% endfor %}
+
+</form> 
