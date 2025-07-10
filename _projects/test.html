@@ -7,7 +7,7 @@ sidebar:
   - about
   - categories
   - tags
-index: true
+index: site.projects
 main:
   - '_projects/Sample.md'
 ---
@@ -19,7 +19,7 @@ main:
 			<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
 
 <!-- Start Posts -->
-{% for post in site.{{ page.collection }} %}
+{% for post in {{ page.index }} %}
 	{% unless post.index %}
 			<article id="{{ post.id | replace: '/', '-' }}" class="blog-post">
 				<h2 class="display-5 link-body-emphasis mb-1"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
