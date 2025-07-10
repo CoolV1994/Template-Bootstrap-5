@@ -1,0 +1,29 @@
+{% if site.data.{{ cfg }}.featured %}
+	<div id="post-featured" class="row mb-2">
+{% for post in site.posts %}
+{% if site.data.{{ cfg }}.featured contains post.path %}
+			<div id="{{ post.id | replace: '/', '-' }}" class="col-md-6">
+				<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+					<div class="col p-4 d-flex flex-column position-static">
+						<strong class="d-inline-block mb-2 text-primary-emphasis">{{ post.categories | first }}</strong>
+						<h3 class="mb-0"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h3>
+						<div class="mb-1 text-body-secondary">
+							{{ post.date | date: "%b %-d" }}
+						</div>
+						<p class="card-text mb-auto">{{ post.excerpt }}</p>
+						<a href="{{ post.url | prepend: site.baseurl }}" class="icon-link gap-1 icon-link-hover stretched-link">
+						Continue reading
+						<svg class="bi" aria-hidden="true"><use xlink:href="#chevron-right"></use></svg>
+						</a>
+					</div>
+{% if post.thumbnail %}
+					<div class="col-auto d-none d-lg-block">
+						<img class="bd-placeholder-img" height="250" width="200" alt="Thumbnail" src="{{ post.thumbnail }}">
+					</div>
+{% endif %}
+				</div>
+			</div>
+{% endif %}
+{% endfor %}
+	</div><!-- /#post-featured -->
+{% endif %}
