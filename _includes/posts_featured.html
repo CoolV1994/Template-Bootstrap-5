@@ -1,7 +1,8 @@
-{% if site.data.{{ cfg }}.featured %}
+{% if site.data.{{ page.cfg }}.featured %}
+{% assign source = page.collection ? {{ page.collection }} : posts %}
 	<div id="post-featured" class="row mb-2">
-{% for post in site.posts %}
-{% if site.data.{{ cfg }}.featured contains post.path %}
+{% for post in site.{{ source }} %}
+{% if site.data.{{ page.cfg }}.featured contains post.path %}
 			<div id="{{ post.id | replace: '/', '-' }}" class="col-md-6">
 				<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 					<div class="col p-4 d-flex flex-column position-static">
