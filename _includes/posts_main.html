@@ -1,3 +1,4 @@
+{% if site.data.{{ page.cfg }}.main %}
 {% assign source = page.collection ? {{ page.collection }} : posts %}
 {% for post in site.{{ source }} %}
 {% if site.data.{{ cfg }}.main contains post.path %}
@@ -10,3 +11,4 @@
 	</div><!-- / #post-main -->
 {% endif %}
 {% endfor %}
+{% endif %}
