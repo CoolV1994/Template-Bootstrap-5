@@ -1,5 +1,6 @@
 recent: 10
 
-main: []
+main:
+  - '_projects/Sample.md'
 
 featured: []
