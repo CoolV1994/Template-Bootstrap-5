@@ -13,6 +13,9 @@ markdown: kramdown
 paginate: 10
 paginate_path: "/:collection/page-:num/"
 
+include:
+ - _pages
+
 # Collections
 collections:
   authors:
