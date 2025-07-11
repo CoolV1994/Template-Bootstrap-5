@@ -15,6 +15,7 @@ paginate_path: "/:collection/page-:num/"
 
 include:
   - _pages
+  - _pages/projects
 
 # Collections
 collections:
