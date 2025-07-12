@@ -1,0 +1,31 @@
+about:
+  title: About
+  content: >
+    Customize this section to tell your visitors a little bit about your publication, writers, content, or something else entirely. Totally up to you.
+
+links:
+  title: Links
+  links:
+    - name: Posts
+      page: /posts.html
+    - name: Categories
+      page: /categories.html
+    - name: Tags
+      page: /tags.html
+
+social:
+  title: Social
+  links:
+    - name: Facebook
+      url: '#'
+    - name: Instagram
+      url: '#'
+    - name: Twitter
+      url: '#'
+
+test:
+  title: Test
+  content: >
+    Text Line 1
+    Text Line 2
+    [Hyperlink](#)
