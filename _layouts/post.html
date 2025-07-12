@@ -4,42 +4,73 @@ css:
   - '/assets/css/blog.css'
 ---
 
-	<div id="blog" class="row g-5">
-		<div id="blog-posts" class="col-md-12">
+	<div id="post" class="row g-5">
 
-			<article id="post_{{ page.name | replace: '.md', '' }}" class="blog-post">
+		<div id="post-content" class="col-md-12">
+			<article id="{{ page.id | replace: '/', '-' }}" class="blog-post">
 				<h2 class="display-5 link-body-emphasis mb-1">{{ page.title }}</h2>
-				<p class="blog-post-meta">
-Posted: {{ page.date | date: "%b %-d, %Y" }}
-{% if page.author %}
-{% assign author = site.authors | find_exp: "doc", "doc.name == {{ page.author | append: '.md' }}" | first %}
- by <a href="{{ author.url | prepend: site.baseurl }}">{{ author.name }}</a>
-{% endif %}
-{% if page.categories %}
-&nbsp;&mdash;&nbsp;Category:
-{% for category in page.categories %}
- <a href="{{ category | prepend: '/categories.html#' | prepend: site.baseurl }}">{{ category }}</a>
-{% endfor %}
-{% endif %}
-				</p>
 
 {{ content }}
 
-{% if page.tags %}
-				<p class="blog-post-meta">
-Tags:
-{% for tag in page.tags %}
- <a href="{{ tag | prepend: '/tags.html#' | prepend: site.baseurl }}">{{ tag }}</a>
-{% endfor %}
-				</p>
-{% endif %}
-
 			</article>
+		</div><!-- /#post-content -->
 
-		</div><!-- /#blog-posts -->
 
-{% if page.sidebar %}
-{% include sidebar.html %}
+		<div id="sidebar" class="col-md-4">
+			<div class="position-sticky" style="top: 2rem;">
+
+				<div id="post-meta" class="p-4 mb-3 bg-body-tertiary rounded">
+					<h4 class="fst-italic">Posted</h4>
+					<p class="mb-0">{{ page.date | date: "%b %-d, %Y" }}</p>
+{% if page.author %}
+					<h4 class="fst-italic">Author</h4>
+{% assign author = site.data.authors[page.author] %}
+					<p class="mb-0"><a href="{{ author.url | prepend: site.baseurl }}">{{ author.name }}</a></p>
+{% endif %}
+{% if page.categories %}
+					<h4 class="fst-italic">Categories</h4>
+					<ul class="list-unstyled d-flex">
+{% for category in page.categories %}
+						<li><a href="{{ category | prepend: '/categories.html#' | prepend: site.baseurl }}">{{ category }}</a></li>
+{% endfor %}
+					</ul>
+{% endif %}
+{% if page.tags %}
+					<h4 class="fst-italic">Tags</h4>
+					<ul class="list-unstyled d-flex">
+{% for tag in page.tags %}
+					<li><a href="{{ tag | prepend: '/tags.html#' | prepend: site.baseurl }}">{{ tag }}</a></li>
+{% endfor %}
+					</ul>
+{% endif %}
+				</div><!-- /#post-meta -->
+
+
+
+{% if page.files %}
+				<div id="post-files">
+					<h4 class="fst-italic">Files</h4>
+					<ul class="list-unstyled">
+{% for file in page.attachments %}
+						<li>
+							<a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="{{ post.url | prepend: site.baseurl }}">
+{% if file.thumbnail %}
+								<img height="96" width="96" src="{{ file.thumbnail }}" alt="Thumbnail">
+{% endif %}
+								<div class="col-lg-8">
+									<h6 class="mb-0">{{ file.name }}</h6>
+									<small class="text-body-secondary">{{ file.size }}</small>
+								</div>
+							</a>
+						</li>
+{% endfor %}
+					</ul>
+				</div><!-- /#post-files -->
 {% endif %}
 
-	</div><!-- /#blog -->
+
+			</div>
+		</div><!-- /#sidebar -->
+
+
+	</div><!-- /#post -->
