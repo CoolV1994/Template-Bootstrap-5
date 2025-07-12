@@ -1,0 +1,52 @@
+---
+layout: default
+title: Posts
+css:
+  - '/assets/css/blog.css'
+sidebar:
+  custom:
+    title: Custom Module
+    content: >
+      [Link](#)
+      Line 1
+      Line 2
+---
+
+	<div id="blog" class="row g-5">
+		<div id="blog-posts" class="col-md-8">
+			<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
+
+<!-- Start Posts -->
+{% for post in site.posts %}
+			<article id="{{ post.id | replace: '/', '-' }}" class="blog-post">
+				<h2 class="display-5 link-body-emphasis mb-1"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
+				<p class="blog-post-meta">
+					{{ post.date | date: "%b %-d, %Y" }}
+{% if post.author %}
+{% assign author = site.data.authors[post.author] %}
+					 by <a href="{{ author.url | prepend: site.baseurl }}">{{ author.name }}</a>
+{% endif %}
+{% if post.categories %}
+&nbsp;&mdash;&nbsp;Category:
+{% for category in post.categories %}
+ <a href="{{ category | prepend: '/categories.html#' | prepend: site.baseurl }}">{{ category }}</a>
+{% endfor %}
+{% endif %}
+				</p>
+
+{{ post.content }}
+
+			</article>
+{% endfor %}
+<!-- End Posts -->
+
+			<nav class="blog-pagination" aria-label="Pagination">
+				<a class="btn btn-outline-primary rounded-pill" href="#">Older</a>
+				<a class="btn btn-outline-secondary rounded-pill disabled" aria-disabled="true">Newer</a>
+			</nav>
+
+		</div><!-- /#blog-posts -->
+
+{% include sidebar.html %}
+
+	</div><!-- /#blog -->
