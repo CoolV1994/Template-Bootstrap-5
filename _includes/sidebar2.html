@@ -1,9 +1,8 @@
 		<div class="col-md-4">
 			<div class="position-sticky" style="top: 2rem;">
-{% for mod_cfg in page.sidebar %}
+{% for module in page.sidebar %}
 
-{% assign module = mod_cfg[1] %}
-{% include sidebar/{{mod_cfg[0]}}.html %}
+{% include sidebar/{{module | first}}.html %}
 
 {% endfor %}
 			</div>
