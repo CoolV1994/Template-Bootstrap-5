@@ -2,14 +2,9 @@
 layout: page_sidebar
 title: Sample Project
 excerpt: Sample Project Page
-sidebar:
-  - links
-links:
-  Links:
-  - name: Site Page
-    page: page.html
-  - name: External Link
-    url: '#'
+author: CoolV1994
+categories: main sidebar
+tags: project sample
 ---
 
-Sample Page
+This is a sample post for projects section.
