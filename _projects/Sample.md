@@ -2,6 +2,9 @@
 layout: post
 title: Sample Project
 excerpt: Sample Project Page
+author: CoolV1994
+categories: main sidebar
+tags: project sample
 ---
 
-Sample Page
+This is a sample post for projects section.
