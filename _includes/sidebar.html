@@ -2,8 +2,7 @@
 			<div class="position-sticky" style="top: 2rem;">
 {% for module in page.sidebar %}
 
-{% assign sidebar.module = module %}
-{% include sidebar_{{module[0]}}.html %}
+{% include sidebar_{{module}}.html %}
 
 {% endfor %}
 			</div>
