@@ -1,23 +1,8 @@
-left:
-    name: About
-    url: /about.html
-
-right:
-    name: Contact
-    url: /contact.html
-
+title: Social Media
 links:
   - name: Facebook
-    url: '#'
+    url: https://facebook.com/
   - name: Instagram
-    url: '#'
+    url: https://instagram.com/
   - name: Twitter
-    url: '#'
-  - name: YouTube
-    url: '#'
-  - name: TikTok
-    url: '#'
-  - name: GitHub
-    url: '#'
-  - name: Patreon
-    url: '#'
+    url: https://twitter.com/
