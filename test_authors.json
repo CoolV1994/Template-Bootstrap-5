@@ -1,1 +1,1 @@
-{{ site.authors | jsonify }}
+{{ site.authors | array_to_sentence_string }}
