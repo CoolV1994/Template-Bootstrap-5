@@ -28,6 +28,9 @@ collections:
   projects:
     output: true
     url: /projects/
+  wiki:
+    output: true
+    permalink: /wiki/slugified_categories/:slug.html
 
 # Default Values
 defaults:
