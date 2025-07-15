@@ -1,0 +1,45 @@
+---
+layout: default
+---
+
+<div class="py-5 text-center">
+	<h1 class="h2">Categories: {{ page.collection | capitalize }}</h1>
+</div>
+
+<div class="row g-5">
+
+	<!-- Start Sidebar -->
+	<div id="index" class="col-md-5 col-lg-4 order-md-last">
+		<h4 class="d-flex justify-content-between align-items-center mb-3">
+			<span class="text-primary">Index</span>
+		</h4>
+		<ul class="list-group mb-3 bg-body-tertiary">
+{% for category in site[page.collection].categories %}
+			<li class="list-group-item d-flex justify-content-between">
+				<a href="#{{ category[0] }}">{{ category[0] | capitalize }}</a>
+			</li>
+{% endfor %}
+		</ul>
+	</div>
+	<!-- End Sidebar -->
+
+	<!-- Start Content -->
+	<div class="col-md-7 col-lg-8">
+{% for category in site[page.collection].categories %}
+		<article id="{{ category[0] }}" class="p-4 mb-3 rounded">
+			<h2 class="display-5 link-body-emphasis mb-1">
+				<span class="text-primary">{{ category[0] | capitalize }}</span>
+			</h2>
+			<ul class="list-unstyled bg-body-tertiary">
+{% for post in category[1] %}
+{% if post.url %}
+				<li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
+{% endif %}
+{% endfor %}
+			</ul>
+		</article>
+{% endfor %}
+	</div>
+	<!-- End Content-->
+
+</div>
