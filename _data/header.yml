@@ -1,5 +1,7 @@
-title: GawdTech
-logo: /assets/img/logo.png
+header:
+  name: GawdTech
+  logo: /assets/img/logo.png
+  url: /
 
 navbar:
   - name: Home
