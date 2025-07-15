@@ -1,0 +1,39 @@
+title: GawdTech
+logo: /assets/img/logo.png
+
+navbar:
+  - name: Home
+    url: /index.html
+  - name: Albums
+    url: /albums/
+  - name: Blog
+    url: /blog.html
+    links:
+      - name: Posts
+        url: /posts.html
+      - name: Categories
+        url: /categories.html
+      - name: Tags
+        url: /tags.html
+      - name: Authors
+        url: /authors/
+  - name: Projects
+    url: /projects/
+  - name: About
+    url: /about.html
+
+subnavbar:
+  - name: Products
+    url: /products.html
+  - name: Pricing
+    url: /pricing.html
+  - name: Cover
+    url: /cover.html
+  - name: Starter
+    url: /starter-template.html
+  - name: Features
+    url: /features.html
+  - name: Carousel
+    url: /carousel.html
+  - name: Contact.html
+    url: /contact.html
