@@ -1,26 +1,26 @@
 <meta charset="utf-8">
 <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-<meta name="author" content="{% if page.author %}{{ page.author }}{% else %}{{ site.author }}{% endif %}">
+<meta name="description" content="{% page.excerpt ? page.excerpt | strip_html | strip_newlines | truncate: 160 : site.description %}">
+<meta name="author" content="{% page.author ? page.author : site.author %}">
 <meta name="generator" content="Jekyll v3.10.0">
 
-<title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+<title>{% page.title ? page.title | escape : site.title | escape %}</title>
 
-<link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-<link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}">
+<link rel="canonical" href="{{ site.url }}{{ site.baseurl }}{{ page.url | replace:'index.html','' }}">
+<link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ site.url }}{{ site.baseurl }}/feed.xml">
 
 <!-- Bootstrap core CSS -->
-<link href="{{ '/assets/dist/css/bootstrap.min.css' | prepend: site.baseurl }}" rel="stylesheet">
-<link href="{{ '/assets/css/style.css' | prepend: site.baseurl }}" rel="stylesheet">
+<link href="{{ site.baseurl }}/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="{{ site.baseurl }}/assets/css/style.css" rel="stylesheet">
 
 <!-- Favicons -->
-<link rel="apple-touch-icon" href="{{ '/assets/img/favicons/apple-touch-icon.png' | prepend: site.baseurl }}" sizes="180x180">
-<link rel="icon" href="{{ '/assets/img/favicons/favicon-32x32.png' | prepend: site.baseurl }}" sizes="32x32" type="image/png">
-<link rel="icon" href="{{ '/assets/img/favicons/favicon-16x16.png' | prepend: site.baseurl }}" sizes="16x16" type="image/png">
-<link rel="manifest" href="{{ '/assets/img/favicons/manifest.json' | prepend: site.baseurl }}">
-<link rel="mask-icon" href="{{ '/assets/img/favicons/safari-pinned-tab.svg' | prepend: site.baseurl }}" color="#7952b3">
-<link rel="icon" href="{{ '/assets/img/favicons/favicon.ico' | prepend: site.baseurl }}">
+<link rel="apple-touch-icon" href="{{ site.baseurl }}/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="{{ site.baseurl }}/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="{{ site.baseurl }}/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="manifest" href="{{ site.baseurl }}/assets/img/favicons/manifest.json">
+<link rel="mask-icon" href="{{ site.baseurl }}/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
+<link rel="icon" href="{{ site.baseurl }}/assets/img/favicons/favicon.ico">
 
 <!-- Font & Color
 <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900&display=swap" rel="stylesheet">
@@ -32,14 +32,14 @@
 <!-- Custom styles for this template -->
 {% if layout.css %}
 {% for css in layout.css %}
-<link href="{{ css | prepend: site.baseurl }}" rel="stylesheet">
+<link href="{{ site.baseurl }}{{ css }}" rel="stylesheet">
 {% endfor %}
 {% endif %}
 
 <!-- Custom styles for this page -->
 {% if page.css %}
 {% for css in page.css %}
-<link href="{{ css | prepend: site.baseurl }}" rel="stylesheet">
+<link href="{{ site.baseurl }}{{ css }}" rel="stylesheet">
 {% endfor %}
 {% endif %}
 
