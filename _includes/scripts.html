@@ -1,9 +1,9 @@
-<!-- Bootstrap JavaScript -->
-<script src="{{ '/assets/dist/js/bootstrap.bundle.min.js' | prepend: site.baseurl }}" class="astro-vvvwv3sm"></script>
+<!-- Bootstrap core JavaScript -->
+<script src="{{ site.baseurl }}/assets/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Page Defined JavaScript -->
+<!-- Custom scripts for this page -->
 {% if page.scripts %}
 {% for script in page.scripts %}
-	<script src="{{ script | prepend: site.baseurl }}" class="astro-vvvwv3sm"></script>
+	<script src="{{ site.baseurl }}{{ script }}"></script>
 {% endfor %}
 {% endif %}
