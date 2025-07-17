@@ -60,11 +60,11 @@ css:
 <svg width="96" height="96">
   <rect x="5" y="2" rx="2" ry="2" width="88" height="88"
   style="fill:red;stroke:black;stroke-width:5;opacity:0.5" />
-  <text fill="#ffffff" font-size="20" font-family="Verdana" x="10" y="53">{{ static_file.ext }}</text>
+  <text fill="#ffffff" font-size="20" font-family="Verdana" x="10" y="53">{{ static_file.extname }}</text>
 </svg>
 								<div class="col-lg-8">
 									<h6 class="mb-0">{{ static_file.name }}</h6>
-									<small class="text-body-secondary">{{ static_file.size }}</small>
+									<small class="text-body-secondary">{{ static_file.modified_time }}</small>
 								</div>
 							</a>
 						</li>
