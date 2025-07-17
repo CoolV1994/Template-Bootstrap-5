@@ -10,16 +10,27 @@ sidebar:
 ---
 
 <!-- Start Main -->
-{% include posts_main.html posts=site.posts %}
+{% for post in site.posts %}
+{% if post.categories contains 'main' %}
+{% include posts_main.html post=post %}
+{% endif %}
+{% endfor %}
 <!-- End Main -->
 
 <!-- Start Featured -->
-{% include posts_featured.html posts=site.posts %}
+<div class="row mb-2">
+{% for post in site.posts %}
+{% if post.categories contains 'featured' %}
+{% include posts_featured.html post=post %}
+{% endif %}
+{% endfor %}
+</div>
 <!-- End Featured -->
 
-	<div id="blog" class="row g-5">
-		<div id="blog-posts" class="col-md-8">
-			<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
+<div id="blog" class="row g-5">
+
+	<div id="blog-posts" class="col-md-8">
+		<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
 
 <!-- Start Posts -->
 {% for post in site.posts %}
@@ -29,14 +40,18 @@ sidebar:
 {% endfor %}
 <!-- End Posts -->
 
-			<nav class="blog-pagination" aria-label="Pagination">
-				<a class="btn btn-outline-primary rounded-pill" href="#">Older</a>
-				<a class="btn btn-outline-secondary rounded-pill disabled" aria-disabled="true">Newer</a>
-			</nav>
 
-		</div><!-- /#blog-posts -->
+<!-- Start Pagination -->
+		<nav class="blog-pagination" aria-label="Pagination">
+			<a class="btn btn-outline-primary rounded-pill" href="#">Older</a>
+			<a class="btn btn-outline-secondary rounded-pill disabled" aria-disabled="true">Newer</a>
+		</nav>
+<!-- End Pagination -->
 
+	</div><!-- /#blog-posts -->
+
+<!-- Start Sidebar -->
 {% include sidebar.html %}
+<!-- End Sidebar -->
 
-	</div><!-- /#blog -->
- 
+</div><!-- /#blog -->
