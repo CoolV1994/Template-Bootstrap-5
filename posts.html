@@ -16,34 +16,15 @@ sidebar:
 		<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
 
 <!-- Start Posts -->
-{% for post in paginator.posts %}
+{% for post in site.posts %}
 {% include posts.html post=post %}
 {% endfor %}
 <!-- End Posts -->
 
 		<!-- Start Paginator -->
 		<nav class="blog-pagination" aria-label="Pagination">
-{% if paginator.previous_page %}
-			<a class="btn btn-outline-primary rounded-pill" href="{{ paginator.previous_page_path }}">Previous</a>
-{% else %}
-			<a class="btn btn-outline-secondary rounded-pill disabled" aria-disabled="true">Previous</a>
-{% endif %}
-
-{% for page in (1..paginator.total_pages) %}
-{% if page == paginator.page %}
-			<a class="btn btn-outline-secondary rounded-pill disabled" aria-disabled="true">{{ page }}</a>
-{% elsif page == 1 %}
-			<a class="btn btn-outline-primary rounded-pill" href="{{ site.paginate_path | relative_url | replace: 'page-:num/', '' }}">{{ page }}</a>
-{% else %}
-			<a class="btn btn-outline-primary rounded-pill" href="{{ site.paginate_path | relative_url | replace: ':num', page }}">{{ page }}</a>
-{% endif %}
-{% endfor %}
-
-{% if paginator.next_page %}
-			<a class="btn btn-outline-primary rounded-pill" href="{{ paginator.next_page_path }}">Next</a>
-{% else %}
-			<a class="btn btn-outline-secondary rounded-pill disabled" aria-disabled="true">Next</a>
-{% endif %}
+			<a class="btn btn-outline-primary rounded-pill" href="#">Older</a>
+			<a class="btn btn-outline-secondary rounded-pill disabled" aria-disabled="true">Newer</a>
 		</nav>
 		<!-- End Paginator -->
 
