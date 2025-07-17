@@ -34,7 +34,7 @@ sidebar:
 		<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
 
 <!-- Start Posts -->
-{% for post in site.posts %}
+{% for post in paginator.posts %}
 {% include posts.html post=post %}
 {% endfor %}
 <!-- End Posts -->
