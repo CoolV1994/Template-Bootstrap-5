@@ -11,7 +11,7 @@ markdown: kramdown
 
 # Pagination
 paginate: 10
-paginate_path: "/:collection/page-:num/"
+paginate_path: "/page/:num/"
 
 include:
   - _pages
