@@ -57,10 +57,10 @@ css:
 {% if static_file.path == file_path %}
 						<li>
 							<a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="{{ post.url | prepend: site.baseurl }}">
-<svg width="96" height="96">
-  <rect x="5" y="2" rx="2" ry="2" width="88" height="88"
+<svg width="64" height="64">
+  <rect x="5" y="2" rx="2" ry="2" width="56" height="56"
   style="fill:red;stroke:black;stroke-width:5;opacity:0.5" />
-  <text fill="#ffffff" font-size="20" font-family="Verdana" x="10" y="53">{{ static_file.extname }}</text>
+  <text fill="#ffffff" font-size="20" font-family="Verdana" x="10" y="35">{{ static_file.extname | replace: '.', '' }}</text>
 </svg>
 								<div class="col-lg-8">
 									<h6 class="mb-0">{{ static_file.name }}</h6>
