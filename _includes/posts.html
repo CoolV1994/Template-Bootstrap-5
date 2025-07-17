@@ -1,3 +1,5 @@
+{% for post in posts %}
+{% unless skip contains post.path %}
 <article id="{{ post.id | replace: '/', '-' }}" class="blog-post">
   <h2 class="display-5 link-body-emphasis mb-1"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
   <p class="blog-post-meta">
@@ -9,3 +11,5 @@
 {{ post.content }}
 
 </article>
+{% endunless %}
+{% endfor %}
