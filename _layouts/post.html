@@ -4,19 +4,19 @@ css:
   - '/assets/css/blog.css'
 ---
 
-	<div id="post" class="row g-5">
+	<div id="blog" class="row g-5">
 
-		<div id="post-content" class="col-md-12">
+		<div id="blog-posts" class="col-md-8">
 			<article id="{{ page.id | replace: '/', '-' }}" class="blog-post">
 				<h2 class="display-5 link-body-emphasis mb-1">{{ page.title }}</h2>
 
 {{ content }}
 
 			</article>
-		</div><!-- /#post-content -->
+		</div><!-- /#blog-posts -->
 
 
-		<div id="sidebar" class="col-md-4">
+		<div class="col-md-4">
 			<div class="position-sticky" style="top: 2rem;">
 
 				<div id="post-meta" class="p-4 mb-3 bg-body-tertiary rounded">
@@ -70,7 +70,7 @@ css:
 
 
 			</div>
-		</div><!-- /#sidebar -->
+		</div><!-- /sidebar -->
 
 
-	</div><!-- /#post -->
+	</div><!-- /#blog -->
