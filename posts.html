@@ -28,7 +28,17 @@ sidebar:
 {% else %}
 			<a class="btn btn-outline-secondary rounded-pill disabled" aria-disabled="true">Previous</a>
 {% endif %}
-			<span class="">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
+
+{% for page in (1..paginator.total_pages) %}
+{% if page == paginator.page %}
+			<a class="btn btn-outline-secondary rounded-pill disabled" aria-disabled="true">{{ page }}</a>
+{% elsif page == 1 %}
+			<a class="btn btn-outline-primary rounded-pill" href="{{ site.paginate_path | relative_url | replace: 'page-:num/', '' }}">{{ page }}</a>
+{% else %}
+			<a class="btn btn-outline-primary rounded-pill" href="{{ site.paginate_path | relative_url | replace: ':num', page }}">{{ page }}</a>
+{% endif %}
+{% endfor %}
+
 {% if paginator.next_page %}
 			<a class="btn btn-outline-primary rounded-pill" href="{{ paginator.next_page_path }}">Next</a>
 {% else %}
