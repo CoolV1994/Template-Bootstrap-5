@@ -1,7 +1,7 @@
 <article id="{{ post.id | replace: '/', '-' }}" class="blog-post">
   <h2 class="display-5 link-body-emphasis mb-1"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
   <p class="blog-post-meta">
-{% if post.categories %}[ {% for category in post.categories %} <a href="{{ category | prepend: '/categories.html#' | prepend: site.baseurl }}">{{ category }}</a>{% endfor %} ]{% endif %}
+{% if post.categories %}[ {% for category in post.categories %} <a href="{{ category | prepend: '/categories.html#' | prepend: site.baseurl }}">{{ category | capitalize }}</a>{% endfor %} ]{% endif %}
 {{ post.date | date: "%b %-d, %Y" }}
 {% if post.author %}{% assign author = site.data.authors[post.author] %} by <a href="{{ author.url | prepend: site.baseurl }}">{{ author.name }}</a>{% endif %}
   </p>
