@@ -16,15 +16,26 @@ sidebar:
 		<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
 
 <!-- Start Posts -->
-{% for post in site.posts %}
+{% for post in paginator.posts %}
 {% include posts.html post=post %}
 {% endfor %}
 <!-- End Posts -->
 
+		<!-- Start Paginator -->
 		<nav class="blog-pagination" aria-label="Pagination">
-			<a class="btn btn-outline-primary rounded-pill" href="#">Older</a>
-			<a class="btn btn-outline-secondary rounded-pill disabled" aria-disabled="true">Newer</a>
+{% if paginator.previous_page %}
+			<a class="btn btn-outline-primary rounded-pill" href="{{ paginator.previous_page_path }}">Previous</a>
+{% else %}
+			<a class="btn btn-outline-secondary rounded-pill disabled" aria-disabled="true">Previous</a>
+{% endif %}
+			<span class="">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
+{% if paginator.next_page %}
+			<a class="btn btn-outline-primary rounded-pill" href="{{ paginator.next_page_path }}">Next</a>
+{% else %}
+			<a class="btn btn-outline-secondary rounded-pill disabled" aria-disabled="true">Next</a>
+{% endif %}
 		</nav>
+		<!-- End Paginator -->
 
 	</div><!-- /#blog-posts -->
 
