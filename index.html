@@ -51,7 +51,7 @@ sidebar:
 {% if page == paginator.page %}
 			<a class="btn btn-outline-secondary rounded-pill disabled" aria-disabled="true">{{ page }}</a>
 {% elsif page == 1 %}
-			<a class="btn btn-outline-primary rounded-pill" href="{{ site.paginate_path | relative_url | replace: 'page-:num/', '' }}">{{ page }}</a>
+			<a class="btn btn-outline-primary rounded-pill" href="{{ site.paginate_path | relative_url | replace: 'page/:num/', '' }}">{{ page }}</a>
 {% else %}
 			<a class="btn btn-outline-primary rounded-pill" href="{{ site.paginate_path | relative_url | replace: ':num', page }}">{{ page }}</a>
 {% endif %}
