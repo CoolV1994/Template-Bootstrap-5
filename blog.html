@@ -9,20 +9,21 @@ sidebar:
   - tags
 ---
 
+{% comment %}Array of Post IDs in Main & Featured section{% endcomment %}
+{% assign posts_skip = '' %}
+
 <!-- Start Main -->
-{% for post in site.posts %}
-{% if post.categories contains 'main' %}
+{% for post in site.categories['main'] %}
+{% assign posts_skip = posts_skip | push: post.id %}
 {% include posts_main.html post=post %}
-{% endif %}
 {% endfor %}
 <!-- End Main -->
 
 <!-- Start Featured -->
 <div class="row mb-2">
-{% for post in site.posts %}
-{% if post.categories contains 'featured' %}
+{% for post in site.categories['featured'] %}
+{% assign posts_skip = posts_skip | push: post.id %}
 {% include posts_featured.html post=post %}
-{% endif %}
 {% endfor %}
 </div>
 <!-- End Featured -->
@@ -34,7 +35,7 @@ sidebar:
 
 <!-- Start Posts -->
 {% for post in site.posts %}
-{% unless post.categories contains 'featured' or post.categories contains 'main' %}
+{% unless posts_skip contains post.id %}
 {% include posts.html post=post %}
 {% endunless %}
 {% endfor %}
