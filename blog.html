@@ -22,11 +22,11 @@ sidebar:
 			<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
 
 <!-- Start Posts -->
-{% assign posts_main = site.categories['main'] %}
-{% assign posts_featured = site.categories['featured'] %}
-{% assign posts_skip=posts_featured | concat: posts_main %}
-
-{% include posts.html posts=site.posts skip=posts_skip %}
+{% for post in posts %}
+{% unless post.categories contains 'featured' or post.categories contains 'main' %}
+{% include posts.html post=post %}
+{% endunless %}
+{% endfor %}
 <!-- End Posts -->
 
 			<nav class="blog-pagination" aria-label="Pagination">
