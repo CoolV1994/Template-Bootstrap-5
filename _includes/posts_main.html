@@ -1,11 +1,11 @@
-{% for post in source %}
-{% if page.main contains post.path %}
-	<div id="post-main" class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
-		<div id="{{ post.id | replace: '/', '-' }}" class="col-lg-6 px-0">
-			<h1 class="display-4 fst-italic"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
-			<p class="lead my-3">{{ post.excerpt }}</p>
-			<p class="lead mb-0"><a href="{{ post.url | prepend: site.baseurl }}" class="text-body-emphasis fw-bold">Continue reading...</a></p>
-		</div>
-	</div><!-- / #post-main -->
+{% for post in posts %}
+{% if post.categories contains 'main' %}
+<div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
+	<div id="{{ post.id | replace: '/', '-' }}" class="col-lg-6 px-0">
+		<h1 class="display-4 fst-italic"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
+		<p class="lead my-3">{{ post.excerpt }}</p>
+		<p class="lead mb-0"><a href="{{ post.url | prepend: site.baseurl }}" class="text-body-emphasis fw-bold">Continue reading...</a></p>
+	</div>
+</div>
 {% endif %}
 {% endfor %}
