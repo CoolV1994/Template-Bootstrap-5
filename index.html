@@ -13,7 +13,7 @@ sidebar:
 {% comment %}Array of Post IDs in Main & Featured section{% endcomment %}
 {% assign posts_skip = '' %}
 
-{% if page == 1 %}
+{% if paginator.page == 1 %}
 <!-- Start Main -->
 {% for post in site.categories['main'] %}
 {% assign posts_skip = posts_skip | push: post.id %}
