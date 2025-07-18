@@ -1,8 +1,12 @@
-<div class="mb-3">
-  <h4 class="fst-italic">Index</h4>
-  <ul class="list-unstyled">
+<div class="col-md-5 col-lg-4 order-md-last">
+  <h4 class="d-flex justify-content-between align-items-center mb-3">
+    <span class="text-primary">Index</span>
+  </h4>
+  <ul class="list-group mb-3 bg-body-tertiary">
 {% for cat in site.categories %}
-    <li><a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center link-body-emphasis" href="{{ site.baseurl }}/categories.html#{{ cat[0] }}">{{ cat[0] | capitalize }}</a></li>
+    <li class="list-group-item d-flex justify-content-between">
+      <a href="#{{ cat[0] }}">{{ cat[0] | capitalize }}</a>
+    </li>
 {% endfor %}
   </ul>
 </div>
