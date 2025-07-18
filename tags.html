@@ -7,19 +7,25 @@ sidebar:
   - index_tags
 ---
 
+<ul class="list-group mb-3 bg-body-tertiary">
 {% for tag in site.tags %}
 
-	<article id="{{ tag[0] }}" class="p-4 mb-3 rounded">
-		<h2 class="display-5 link-body-emphasis mb-1">
-			<span class="text-primary">{{ tag[0] | capitalize }}</span>
-		</h2>
-		<ul class="list-unstyled bg-body-tertiary">
+	<li class="list-group-item d-flex justify-content-between">
+		<div id="{{ tag[0] }}" class="p-4 mb-3 rounded">
+			<h2 class="display-5 link-body-emphasis mb-1">
+				<span class="text-primary">{{ tag[0] | capitalize }}</span>
+			</h2>
+			<ul class="list-unstyled bg-body-tertiary">
 {% for post in tag[1] %}
 {% if post.url %}
-			<li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
+				<li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
+{% else %}
+				<li>{{ post.title }}</li>
 {% endif %}
 {% endfor %}
-		</ul>
-	</article>
+			</ul>
+		</div>
+	</li>
 
 {% endfor %}
+</ul>
