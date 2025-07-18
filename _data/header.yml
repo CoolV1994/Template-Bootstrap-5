@@ -5,37 +5,37 @@ brand:
 
 navbar:
   - name: Home
-    url: /index.html
+    url: /
   - name: Albums
     url: /albums/
   - name: Blog
-    url: /blog.html
+    url: /blog
     links:
       - name: Posts
-        url: /posts.html
+        url: /posts
       - name: Categories
-        url: /categories.html
+        url: /categories
       - name: Tags
-        url: /tags.html
+        url: /tags
       - name: Authors
         url: /authors/
   - name: Projects
     url: /projects/
   - name: About
-    url: /about.html
+    url: /about
 
 subnavbar:
   - name: Products
-    url: /products.html
+    url: /products
   - name: Pricing
-    url: /pricing.html
+    url: /pricing
   - name: Cover
-    url: /cover.html
+    url: /cover
   - name: Starter
-    url: /starter-template.html
+    url: /starter-template
   - name: Features
-    url: /features.html
+    url: /features
   - name: Carousel
-    url: /carousel.html
+    url: /carousel
   - name: Contact.html
-    url: /contact.html
+    url: /contact
