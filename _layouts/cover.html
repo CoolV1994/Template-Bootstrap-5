@@ -15,14 +15,40 @@ css:
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
 
   <header class="mb-auto">
-    <div>
-      <h3 class="float-md-start mb-0">{{ site.title }}</h3>
-      <nav class="nav nav-masthead justify-content-center float-md-end">
-{% for link in page.navbar %}
-        <a class="nav-link {% if page.url contains link.url %}active{% endif %}" href="{{ link.url }}">{{ link.name }}</a>
+<nav class="navbar navbar-expand-md  navbar-dark bg-dark mb-4">
+  <div class="container-fluid">
+{% assign brand = site.data.header.brand %}
+    <a class="navbar-brand" href="{{ site.baseurl }}{{ brand.url }}">{{ brand.name }}</a>
+
+    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse collapse" id="navbarCollapse" style="">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+
+{% for link in site.data.header.navbar %}
+{% if link.links %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle {% if page.url == link.url %}active{% endif %}" href="{{ site.baseurl }}{{ link.url }}" id="dropdown{{ link.index }}" data-bs-toggle="dropdown" aria-expanded="false">{{ link.name }}</a>
+          <ul class="dropdown-menu" aria-labelledby="dropdown{{ link.index }}">
+{% for sublink in link.links %}
+            <li><a class="dropdown-item {% if page.url == link.url %}active{% endif %}" href="{{ site.baseurl }}{{ sublink.url }}">{{ sublink.name }}</a></li>
 {% endfor %}
-      </nav>
+          </ul>
+        </li>
+{% else %}
+        <li class="nav-item">
+          <a class="nav-link {% if page.url == link.url %}active{% endif %}" aria-current="page" href="{{ site.baseurl }}{{ link.url }}">{{ link.name }}</a>
+        </li>
+{% endif %}
+{% endfor %}
+
+      </ul>
     </div>
+
+  </div>
+</nav>
   </header>
 
   <main class="px-3">
