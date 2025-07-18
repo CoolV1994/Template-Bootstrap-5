@@ -6,4 +6,6 @@ sidebar:
   - about
 ---
 
+## About Me
+
 This is a sample page to show about me info.
