@@ -37,5 +37,5 @@ subnavbar:
     url: /features
   - name: Carousel
     url: /carousel
-  - name: Contact.html
+  - name: Contact
     url: /contact
