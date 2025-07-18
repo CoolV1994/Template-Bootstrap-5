@@ -13,13 +13,14 @@ css:
 <body class="d-flex h-100 text-center text-white bg-dark">
     
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+
   <header class="mb-auto">
     <div>
       <h3 class="float-md-start mb-0">{{ site.title }}</h3>
       <nav class="nav nav-masthead justify-content-center float-md-end">
-        <a class="nav-link active" aria-current="page" href="#">Home</a>
-        <a class="nav-link" href="#">Features</a>
-        <a class="nav-link" href="#">Contact</a>
+{% for link in page.navbar %}
+        <a class="nav-link {% if page.url contains link.url %}active{% endif %}" href="{{ link.url }}">{{ link.name }}</a>
+{% endfor %}
       </nav>
     </div>
   </header>
@@ -31,11 +32,12 @@ css:
   </main>
 
   <footer class="mt-auto text-white-50">
-    <p>Copyright GawdTech</p>
+    <p>Copyright &copy; {{ site.time | date: '%Y' }} {{ site.author }} &nbsp;&mdash;&nbsp; All Rights Reserved</p>
   </footer>
 
 </div>
 
 {% include scripts.html %}
+
 </body>
 </html>
