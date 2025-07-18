@@ -1,5 +1,5 @@
 ---
-layout: blog
+layout: page_sidebar
 title: Blog
 excerpt: Recent Blog Posts
 sidebar_pos: right
@@ -7,6 +7,8 @@ sidebar:
   - posts
   - categories
   - tags
+css:
+  - '/assets/css/blog.css'
 ---
 
 {% for post in site.posts %}
@@ -16,26 +18,4 @@ sidebar:
 {% endfor %}
 
 
-<nav class="pagination" aria-label="Pagination">
-{% if paginator.previous_page %}
-	<a class="btn btn-outline-primary rounded-pill" href="{{ paginator.previous_page_path | relative_url }}">Previous</a>
-{% else %}
-	<a class="btn btn-outline-secondary rounded-pill disabled" aria-disabled="true">Previous</a>
-{% endif %}
-
-{% for page in (1..paginator.total_pages) %}
-{% if page == paginator.page %}
-	<a class="btn btn-outline-secondary rounded-pill disabled" aria-disabled="true">{{ page }}</a>
-{% elsif page == 1 %}
-	<a class="btn btn-outline-primary rounded-pill" href="{{ site.paginate_path | relative_url | replace: 'page/:num/', '' }}">{{ page }}</a>
-{% else %}
-	<a class="btn btn-outline-primary rounded-pill" href="{{ site.paginate_path | relative_url | replace: ':num', page }}">{{ page }}</a>
-{% endif %}
-{% endfor %}
-
-{% if paginator.next_page %}
-	<a class="btn btn-outline-primary rounded-pill" href="{{ paginator.next_page_path | relative_url }}">Next</a>
-{% else %}
-	<a class="btn btn-outline-secondary rounded-pill disabled" aria-disabled="true">Next</a>
-{% endif %}
-</nav>
+{% include pagination.html %}
