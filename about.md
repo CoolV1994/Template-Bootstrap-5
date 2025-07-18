@@ -1,6 +1,7 @@
 ---
 layout: page_sidebar
 title: About
+sidebar_pos: right
 sidebar:
   - about
 ---
