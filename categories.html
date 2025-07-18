@@ -10,12 +10,12 @@ sidebar:
 {% for category in site.categories %}
 
 	<li class="list-group-item d-flex justify-content-between">
-		<div id="{{ cat[0] }}" class="p-4 mb-3 rounded">
+		<div id="{{ category[0] }}" class="p-4 mb-3 rounded">
 			<h2 class="display-5 link-body-emphasis mb-1">
 				<span class="text-primary">{{ category[0] | capitalize }}</span>
 			</h2>
 			<ul class="list-unstyled bg-body-tertiary">
-{% for post in cat[1] %}
+{% for post in category[1] %}
 {% if post.url %}
 				<li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
 {% else %}
