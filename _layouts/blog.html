@@ -4,25 +4,25 @@ css:
   - '/assets/css/blog.css'
 ---
 
-	<div id="blog" class="row g-5">
+<div id="blog" class="row g-5">
 
-		<div id="blog-posts" class="col-md-8">
-				<h2 class="display-5 link-body-emphasis mb-1">{{ page.title }}</h2>
+	<div id="blog-posts" class="col-md-8">
+		<h2 class="display-5 link-body-emphasis mb-1">{{ page.title }}</h2>
 
 {{ content }}
 
-		</div><!-- /#blog-posts -->
+	</div><!-- /#blog-posts -->
 
 {% if page.sidebar %}
-		<div id="blog-sidebar" class="col-md-4">
-			<div class="position-sticky" style="top: 2rem;">
+	<div id="blog-sidebar" class="col-md-4">
+		<div class="position-sticky" style="top: 2rem;">
 {% for module in page.sidebar %}
 
-{% include sidebar_{{module}}.html %}
+{% include sidebar_{{ module }}.html %}
 
 {% endfor %}
-			</div>
-		</div><!-- /#blog-sidebar -->
+		</div>
+	</div><!-- /#blog-sidebar -->
 {% endif %}
 
-	</div><!-- /#blog -->
+</div><!-- /#blog -->
