@@ -33,7 +33,7 @@
   </div>
 </nav>
 
-<div class="nav-scroller bg-body shadow-sm navbar-collapse collapse show" id="navbarCollapse" style="">
+<div class="nav-scroller bg-body shadow-sm navbar-collapse collapse" id="navbarCollapse" style="">
   <nav class="nav nav-underline" aria-label="Secondary navigation">
 {% for link in site.data.header.subnavbar %}
     <a class="nav-link {% if page.url == link.url %}active{% endif %}" href="{{ site.baseurl }}{{ link.url }}">{{ link.name }}</a>
