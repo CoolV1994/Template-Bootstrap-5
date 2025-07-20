@@ -1,74 +1,9 @@
 ---
-layout: null
-css:
-  - /assets/css/cover.css
+layout: cover
 ---
 
-<!doctype html>
-<html lang="en" class="h-100">
-<head>
-{% include html.html %}
-</head>
-
-<body class="d-flex h-100 text-center text-white bg-dark">
-    
-<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-
-  <header class="mb-auto">
-    <nav class="navbar navbar-expand-md navbar-dark mb-4 nav-masthead">
-      <div class="container-fluid">
-{% assign brand = site.data.header.brand %}
-        <a class="navbar-brand" href="{{ site.baseurl }}{{ brand.url }}">{{ brand.name }}</a>
-
-        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="navbar-collapse collapse" id="navbarCollapse" style="">
-          <ul class="navbar-nav me-auto mb-2 mb-md-0">
-
-{% for link in site.data.header.navbar %}
-{% if link.links %}
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle {% if page.url == link.url %}active{% endif %}" href="{{ site.baseurl }}{{ link.url }}" id="dropdown{{ link.index }}" data-bs-toggle="dropdown" aria-expanded="false">{{ link.name }}</a>
-              <ul class="dropdown-menu" aria-labelledby="dropdown{{ link.index }}">
-{% for sublink in link.links %}
-                <li><a class="dropdown-item {% if page.url == link.url %}active{% endif %}" href="{{ site.baseurl }}{{ sublink.url }}">{{ sublink.name }}</a></li>
-{% endfor %}
-              </ul>
-            </li>
-{% else %}
-            <li class="nav-item">
-              <a class="nav-link {% if page.url == link.url %}active{% endif %}" aria-current="page" href="{{ site.baseurl }}{{ link.url }}">{{ link.name }}</a>
-            </li>
-{% endif %}
-{% endfor %}
-
-          </ul>
-        </div>
-
-      </div>
-    </nav>
-  </header>
-
-  <main class="px-3">
-
-    <h1>{{ page.title }}</h1>
-{% if page.excerpt %}
-    <p class="lead">{{ page.excerpt }}</p>
-{% endif %}
+<div class="embed-responsive embed-responsive-16by9">
 
 {{ content }}
 
-  </main>
-
-  <footer class="mt-auto text-white-50">
-    <p>Copyright &copy; {{ site.time | date: '%Y' }} {{ site.author }} &nbsp;&mdash;&nbsp; All Rights Reserved</p>
-  </footer>
-
 </div>
-
-{% include scripts.html %}
-
-</body>
-</html>
