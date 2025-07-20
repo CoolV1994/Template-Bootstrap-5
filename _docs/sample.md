@@ -1,7 +1,7 @@
 ---
-layout: cover
-title: Sample Document
-excerpt: Sample Page based on Markdown Document
+layout: document
+title: Samlle Document
+excerpt: Sample page using Markdown formatting and templates 
 ---
 
 ### Section 1
