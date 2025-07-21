@@ -5,17 +5,17 @@ layout: page
 <div id="page" class="row g-5">
 
 {% if page.sidebar_pos == 'left' %}
-{% include sidebar.html %}
+{% include sidebar.html modules=page.sidebar %}
 {% endif %}
 
-  <div id="content" class="col-md-8">
+  <div id="content" class="col-md">
 
  {{ content }}
 
   </div>
 
 {% if page.sidebar_pos == 'right' %}
-{% include sidebar.html %}
+{% include sidebar.html modules=page.sidebar %}
 {% endif %}
 
 </div>
