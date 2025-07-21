@@ -1,31 +1,9 @@
 ---
-layout: page
+layout: page_sidebar
+sidebar_pos: left
 sidebar:
-  left:
-    - text:
-        title: Custom
-        content: This is sample content.
-    - links:
-        title: Navigation
-        links:
-          - Home: /
-          - Wiki: /wiki/
+  - doc_sections
+  - post_meta
 ---
 
-<div id="page" class="row g-5">
-
-{% if layout.sidebar.left %}
-{% include sidebar2.html modules=layout.sidebar.left %}
-{% endif %}
-
-  <div id="content" class="col-md">
-
  {{ content }}
-
-  </div>
-
-{% if layout.sidebar.right %}
-{% include sidebar2.html modules=layout.sidebar.right %}
-{% endif %}
-
-</div>
