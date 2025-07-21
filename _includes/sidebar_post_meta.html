@@ -1,0 +1,25 @@
+<div class="p-4 mb-3 bg-body-tertiary rounded">
+	<h4 class="fst-italic">Posted</h4>
+	<p class="mb-0">{{ page.date | date: "%b %-d, %Y" }}</p>
+{% if page.author %}
+	<h4 class="fst-italic">Author</h4>
+{% assign author = site.data.authors[page.author] %}
+	<p class="mb-0"><a href="{{ author.url | prepend: site.baseurl }}">{{ author.name }}</a></p>
+{% endif %}
+{% if page.categories %}
+	<h4 class="fst-italic">Categories</h4>
+	<ul class="list-unstyled d-flex">
+{% for category in page.categories %}
+		<li><a href="{{ category | prepend: '/categories.html#' | prepend: site.baseurl }}">{{ category }}</a></li>
+{% endfor %}
+	</ul>
+{% endif %}
+{% if page.tags %}
+	<h4 class="fst-italic">Tags</h4>
+	<ul class="list-unstyled d-flex">
+{% for tag in page.tags %}
+		<li><a href="{{ tag | prepend: '/tags.html#' | prepend: site.baseurl }}">{{ tag }}</a></li>
+{% endfor %}
+	</ul>
+{% endif %}
+</div>
