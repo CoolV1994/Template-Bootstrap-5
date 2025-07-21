@@ -9,22 +9,12 @@ sidebar:
 
 {% include sidebar2.html modules=layout.sidebar %}
 
-<!--
-  <div id="sidebar" class="col-md-4">
-    <div class="position-sticky" style="top: 2rem;">
-
-{% include sidebar_wiki_sections.html %}
-
-{% include sidebar_post_meta.html %}
-
-    </div>
-  </div>
--->
-
   <div id="content" class="col-md">
 
  {{ content }}
 
   </div>
+
+{% include sidebar2.html modules=layout.sidebar %}
 
 </div>
