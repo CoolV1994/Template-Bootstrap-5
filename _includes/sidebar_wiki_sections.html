@@ -1,0 +1,8 @@
+<div class="mb-3">
+	<h4 class="fst-italic">Sections</h4>
+	<ul class="list-unstyled">
+{% for section in page.sections %}
+		<li><a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center link-body-emphasis" href="#{{ section[0] }}">{{ section[0] | capitalize }}</a></li>
+{% endfor %}
+	</ul>
+</div>
