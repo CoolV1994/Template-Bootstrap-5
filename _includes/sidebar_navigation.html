@@ -1,7 +1,7 @@
 <div class="mb-3">
-	<h4 class="fst-italic">Navigation</h4>
+	<h4 class="fst-italic">site.data.sidebar_links[page.sidebar_links].title</h4>
 	<ul class="list-unstyled">
-{% for link in site.data.wiki.navigation %}
+{% for link in site.data.sidebar_links[page.sidebar_links].links %}
 		<li><a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center link-body-emphasis" href="{{ site.baseurl }}{{ link.url }}">{{ link.name }}</a></li>
 {% endfor %}
 	</ul>
