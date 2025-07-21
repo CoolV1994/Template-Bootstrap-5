@@ -1,0 +1,9 @@
+<div id="sidebar" class="col-md-4">
+	<div class="position-sticky" style="top: 2rem;">
+{% for module in modules %}
+
+{% include sidebar_{{module}}.html %}
+
+{% endfor %}
+	</div>
+</div>
