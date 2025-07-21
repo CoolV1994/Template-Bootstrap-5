@@ -1,13 +1,24 @@
 ---
 layout: page
 sidebar:
-  - wiki_sections
-  - post_meta
+  left:
+    text:
+      title: Custom
+      content: This is sample content.
+    links:
+      title: navigation
+      links:
+        - name: Home
+          url: /
+        - name: Wiki
+          url: /wiki/
 ---
 
 <div id="page" class="row g-5">
 
-{% include sidebar2.html modules=layout.sidebar %}
+{% if layout.sidebar.left %}
+{% include sidebar2.html modules=layout.sidebar.left %}
+{% endif %}
 
   <div id="content" class="col-md">
 
@@ -15,6 +26,8 @@ sidebar:
 
   </div>
 
-{% include sidebar2.html modules=layout.sidebar %}
+{% if layout.sidebar.right %}
+{% include sidebar2.html modules=layout.sidebar.right %}
+{% endif %}
 
 </div>
