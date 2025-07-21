@@ -7,7 +7,8 @@ sidebar:
 
 <div id="page" class="row g-5">
 
-{% include sidebar2.html modules=layout.sidebar %}
+{% assign sidebar_modules=layout.sidebar %}
+{% include sidebar2.html modules=sidebar_modules %}
 
 <!--
   <div id="sidebar" class="col-md-4">
