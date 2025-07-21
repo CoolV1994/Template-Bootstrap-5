@@ -2,6 +2,10 @@
 layout: wiki
 title: Wiki Readme
 excerpt: Sample Document for Wiki Section
+author: CoolV1994
+date: 2025-07-20 22:00:00 -0400
+categories: Wiki
+tags: Wiki Sample Readme
 sections:
   - 1 Intro
   - 2 About
