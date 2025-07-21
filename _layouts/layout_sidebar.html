@@ -1,0 +1,21 @@
+---
+layout: page
+---
+
+<div id="page" class="row g-5">
+
+{% if layout.sidebar_pos == 'left' %}
+{% include sidebar.html modules=layout.sidebar %}
+{% endif %}
+
+  <div id="content" class="col-md">
+
+ {{ content }}
+
+  </div>
+
+{% if layout.sidebar_pos == 'right' %}
+{% include sidebar.html modules=layout.sidebar %}
+{% endif %}
+
+</div>
