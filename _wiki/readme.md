@@ -10,12 +10,12 @@ sections:
   - 3 Links
 ---
 
-# Intro
+# <a id="1-Intro"></a> Intro
 
 Content of Intro section.
 
 
-# About
+# <a id="2-About"></a> About
 
 Content of About section.
 
@@ -28,6 +28,6 @@ This is sub section content.
 This is level 3 content.
 
 
-# Links
+# <a id="3-Links"></a> Links
 
 This is back to main level.
