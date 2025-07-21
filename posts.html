@@ -1,8 +1,9 @@
 ---
-layout: default
+layout: page_sidebar
 title: Posts
 css:
-  - '/assets/css/blog.css'
+  - /assets/css/blog.css
+sidebar_pos: right
 sidebar:
   - about
   - categories
@@ -10,26 +11,17 @@ sidebar:
   - authors
 ---
 
-<div id="blog" class="row g-5">
-
-	<div id="blog-posts" class="col-md-8">
-		<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
-
 <!-- Start Posts -->
 {% for post in site.posts %}
+
 {% include posts.html post=post %}
+
 {% endfor %}
 <!-- End Posts -->
 
-		<!-- Start Paginator -->
-		<nav class="blog-pagination" aria-label="Pagination">
-			<a class="btn btn-outline-primary rounded-pill" href="#">Older</a>
-			<a class="btn btn-outline-secondary rounded-pill disabled" aria-disabled="true">Newer</a>
-		</nav>
-		<!-- End Paginator -->
-
-	</div><!-- /#blog-posts -->
-
-{% include sidebar.html modules=page.sidebar %}
-
-</div><!-- /#blog -->
+<!-- Start Paginator -->
+<nav class="blog-pagination" aria-label="Pagination">
+	<a class="btn btn-outline-primary rounded-pill" href="#">Older</a>
+	<a class="btn btn-outline-secondary rounded-pill disabled" aria-disabled="true">Newer</a>
+</nav>
+<!-- End Paginator -->
