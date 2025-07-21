@@ -1,12 +1,15 @@
 ---
 layout: default
+sidebar:
+  - post_meta
+  - post_files
 css:
   - '/assets/css/blog.css'
 ---
 
-<div id="blog" class="row g-5">
+<div id="page" class="row g-5">
 
-	<div id="blog-posts" class="col-md-8">
+	<div id="content" class="col-md-8">
 		<article id="{{ page.id | replace: '/', '-' }}" class="blog-post">
 			<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
 			<!-- <h2 class="display-5 link-body-emphasis mb-1">{{ page.title }}</h2>-->
@@ -14,67 +17,8 @@ css:
 {{ content }}
 
 		</article>
-	</div><!-- /#blog-posts -->
+	</div>
 
-	<div id="blog-sidebar" class="col-md-4">
-		<div class="position-sticky" style="top: 2rem;">
+{% include sidebar2.html modules=layout.sidebar %}
 
-			<div id="post-meta" class="p-4 mb-3 bg-body-tertiary rounded">
-				<h4 class="fst-italic">Posted</h4>
-				<p class="mb-0">{{ page.date | date: "%b %-d, %Y" }}</p>
-{% if page.author %}
-				<h4 class="fst-italic">Author</h4>
-{% assign author = site.data.authors[page.author] %}
-				<p class="mb-0"><a href="{{ author.url | prepend: site.baseurl }}">{{ author.name }}</a></p>
-{% endif %}
-{% if page.categories %}
-				<h4 class="fst-italic">Categories</h4>
-				<ul class="list-unstyled d-flex">
-{% for category in page.categories %}
-					<li><a href="{{ category | prepend: '/categories.html#' | prepend: site.baseurl }}">{{ category }}</a></li>
-{% endfor %}
-				</ul>
-{% endif %}
-{% if page.tags %}
-				<h4 class="fst-italic">Tags</h4>
-				<ul class="list-unstyled d-flex">
-{% for tag in page.tags %}
-				<li><a href="{{ tag | prepend: '/tags.html#' | prepend: site.baseurl }}">{{ tag }}</a></li>
-{% endfor %}
-				</ul>
-{% endif %}
-			</div><!-- /#post-meta -->
-
-
-
-{% if page.files %}
-			<div id="post-files">
-				<h4 class="fst-italic">Files</h4>
-				<ul class="list-unstyled">
-{% for file_path in page.files %}
-{% for static_file in site.static_files %}
-{% if static_file.path == file_path %}
-					<li>
-						<a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="{{ post.url | prepend: site.baseurl }}">
-							<svg width="64" height="64">
-								<rect x="5" y="2" rx="2" ry="2" width="56" height="56" style="fill:red;stroke:black;stroke-width:5;opacity:0.5" />
-								<text fill="#ffffff" font-size="20" font-family="Verdana" x="10" y="35">{{ static_file.extname | replace: '.', '' }}</text>
-							</svg>
-							<div class="col-lg-8">
-								<h6 class="mb-0">{{ static_file.name }}</h6>
-								<small class="text-body-secondary">{{ static_file.modified_time }}</small>
-							</div>
-						</a>
-					</li>
-{% endif %}
-{% endfor %}
-{% endfor %}
-				</ul>
-			</div><!-- /#post-files -->
-{% endif %}
-
-
-		</div>
-	</div><!-- /#blog-sidebar -->
-
-</div><!-- /#blog -->
+</div>
