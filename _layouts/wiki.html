@@ -1,8 +1,13 @@
 ---
 layout: page
+sidebar:
+  - wiki_sections
+  - post_meta
 ---
 
 <div id="page" class="row g-5">
+
+{% include sidebar2.html modules=layout.sidebar %}
 
   <div id="sidebar" class="col-md-4">
     <div class="position-sticky" style="top: 2rem;">
