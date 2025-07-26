@@ -1,0 +1,17 @@
+---
+layout: blog
+title: Featured Posts
+sidebar:
+  - posts
+  - categories
+  - tags
+---
+
+<!-- Start Featured -->
+<div class="row mb-2">
+{% for post in site.categories['featured'] %}
+{% assign posts_skip = posts_skip | push: post.id %}
+{% include posts_featured.html post=post %}
+{% endfor %}
+</div>
+<!-- End Featured -->
