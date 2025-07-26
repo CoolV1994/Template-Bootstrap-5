@@ -1,0 +1,45 @@
+plans:
+  - title: Free
+    price: $0/mo
+    description: >
+      - 10 users included
+      - 2 GB of storage
+      - Email support
+      - Help center access
+    button:
+      text: Sign up for free
+      link: '#free'
+  - title: Pro
+    price: $15/mo
+    description: >
+      - 20 users included
+      - 10 GB of storage
+      - Priority email support
+      - Help center access
+    button:
+      text: Get Started
+      link: '#pro'
+  - title: Enterprise
+    price: $29/mo
+    description: >
+      - 30 users included
+      - 15 GB of storage
+      - Phone and email support
+      - Help center access
+    button:
+      text: Contact Us
+      link: '#enterprise'
+
+features:
+  columns:
+    0: ''
+    1: Free
+    2: Pro
+    3: Enterprise
+  rows:
+    - Public: [1,2,3]
+    - Private: [2,3]
+    - Permissions: [1,2,3]
+    - Sharing: [2,3]
+    - Unlimited members: [2,3]
+    - Extra security: [3]
