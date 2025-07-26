@@ -1,0 +1,52 @@
+---
+layout: default
+title: Blog
+css:
+  - '/assets/css/blog.css'
+sidebar:
+  - about
+  - posts
+  - categories
+  - tags
+---
+
+{% comment %}Array of Post IDs in Main & Featured section{% endcomment %}
+{% assign posts_skip = '' %}
+
+<!-- Start Main -->
+{% for post in site.categories['main'] %}
+{% assign posts_skip = posts_skip | push: post.id %}
+{% include posts_main.html post=post %}
+{% endfor %}
+<!-- End Main -->
+
+<!-- Start Featured -->
+<div class="row mb-2">
+{% for post in site.categories['featured'] %}
+{% assign posts_skip = posts_skip | push: post.id %}
+{% include posts_featured.html post=post %}
+{% endfor %}
+</div>
+<!-- End Featured -->
+
+<div id="blog" class="row g-5">
+	<div id="blog-posts" class="col-md-8">
+		<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
+
+<!-- Start Posts -->
+{% for post in site.posts %}
+{% unless posts_skip contains post.id %}
+{% include posts.html post=post %}
+{% endunless %}
+{% endfor %}
+<!-- End Posts -->
+
+<!-- Start Paginator -->
+{% include pagination.html %}
+<!-- End Paginator -->
+
+	</div><!-- /#blog-posts -->
+
+{% include sidebar.html modules=page.sidebar %}
+
+</div><!-- /#blog -->
