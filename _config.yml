@@ -21,21 +21,19 @@ include:
 
 # Custom Posts Collections
 collections:
+  blog:
+    output: true
+    url: /blog/
   authors:
     output: true
     url: /authors/
   albums:
     output: true
     url: /albums/
-  projects:
-    output: true
-    url: /projects/
-  docs:
-    output: true
-    url: /docs/
   wiki:
     output: true
     url: /wiki/
+
 
 # Default Values per Path
 defaults:
@@ -49,3 +47,23 @@ defaults:
     values:
       image: true
       album: sample
+  - scope:
+      path: "files"
+    values:
+      album: Files
+  - scope:
+      path: "docs"
+    values:
+      album: Documents
+  - scope:
+      path: "dashboard"
+    values:
+      dashboard: true
+  - scope:
+      path: "examples"
+    values:
+      album: Examples
+  - scope:
+      path: "examples/modules"
+    values:
+      album: Modules
