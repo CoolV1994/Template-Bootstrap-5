@@ -1,0 +1,41 @@
+slider:
+  - title: Slide 1
+    text: Sample Text
+    button: More
+    link: '#'
+  - title: Slide 2
+    text: Sample Text
+    button: More
+    link: '#'
+  - title: Slide 3
+    text: Sample Text
+    button: More
+    link: '#'
+
+headings:
+  - title: Heading
+    text: Column 1
+    button: View details
+    link: '#'
+    image: images/carousel-sample.png
+  - title: Heading
+    text: Column 2
+    button: View details
+    link: '#'
+    image: images/carousel-sample.png
+  - title: Heading
+    text: Column 3
+    button: View details
+    link: '#'
+    image: images/carousel-sample.png
+
+featured:
+  - title: Fratured Item
+    text: Sample Text
+    image: images/carousel-sample.png
+  - title: Fratured Item
+    text: Sample Text
+    image: images/carousel-sample.png
+  - title: Fratured Item
+    text: Sample Text
+    image: images/carousel-sample.png
