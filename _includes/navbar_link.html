@@ -4,11 +4,11 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle {% if menuActive.size > 0 %}active{% endif %}" href="#{{ include.level }}-{{ forloop.index }}" id="dropdown_{{ include.level }}-{{ forloop.index }}" data-bs-toggle="dropdown" aria-expanded="false">{{ link[0] }}</a>
           <ul class="dropdown-menu" aria-labelledby="dropdown_{{ include.level }}-{{ forloop.index }}">
-            {% assign sublinks = link[1] | split: ',' %}
+            {% assign sublinks = link[1] %}
 <!--
 {{ sublinks }}
 -->
-            {% include navbar_link.html level='{{ include.level }}.{{ forloop.index }}' links=sublinks %}
+            {% include navbar_link.html level='1' links=sublinks %}
           </ul>
         </li>
   {% else %}
