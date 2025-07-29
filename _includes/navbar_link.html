@@ -8,7 +8,7 @@
 <!--
 {{ sublinks }}
 -->
-            {% include navbar_link.html level='{{ include.level | append: '-' | append: forloop.index }}' links=sublinks %}
+            {% include navbar_link.html level="{{ include.level }}.{{ forloop.index }}" links=sublinks %}
           </ul>
         </li>
   {% else %}
