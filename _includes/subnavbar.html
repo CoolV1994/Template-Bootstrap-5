@@ -1,0 +1,7 @@
+<div class="nav-scroller bg-body shadow-sm collapse show" id="navbarCollapse" style="">
+  <nav class="nav nav-underline" aria-label="Secondary navigation">
+{% for link in site.data.navigation.subnavbar %}
+    <a class="nav-link {% if page.url == link[1] %}active{% endif %}" href="{% if link[1] contains 'http' %}{{ link[1] }}{% else %}{{ site.baseurl }}{{ link[1] }}{% endif %}">{{ link[0] }}</a>
+{% endfor %}
+  </nav>
+</div>
