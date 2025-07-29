@@ -10,13 +10,21 @@ navbar:
   Home: /
   Albums: /albums/
   Blog:
-      Blog: /blog/
-      Posts: /blog/posts.html
-      Categories: /blog/categories.html
-      Tags: /blog/tags.html
-      Authors: /authors/
+    Blog: /blog/
+    Posts: /blog/posts.html
+    Categories: /blog/categories.html
+    Tags: /blog/tags.html
+    Authors: /authors/
   Projects: /projects/
   About: /about.html
+  Contact: /contact.html
+  Examples:
+    Products: /examples/products.html
+    Pricing: /examples/pricing.html
+    Cover: /examples/cover.html
+    Starter: /examples/starter-template.html
+    Features: /examples/features.html
+    Carousel: /examples/carousel.html
 
 
 # Header Sub-Navbar
