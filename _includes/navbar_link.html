@@ -1,7 +1,7 @@
 {% assign level = include.level | to_integer %}
 {% for link in include.links %}
   {% if link[1].first %}
-    {% increment level %}
+    {% assign level = level | plus: 1 %}
     {% assign menuActive = link[1] | where_exp: "sublink", "sublink == page.url" %}
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle {% if menuActive.size > 0 %}active{% endif %}" href="#{{ level }}-{{ forloop.index }}" id="dropdown_{{ level }}-{{ forloop.index }}" data-bs-toggle="dropdown" aria-expanded="false">{{ link[0] }}</a>
