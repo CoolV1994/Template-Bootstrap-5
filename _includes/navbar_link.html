@@ -4,7 +4,7 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle {% if menuActive.size > 0 %}active{% endif %}" href="#{{ link.index }}" id="dropdown{{ link.index }}" data-bs-toggle="dropdown" aria-expanded="false">{{ link[0] }}</a>
           <ul class="dropdown-menu" aria-labelledby="dropdown{{ link.index }}">
-            {% include navbar_link.html links=link[1] level='{{ include.level | plus: 1 }}' %}
+            {% include navbar_link.html links=link[1] level={{ include.level | plus: 1 }} %}
           </ul>
         </li>
   {% else %}
