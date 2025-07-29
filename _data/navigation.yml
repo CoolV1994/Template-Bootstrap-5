@@ -1,0 +1,45 @@
+# Header Navbar
+navbar:
+  Home: /
+  Albums: /albums/
+  Blog:
+      Posts: /posts
+      Categories: /categories
+      Tags: /tags
+      Authors: /authors/
+  Projects: /projects/
+  About: /about
+
+
+# Header Sub-Navbar
+subnavbar:
+  Products: /products
+  Pricing: /pricing
+  Cover: /cover
+  Starter: /starter-template
+  Features: /features
+  Carousel: /carousel
+  Contact: /contact
+
+
+# Footer Links
+footer:
+  Home: /
+  Contact: /contact
+  Top of Page: '#top'
+
+
+# Sidebar
+sidebar:
+  Posts: /posts
+  Categories: /categories
+  Tags: /tags
+  Authors: /authors/
+
+
+# Social Media
+social:
+  Facebook: https://www.facebook.com/
+  Instagram: https://www.instagram.com/
+  Twitter: https://www.twitter.com/
+
