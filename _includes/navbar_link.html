@@ -5,6 +5,9 @@
           <a class="nav-link dropdown-toggle {% if menuActive.size > 0 %}active{% endif %}" href="#{{ link.index }}" id="dropdown{{ link.index }}" data-bs-toggle="dropdown" aria-expanded="false">{{ link[0] }}</a>
           <ul class="dropdown-menu" aria-labelledby="dropdown{{ link.index }}">
             {% assign sublinks = links[1] %}
+<!--
+{{ sublinks }}
+-->
             {% include navbar_link.html level='1' links=sublinks %}
           </ul>
         </li>
