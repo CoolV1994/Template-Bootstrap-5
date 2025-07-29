@@ -1,17 +1,17 @@
 {% assign level = include.level | to_integer %}
 {% for link in include.links %}
   {% if link[1].first %}
-    {% assign level = level | plus: 1 %}
     {% assign menuActive = link[1] | where_exp: "sublink", "sublink == page.url" %}
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle {% if menuActive.size > 0 %}active{% endif %}" href="#{{ level }}-{{ forloop.index }}" id="dropdown_{{ level }}-{{ forloop.index }}" data-bs-toggle="dropdown" aria-expanded="false">{{ link[0] }}</a>
-          <ul class="dropdown-menu" aria-labelledby="dropdown_{{ level }}-{{ forloop.index }}">
+          <a class="nav-link dropdown-toggle {% if menuActive.size > 0 %}active{% endif %}" href="#{{ include.level }}-{{ forloop.index }}" id="dropdown_{{ include.level }}-{{ forloop.index }}" data-bs-toggle="dropdown" aria-expanded="false">{{ link[0] }}</a>
+          <ul class="dropdown-menu" aria-labelledby="dropdown_{{ include.level }}-{{ forloop.index }}">
             {% assign sublinks = link[1] %}
+            {% assign level = level | plus: 1 %}
             {% include navbar_link.html level=level links=sublinks %}
           </ul>
         </li>
   {% else %}
-    {% if level == 0 %}
+    {% if include.level == '0' %}
         <li class="nav-item">
           <a class="nav-link {% if page.url == link[1] %}active{% endif %}" aria-current="page" href="{% unless link[1] contains 'http' %}{{ site.baseurl }}{% endunless %}{{ link[1] }}">{{ link[0] }}</a>
         </li>
