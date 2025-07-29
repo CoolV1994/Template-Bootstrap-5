@@ -1,41 +1,32 @@
-brand:
-  name: GawdTech
-  logo: /assets/img/logo.png
+# Site Title / Logo
+logo:
+  text: GawdTech
+  image:
+    src: /assets/img/logo.png
+    alt: GawdTech Logo
+    title: GawdTech
   url: /
 
-navbar:
-  - name: Home
-    url: /
-  - name: Albums
-    url: /albums/
-  - name: Blog
-    url: /blog
-    links:
-      - name: Posts
-        url: /posts
-      - name: Categories
-        url: /categories
-      - name: Tags
-        url: /tags
-      - name: Authors
-        url: /authors/
-  - name: Projects
-    url: /projects/
-  - name: About
-    url: /about
 
+# Header Navbar
+navbar:
+  Home: /
+  Albums: /albums/
+  Blog:
+      Posts: /posts
+      Categories: /categories
+      Tags: /tags
+      Authors: /authors/
+  Projects: /projects/
+  About: /about
+
+
+# Header Sub-Navbar
 subnavbar:
-  - name: Products
-    url: /products
-  - name: Pricing
-    url: /pricing
-  - name: Cover
-    url: /cover
-  - name: Starter
-    url: /starter-template
-  - name: Features
-    url: /features
-  - name: Carousel
-    url: /carousel
-  - name: Contact
-    url: /contact
+  Products: /products
+  Pricing: /pricing
+  Cover: /cover
+  Starter: /starter-template
+  Features: /features
+  Carousel: /carousel
+  Contact: /contact
