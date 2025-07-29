@@ -14,7 +14,7 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle {% if page.url == link.url %}active{% endif %}" href="#" id="dropdown{{ link.index }}" data-bs-toggle="dropdown" aria-expanded="false">{{ link[0] }}</a>
           <ul class="dropdown-menu" aria-labelledby="dropdown{{ link.index }}">
-{% for sublink in link %}
+{% for sublink in link.first %}
             <li><a class="dropdown-item {% if page.url == link.url %}active{% endif %}" href="{% if sublink[1] contains 'http' %}{{ sublink[1] }}{% else %}{{ site.baseurl }}{{ sublink[1] }}{% endif %}">{{ sublink[0] }}</a></li>
 {% endfor %}
           </ul>
