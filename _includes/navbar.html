@@ -10,7 +10,7 @@
     <div class="navbar-collapse collapse" id="navbarCollapse" style="">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
 {% for link in site.data.navigation.navbar %}
-{% if link.first %}
+{% if link.first.first %}
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle {% if page.url == link.url %}active{% endif %}" href="#" id="dropdown{{ link.index }}" data-bs-toggle="dropdown" aria-expanded="false">{{ link[0] }}</a>
           <ul class="dropdown-menu" aria-labelledby="dropdown{{ link.index }}">
