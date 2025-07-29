@@ -5,35 +5,47 @@
 
 <!-- Site Title / Logo -->
 {% assign brand = site.data.header.brand %}
-    <a class="navbar-brand" href="{{ site.baseurl }}{{ brand.url }}">
+    <a class="navbar-brand" href="{% unless brand.url contains 'http' %}{{ site.baseurl }}{% endunless %}{{ brand.url }}">
 {% if brand.logo %}
-      <img src="{{ brand.logo }}" alt="Logo" title="{{ brand.name }}" />
+      <img src="{% unless brand.logo contains 'http' %}{{ site.baseurl }}{% endunless %}{{ brand.logo }}" alt="Logo" title="{{ brand.name }}" />
 {% else %}
       {{ brand.name }}
 {% endif %}
     </a>
 
-<!-- Navbar Collapse Button -->
+    <!-- Navbar Collapse Button -->
     <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-<!-- Navbar Links -->
+    <!-- Navbar Links -->
     <div class="navbar-collapse collapse" id="navbarCollapse" style="">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
+{% comment %}
+      <!-- Links[ Link<Text, URL> | Link<Text, Links[Link<Text, URL>]> ] -->
+{% endcomment %}
 {% for link in site.data.header.navbar %}
 {% if link[1].first %}
+{% comment %}
+        <!-- Link<Text, Links[Link<Text, URL>]> -->
+{% endcomment %}
+{% assign subMenuActive = link[1] | where_exp: "item", "item[1] contains page.url" %}
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url == link.url %}active{% endif %}" href="#" id="dropdown{{ link.index }}" data-bs-toggle="dropdown" aria-expanded="false">{{ link[0] }}</a>
+          <a class="nav-link dropdown-toggle {% if subMenuActive.size > 0 %}active{% endif %}" href="{{ link[1].first[1] }}" id="dropdown{{ link.index }}" data-bs-toggle="dropdown" aria-expanded="false">{{ link[0] }}</a>
           <ul class="dropdown-menu" aria-labelledby="dropdown{{ link.index }}">
 {% for sublink in link[1] %}
-            <li><a class="dropdown-item {% if page.url == sublink[1] %}active{% endif %}" href="{% if sublink[1] contains 'http' %}{{ sublink[1] }}{% else %}{{ site.baseurl }}{{ sublink[1] }}{% endif %}">{{ sublink[0] }}</a></li>
+{% if sublink[0] %}
+            <li><a class="dropdown-item {% if page.url == sublink[1] %}active{% endif %}" href="{% unless sublink[1] contains 'http' %}{{ site.baseurl }}{% endunless %}{{ sublink[1] }}">{{ sublink[0] }}</a></li>
+{% endif %}
 {% endfor %}
           </ul>
         </li>
 {% else %}
+{% comment %}
+        <!-- Link<Text, URL> -->
+{% endcomment %}
         <li class="nav-item">
-          <a class="nav-link {% if page.url == link[1] %}active{% endif %}" aria-current="page" href="{% if link[1] contains 'http' %}{{ link[1] }}{% else %}{{ site.baseurl }}{{ link[1] }}{% endif %}">{{ link[0] }}</a>
+          <a class="nav-link {% if page.url == link[1] %}active{% endif %}" aria-current="page" href="{% unless link[1] contains 'http' %}{{ site.baseurl }}{% endunless %}{{ link[1] }}">{{ link[0] }}</a>
         </li>
 {% endif %}
 {% endfor %}
