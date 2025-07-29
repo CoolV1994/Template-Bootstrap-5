@@ -29,14 +29,17 @@
 {% comment %}
         <!-- Link<Text, Links[Link<Text, URL>]> -->
 {% endcomment %}
-{% assign subMenuActive = link[1] | where_exp: "item", "item[1] contains page.url" %}
+{% assign subMenuActive = link[1] | where_exp: "sublink", "sublink == page.url" %}
+{% for sublink in link[1] %}
+{% if page.url == sublink[1] %}
+{% assign subMenuActive2 = link.index %}
+{% endif %}
+{% endfor %}
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle {% if subMenuActive.size > 0 %}active{% endif %}" href="#{{ link.index }}" id="dropdown{{ link.index }}" data-bs-toggle="dropdown" aria-expanded="false">{{ link[0] }}</a>
           <ul class="dropdown-menu" aria-labelledby="dropdown{{ link.index }}">
 {% for sublink in link[1] %}
-{% if sublink[0] %}
             <li><a class="dropdown-item {% if page.url == sublink[1] %}active{% endif %}" href="{% unless sublink[1] contains 'http' %}{{ site.baseurl }}{% endunless %}{{ sublink[1] }}">{{ sublink[0] }}</a></li>
-{% endif %}
 {% endfor %}
           </ul>
         </li>
