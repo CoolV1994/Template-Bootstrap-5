@@ -31,7 +31,7 @@
 {% endcomment %}
 {% assign subMenuActive = link[1] | where_exp: "item", "item[1] contains page.url" %}
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle {% if subMenuActive.size > 0 %}active{% endif %}" href="{{ link[1].first[1] }}" id="dropdown{{ link.index }}" data-bs-toggle="dropdown" aria-expanded="false">{{ link[0] }}</a>
+          <a class="nav-link dropdown-toggle {% if subMenuActive.size > 0 %}active{% endif %}" href="#{{ link.index }}" id="dropdown{{ link.index }}" data-bs-toggle="dropdown" aria-expanded="false">{{ link[0] }}</a>
           <ul class="dropdown-menu" aria-labelledby="dropdown{{ link.index }}">
 {% for sublink in link[1] %}
 {% if sublink[0] %}
