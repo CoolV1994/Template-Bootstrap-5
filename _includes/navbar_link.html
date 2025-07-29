@@ -8,7 +8,7 @@
 <!--
 {{ sublinks }}
 -->
-            {% include navbar_link.html level='{{ include.level | to_integer | plus: 1 }}' links=sublinks %}
+            {% include navbar_link.html level='{{ include.level }}-{{ link.index }}' links=sublinks %}
           </ul>
         </li>
   {% else %}
