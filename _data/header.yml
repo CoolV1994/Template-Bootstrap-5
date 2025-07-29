@@ -1,11 +1,8 @@
 # Site Title / Logo
-logo:
-  text: GawdTech
-  image:
-    src: /assets/img/logo.png
-    alt: GawdTech Logo
-    title: GawdTech
+brand:
+  name: GawdTech
   url: /
+#  logo: /assets/img/logo.png
 
 
 # Header Navbar
