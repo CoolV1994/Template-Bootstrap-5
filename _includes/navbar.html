@@ -15,13 +15,13 @@
           <a class="nav-link dropdown-toggle {% if page.url == link.url %}active{% endif %}" href="#" id="dropdown{{ link.index }}" data-bs-toggle="dropdown" aria-expanded="false">{{ link[0] }}</a>
           <ul class="dropdown-menu" aria-labelledby="dropdown{{ link.index }}">
 {% for sublink in link %}
-            <li><a class="dropdown-item {% if page.url == link.url %}active{% endif %}" href="{{ site.baseurl }}{{ sublink[1] }}">{{ sublink[0] }}</a></li>
+            <li><a class="dropdown-item {% if page.url == link.url %}active{% endif %}" href="{% if sublink[1] contains 'http' %}{{ sublink[1] }}{% else %}{{ site.baseurl }}{{ sublink[1] }}{% endif %}">{{ sublink[0] }}</a></li>
 {% endfor %}
           </ul>
         </li>
 {% else %}
         <li class="nav-item">
-          <a class="nav-link {% if page.url == link.url %}active{% endif %}" aria-current="page" href="{{ site.baseurl }}{{ link[1] }}">{{ link[0] }}</a>
+          <a class="nav-link {% if page.url == link.url %}active{% endif %}" aria-current="page" href="{% if link[1] contains 'http' %}{{ link[1] }}{% else %}{{ site.baseurl }}{{ link[1] }}{% endif %}">{{ link[0] }}</a>
         </li>
 {% endif %}
 {% endfor %}
