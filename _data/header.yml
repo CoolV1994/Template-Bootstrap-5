@@ -10,6 +10,7 @@ navbar:
   Home: /
   Albums: /albums/
   Blog:
+      '': /blog/
       Posts: /posts
       Categories: /categories
       Tags: /tags
