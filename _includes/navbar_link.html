@@ -7,7 +7,7 @@
           <ul class="dropdown-menu {% unless level == '0' %}dropdown-submenu{% endunless %}" aria-labelledby="dropdown_{{ include.level }}-{{ forloop.index }}">
             {% assign sublinks = link[1] %}
             {% assign sublevel = level | plus: 1 %}
-            {% include navbar_link.html level=sublevel links=sublinks %}
+{% include navbar_link.html level=sublevel links=sublinks %}
           </ul>
         </li>
   {% else %}
