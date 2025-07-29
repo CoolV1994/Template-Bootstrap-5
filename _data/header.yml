@@ -10,10 +10,10 @@ navbar:
   Home: /
   Albums: /albums/
   Blog:
-      : /blog/
-      Posts: /posts
-      Categories: /categories
-      Tags: /tags
+      Blog: /blog/
+      Posts: /blog/posts.html
+      Categories: /blog/categories.html
+      Tags: /blog/tags.html
       Authors: /authors/
   Projects: /projects/
   About: /about.html
@@ -21,10 +21,10 @@ navbar:
 
 # Header Sub-Navbar
 subnavbar:
-  Products: /products
-  Pricing: /pricing
-  Cover: /cover
-  Starter: /starter-template
-  Features: /features
-  Carousel: /carousel
-  Contact: /contact
+  Products: /products.html
+  Pricing: /pricing.html
+  Cover: /cover.html
+  Starter: /starter-template.html
+  Features: /features.html
+  Carousel: /carousel.html
+  Contact: /contact.html
