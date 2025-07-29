@@ -1,30 +1,39 @@
 <header>
-{% include navbar.html %}
-<!--
+
 <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
   <div class="container-fluid">
-{% assign brand = site.data.header.brand %}
-    <a class="navbar-brand" href="{{ site.baseurl }}{{ brand.url }}">{{ brand.name }}</a>
 
+<!-- Site Title / Logo -->
+{% assign brand = site.data.header.brand %}
+    <a class="navbar-brand" href="{{ site.baseurl }}{{ brand.url }}">
+{% if brand.logo %}
+      <img src="{{ brand.logo }}" alt="Logo" title="{{ brand.name }}" />
+{% else %}
+      {{ brand.name }}
+{% endif %}
+    </a>
+
+<!-- Navbar Collapse Button -->
     <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
+<!-- Navbar Links -->
     <div class="navbar-collapse collapse" id="navbarCollapse" style="">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
-{% for link in site.data.header.navbar %}
-{% if link.links %}
+{% for link in site.data.navigation.navbar %}
+{% if link[1].first %}
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle {% if page.url == link.url %}active{% endif %}" href="{{ site.baseurl }}{{ link.url }}" id="dropdown{{ link.index }}" data-bs-toggle="dropdown" aria-expanded="false">{{ link.name }}</a>
+          <a class="nav-link dropdown-toggle {% if page.url == link.url %}active{% endif %}" href="#" id="dropdown{{ link.index }}" data-bs-toggle="dropdown" aria-expanded="false">{{ link[0] }}</a>
           <ul class="dropdown-menu" aria-labelledby="dropdown{{ link.index }}">
-{% for sublink in link.links %}
-            <li><a class="dropdown-item {% if page.url == link.url %}active{% endif %}" href="{{ site.baseurl }}{{ sublink.url }}">{{ sublink.name }}</a></li>
+{% for sublink in link[1] %}
+            <li><a class="dropdown-item {% if page.url == sublink[1] %}active{% endif %}" href="{% if sublink[1] contains 'http' %}{{ sublink[1] }}{% else %}{{ site.baseurl }}{{ sublink[1] }}{% endif %}">{{ sublink[0] }}</a></li>
 {% endfor %}
           </ul>
         </li>
 {% else %}
         <li class="nav-item">
-          <a class="nav-link {% if page.url == link.url %}active{% endif %}" aria-current="page" href="{{ site.baseurl }}{{ link.url }}">{{ link.name }}</a>
+          <a class="nav-link {% if page.url == link[1] %}active{% endif %}" aria-current="page" href="{% if link[1] contains 'http' %}{{ link[1] }}{% else %}{{ site.baseurl }}{{ link[1] }}{% endif %}">{{ link[0] }}</a>
         </li>
 {% endif %}
 {% endfor %}
@@ -33,16 +42,5 @@
 
   </div>
 </nav>
--->
-
-<!-- Sub navbar
-<div class="nav-scroller bg-body shadow-sm collapse show" id="navbarCollapse" style="">
-  <nav class="nav nav-underline" aria-label="Secondary navigation">
-{% for link in site.data.header.subnavbar %}
-    <a class="nav-link {% if page.url == link.url %}active{% endif %}" href="{{ site.baseurl }}{{ link.url }}">{{ link.name }}</a>
-{% endfor %}
-  </nav>
-</div>
--->
 
 </header>
