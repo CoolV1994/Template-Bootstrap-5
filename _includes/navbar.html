@@ -1,5 +1,11 @@
     <div class="navbar-collapse collapse" id="navbarCollapse" style="">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
-{% include navbar_link.html level='0' links=site.data.header.navbar %}
+{% for link in site.data.header.navbar %}
+    {% if link[1].first %}
+{% include navbar_menu.html level=0 linkss=link %}
+    {% else %}
+{% include navbar_link.html level=0 link=link %}
+    {% endif %}
+{% endfor %}
       </ul>
     </div>
