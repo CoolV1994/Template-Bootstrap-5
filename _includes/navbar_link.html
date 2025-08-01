@@ -4,7 +4,7 @@
 <!-- LINK -->
 <!-- {{ include.link }} -->
 
-{% if include.sublink.first %}
+{% if include.sublink %}
     <li>
       <a class="dropdown-item {% if page.url == include.sublink[1] %}active{% endif %}" href="{% unless include.sublink[1] contains 'http' %}site.baseurl{% endunless %}{{ include.sublink[1] }}">{{ include.sublink[0] }}</a>
     </li>
