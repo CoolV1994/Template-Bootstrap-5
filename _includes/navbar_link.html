@@ -1,15 +1,15 @@
-<!-- SUBLINK -->
-<!-- {{ include.sublink }} -->
-
-<!-- LINK -->
-<!-- {{ include.link }} -->
-
 {% if include.sublink %}
+    {% assign sublink = include.sublink %}
+<!-- LINK - SUBLINK -->
+<!-- {{ sublink }} -->
     <li>
-      <a class="dropdown-item {% if page.url == include.sublink[1] %}active{% endif %}" href="{% unless include.sublink[1] contains 'http' %}site.baseurl{% endunless %}{{ include.sublink[1] }}">{{ include.sublink[0] }}</a>
+      <a class="dropdown-item {% if page.url == sublink[1] %}active{% endif %}" href="{% unless sublink[1] contains 'http' %}site.baseurl{% endunless %}{{ sublink[1] }}">{{ sublink[0] }}</a>
     </li>
 {% else %}
+    {% assign link = include.link %}
+<!-- LINK - LINK -->
+<!-- {{ link }} -->
     <li class="nav-item">
-      <a class="nav-link {% if page.url == include.link[1] %}active{% endif %}" aria-current="page" href="{% unless include.link[1] contains 'http' %}site.baseurl{% endunless %}{{ include.link[1] }}">{{ include.link[0] }}</a>
+      <a class="nav-link {% if page.url == link[1] %}active{% endif %}" aria-current="page" href="{% unless link[1] contains 'http' %}site.baseurl{% endunless %}{{ link[1] }}">{{ link[0] }}</a>
     </li>
 {% endif %}
