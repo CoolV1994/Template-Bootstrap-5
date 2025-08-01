@@ -1,3 +1,9 @@
+<!-- SUBMENU -->
+<!-- {{ include.submenu }} -->
+
+<!-- MENU -->
+<!-- {{ include.menu }} -->
+
 {% if include.submenu %}
     {% assign menuID = include.submenu[0] | slugify %}
     {% assign activeLinks = include.submenu[1] | where_exp: "sublink", "sublink == page.url" %}
