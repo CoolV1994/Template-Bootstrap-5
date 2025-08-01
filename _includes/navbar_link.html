@@ -3,7 +3,7 @@
 {% assign active = '' %}
 {% if page.url == linkURL %}{% assign active = 'active' %}{% endif %}
 {% unless linkURL contains 'http' %}{% assign linkURL = linkURL | prepend: site.baseurl %}{% endunless %}
-{% if include.level == '0' %}
+{% if level == 0 %}
     <li class="nav-item">
       <a class="nav-link {{ active }}" aria-current="page" href="{{ linkURL }}">{{ link[0] }}</a>
     </li>
