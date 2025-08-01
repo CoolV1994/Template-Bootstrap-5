@@ -2,6 +2,7 @@
 {% assign subLevel = level | plus: 1 %}
 {% assign menuID = include.links[0] | slugify %}
 {% assign menuID = menuID | prepend: '_' | prepend: include.level %}
+{% assign active = '' %}
 {% assign menuLinks = include.links[1] | where_exp: "sublink", "sublink == page.url" %}
 {% if menuLinks > 0 %}{% assign active = 'active' %}{% endif %}
 {% for subLink in include.links[1] %}
