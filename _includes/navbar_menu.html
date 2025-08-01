@@ -4,7 +4,7 @@
 <!-- MENU -->
 <!-- {{ include.menu }} -->
 
-{% if include.submenu.first %}
+{% if include.submenu %}
     {% assign menuID = include.submenu[0] | slugify %}
     {% assign activeLinks = include.submenu[1] | where_exp: "sublink", "sublink == page.url" %}
     {% for subsublink in include.submenu[1] %}
