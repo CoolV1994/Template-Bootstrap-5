@@ -1,11 +1,10 @@
-{% assign level = include.level | to_integer %}
     <div class="navbar-collapse collapse" id="navbarCollapse" style="">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
 {% for link in include.links %}
     {% if link[1].first %}
-{% include navbar_menu.html level=level link=link %}
+{% include navbar_menu.html menu=link %}
     {% else %}
-{% include navbar_link.html level=level link=link %}
+{% include navbar_link.html link=link %}
     {% endif %}
 {% endfor %}
       </ul>
