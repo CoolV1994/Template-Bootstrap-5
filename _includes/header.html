@@ -19,32 +19,7 @@
     </button>
 
     <!-- Navbar Links -->
-    <div class="navbar-collapse collapse" id="navbarCollapse" style="">
-      <ul class="navbar-nav me-auto mb-2 mb-md-0">
-
-{% include navbar_link.html level='0' links=site.data.header.navbar %}
-
-<!--
-{% for link in site.data.header.navbar %}
-{% if link[1].first %}
-{% assign subMenuActive = link[1] | where_exp: "subLink", "subLink == page.url" %}
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle {% if subMenuActive.size > 0 %}active{% endif %}" href="#{{ link.index }}" id="dropdown{{ link.index }}" data-bs-toggle="dropdown" aria-expanded="false">{{ link[0] }}</a>
-          <ul class="dropdown-menu" aria-labelledby="dropdown{{ link.index }}">
-{% for sublink in link[1] %}
-            <li><a class="dropdown-item {% if page.url == sublink[1] %}active{% endif %}" href="{% unless sublink[1] contains 'http' %}{{ site.baseurl }}{% endunless %}{{ sublink[1] }}">{{ sublink[0] }}</a></li>
-{% endfor %}
-          </ul>
-        </li>
-{% else %}
-        <li class="nav-item">
-          <a class="nav-link {% if page.url == link[1] %}active{% endif %}" aria-current="page" href="{% unless link[1] contains 'http' %}{{ site.baseurl }}{% endunless %}{{ link[1] }}">{{ link[0] }}</a>
-        </li>
-{% endif %}
-{% endfor %}
--->
-      </ul>
-    </div>
+{% include navbar.html level='0' links=site.data.header.navbar %}
 
   </div>
 </nav>
