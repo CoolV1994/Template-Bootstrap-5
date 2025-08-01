@@ -1,22 +1,47 @@
-{% assign menu = include.menu %}
-<!-- MENU - MENU -->
-<!-- {{ menu }} -->
-{% assign menuID = menu[0] | slugify %}
-{% assign activeLinks = menu[1] | where_exp: "sublink", "sublink == page.url" %}
+{% if include.submenu %}
+    {% assign submenu = include.submenu %}
+    <!-- MENU - SUBMENU -->
+    <!-- {{ submenu }} -->
+    {% assign menuID = submenu[0] | slugify %}
+    {% assign activeLinks = submenu[1] | where_exp: "sublink", "sublink == page.url" %}
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle {% if activeLinks > 0 %}active{% endif %}" href="#{{ menuID }}" id="dropdown_{{ menuID }}" data-bs-toggle="dropdown" aria-expanded="false">{{ submenu[0] }}</a>
+    <ul class="dropdown-menu dropdown-submenu" aria-labelledby="dropdown_{{ menuID }}">
+    {% for subsublink in submenu[1] %}
+    <!-- MENU - SUBSUBLINK -->
+    <!-- {{ subsublink }} -->
+    <!-- MENU - SUBSUBLINK - FIRST -->
+    <!-- {{ subsublink[1].first }} -->
+        {% if subsublink[1].first %}
+            {% assign subsublinks = subsublink[1] %}
+{% include navbar_menu.html submenu=subsublinks %}
+        {% else %}
+{% include navbar_link.html sublink=subsublink %}
+        {% endif %}
+    {% endfor %}
+    </ul>
+  </li>
+{% else %}
+    {% assign menu = include.menu %}
+    <!-- MENU - MENU -->
+    <!-- {{ menu }} -->
+    {% assign menuID = menu[0] | slugify %}
+    {% assign activeLinks = menu[1] | where_exp: "sublink", "sublink == page.url" %}
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle {% if activeLinks > 0 %}active{% endif %}" href="#{{ menuID }}" id="dropdown_{{ menuID }}" data-bs-toggle="dropdown" aria-expanded="false">{{ menu[0] }}</a>
     <ul class="dropdown-menu" aria-labelledby="dropdown_{{ menuID }}">
-{% for sublink in menu[1] %}
-<!-- MENU - SUBLINK -->
-<!-- {{ sublink }} -->
-<!-- MENU - SUBLINK - FIRST -->
-<!-- {{ sublink[1].first }} -->
-    {% if sublink[1].first %}
-        {% assign sublinks = sublink[1] %}
-{% include navbar_sub_menu.html submenu=sublinks %}
-    {% else %}
+    {% for sublink in menu[1] %}
+    <!-- MENU - SUBLINK -->
+    <!-- {{ sublink }} -->
+    <!-- MENU - SUBLINK - FIRST -->
+    <!-- {{ sublink[1].first }} -->
+        {% if sublink[1].first %}
+            {% assign sublinks = sublink[1] %}
+{% include navbar_menu.html submenu=sublinks %}
+        {% else %}
 {% include navbar_link.html sublink=sublink %}
-    {% endif %}
-{% endfor %}
+        {% endif %}
+    {% endfor %}
     </ul>
   </li>
+{% endif %}
