@@ -1,11 +1,7 @@
 {% if include.submenu %}
     {% assign menu = include.submenu %}
-<!-- MENU - SUBMENU -->
-<!-- {{ menu }} -->
 {% else %}
     {% assign menu = include.menu %}
-<!-- MENU - MENU -->
-<!-- {{ menu }} -->
 {% endif %}
 {% assign menuID = menu[0] | slugify %}
 {% assign activeLinks = menu[1] | where_exp: "sublink", "sublink == page.url" %}
@@ -14,13 +10,8 @@
     <ul class="dropdown-menu dropdown-submenu" aria-labelledby="dropdown_{{ menuID }}">
 {% for sublink in menu[1] %}
     {% if sublink[1].first %}
-        {% assign sublinks = sublink[1] %}
-<!-- MENU - SUB - MENU -->
-<!-- {{ sublink }} -->
 {% include navbar_menu.html submenu=sublink %}
     {% else %}
-<!-- MENU - SUB - LINK -->
-<!-- {{ sublink }} -->
 {% include navbar_link.html sublink=sublink %}
     {% endif %}
 {% endfor %}
