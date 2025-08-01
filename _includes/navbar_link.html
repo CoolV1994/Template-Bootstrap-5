@@ -1,30 +1,14 @@
 {% assign level = include.level | to_integer %}
-{% for link in include.links %}
-  {% assign linkURL = link[1] %}
-  {% assign active = '' %}
-  {% comment %} Check if Link is Menu (Array) or Link (String) {% endcomment %}
-  {% if link[1].first %}
-    {% assign menuLinks = link[1] | where_exp: "sublink", "sublink == page.url" %}
-    {% if menuLinks.size > 0 %}{% assign active = 'active' %}{% endif %}
-    {% assign linkID = include.level | append: '-' | append: forloop.index %}
-    {% assign subLevel = level | plus: 1 %}
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle {{ active }}" href="#{{ linkID }}" id="dropdown_{{ linkID }}" data-bs-toggle="dropdown" aria-expanded="false">{{ link[0] }}</a>
-          <ul class="dropdown-menu {% unless level == '0' %}dropdown-submenu{% endunless %}" aria-labelledby="dropdown_{{ linkID }}">
-{% include navbar_link.html level=subLevel links=linkURL %}
-          </ul>
-        </li>
-  {% else %}
-    {% if page.url == linkURL %}{% assign active = 'active' %}{% endif %}
-    {% unless linkURL contains 'http' %}{% assign linkURL = linkURL | prepend: site.baseurl %}{% endunless %}
-    {% if include.level == '0' %}
-        <li class="nav-item">
-          <a class="nav-link {{ active }}" aria-current="page" href="{{ linkURL }}">{{ link[0] }}</a>
-        </li>
-    {% else %}
-            <li>
-              <a class="dropdown-item {{ active }}" href="{{ linkURL }}">{{ link[0] }}</a>
-            </li>
-    {% endif %}
-  {% endif %}
-{% endfor %}
+{% assign linkURL = include.link[1] %}
+{% assign active = '' %}
+{% if page.url == linkURL %}{% assign active = 'active' %}{% endif %}
+{% unless linkURL contains 'http' %}{% assign linkURL = linkURL | prepend: site.baseurl %}{% endunless %}
+{% if include.level == '0' %}
+    <li class="nav-item">
+      <a class="nav-link {{ active }}" aria-current="page" href="{{ linkURL }}">{{ link[0] }}</a>
+    </li>
+{% else %}
+    <li>
+      <a class="dropdown-item {{ active }}" href="{{ linkURL }}">{{ link[0] }}</a>
+    </li>
+{% endif %}
