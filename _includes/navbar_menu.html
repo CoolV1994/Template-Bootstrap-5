@@ -1,17 +1,17 @@
 {% assign level = include.level | to_integer %}
 {% assign subLevel = level | plus: 1 %}
-{% assign menuID = include.links[0] | slugify %}
+{% assign menuID = include.link[0] | slugify %}
 {% assign menuID = menuID | prepend: '_' | prepend: include.level %}
 {% assign active = '' %}
-{% assign menuLinks = include.links[1] | where_exp: "sublink", "sublink == page.url" %}
+{% assign menuLinks = include.link[1] | where_exp: "sublink", "sublink == page.url" %}
 {% if menuLinks > 0 %}{% assign active = 'active' %}{% endif %}
-{% for subLink in include.links[1] %}
+{% for subLink in include.link[1] %}
   <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle {{ active }}" href="#{{ menuID }}" id="dropdown_{{ menuID }}" data-bs-toggle="dropdown" aria-expanded="false">{{ include.links[0] }}</a>
+    <a class="nav-link dropdown-toggle {{ active }}" href="#{{ menuID }}" id="dropdown_{{ menuID }}" data-bs-toggle="dropdown" aria-expanded="false">{{ include.link[0] }}</a>
     <ul class="dropdown-menu {% unless level == 0 %}dropdown-submenu{% endunless %}" aria-labelledby="dropdown_{{ menuID }}">
     {% if subLink[1].first %}
       {% assign subLinks = subLink[1] %}
-{% include navbar_menu.html level=subLevel links=subLinks %}
+{% include navbar_menu.html level=subLevel link=subLinks %}
     {% else %}
 {% include navbar_link.html level=subLevel link=subLink %}
     {% endif %}
