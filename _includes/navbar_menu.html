@@ -7,6 +7,8 @@
     {% for subsublink in submenu[1] %}
 <!-- MENU - SUBSUBLINK -->
 <!-- {{ subsublink }} -->
+<!-- MENU - SUBSUBLINK - FIRST -->
+<!-- {{ subsublink[1].first }} -->
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle {% if activeLinks > 0 %}active{% endif %}" href="#{{ menuID }}" id="dropdown_{{ menuID }}" data-bs-toggle="dropdown" aria-expanded="false">{{ submenu[0] }}</a>
     <ul class="dropdown-menu dropdown-submenu" aria-labelledby="dropdown_{{ menuID }}">
@@ -28,15 +30,20 @@
     {% for sublink in menu[1] %}
 <!-- MENU - SUBLINK -->
 <!-- {{ sublink }} -->
+<!-- MENU - SUBLINK - FIRST -->
+<!-- {{ sublink[1].first }} -->
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle {% if activeLinks > 0 %}active{% endif %}" href="#{{ menuID }}" id="dropdown_{{ menuID }}" data-bs-toggle="dropdown" aria-expanded="false">{{ menu[0] }}</a>
     <ul class="dropdown-menu" aria-labelledby="dropdown_{{ menuID }}">
+{% comment %}
         {% if sublink[1].first %}
             {% assign sublinks = sublink[1] %}
 {% include navbar_menu.html submenu=sublinks %}
         {% else %}
 {% include navbar_link.html sublink=sublink %}
         {% endif %}
+{% endcomment %}
+{% include navbar_link.html sublink=sublink %}
     {% endfor %}
     </ul>
   </li>
