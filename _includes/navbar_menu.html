@@ -4,7 +4,7 @@
     {% assign menu = include.menu %}
 {% endif %}
 {% assign menuID = menu[0] | slugify %}
-{% assign activeLinks = menu[1] | where_exp: "menuLink", "menuLink == page.url" %}
+{% assign activeLinks = menu[1] | where_exp: "menuLink[1]", "menuLink == page.url" %}
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle {% if activeLinks > 0 %}active{% endif %}" href="#{{ menuID }}" id="dropdown_{{ menuID }}" data-bs-toggle="dropdown" aria-expanded="false">{{ menu[0] }}</a>
     <ul class="dropdown-menu dropdown-submenu" aria-labelledby="dropdown_{{ menuID }}">
