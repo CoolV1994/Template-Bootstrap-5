@@ -13,11 +13,11 @@
   {% else %}
     {% if include.level == '0' %}
         <li class="nav-item">
-          <a class="nav-link {% if page.url == link[1] %}active{% endif %}" aria-current="page" href="{% unless link[1] contains 'http' %}{{ site.baseurl }}{% endunless %}{{ link[1] }}">{{ link[0] }}</a>
+          <a class="nav-link {{ page.url == link[1] | if: 'active', '' }}" aria-current="page" href="{% unless link[1] contains 'http' %}{{ site.baseurl }}{% endunless %}{{ link[1] }}">{{ link[0] }}</a>
         </li>
     {% else %}
             <li>
-              <a class="dropdown-item {% if page.url == link[1] %}active{% endif %}" href="{% unless link[1] contains 'http' %}{{ site.baseurl }}{% endunless %}{{ link[1] }}">{{ link[0] }}</a>
+              <a class="dropdown-item {{ page.url == link[1] | if: 'active', '' }}" href="{% unless link[1] contains 'http' %}{{ site.baseurl }}{% endunless %}{{ link[1] }}">{{ link[0] }}</a>
             </li>
     {% endif %}
   {% endif %}
