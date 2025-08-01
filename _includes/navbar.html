@@ -1,6 +1,12 @@
+<!-- NAV - LINKS -->
+<!-- {{ include.links }} -->
+
     <div class="navbar-collapse collapse" id="navbarCollapse" style="">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
 {% for link in include.links %}
+<!-- NAV - LINK -->
+<!-- {{ link }} -->
+
     {% if link[1].first %}
 {% include navbar_menu.html menu=link %}
     {% else %}
