@@ -14,20 +14,25 @@ sidebar:
 {% assign posts_skip = '' %}
 
 <!-- Start Main -->
-{% assign postsMain = site.blog | where_exp: "post", "post.categories contains 'main'" %}
-{% for post in postsMain %}
+{% assign posts_main = site.blog | where_exp: "post", "post.categories contains 'main'" %}
+{% if posts_main.size > 0 %}
+{% for post in posts_main %}
 {% assign posts_skip = posts_skip | push: post.id %}
 {% include posts_main.html post=post %}
 {% endfor %}
+{% endif %}
 <!-- End Main -->
 
 <!-- Start Featured -->
+{% assign posts_featured = site.blog | where_exp: "post", "post.categories contains 'featured'" %}
+{% if posts_featured.size > 0 %}
 <div class="row mb-2">
-{% for post in site['blog'].categories['featured'] %}
+{% for post in posts_featured %}
 {% assign posts_skip = posts_skip | push: post.id %}
 {% include posts_featured.html post=post %}
 {% endfor %}
 </div>
+{% endif %}
 <!-- End Featured -->
 
 <div id="blog" class="row g-5">
