@@ -1,6 +1,7 @@
 ---
 layout: default
 title: News
+description: News Posts
 permalink: /news/index.html
 css:
   - '/assets/css/blog.css'
@@ -16,29 +17,26 @@ sidebar:
 <h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
 
 <!-- Start Main -->
-{% for post in site.categories['news'] %}
-{% if post.categories contains 'main' %}
+{% assign posts_main = site.categories['news'] | where_exp: "post", "post.categories contains 'main'" %}
+{% for post in posts_main %}
 {% assign posts_skip = posts_skip | push: post.id %}
 {% include posts_main.html post=post %}
-{% endif %}
 {% endfor %}
 <!-- End Main -->
 
 <!-- Start Featured -->
 <div class="row mb-2">
-{% for post in site.categories['news'] %}
-{% if post.categories contains 'featured' %}
+{% assign posts_featured = site.categories['news'] | where_exp: "post", "post.categories contains 'featured'" %}
+{% for post in posts_featured %}
 {% assign posts_skip = posts_skip | push: post.id %}
 {% include posts_featured.html post=post %}
-{% endif %}
 {% endfor %}
 </div>
 <!-- End Featured -->
 
 <div id="blog" class="row g-5">
-
 	<div id="blog-posts" class="col-md-8">
-		<!-- <h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3> -->
+		<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
 
 <!-- Start Posts -->
 {% for post in site.categories['news'] %}
@@ -47,14 +45,6 @@ sidebar:
 {% endunless %}
 {% endfor %}
 <!-- End Posts -->
-
-
-<!-- Start Pagination -->
-		<nav class="blog-pagination" aria-label="Pagination">
-			<a class="btn btn-outline-primary rounded-pill" href="#">Older</a>
-			<a class="btn btn-outline-secondary rounded-pill disabled" aria-disabled="true">Newer</a>
-		</nav>
-<!-- End Pagination -->
 
 	</div><!-- /#blog-posts -->
 
