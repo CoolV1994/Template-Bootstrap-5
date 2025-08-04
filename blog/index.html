@@ -39,8 +39,6 @@ sidebar:
 	<div id="blog-posts" class="col-md-8">
 		<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
 
-<br><br><br><p>{{ posts_skip }}</p><br><br><br>
-
 <!-- Start Posts -->
 {% for post in site.blog %}
 {% unless posts_skip contains post.id %}
