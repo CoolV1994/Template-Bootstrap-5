@@ -1,0 +1,33 @@
+---
+layout: default
+sidebar:
+  left: []
+  right: []
+---
+
+{% assign sidebar_left = layout.sidebar.left %}
+{% assign sidebar_right = layout.sidebar.right %}
+{% if page.sidebar %}
+  {% assign sidebar_left = page.sidebar.left %}
+  {% assign sidebar_right = page.sidebar.right %}
+{% endif %}
+
+<div id="page" class="row g-5">
+
+{% if sidebar_left %}
+{% include sidebar.html modules=sidebar_left %}
+{% endif %}
+
+
+  <div id="content" class="col-md">
+
+ {{ content }}
+
+  </div>
+
+
+{% if sidebar_right %}
+{% include sidebar.html modules=sidebar_right %}
+{% endif %}
+
+</div>
