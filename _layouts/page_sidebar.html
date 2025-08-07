@@ -1,25 +1,13 @@
 ---
-layout: default
+layout: sidebar
 ---
 
-<div id="page" class="row g-5">
-
-{% if page.sidebar_pos == 'left' %}
-{% include sidebar.html modules=page.sidebar %}
-{% endif %}
-
-  <div id="content" class="col-md">
-    <h1 class="mb-1 pb-4 border-bottom">{{ page.title }}</h1>
+<div id="content" class="col-md">
+  <h1 class="mb-1 pb-4 border-bottom">{{ page.title }}</h1>
 {% if page.description %}
-    <p class="fs-5 col-md-8">{{ page.description }}</p>
+  <p class="fs-5 col-md-8">{{ page.description }}</p>
 {% endif %}
-  
- {{ content }}
 
-  </div>
-
-{% if page.sidebar_pos == 'right' %}
-{% include sidebar.html modules=page.sidebar %}
-{% endif %}
+{{ content }}
 
 </div>
