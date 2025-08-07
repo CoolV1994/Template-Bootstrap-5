@@ -1,24 +1,22 @@
 ---
-layout: default
+layout: sidebar
 sidebar:
-  - post_meta
-  - post_files
+  left:
+    - post_meta
+    - post_files
 css:
   - '/assets/css/blog.css'
 ---
 
-<div id="page" class="row g-5">
-
-	<div id="content" class="col-md-8">
-		<article id="{{ page.id | replace: '/', '-' }}" class="blog-post">
-			<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
-			<!-- <h2 class="display-5 link-body-emphasis mb-1">{{ page.title }}</h2>-->
+<div id="content" class="col-md-8">
+	<article id="{{ page.id | replace: '/', '-' }}" class="blog-post">
+		<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
+		<!-- <h2 class="display-5 link-body-emphasis mb-1">{{ page.title }}</h2>-->
+{% if page.description %}
+		<p class="fs-5 col-md-8">{{ page.description }}</p>
+{% endif %}
 
 {{ content }}
 
-		</article>
-	</div>
-
-{% include sidebar.html modules=layout.sidebar %}
-
+	</article>
 </div>
