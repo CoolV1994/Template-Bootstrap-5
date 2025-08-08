@@ -3,14 +3,15 @@
 {% for module_hash in include.modules %}
 {% for module in module_hash %}
 
-{% assign moduleArgs = '' %}
+{% assign moduleArgs = '' | split: ',' %}
 {% for module_args in module.args %}
 	{% assign key = module_args[0] %}
 	{% assign value = module_args[1] %}
-	{% assign moduleArgs = moduleArgs | append: key | append: '=' | append: value %}
+	{% assign arg = key | append: ': ' | append: value %}
+	{% assign moduleArgs = moduleArgs | push: arg %}
 {% endfor %}
 
-{% include sidebar_{{ module.module }}.html moduleArgs %}
+{% include sidebar_{{ module.module }}.html args=moduleArgs %}
 
 {% endfor %}
 {% endfor %}
