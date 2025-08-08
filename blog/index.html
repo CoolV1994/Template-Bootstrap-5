@@ -11,7 +11,7 @@ sidebar:
 ---
 
 {% comment %}Array of Post IDs in Main & Featured section{% endcomment %}
-{% assign posts_skip = '[]' %}
+{% assign posts_skip = '' | split: ',' %}
 
 <!-- Start Main -->
 {% assign posts_main = site.blog | where_exp: "post", "post.categories contains 'main'" %}
