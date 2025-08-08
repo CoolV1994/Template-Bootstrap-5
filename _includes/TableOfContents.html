@@ -1,0 +1,10 @@
+<ul>
+{% for entry in include.entries %}
+  <li>
+    <a href={`#${{ entry.slug }}`}>{{ entry.text }}</a>
+{% if entry.children %}
+{% include TableOfContents.html entries=entry.children %}
+{% endif %}
+  </li>
+{% endfor %}
+</ul>
