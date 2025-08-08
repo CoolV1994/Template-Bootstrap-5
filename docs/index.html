@@ -1,0 +1,26 @@
+---
+layout: pags
+title: Docuemnts
+sidebar:
+  left: []
+  right:
+    - categories
+    - tags
+    - authors
+---
+
+{% for doc in site.docs %}
+
+<article id="{{ doc.id | replace: '/', '-' }}" class="article">
+  <h2 class="display-5 link-body-emphasis mb-1"><a href="{{ doc.url | prepend: site.baseurl }}">{{ doc.title }}</a></h2>
+  <p class="blog-post-meta">
+{% if doc.categories %}[ {% for category in doc.categories %} <a href="{{ category | prepend: '/categories.html#' | prepend: site.baseurl }}">{{ category | capitalize }}</a>{% endfor %} ]{% endif %}
+{{ doc.date | date: "%b %-d, %Y" }}
+{% if doc.author %}{% assign author = site.data.authors[doc.author] %} by <a href="{{ author.url | prepend: site.baseurl }}">{{ author.name }}</a>{% endif %}
+  </p>
+
+{{ doc.content }}
+
+</article>
+
+{% endfor %}
