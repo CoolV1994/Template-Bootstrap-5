@@ -4,7 +4,7 @@
 {% for arg in include.args %}
 	{% for a in arg %}
 		- - {{ a[0] }} = {{ a[1] }}
-		{% assign data = data | push: a[1] %}
+		{% assign data = data | push: {{ a[1] }} %}
 	{% endfor %}
 	{{ data }}
 {% endfor %}
