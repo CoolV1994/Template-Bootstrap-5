@@ -5,6 +5,9 @@
 {{ include.args['data'] }}
 {{ include.args.data }}
 {{ data }}
+{% for arg in include.args %}
+	= {{ arg }}
+{% endfor %}
 </pre>
 	<h4 class="fst-italic">{{ data.title }}</h4>
 {% if data.type == 'text' %}
