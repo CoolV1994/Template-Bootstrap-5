@@ -5,8 +5,9 @@
 
 {% assign moduleArgs = '' %}
 {% for module_args in module[1] %}
-	{% assign moduleArgs = moduleArgs | append: module_args[0] %}
-	{% assign moduleArgs = moduleArgs | append: '{{ module_args[1] }}' %}
+	{% assign key = module_args[0] %}
+	{% assign value = {{ module_args[1] }} %}
+	{% assign moduleArgs = moduleArgs | append: key | append: '=' | append: value %}
 {% endfor %}
 
 {% include sidebar_{{ module[0] }}.html moduleArgs %}
