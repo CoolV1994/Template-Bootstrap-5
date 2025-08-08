@@ -1,10 +1,10 @@
 ---
 layout: document
-title: Samlle Document
+title: Sample Document
 description: Sample page using Markdown formatting and table of contents.
 author: CoolV1994
 categories: Sample
-tags: Sample, Document, Markdown, Sections
+tags: Sample Document
 headings:
   - text: Intro
     slug: intro
@@ -35,7 +35,8 @@ headings:
     slug: section-3
 ---
 
-# Sections
+
+* Sections
 
 {:toc}
 
@@ -57,12 +58,12 @@ This is the first section.
 This is the first sub-section of section 1.
 
 
-## Section 1.1.1
+### Section 1.1.1
 
 This is the first sub-section of sub-section 1.1.
 
 
-## Section 1.1.2
+### Section 1.1.2
 
 This is the second sub-section of sub-section 1.1.
 
@@ -78,7 +79,7 @@ This is the second section.
 This is the first sub-section of section 2.
 
 
-## Section 2.1.1
+### Section 2.1.1
 
 This is the first sub-section of sub-section 2.1.
 
