@@ -13,7 +13,7 @@ sidebar:
 ---
 
 {% comment %}Array of Post IDs in Main & Featured section{% endcomment %}
-{% assign posts_skip = '' %}
+{% assign posts_skip = '' | split: ',' %}
 
 <h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
 
