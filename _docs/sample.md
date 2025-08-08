@@ -35,6 +35,12 @@ headings:
     slug: section-3
 ---
 
+# Sections
+
+{:toc}
+
+
+
 # Intro
 
 This is a sample document with table of contents.
