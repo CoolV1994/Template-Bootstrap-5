@@ -30,9 +30,9 @@ collections:
   albums:
     output: true
     url: /albums/
-  wiki:
+  docs:
     output: true
-    url: /wiki/
+    url: /docs/
 
 
 # Default Values per Path
