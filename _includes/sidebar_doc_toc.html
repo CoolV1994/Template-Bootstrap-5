@@ -2,8 +2,5 @@
   <h4 class="d-flex justify-content-between align-items-center mb-3">
     <span class="text-primary">Table Of Contents</span>
   </h4>
-{% include toc.html html=page.content %}
-{% comment %}
-{% include TableOfContents.html entries=page.headings %}
-{% endcomment %}
+{% include toc.html html=page.content class="list-group mb-3 bg-body-tertiary" %}
 </div>
