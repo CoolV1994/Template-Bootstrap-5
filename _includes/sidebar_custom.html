@@ -1,4 +1,14 @@
 <div class="p-4 mb-3 bg-body-tertiary rounded">
-	<h4 class="fst-italic">{{ title }}</h4>
-{{ content | markdownify }}
+	<h4 class="fst-italic">{{ include.data.title }}</h4>
+{% if include.data.type == 'text' %}
+	<p class="mb-0">
+{{ include.data.content }}
+	</p>
+{% endif %}
+{% if include.data.type == 'markdown' %}
+{{ include.data.content | markdownify }}
+{% endif %}
+{% if include.data.type == 'html' %}
+{{ include.data.content }}
+{% endif %}
 </div>
