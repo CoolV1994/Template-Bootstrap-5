@@ -1,7 +1,7 @@
 <div class="mb-3">
-	<h4 class="fst-italic">{{ include.links.title }}</h4>
+	<h4 class="fst-italic">{{ include.data.title }}</h4>
 	<ul class="list-unstyled">
-{% for link in include.links.links %}
+{% for link in include.data.links %}
 		<li>
 			<a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center link-body-emphasis" href="{{ unless link.url contains 'http' %}{{ site.baseurl }}{% endunless %}{{ link.url }}">{{ link.text }}</a>
 		</li>
