@@ -7,6 +7,10 @@
 {{ data }}
 {% for arg in include.args %}
 	= {{ arg }}
+	- {{ arg[0] }} = {{ arg[1] }}
+	{% for a in arg %}
+	- - {{ a[0] }} = {{ a[1] }}
+	{% endfor %}
 {% endfor %}
 </pre>
 	<h4 class="fst-italic">{{ data.title }}</h4>
