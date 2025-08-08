@@ -2,11 +2,5 @@
   <h4 class="d-flex justify-content-between align-items-center mb-3">
     <span class="text-primary">Index</span>
   </h4>
-  <ul class="list-group mb-3 bg-body-tertiary">
-{% for category in site.categories %}
-    <li class="list-group-item d-flex justify-content-between">
-      <a href="#{{ category[0] }}">{{ category[0] | capitalize }}</a>
-    </li>
-{% endfor %}
-  </ul>
+{% include index_list.html entries=site.categories id="site_categories" class="list-group mb-3 bg-body-tertiary" item_class="list-group-item d-flex justify-content-between" anchor_class="" %}
 </div>
