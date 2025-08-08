@@ -1,0 +1,50 @@
+{% comment %}
+Usage:
+  Site Categories:
+    {% include index_list.html entries=site.categories id="site_categories" class="list-group mb-3 bg-body-tertiary" item_class="list-group-item d-flex justify-content-between" anchor_class="" %}
+  Post Categories:
+    {% include index_list.html entries=page.categories id="post_categories" class="list-unstyled" item_class="" anchor_class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" %}
+  Site Tags:
+    {% include index_list.html entries=site.tags id="site_tags" class="list-group mb-3 bg-body-tertiary" item_class="list-group-item d-flex justify-content-between" anchor_class="" %}
+  Post Tags:
+    {% include index_list.html entries=page.tags id="post_tags" class="list-unstyled" item_class="" anchor_class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" %}
+{% endcomment %}
+{% comment %}
+Advanced Usage:
+  Collection Categories:
+    {% assign collection = "my_collection" %}
+    {% assign collection_categories = "" | split: "," %}
+    {% for doc in site[collection] %}
+      {% if doc.categories %}
+        {% for category in doc.categories %}
+          {% unless collection_categories contains category %}
+            {% assign collection_categories = collection_categories | push: category %}
+          {% endunless %}
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+    {% include index_list.html entries=collection_categories id="collection_categories" class="" item_class="" anchor_class="" %}
+{% endcomment %}
+
+{% comment %}
+Parameters:
+    * entries         (array) - list of items with (string) name
+
+Optional Parameters:
+    * id            (string) :   ''   - an ID to assigned to the list
+    * class         (string) :   ''   - a CSS class assigned to the list
+    * item_class    (string) :   ''   - add custom class(es) for each list item; has support for '%level%' placeholder, which is the current heading level
+    * anchor_class  (string) :   ''   - add custom class(es) for each anchor element
+
+Output:
+    An unordered list representing the names of each entry. This snippet will
+    generate the name and hyperlink of each item in the list.
+{% endcomment %}
+
+<ul id="{{ include.id }}" class="{{ include.class }}">
+{% for entry in include.entries %}
+  <li class="{{ include.item_class }}">
+    <a class="{{ include.anchor_class }}" href="#{{ entry.name }}">{{ entry.name | capitalize }}</a>
+  </li>
+{% endfor %}
+</ul>
