@@ -6,11 +6,11 @@ sidebar:
   left: []
   right:
     - custom:
-      - data: site.data.sidebar_custom.text
+      - data: {{ site.data.sidebar_custom.text }}
     - custom:
-      - data: site.data.sidebar_custom.html
+      - data: {{ site.data.sidebar_custom.html }}
     - custom:
-      - data: site.data.sidebar_custom.markdown
+      - data: {{ site.data.sidebar_custom.markdown }}
 ---
 
 {% assign sidebar_left = page.sidebar.left %}
