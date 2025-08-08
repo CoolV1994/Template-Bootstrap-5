@@ -5,42 +5,7 @@ description: Sample page using Markdown formatting and table of contents.
 author: CoolV1994
 categories: Sample
 tags: Sample Document
-headings:
-  - text: Intro
-    slug: intro
-  - text: Section 1
-    slug: section-1
-    children:
-      - text: Section 1.1
-        slug: section-1.1
-        children:
-          - text: Section 1.1.1
-            slug: section-1.1.1
-          - text: Section 1.1.2
-            slug: section-1.1.2
-      - text: Section 1.2
-        slug: section-1.2
-        children:
-          - text: Section 1.2.1
-            slug: section-1.2.1
-  - text: Section 2
-    slug: section-2
-    children:
-      - text: Section 2.1
-        slug: section-2.1
-        children:
-          - text: Section 2.1.1
-            slug: section-2.1.1
-  - text: Section 3
-    slug: section-3
 ---
-
-
-* Sections
-
-{:toc}
-
-
 
 # Intro
 
