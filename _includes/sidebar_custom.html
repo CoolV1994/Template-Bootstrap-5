@@ -1,14 +1,15 @@
+{% assign data = include.args.data %}
 <div class="p-4 mb-3 bg-body-tertiary rounded">
-	<h4 class="fst-italic">{{ include.data.title }}</h4>
-{% if include.data.type == 'text' %}
+	<h4 class="fst-italic">{{ data.title }}</h4>
+{% if data.type == 'text' %}
 	<p class="mb-0">
-{{ include.data.content }}
+{{ data.content }}
 	</p>
 {% endif %}
-{% if include.data.type == 'markdown' %}
-{{ include.data.content | markdownify }}
+{% if data.type == 'markdown' %}
+{{ data.content | markdownify }}
 {% endif %}
-{% if include.data.type == 'html' %}
-{{ include.data.content }}
+{% if data.type == 'html' %}
+{{ data.content }}
 {% endif %}
 </div>
