@@ -1,4 +1,4 @@
-{% assign data = include.args.data %}
+{% assign data = {{ include.args.data }} %}
 <div class="p-4 mb-3 bg-body-tertiary rounded">
 	<h4 class="fst-italic">{{ data.title }}</h4>
 {% if data.type == 'text' %}
