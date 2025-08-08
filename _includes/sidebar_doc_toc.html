@@ -1,14 +1,6 @@
-{% if page.sections %}
 <div class="mb-3">
   <h4 class="d-flex justify-content-between align-items-center mb-3">
-    <span class="text-primary">Sections</span>
+    <span class="text-primary">Table Of Contents</span>
   </h4>
-  <ul class="list-group mb-3 bg-body-tertiary">
-{% for section in page.sections %}
-    <li class="list-group-item d-flex justify-content-between">
-      <a href="#{{ section | replace: ' ', '-' }}">{{ section }}</a>
-    </li>
-{% endfor %}
-  </ul>
+{% include TableOfContents.html entries=page.headings %}
 </div>
-{% endif %}
