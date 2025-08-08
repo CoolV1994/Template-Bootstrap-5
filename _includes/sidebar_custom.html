@@ -1,16 +1,12 @@
-{% assign data = include.args.data %}
+{% assign data = '' | split: ',' %}
 <div class="p-4 mb-3 bg-body-tertiary rounded">
 <pre>
-{{ include.args }}
-{{ include.args['data'] }}
-{{ include.args.data }}
-{{ data }}
 {% for arg in include.args %}
-	= {{ arg }}
-	- {{ arg[0] }} = {{ arg[1] }}
 	{% for a in arg %}
-	- - {{ a[0] }} = {{ a[1] }}
+		- - {{ a[0] }} = {{ a[1] }}
+		{% assign data = data | push: a[1] %}
 	{% endfor %}
+	{{ data }}
 {% endfor %}
 </pre>
 	<h4 class="fst-italic">{{ data.title }}</h4>
