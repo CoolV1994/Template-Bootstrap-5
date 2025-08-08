@@ -1,0 +1,29 @@
+about:
+  title: About
+  type: text
+  content: >
+    Customize this section to tell your visitors a little bit about your publication, writers, content, or something else entirely. Totally up to you.
+
+
+text:
+  title: Text Module
+  type: text
+  content: >
+    This is a sample text module.
+
+
+html:
+  title: HTML Module
+  type: html
+  content: >
+    <p>
+      This is a sample html module.
+    </p>
+
+
+markdown:
+  title: Markdown Module
+  type: markdown
+  content: >
+    This is a sample markdown module.
+
