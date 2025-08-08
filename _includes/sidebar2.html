@@ -4,8 +4,16 @@
 {% for module in module_hash %}
 
 {% assign moduleFile = module[0] %}
-{% assign moduleArgs = module[1] %}
-{% include sidebar_{{ moduleFile }}.html args=moduleArgs %}
+{% assign moduleArgs = '' %}
+
+{% for args in module[1] %}
+	{% assign key = args[0] %}
+	{% assign value = args[1] %}
+	{% assign arg = key | append: '=' | append: value %}
+	{% assign moduleArgs = moduleArgs | append: arg | append: ' ' %}
+{% endfor %}
+
+{% include sidebar_{{ moduleFile }}.html {{ moduleArgs }} %}
 
 {% endfor %}
 {% endfor %}
