@@ -5,15 +5,12 @@ description: Test Page
 sidebar:
   left: []
   right:
-    - module: custom
-      args:
-        - data: site.data.sidebar_custom.text
-    - module: custom
-      args:
-        - data: site.data.sidebar_custom.html
-    - module: custom
-      args:
-        - data: site.data.sidebar_custom.markdown
+    - custom:
+      - data: site.data.sidebar_custom.text
+    - custom:
+      - data: site.data.sidebar_custom.html
+    - custom:
+      - data: site.data.sidebar_custom.markdown
 ---
 
 {% assign sidebar_left = page.sidebar.left %}
