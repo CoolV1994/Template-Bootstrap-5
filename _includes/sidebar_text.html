@@ -1,4 +1,4 @@
 <div class="p-4 mb-3 bg-body-tertiary rounded">
-	<h4 class="fst-italic">{{ include.title }}</h4>
-	<p class="mb-0">{{ include.content }}</p>
+	<h4 class="fst-italic">{{ include.text.title }}</h4>
+	<p class="mb-0">{{ include.text.content | markdownify }}</p>
 </div>
