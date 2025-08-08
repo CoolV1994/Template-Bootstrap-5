@@ -1,15 +1,31 @@
 ---
-layout: cover
-title: Sample Readme
-excerpt: Sample document index using markdown formatting and templates 
+layout: document
+title: Read Me
+description: Sample Read Me Document
+author: CoolV1994
+category: Sample, ReadMe
+tags: Sample, Document, Markdown, ToC, ReadMe
+headings:
+  - text: Intro
+    slug: intro
+  - text: Section 1
+    slug: section-1
+    children:
+      - text: Section 1.1
+        slug: section-1.1
 ---
 
-### Section 1
+# Intro
 
-This is some sample text.
-This is another line of text.
+This is a sample ReadMe Document.
 
 
-### Section 2
 
-This is some text that is part of another section.
+# Section 1
+
+This is a sample section of this document.
+
+
+## Section 1.1
+
+This is a sample sub-section of section 1.
