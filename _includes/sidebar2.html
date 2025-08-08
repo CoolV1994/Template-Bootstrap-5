@@ -3,7 +3,13 @@
 {% for module_hash in include.modules %}
 {% for module in module_hash %}
 
-{% include sidebar_{{ module[0] }}.html data={{ module[1] }} %}
+{% assign moduleArgs = '' %}
+{% for module_args in module[1] %}
+	{% assign moduleArgs = moduleArgs | append: module_args[0] %}
+	{% assign moduleArgs = moduleArgs | append: '{{ module_args[1] }}' %}
+{% endfor %}
+
+{% include sidebar_{{ module[0] }}.html moduleArgs %}
 
 {% endfor %}
 {% endfor %}
