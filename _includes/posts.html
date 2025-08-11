@@ -1,7 +1,7 @@
-{% assign template = 'post' %}
-{% if include.template %}
-  {% assign template = include.template %}
-{% endif %}
+{% assign template = include.template | default: 'post' %}
+{% assign skip = include.skip | default: '' %}
 {% for post in include.posts %}
+{% unless skip contains post %}
 {% include {{ template }}.html post=post %}
+{% endunless %}
 {% endfor %}
