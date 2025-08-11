@@ -1,5 +1,6 @@
 {% assign template = include.template | default: 'post' %}
-{% assign skip = include.skip | default: '' %}
+{% assign skip = '' | split: ',' %}
+{% assign skip = include.skip | default: skip %}
 {% for post in include.posts %}
 {% unless skip contains post %}
 {% include {{ template }}.html post=post %}
