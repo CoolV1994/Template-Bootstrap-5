@@ -1,0 +1,7 @@
+{% assign template = 'post' %}
+{% if include.template %}
+  {% assign template = include.template %}
+{% endif %}
+{% for post in include.posts %}
+{% include {{ template }}.html post=post %}
+{% endfor %}
