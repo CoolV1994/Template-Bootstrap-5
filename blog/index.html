@@ -16,7 +16,7 @@ sidebar:
 <!-- Start Main -->
 {% assign posts_main = site.blog | where_exp: "post", "post.categories contains 'main'" %}
 {% if posts_main.size > 0 %}
-{% assign posts_skip = posts_skip | push: posts_main %}
+{% assign posts_skip = posts_skip | concat: posts_main %}
 {% include posts.html posts=posts_main template='post_main' %}
 {% endif %}
 <!-- End Main -->
@@ -25,7 +25,7 @@ sidebar:
 {% assign posts_featured = site.blog | where_exp: "post", "post.categories contains 'featured'" %}
 {% if posts_featured.size > 0 %}
 <div class="row mb-2">
-{% assign posts_skip = posts_skip | push: posts_featured %}
+{% assign posts_skip = posts_skip | concat: posts_featured %}
 {% include posts.html posts=posts_featured template='posts_featured' %}
 </div>
 {% endif %}
