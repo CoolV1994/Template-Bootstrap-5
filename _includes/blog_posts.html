@@ -1,0 +1,32 @@
+{% assign collection = include.collection | default: page.collection | default: 'posts' %}
+{% assign posts_skip = '' | split: ',' %}
+
+<!-- Start Main -->
+{% assign posts_main = site[collection].categories['main'] %}
+{% assign posts_skip = posts_skip | push: posts_main %}
+{% include posts.html posts=posts_main template='post_main' %}
+<!-- End Main -->
+
+<!-- Start Featured -->
+<div class="row mb-2">
+{% assign posts_featured = site[collection].categories['featured'] %}
+{% assign posts_skip = posts_skip | push: posts_featured %}
+{% include posts.html posts=posts_featured template='post_featured' %}
+</div>
+<!-- End Featured -->
+{% endif %}
+
+<!-- Start Blog -->
+<div id="blog" class="row g-5">
+	<div id="blog-posts" class="col-md-8">
+		<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
+
+<!-- Start Posts -->
+{% assign posts = site[collection] %}
+{% include posts.html posts=posts skip=posts_skip %}
+<!-- End Posts -->
+
+	</div><!-- /#blog-posts -->
+
+</div><!-- /#blog -->
+<!-- End Blog -->
