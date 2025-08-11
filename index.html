@@ -16,18 +16,17 @@ sidebar:
 
 {% if paginator.page == 1 %}
 <!-- Start Main -->
-{% for post in site.categories['main'] %}
-{% assign posts_skip = posts_skip | push: post.id %}
-{% include posts_main.html post=post %}
-{% endfor %}
+{% assign posts_main = site.categories['main'] %}
+{% assign posts_skip = posts_skip | push: posts_main %}
+{% include posts.html posts=posts_main template=post_main %}
+
 <!-- End Main -->
 
 <!-- Start Featured -->
 <div class="row mb-2">
-{% for post in site.categories['featured'] %}
-{% assign posts_skip = posts_skip | push: post.id %}
-{% include posts_featured.html post=post %}
-{% endfor %}
+{% assign posts_featured = site.categories['featured'] %}
+{% assign posts_skip = posts_skip | push: posts_featured %}
+{% include posts.html posts=posts_featured template=post_featured %}
 </div>
 <!-- End Featured -->
 {% endif %}
@@ -37,9 +36,7 @@ sidebar:
 		<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
 
 <!-- Start Posts -->
-{% for post in paginator.posts %}
-{% include posts.html post=post %}
-{% endfor %}
+{% include posts.html posts=paginator.posts %}
 <!-- End Posts -->
 
 		<!-- Start Paginator -->
