@@ -12,7 +12,7 @@ sidebar:
 ---
 
 {% comment %}Array of Post IDs in Main & Featured section{% endcomment %}
-{% assign posts_skip = '' %}
+{% assign posts_skip = '' | split: ',' %}
 
 {% if paginator.page == 1 %}
 <!-- Start Main -->
