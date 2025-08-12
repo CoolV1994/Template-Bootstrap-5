@@ -1,8 +1,44 @@
 {% assign template = include.template | default: 'post' %}
-{% assign skip = '' | split: ',' %}
-{% assign skip = include.skip | default: skip %}
-{% for post in include.posts %}
-{% unless skip contains post %}
-{% include {{ template }}.html post=post %}
-{% endunless %}
+{% assign collection = include.collection | default: 'posts' %}
+{% assign category = include.category | default: '' %}
+{% assign posts = include.posts | default: site[collection]  %}
+{% if category %}
+	{% assign posts = posts.categories[category] %}
+{% endif %}
+
+    {% comment %}  Skipped Post IDs List  {% endcomment %}
+{% assign skip_ids = '' | split: ',' %}
+{% assign skip_posts = include.skip | default: skip_ids %}
+{% for post in skip_posts %}
+  {% assign skip_ids = skip_ids | push: post.id %}
+{% endfor %}
+
+    {% comment %}  Show Posts from #(Start) to #(Limit+Start)  {% endcomment %}
+{% assign start = include.start | default: 0 %}
+{% assign limit = include.limit | default: 0 %}
+{% assign limit = limit | plus: start %}
+{% assign skipped = 0 %}
+{% assign index = 0 %}
+{% for post in posts %}
+  {% assign index = index | plus: 1 %}
+      {% comment %}  Stop when #(Limit + Skipped) reached  {% endcomment %}
+  {% assign limit_skip = limit | plus: skipped %}
+  {% if limit > 0 %}
+    {% if index > limit_skip %}
+      {% break %}
+    {% endif %}
+  {% endif %}
+      {% comment %}  Skip posts before index #(Start)  {% endcomment %}
+  {% if start > 0 %}
+    {% if index <= start %}
+      {% continue %}
+    {% endif %}
+  {% endif %}
+      {% comment %}  Skip post and +1 Skipped  {% endcomment %}
+  {% if skip_ids contains post.id %}
+    {% assign skipped = skipped | plus: 1 %}
+    {% continue %}
+  {% endif %}
+      {% comment %}  Show Post Using [Template]  {% endcomment %}
+  {% include {{ template }}.html post=post %}
 {% endfor %}
