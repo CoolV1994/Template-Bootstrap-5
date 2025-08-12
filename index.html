@@ -11,7 +11,7 @@ sidebar:
   - tags
 ---
 
-{% comment %}Array of Post IDs in Main & Featured section{% endcomment %}
+{% comment %}  List of Post IDs from Main & Featured Section  {% endcomment %}
 {% assign posts_skip = '' | split: ',' %}
 
 {% if paginator.page == 1 %}
@@ -36,7 +36,8 @@ sidebar:
 		<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
 
 <!-- Start Posts -->
-{% include posts.html posts=paginator.posts skip=posts_skip %}
+{% assign posts_page = paginator.posts %}
+{% include posts.html posts=posts_page skip=posts_skip %}
 <!-- End Posts -->
 
 		<!-- Start Paginator -->
