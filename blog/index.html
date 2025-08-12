@@ -14,15 +14,13 @@ sidebar:
 {% assign posts_skip = '' | split: ',' %}
 
 <!-- Start Main -->
-{% comment %}<!--{% assign posts_main = site.blog | where_exp: "post", "post.categories contains 'main'" %}-->{% endcomment %}
-{% assign posts_main = site['blog'].categories['main'] %}
+{% assign posts_main = site.blog | where_exp: "post", "post.categories contains 'main'" %}
 {% assign posts_skip = posts_skip | concat: posts_main %}
 {% include posts.html posts=posts_main template='post_main' %}
 <!-- End Main -->
 
 <!-- Start Featured -->
-{% comment %}<!--{% assign posts_featured = site.blog | where_exp: "post", "post.categories contains 'featured'" %}-->{% endcomment %}
-{% assign posts_featured = site['blog'].categories['featured'] %}
+{% assign posts_featured = site.blog | where_exp: "post", "post.categories contains 'featured'" %}
 {% assign posts_skip = posts_skip | concat: posts_featured %}
 <div class="row mb-2">
 {% include posts.html posts=posts_featured template='post_featured' %}
