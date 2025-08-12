@@ -14,21 +14,19 @@ sidebar:
 {% assign posts_skip = '' | split: ',' %}
 
 <!-- Start Main -->
-{% assign posts_main = site.blog | where_exp: "post", "post.categories contains 'main'" %}
-{% if posts_main.size > 0 %}
+{% comment %}<!--{% assign posts_main = site.blog | where_exp: "post", "post.categories contains 'main'" %}-->{% endcomment %}
+{% assign posts_main = site['blog'].categories['main'] %}
 {% assign posts_skip = posts_skip | concat: posts_main %}
 {% include posts.html posts=posts_main template='post_main' %}
-{% endif %}
 <!-- End Main -->
 
 <!-- Start Featured -->
-{% assign posts_featured = site.blog | where_exp: "post", "post.categories contains 'featured'" %}
-{% if posts_featured.size > 0 %}
-<div class="row mb-2">
+{% comment %}<!--{% assign posts_featured = site.blog | where_exp: "post", "post.categories contains 'featured'" %}-->{% endcomment %}
+{% assign posts_featured = site['blog'].categories['featured'] %}
 {% assign posts_skip = posts_skip | concat: posts_featured %}
-{% include posts.html posts=posts_featured template='posts_featured' %}
+<div class="row mb-2">
+{% include posts.html posts=posts_featured template='post_featured' %}
 </div>
-{% endif %}
 <!-- End Featured -->
 
 <div id="blog" class="row g-5">
@@ -36,7 +34,7 @@ sidebar:
 		<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
 
 <!-- Start Posts -->
-{% include posts.html posts=site.blog skip=posts_skip %}
+{% include posts.html collection='blog' skip=posts_skip %}
 <!-- End Posts -->
 
 {% comment %}
