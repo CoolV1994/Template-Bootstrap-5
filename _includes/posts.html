@@ -1,11 +1,5 @@
 {% assign posts = include.posts %}
 <!-- Posts: {{ posts }} -->
-{% unless posts %}
-	{% assign collection = include.collection | default: page.posts.collection | default: 'posts' %}
-	<!-- Collection: {{ collection }} -->
-	{% assign posts = site[collection] %}
-	<!-- [2] Posts: {{ posts }} -->
-{% endunless %}
 {% assign category = include.category | default: page.posts.category | default: '' %}
 <!-- Category: {{ category }} -->
 {% if category %}
