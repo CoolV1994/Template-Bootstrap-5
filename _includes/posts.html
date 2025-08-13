@@ -1,46 +1,3 @@
-{% comment %}
-<!---    [Start]  Front Matter    -----
----
-posts:
-  collection: posts
-  category: ''
-  limit: 10
-  start: 0
-  main:
-    category: main
-    limit: 1
-    start: 0
-  featured:
-    category: featured
-    limit: 2
-    start: 0
----
------    [End]  Front Matter    ---->
-{% endcomment %}{% comment %}
-<!---    [Start]  Documentation    -----
-	Note: Undefined Arguments will Default to Page Front Matter
-
-	Usage:
-	include posts.html [posts=posts] ([collection='blog'] [category='news'] [limit=10]) ([main_category='main'] [main_limit=1]) ([featured_category='featured'] [featured_limit=4])
-
-	Examples:
-	include posts.html posts=posts  -  Defined Posts Array
-	include posts.html collection='posts'  -  Defined Posts Collection
-	include posts.html collection='posts' category='news' main_category='announcements' featured_category='promotions'
-	include posts.html collection='blog' category='news'  -  Defined Posts Collection and Category
-	include posts.html posts-posts limit=10  -  Settings for Recent Posts Section  (Defined Posts Array)
-	include posts.html posts=posts main_category='main' main_limit=1  -  Settings for Main Posts Section  (Defined Posts Array)
-	include posts.html posts=posts featured_category='featured' featured_limit=4  -  Settings for Featured Posts Section  (Defined Posts Array)
-
-	Posts Array Examples:
-	assign posts = paginator.posts  -  Display Posts for Paginator Pages
-	assign posts = posts | where_exp: "post", "post.categories contains 'news'"  -  Show Posts from Posts Collection in Category News
-	* Note: Assign `posts` before `include` function *
------    [End]  Documentation    ---->
-{% endcomment %}
-
-
-{% assign posts_skip = '' | split: ',' %}
 {% assign collection = include.collection | default: 'posts' %}
 <!-- Collection: {{ collection }} -->
 {% assign posts = site[collection] %}
@@ -56,65 +13,26 @@ posts:
 	<!-- [2] Category: {{ category }} -->
 	<!-- [3] Posts: {{ posts }} -->
 {% endif %}
+{% assign skip_categories = '' | split: ',' %}
 
 <!-- [0] Skip: {{ posts_skip }} -->
 <div id="blog-main">	
-{% assign category = include.main_category | default: 'main' %}
-{% assign posts_category = posts | where_exp: "post", "post.categories contains category" %}
+{% assign category_main = include.main_category | default: 'main' %}
+{% assign posts_main = posts | where_exp: "post", "post.categories contains category_main" %}
+{% assign skip_categories = skip_categories | push: category_main %}
 <!-- [Main] Category: {{ category }} -->
 <!-- [Main] Posts: {{ posts_category }} -->
-
-{% assign start = include.main_start | default: 0 %}
-{% assign limit = include.main_limit | default: 0 %}
-{% assign limit = limit | plus: start %}
-<!-- Start: {{ start }} | Limit: {{ limit}} -->
-{% assign index = 0 %}
-{% for post in posts_category %}
-	{% assign index = index | plus: 1 %}
-	<!-- Index: {{ index }} | Post {{ post }} -->
-	{% if limit > 0 %}
-		{% if index > limit %}
-			{% break %}
-		{% endif %}
-	{% endif %}
-	{% if start > 0 %}
-		{% if index < start %}
-			{% continue %}
-		{% endif %}
-	{% endif %}
-	{% assign posts_skip = posts_skip | push: post.id %}
-	{% include post_main.html post=post %}
-{% endfor %}
+{% include posts_loop.html template='post_main' posts=posts_main start=include.main_start limit=include.main_limit %}
 </div><!-- /#blog-main -->
 
 <!-- [1] Skip: {{ posts_skip }} -->
 <div id="blog-featured" class="row mb-2">	
-{% assign category = include.featured_category | default: 'featured' %}
-{% assign posts_category = posts | where_exp: "post", "post.categories contains category" %}
+{% assign category_featured = include.featured_category | default: 'featured' %}
+{% assign posts_featured = posts | where_exp: "post", "post.categories contains category_featured" %}
+{% assign skip_categories = skip_categories | push: category_featured %}
 <!-- [Featured] Category: {{ category }} -->
 <!-- [Featured] Posts: {{ posts_category }} -->
-
-{% assign start = include.featured_start | default: 0 %}
-{% assign limit = include.featured_limit | default: 0 %}
-{% assign limit = limit | plus: start %}
-<!-- Start: {{ start }} | Limit: {{ limit}} -->
-{% assign index = 0 %}
-{% for post in posts_category %}
-	{% assign index = index | plus: 1 %}
-	<!-- Index: {{ index }} | Post {{ post }} -->
-	{% if limit > 0 %}
-		{% if index > limit %}
-			{% break %}
-		{% endif %}
-	{% endif %}
-	{% if start > 0 %}
-		{% if index < start %}
-			{% continue %}
-		{% endif %}
-	{% endif %}
-	{% assign posts_skip = posts_skip | push: post.id %}
-	{% include post_featured.html post=post %}
-{% endfor %}
+{% include posts_loop.html template='post_featured' posts=posts_featured start=include.featured_start limit=include.featured_limit %}
 </div><!-- /#blog-featured -->
 
 <!-- [2] Skip: {{ posts_skip }} -->
@@ -122,32 +40,10 @@ posts:
 	<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
 	{% if page.description %}<p class="fs-5 col-md-8">{{ page.description }}</p>{% endif %}
 
-{% assign start = include.start | default: 0 %}
-{% assign limit = include.limit | default: 0 %}
-{% assign limit = limit | plus: start %}
-<!-- Start: {{ start }} | Limit: {{ limit}} -->
-{% assign index = 0 %}
-{% for post in posts %}
-  {% assign index = index | plus: 1 %}
-<!-- Index: {{ index }} | Post {{ post }} -->
-  {% if limit > 0 %}
-    {% if index > limit %}
-      {% break %}
-    {% endif %}
-  {% endif %}
-  {% if start > 0 %}
-    {% if index < start %}
-      {% continue %}
-    {% endif %}
-  {% endif %}
-  {% if posts_skip contains post.id %}
-    {% assign limit = limit | plus: 1 %}
-	<!-- [Skipped] Limit: {{ limit }} | Post ID: {{ post.id }} -->
-    {% continue %}
-  {% endif %}
-  {% include post.html post=post %}
-{% endfor %}
+	{% include posts_loop.html template='post' posts=posts start=include.start limit=include.limit skip=skip_categories %}
 
-{% comment %}{% include pagination.html %}{% endcomment %}
+	{% if include.pagination %}
+		{% include pagination.html %}
+	{% endif %}
 
 </div><!-- /#blog-posts -->
