@@ -7,24 +7,80 @@ sidebar:
   - categories
   - tags
   - authors
+posts:
+  limit: 10
+  main:
+    limit: 4
+  featured:
+    limit: 6
+  
 ---
 
 {% assign posts_skip = '' | split: ',' %}
+{% assign collection = page.posts.collection | default: page.collection | default: 'posts' %}
+{% assign posts = site[collection] %}
+
+{% assign category = page.posts.category | default: '' %}
+{% if category %}
+	{% assign posts = posts | where_exp: "post", "post.categories contains category" %}
+{% endif %}
 
 {% if paginator.page == 1 %}
 <div id="posts-important">
 
 <!-- Start Main -->
-{% assign posts_main = site.categories['main'] %}
-{% assign posts_skip = posts_skip | concat: posts_main %}
-{% include posts.html posts=posts_main template='post_main' %}
+{% assign category = page.posts.main.category | default: 'main' %}
+{% assign posts_category = posts | where_exp: "post", "post.categories contains category" %}
+
+{% assign start = page.posts.main.start | default: 0 %}
+{% assign limit = page.posts.main.limit | default: 0 %}
+{% assign limit = limit | plus: start %}
+{% assign index = 0 %}
+<!-- Start: {{ start }} | Limit: {{ limit}} -->
+{% for post in posts_category %}
+	{% assign index = index | plus: 1 %}
+	<!-- Index: {{ index }} | Skipped: {{ skipped }} | Post {{ post }} -->
+	{% if limit > 0 %}
+		{% if index > limit %}
+			{% break %}
+		{% endif %}
+	{% endif %}
+	{% if start > 0 %}
+		{% if index < start %}
+			{% continue %}
+		{% endif %}
+	{% endif %}
+	{% assign posts_skip = posts_skip | push: post.id %}
+	{% include post_main.html post=post %}
+{% endfor %}
 <!-- End Main -->
 
 <!-- Start Featured -->
-<div class="row mb-2">
-{% assign posts_featured = site.categories['featured'] %}
-{% assign posts_skip = posts_skip | concat: posts_featured %}
-{% include posts.html posts=posts_featured template='post_featured' %}
+<div class="row mb-2">	
+{% assign category = page.posts.featured.category | default: 'featured' %}
+{% assign posts_category = posts | where_exp: "post", "post.categories contains category" %}
+
+{% assign start = page.posts.featured.start | default: 0 %}
+{% assign limit = page.posts.featured.limit | default: 0 %}
+{% assign limit = limit | plus: start %}
+{% assign index = 0 %}
+<!-- Start: {{ start }} | Limit: {{ limit}} -->
+{% for post in posts_category %}
+	{% assign index = index | plus: 1 %}
+	<!-- Index: {{ index }} | Skipped: {{ skipped }} | Post {{ post }} -->
+	{% if limit > 0 %}
+		{% if index > limit %}
+			{% break %}
+		{% endif %}
+	{% endif %}
+	{% if start > 0 %}
+		{% if index < start %}
+			{% continue %}
+		{% endif %}
+	{% endif %}
+	{% assign posts_skip = posts_skip | push: post.id %}
+	{% include post_featured.html post=post %}
+{% endfor %}
 </div>
 <!-- End Featured -->
 
@@ -36,8 +92,34 @@ sidebar:
 	<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
 
 <!-- Start Posts -->
-{% assign posts_page = paginator.posts %}
-{% include posts.html posts=posts_page skip=posts_skip %}
+{% if page.posts.paginator %}
+	{% assign posts = paginator.posts %}
+{% endif %}
+
+{% assign start = page.posts.start | default: 0 %}
+{% assign limit = page.posts.limit | default: 0 %}
+{% assign limit = limit | plus: start %}
+{% assign index = 0 %}
+<!-- Start: {{ start }} | Limit: {{ limit}} -->
+{% for post in posts %}
+  {% assign index = index | plus: 1 %}
+<!-- Index: {{ index }} | Skipped: {{ skipped }} | Post {{ post }} -->
+  {% if limit > 0 %}
+    {% if index > limit %}
+      {% break %}
+    {% endif %}
+  {% endif %}
+  {% if start > 0 %}
+    {% if index < start %}
+      {% continue %}
+    {% endif %}
+  {% endif %}
+  {% if posts_skip contains post.id %}
+    {% assign limit = limit | plus: 1 %}
+    {% continue %}
+  {% endif %}
+  {% include post.html post=post %}
+{% endfor %}
 <!-- End Posts -->
 
 <!-- Start Paginator -->
