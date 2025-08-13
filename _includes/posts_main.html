@@ -1,5 +1,6 @@
 {%- assign category = include.category | default: page.posts.main.category | default: 'main' -%}
-{%- assign posts = include.posts | where_exp: "post", "post.categories contains category" -%}
+{%- assign posts = include.posts | default: page.posts_source -%}
+{%- assign posts = posts | where_exp: "post", "post.categories contains category" -%}
 {%- assign start = include.start | default: page.posts.main.start | default: 0 -%}
 {%- assign limit = include.limit | default: page.posts.main.limit | default: 0 -%}
 
