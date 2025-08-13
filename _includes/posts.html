@@ -1,26 +1,37 @@
 {% assign template = include.template | default: 'post' %}
+<!-- Template: {{ template }} -->
 {% assign collection = include.collection | default: 'posts' %}
+<!-- Collection: {{ collection }} -->
 {% assign category = include.category | default: '' %}
+<!-- Category: {{ category }} -->
 {% assign posts = include.posts | default: site[collection]  %}
+<!-- Posts: {{ posts }} -->
 {% if category %}
+    <!-- Posts_Category: {{ posts }} -->
 	{% assign posts = posts.categories[category] %}
 {% endif %}
 
+<!-- Skip: {{ include.skip }} -->
     {% comment %}  Skipped Post IDs List  {% endcomment %}
 {% assign skip_ids = '' | split: ',' %}
 {% assign skip_posts = include.skip | default: skip_ids %}
 {% for post in skip_posts %}
   {% assign skip_ids = skip_ids | push: post.id %}
+  <!-- Skip ID: {{ post.id }} -->
 {% endfor %}
 
+
+<!-- Posts: {{ posts }} -->
     {% comment %}  Show Posts from #(Start) to #(Limit+Start)  {% endcomment %}
 {% assign start = include.start | default: 0 %}
 {% assign limit = include.limit | default: 0 %}
 {% assign limit = limit | plus: start %}
 {% assign skipped = 0 %}
 {% assign index = 0 %}
+<!-- Start: {{ start }} | Limit: {{ limit}} -->
 {% for post in posts %}
   {% assign index = index | plus: 1 %}
+<!-- Index: {{ index }} | Skipped: {{ skipped }} | Post {{ post }} -->
       {% comment %}  Stop when #(Limit + Skipped) reached  {% endcomment %}
   {% assign limit_skip = limit | plus: skipped %}
   {% if limit > 0 %}
