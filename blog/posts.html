@@ -1,24 +1,16 @@
 ---
 layout: blog
-title: Posts
-sidebar_pos: right
+title: Blog - Posts
+description: Blog Posts Archive
 sidebar:
-  - categories
-  - tags
-  - authors
+  right:
+    - categories
+    - tags
+    - authors
+posts:
+  limit: 20
 ---
 
-<!-- Start Posts -->
-{% for post in site.posts %}
-
-{% include post.html post=post %}
-
-{% endfor %}
-<!-- End Posts -->
-
-<!-- Start Paginator -->
-<nav class="blog-pagination" aria-label="Pagination">
-	<a class="btn btn-outline-primary rounded-pill" href="#">Older</a>
-	<a class="btn btn-outline-secondary rounded-pill disabled" aria-disabled="true">Newer</a>
-</nav>
-<!-- End Paginator -->
+<div id="blog-posts" class="col-md-8">
+{% include posts.html posts=site.blog %}
+</div><!-- /#blog-posts -->
