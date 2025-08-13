@@ -3,7 +3,7 @@
 {% assign skip = '' | split: ',' %}
 {% assign skip = include.skip | default: skip %}
 {% assign template = include.template | default: 'post' %}
-<!-- Posts: {{ posts }} | Skip: {{ skip }} | Template: {{ template }} -->
+<!-- Skip: {{ skip }} | Template: {{ template }} -->
 {% assign start = include.start | default: 0 %}
 {% assign limit = include.limit | default: 0 %}
 <!-- Start: {{ start }} | Limit: {{ limit }} -->
@@ -13,7 +13,6 @@
 {% for post in posts %}
 	{% assign index = index | plus: 1 %}
 	<!-- [{{ forloop.index }}] [{{ index }}/{{ limit }}] -->
-	<!-- {{ post }} -->
 	{% if limit > 0 %}
 		{% if index > limit %}
 			<!-- [{{ forloop.index }}] [{{ index }}/{{ limit }}] End -->
