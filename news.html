@@ -2,11 +2,11 @@
 layout: blog
 title: News
 description: Recent News and Announcements
-sidebar_pos: right
 sidebar:
-  - categories
-  - tags
-  - authors
+  right:
+    - categories
+    - tags
+    - authors
 posts:
   limit: 10
   skip:
@@ -24,6 +24,7 @@ posts:
 
 {%- assign posts = site.categories['news'] -%}
 
+{%- capture content_head -%}
 <div id="blog-main">
 {% include posts.html id='main' posts=posts %}
 </div><!-- /#blog-main -->
@@ -31,6 +32,7 @@ posts:
 <div id="blog-featured" class="row mb-2">
 {% include posts.html id='featured' posts=posts %}
 </div><!-- /#blog-featured -->
+{%- endcapture -%}
 
 <div id="blog-posts" class="col-md-8">
 	<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
@@ -40,3 +42,9 @@ posts:
 
 {% include pagination.html %}
 </div><!-- /#blog-posts -->
+
+{%- capture content_foot -%}
+<div id="blog-meta" class="col-md-8">
+	<p><a href="{{ 'feed.xml' | relative_url }}">RSS Feed</a></p>
+</div><!-- /#blog-meta -->
+{%- endcapture -%}
