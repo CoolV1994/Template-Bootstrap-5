@@ -1,16 +1,17 @@
-{%- assign config = page.posts[id] | default: page.posts -%}
 
 {%- assign id = include.id | default: 'posts' -%}
+{%- assign config = page.posts[id] | default: page.posts -%}
+<!-- [{{ id }}] Config: [{{ config.size }}] {{ config }} -->
 {%- assign posts = include.posts -%}
 <!-- [{{ id }}] Posts: {{ posts.size }} -->
-{%- assign template = include.template | default: page.posts[id].template | default: 'posts' -%}
+{%- assign template = include.template | default: config.template | default: 'posts' -%}
 <!-- [{{ id }}] Template: {{ template }} -->
-{%- assign start = include.start | default: page.posts[id].start | default: 0 -%}
-{%- assign limit = include.limit | default: page.posts[id].limit | default: 0 | plus: start -%}
+{%- assign start = include.start | default: config.start | default: 0 -%}
+{%- assign limit = include.limit | default: config.limit | default: 0 | plus: start -%}
 <!-- [{{ id }}] Start: {{ start }} / Limit: {{ limit }} -->
-{%- assign skip = include.skip | default: page.posts[id].skip | default: '' -%}
+{%- assign skip = include.skip | default: config.skip | default: '' -%}
 <!-- [{{ id }}] Skip: [{{ skip.size }}] {{ skip }} -->
-{%- assign category = include.category | default: page.posts[id].category | default: null -%}
+{%- assign category = include.category | default: config.category | default: null -%}
 {% if category %}{%- assign posts = include.posts | where_exp: "post", "post.categories contains category" -%}{% endif %}
 <!-- [{{ id }}] Posts: {{ posts.size }} | Category: {{ category }} -->
 
