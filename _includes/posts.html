@@ -1,6 +1,6 @@
 {% assign collection = include.collection | default: 'posts' %}
 <!-- Collection: {{ collection }} -->
-{% assign posts = site[collection] %}
+{% assign posts = site.collections[collection] %}
 <!-- Posts: {{ posts }} -->
 {% if include.posts %}
 	{% assign posts = include.posts %}
