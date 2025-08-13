@@ -1,20 +1,25 @@
 ---
-layout: page
+layout: default
 css:
   - /assets/css/blog.css
 sidebar:
   left:
     - post_meta
     - post_files
+  right: []
 ---
 
-<div id="content" class="col-md-8">
-	<article id="{{ page.id | replace: '/', '-' }}" class="blog-post">
-		<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
-		<!-- <h2 class="display-5 link-body-emphasis mb-1">{{ page.title }}</h2>-->
-		{% if page.description %}<p class="fs-5 col-md-8">{{ page.description }}</p>{% endif %}
+<div id="page" class="row g-5">
+{%- assign sidebar_left = page.sidebar.left | default: layout.sidebar.left -%}
+{% if sidebar_left.size > 0 %}{% include sidebar.html modules=sidebar_left %}{% endif %}
 
+	<div id="content" class="col-md-8">
+		<article id="{{ page.id | replace: '/', '-' }}" class="blog-post">
+			<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
 {{ content }}
+		</article>
+	</div>
 
-	</article>
-</div>
+{%- assign sidebar_right = page.sidebar.right | default: layout.sidebar.right -%}
+{% if sidebar_right.size > 0 %}{% include sidebar.html modules=sidebar_right %}{% endif %}
+</div><!-- /#page -->
