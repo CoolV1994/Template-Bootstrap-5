@@ -1,61 +1,25 @@
 ---
 layout: default
 css:
-  - '/assets/css/blog.css'
+  - /assets/css/blog.css
+sidebar:
+  left: []
+  right: []
 ---
 
 <h2 class="display-5 link-body-emphasis mb-1">{{ page.title }}</h2>
-{% if page.description %}
-<p class="fs-5 col-md-8">{{ page.description }}</p>
-{% endif %}
+{% if page.description %}<p class="fs-5 col-md-8">{{ page.description }}</p>{% endif %}
+
+{% if page.content_head %}{{ page.content_head }}{% endif %}
+
+<div id="page" class="row g-5">
+{% assign sidebar_left = page.sidebar.left | default: layout.sidebar.left %}
+{% if sidebar_left %}{% include sidebar.html modules=sidebar_left %}{% endif %}
 
 {{ content }}
 
-{% assign posts_skip = '' %}
-
-<!-- Start Main -->
-{% assign posts_main = posts | where_exp: "post", "post.categories contains 'main'" %}
-{% for post in posts_main %}
-{% assign posts_skip = posts_skip | push: post.id %}
-{% include posts_main.html post=post %}
-{% endfor %}
-<!-- End Main -->
-
-<!-- Start Featured -->
-<div class="row mb-2">
-{% assign posts_featured = posts | where_exp: "post", "post.categories contains 'featured'" %}
-{% for post in posts_featured %}
-{% assign posts_skip = posts_skip | push: post.id %}
-{% include posts_featured.html post=post %}
-{% endfor %}
+{% assign sidebar_right = page.sidebar.right | default: layout.sidebar.right %}
+{% if sidebar_right %}{% include sidebar.html modules=sidebar_right %}{% endif %}
 </div>
-<!-- End Featured -->
 
-<div id="blog" class="row g-5">
-
-<!-- Start Sidebar (Left) -->
-{% if page.sidebar_pos == 'left' %}
-{% include sidebar.html modules=page.sidebar %}
-{% endif %}
-<!-- End Sidebar (Left) -->
-
-	<div id="blog-posts" class="col-md-8">
-		<h3 class="pb-4 mb-4 fst-italic border-bottom">Posts</h3>
-
-<!-- Start Posts -->
-{% for post in posts %}
-{% unless posts_skip contains post.id %}
-{% include posts.html post=post %}
-{% endunless %}
-{% endfor %}
-<!-- End Posts -->
-
-	</div><!-- /#blog-posts -->
-
-<!-- Start Sidebar (Right)  -->
-{% if page.sidebar_pos == 'right' %}
-{% include sidebar.html modules=page.sidebar %}
-{% endif %}
-<!-- End Sidebar (Right) -->
-
-</div><!-- /#blog -->
+{% if page.content_foot %}{{ page.content_foot }}{% endif %}
