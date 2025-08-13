@@ -1,14 +1,13 @@
 ---
 layout: blog
 title: Main Posts
-sidebar:
-  - posts
-  - categories
-  - tags
+description: Blog Main Posts
+posts:
+  template: post_main
+  category: main
+  limit: 10
 ---
 
-<!-- Start Main -->
-{% for post in site.categories['main'] %}
-{% include post_main.html post=post %}
-{% endfor %}
-<!-- End Main -->
+<div id="blog-main">
+{% include posts.html posts=site.blog %}
+</div>
