@@ -1,0 +1,37 @@
+{% assign posts_skip = '' | split: ',' %}
+{% assign posts_skip = include.skip | default: posts_skip %}
+<!-- Skip: {{ posts_skip }} -->
+
+{% assign posts = include.posts | default: posts_skip %}
+{% assign template = include.template | default: 'post' %}
+<!-- Template: {{ template }} | Posts: {{ posts }} -->
+
+{% assign start = include.start | default: 0 %}
+{% assign limit = include.limit | default: 0 %}
+<!-- Start: {{ start }} | Limit: {{ limit }} -->
+{% assign limit = limit | plus: start %}
+
+{% assign index = 0 %}
+<!-- Index: {{ index }} | Limit: {{ limit }} -->
+{% for post in posts %}
+	{% assign index = index | plus: 1 %}
+	<!-- Loop {{ forloop.index }} | Index: {{ index }} | Limit {{ limit }} -->
+	{% if limit > 0 %}
+		{% if index > limit %}
+			{% break %}
+		{% endif %}
+	{% endif %}
+	{% if start > 0 %}
+		{% if index < start %}
+			{% continue %}
+		{% endif %}
+	{% endif %}
+	{% if posts_skip contains post.id %}
+		{% assign limit = limit | plus: 1 %}
+		<!-- [Skipped] Loop: {{ forloop.index }} | Index: {{ index }} | Limit: {{ limit }} | Post ID: {{ post.id }} -->
+		{% continue %}
+	{% endif %}
+	<!-- Loop: {{ forloop.index }} | Index: {{ index }} | Post ID: {{ post.id }} -->
+	<!-- Post {{ post }} -->
+	{% include {{ template }}.html post=post %}
+{% endfor %}
