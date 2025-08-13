@@ -1,11 +1,11 @@
-{%- if include.sublink -%}
+{% if include.sublink %}
 {%- assign sublink = include.sublink -%}
     <li>
       <a class="dropdown-item {% if page.url == sublink[1] %}active{% endif %}" href="{% unless sublink[1] contains 'http' %}{{ site.baseurl }}{% endunless %}{{ sublink[1] }}">{{ sublink[0] }}</a>
     </li>
-{%- else -%}
+{% else %}
 {%- assign link = include.link -%}
     <li class="nav-item">
       <a class="nav-link {% if page.url == link[1] %}active{% endif %}" aria-current="page" href="{% unless link[1] contains 'http' %}{{ site.baseurl }}{% endunless %}{{ link[1] }}">{{ link[0] }}</a>
     </li>
-{%- endif -%}
+{% endif %}
