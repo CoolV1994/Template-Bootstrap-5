@@ -1,8 +1,8 @@
 {% assign posts = include.posts %}
-{% assign category = include.category | default: page.posts.category | default: '' %}
+{% assign category = include.category | default: page.posts.category %}
 <!-- Category: {{ category }} -->
 {% if category %}
-	{% assign test_posts = posts | where_exp: "post", "post.categories contains category" %}
+	{% assign posts = posts | where_exp: "post", "post.categories contains category" %}
 	<!-- [2] Category: {{ category }} -->
 {% endif %}
 {% assign skip_categories = '' | split: ',' %}
