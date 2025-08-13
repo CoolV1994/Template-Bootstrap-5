@@ -1,10 +1,11 @@
 ---
-layout: blog
-title: Blog
+layout: BaseLayout
+title: Home
 css:
   - '/assets/css/blog.css'
-sidebar_pos: right
 sidebar:
+  left: []
+  right:
   - about
   - posts
   - categories
@@ -18,7 +19,7 @@ sidebar:
 <!-- Start Main -->
 {% assign posts_main = site.categories['main'] %}
 {% assign posts_skip = posts_skip | concat: posts_main %}
-{% include posts.html posts=posts_main template='post_main' %}
+{% include posts_main.html posts=posts_main %}
 
 <!-- End Main -->
 
@@ -26,7 +27,7 @@ sidebar:
 <div class="row mb-2">
 {% assign posts_featured = site.categories['featured'] %}
 {% assign posts_skip = posts_skip | concat: posts_featured %}
-{% include posts.html posts=posts_featured template='post_featured' %}
+{% include posts_featured.html posts=posts_featured %}
 </div>
 <!-- End Featured -->
 {% endif %}
