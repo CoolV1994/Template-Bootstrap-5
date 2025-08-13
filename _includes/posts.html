@@ -1,37 +1,13 @@
-{%- assign skip_categories = '' | split: ',' -%}
-
-<div id="blog-main">	
-{%- assign main_category = include.main_category | default: page.posts.main.category | default: 'main' -%}
-{%- assign main_posts = include.posts | where_exp: "post", "post.categories contains main_category" -%}
-{%- assign skip_categories = skip_categories | push: main_category -%}
-{%- assign main_start = include.start | default: page.posts.main.start | default: 0 -%}
-{%- assign main_limit = include.limit | default: page.posts.main.limit | default: 0 -%}
-
-{% include posts_loop.html template='post_main' posts=main_posts start=main_start limit=main_limit %}
-</div><!-- /#blog-main -->
-
-<div id="blog-featured" class="row mb-2">	
-{%- assign featured_category = include.featured_category | default: page.posts.featured.category | default: 'featured' -%}
-{%- assign featured_posts = include.posts | where_exp: "post", "post.categories contains featured_category" -%}
-{%- assign skip_categories = skip_categories | push: featured_category -%}
-{%- assign main_start = include.start | default: page.posts.featured.start | default: 0 -%}
-{%- assign main_limit = include.limit | default: page.posts.featured.limit | default: 0 -%}
-
-{% include posts_loop.html template='post_featured' posts=featured_posts start=featured_start limit=featured_limit %}
-</div><!-- /#blog-featured -->
+{%- assign posts = include.posts | default: page.posts_source -%}
+{%- assign start = include.start | default: page.posts.start | default: 0 -%}
+{%- assign limit = include.limit | default: page.posts.limit | default: 0 -%}
+{%- assign pageination = include.pagination | default: page.posts.pageination -%}
 
 <div id="blog-posts" class="col-md-8">
 	<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
 	{% if page.description %}<p class="fs-5 col-md-8">{{ page.description }}</p>{% endif %}
 
-{%- assign start = include.start | default: page.posts.start | default: 0 -%}
-{%- assign limit = include.limit | default: page.posts.limit | default: 0 -%}
+{% include posts_loop.html template='post' posts=posts start=start limit=limit %}
 
-{% include posts_loop.html template='post' posts=include.posts start=start limit=limit %}
-
-{%- assign pageination = include.pagination | default: page.posts.pageination -%}
-{% if pagination %}
-	{% include pagination.html %}
-{% endif %}
-
+{% if pagination %}{% include pagination.html %}{% endif %}
 </div><!-- /#blog-posts -->
