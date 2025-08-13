@@ -1,4 +1,5 @@
 {% comment %}
+<!--  Front Matter
 ---
 posts:
   collection: posts
@@ -14,8 +15,10 @@ posts:
     limit: 2
     start: 0
 ---
+-->
 {% endcomment %}
 {% comment %}
+<!--  Documentation
 	Note: Undefined Arguments will Default to Page Front Matter
 
 	Usage:
@@ -33,6 +36,7 @@ posts:
 	{% assign posts = paginator.posts %}  -  Display Posts for Paginator Pages
 	{% assign posts = posts | where_exp: "post", "post.categories contains 'news'" %}  -  Show Posts from Posts Collection in Category News
 	* Note: Assign `posts` before `include` function *
+-->
 {% endcomment %}
 
 
