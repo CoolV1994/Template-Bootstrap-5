@@ -1,0 +1,63 @@
+---
+layout: default
+content:
+  top: []
+  bottom: []
+sidebar:
+  left: []
+  right: []
+---
+
+{% assign content_top = page.content.top | default: layout.content.top %}
+{% assign content_bottom = page.content.bottom | default: layout.content.bottom %}
+
+{% assign sidebar_left = page.sidebar.left | default: layout.sidebar.left %}
+{% assign sidebar_right = page.sidebar.right | default: layout.sidebar.right %}
+
+
+{% comment %}<!--
+
+{% assign content_top = layout.content.top %}
+{% assign content_bottom = layout.content.bottom %}
+{% if page.content %}
+  {% assign content_top = page.content.top %}
+  {% assign content_bottom = page.content.bottom %}
+{% endif %}
+
+{% assign sidebar_left = layout.sidebar.left %}
+{% assign sidebar_right = layout.sidebar.right %}
+{% if page.sidebar %}
+  {% assign sidebar_left = page.sidebar.left %}
+  {% assign sidebar_right = page.sidebar.right %}
+{% endif %}
+
+-->{% endcomment %}
+
+
+{% if content_top %}
+  {% for module in content_top %}
+    {% include {{ module }}.html %}
+  {% endfor %}
+{% endif %}
+
+<div id="page" class="row g-5">
+
+{% if sidebar_left %}
+  {% include sidebar.html modules=sidebar_left %}
+{% endif %}
+
+
+{{ content }}
+
+
+{% if sidebar_right %}
+  {% include sidebar.html modules=sidebar_right %}
+{% endif %}
+
+</div>
+
+{% if content_bottom %}
+  {% for module in content_bottom %}
+    {% include {{ module }}.html %}
+  {% endfor %}
+{% endif %}
