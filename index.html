@@ -18,9 +18,6 @@ posts:
     limit: 4
 ---
 
-<h2 class="display-5 link-body-emphasis mb-1">{{ page.title }}</h2>
-{% if page.description %}<p class="fs-5 col-md-8">{{ page.description }}</p>{% endif %}
-
 <div id="blog-main">
 {% include posts.html id='main' posts=paginator.posts %}
 </div><!-- /#blog-main -->
