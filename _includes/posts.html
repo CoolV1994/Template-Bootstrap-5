@@ -4,10 +4,10 @@
 {% assign category_posts = include.posts %}
 {% assign category = include.category | default: page.posts.category %}
 <!-- Category: {{ category }} -->
-{% if category %}
+{% unless category == blank %}
 	{% assign category_posts = category_posts | where_exp: "post", "post.categories contains category" %}
 	<!-- [2] Category: {{ category }} -->
-{% endif %}
+{% endunless %}
 {% assign skip_categories = '' | split: ',' %}
 
 <!-- [1] Skip: {{ skip_categories }} -->
