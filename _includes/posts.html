@@ -1,5 +1,5 @@
 {% comment %}
-<!--  Front Matter
+<!---    [Start]  Front Matter    -----
 ---
 posts:
   collection: posts
@@ -15,55 +15,63 @@ posts:
     limit: 2
     start: 0
 ---
--->
-{% endcomment %}
-{% comment %}
-<!--  Documentation
+-----    [End]  Front Matter    ---->
+{% endcomment %}{% comment %}
+<!---    [Start]  Documentation    -----
 	Note: Undefined Arguments will Default to Page Front Matter
 
 	Usage:
-	{% include posts.html [posts=posts] ([collection='blog'] [category='news'] [limit=10]) ([main_category='main'] [main_limit=1]) ([featured_category='featured'] [featured_limit=4]) %}
+	include posts.html [posts=posts] ([collection='blog'] [category='news'] [limit=10]) ([main_category='main'] [main_limit=1]) ([featured_category='featured'] [featured_limit=4])
 
 	Examples:
-	{% include posts.html posts=posts %}  -  Defined Posts Collection
-	{% include posts.html collection='posts' category='news' main_category='announcements' featured_category='promotions' %}
-	{% include posts.html collection='blog' category='news' %}  -  Defined Posts Collection and Category
-	{% include posts.html posts-posts limit=10 %}  -  Settings for Recent Posts Section  (Defined Posts Array)
-	{% include posts.html posts=posts main_category='main' main_limit=1 %}  -  Settings for Main Posts Section  (Defined Posts Array)
-	{% include posts.html posts=posts featured_category='featured' featured_limit=4 %}  -  Settings for Featured Posts Section  (Defined Posts Array)
+	include posts.html posts=posts  -  Defined Posts Array
+	include posts.html collection='posts'  -  Defined Posts Collection
+	include posts.html collection='posts' category='news' main_category='announcements' featured_category='promotions'
+	include posts.html collection='blog' category='news'  -  Defined Posts Collection and Category
+	include posts.html posts-posts limit=10  -  Settings for Recent Posts Section  (Defined Posts Array)
+	include posts.html posts=posts main_category='main' main_limit=1  -  Settings for Main Posts Section  (Defined Posts Array)
+	include posts.html posts=posts featured_category='featured' featured_limit=4  -  Settings for Featured Posts Section  (Defined Posts Array)
 
 	Posts Array Examples:
-	{% assign posts = paginator.posts %}  -  Display Posts for Paginator Pages
-	{% assign posts = posts | where_exp: "post", "post.categories contains 'news'" %}  -  Show Posts from Posts Collection in Category News
+	assign posts = paginator.posts  -  Display Posts for Paginator Pages
+	assign posts = posts | where_exp: "post", "post.categories contains 'news'"  -  Show Posts from Posts Collection in Category News
 	* Note: Assign `posts` before `include` function *
--->
+-----    [End]  Documentation    ---->
 {% endcomment %}
 
 
 {% assign posts_skip = '' | split: ',' %}
 {% assign collection = include.collection | default: 'posts' %}
+<!-- Collection: {{ collection }} -->
 {% assign posts = site[collection] %}
+<!-- Posts: {{ posts }} -->
 {% if include.posts %}
 	{% assign posts = include.posts %}
+	<!-- [2] Posts: {{ posts }} -->
 {% endif %}
 {% assign category = include.category | default: '' %}
+<!-- Category: {{ category }} -->
 {% if category %}
 	{% assign posts = posts | where_exp: "post", "post.categories contains category" %}
+	<!-- [2] Category: {{ category }} -->
+	<!-- [3] Posts: {{ posts }} -->
 {% endif %}
 
-
+<!-- [0] Skip: {{ posts_skip }} -->
 <div id="blog-main">	
 {% assign category = include.main_category | default: 'main' %}
 {% assign posts_category = posts | where_exp: "post", "post.categories contains category" %}
+<!-- [Main] Category: {{ category }} -->
+<!-- [Main] Posts: {{ posts_category }} -->
 
 {% assign start = include.main_start | default: 0 %}
 {% assign limit = include.main_limit | default: 0 %}
 {% assign limit = limit | plus: start %}
-{% assign index = 0 %}
 <!-- Start: {{ start }} | Limit: {{ limit}} -->
+{% assign index = 0 %}
 {% for post in posts_category %}
 	{% assign index = index | plus: 1 %}
-	<!-- Index: {{ index }} | Skipped: {{ skipped }} | Post {{ post }} -->
+	<!-- Index: {{ index }} | Post {{ post }} -->
 	{% if limit > 0 %}
 		{% if index > limit %}
 			{% break %}
@@ -79,19 +87,21 @@ posts:
 {% endfor %}
 </div><!-- /#blog-main -->
 
-
+<!-- [1] Skip: {{ posts_skip }} -->
 <div id="blog-featured" class="row mb-2">	
 {% assign category = include.featured_category | default: 'featured' %}
 {% assign posts_category = posts | where_exp: "post", "post.categories contains category" %}
+<!-- [Featured] Category: {{ category }} -->
+<!-- [Featured] Posts: {{ posts_category }} -->
 
 {% assign start = include.featured_start | default: 0 %}
 {% assign limit = include.featured_limit | default: 0 %}
 {% assign limit = limit | plus: start %}
-{% assign index = 0 %}
 <!-- Start: {{ start }} | Limit: {{ limit}} -->
+{% assign index = 0 %}
 {% for post in posts_category %}
 	{% assign index = index | plus: 1 %}
-	<!-- Index: {{ index }} | Skipped: {{ skipped }} | Post {{ post }} -->
+	<!-- Index: {{ index }} | Post {{ post }} -->
 	{% if limit > 0 %}
 		{% if index > limit %}
 			{% break %}
@@ -107,7 +117,7 @@ posts:
 {% endfor %}
 </div><!-- /#blog-featured -->
 
-
+<!-- [2] Skip: {{ posts_skip }} -->
 <div id="blog-posts" class="col-md-8">
 	<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
 	{% if page.description %}<p class="fs-5 col-md-8">{{ page.description }}</p>{% endif %}
@@ -115,11 +125,11 @@ posts:
 {% assign start = include.start | default: 0 %}
 {% assign limit = include.limit | default: 0 %}
 {% assign limit = limit | plus: start %}
-{% assign index = 0 %}
 <!-- Start: {{ start }} | Limit: {{ limit}} -->
+{% assign index = 0 %}
 {% for post in posts %}
   {% assign index = index | plus: 1 %}
-<!-- Index: {{ index }} | Skipped: {{ skipped }} | Post {{ post }} -->
+<!-- Index: {{ index }} | Post {{ post }} -->
   {% if limit > 0 %}
     {% if index > limit %}
       {% break %}
@@ -132,6 +142,7 @@ posts:
   {% endif %}
   {% if posts_skip contains post.id %}
     {% assign limit = limit | plus: 1 %}
+	<!-- [Skipped] Limit: {{ limit }} | Post ID: {{ post.id }} -->
     {% continue %}
   {% endif %}
   {% include post.html post=post %}
