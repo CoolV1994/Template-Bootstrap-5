@@ -1,39 +1,33 @@
 {% assign posts = include.posts %}
-<!-- Posts: {{ posts }} -->
 {% assign category = include.category | default: page.posts.category | default: '' %}
 <!-- Category: {{ category }} -->
 {% if category %}
 	{% assign posts = posts | where_exp: "post", "post.categories contains category" %}
 	<!-- [2] Category: {{ category }} -->
-	<!-- [3] Posts: {{ posts }} -->
 {% endif %}
 {% assign skip_categories = '' | split: ',' %}
 
-<!-- [0] Skip: {{ posts_skip }} -->
+<!-- [1] Skip: {{ skip_categories }} -->
 <div id="blog-main">	
 {% assign main_category = include.main_category | default: page.posts.main.category | default: 'main' %}
 {% assign main_posts = posts | where_exp: "post", "post.categories contains main_category" %}
 {% assign skip_categories = skip_categories | push: main_category %}
-<!-- [Main] Category: {{ category }} -->
-<!-- [Main] Posts: {{ posts_category }} -->
 {% assign main_start = include.start | default: page.posts.main.start | default: 0 %}
 {% assign main_limit = include.limit | default: page.posts.main.limit | default: 0 %}
 {% include posts_loop.html template='post_main' posts=main_posts start=main_start limit=main_limit %}
 </div><!-- /#blog-main -->
 
-<!-- [1] Skip: {{ posts_skip }} -->
+<!-- [2] Skip: {{ skip_categories }} -->
 <div id="blog-featured" class="row mb-2">	
 {% assign featured_category = include.featured_category | default: page.posts.featured.category | default: 'featured' %}
 {% assign featured_posts = posts | where_exp: "post", "post.categories contains featured_category" %}
 {% assign skip_categories = skip_categories | push: category_featured %}
-<!-- [Featured] Category: {{ category }} -->
-<!-- [Featured] Posts: {{ posts_category }} -->
 {% assign main_start = include.start | default: page.posts.featured.start | default: 0 %}
 {% assign main_limit = include.limit | default: page.posts.featured.limit | default: 0 %}
 {% include posts_loop.html template='post_featured' posts=featured_posts start=featured_start limit=featured_limit %}
 </div><!-- /#blog-featured -->
 
-<!-- [2] Skip: {{ posts_skip }} -->
+<!-- [3] Skip: {{ skip_categories }} -->
 <div id="blog-posts" class="col-md-8">
 	<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
 	{% if page.description %}<p class="fs-5 col-md-8">{{ page.description }}</p>{% endif %}
