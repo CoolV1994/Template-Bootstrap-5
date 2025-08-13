@@ -2,11 +2,6 @@
 layout: blog
 title: Blog
 description: Blog Recent Posts
-sidebar:
-  right:
-    - categories
-    - tags
-    - authors
 posts:
   blog:
     skip:
@@ -23,31 +18,19 @@ posts:
     limit: 4
 ---
 
-{%- assign posts = site.blog -%}
-
-{%- capture content_head -%}
 <div id="blog-main">
-{% include posts.html id='main' posts=posts %}
+{% include posts.html id='main' posts=site.blog %}
 </div><!-- /#blog-main -->
 
 <div id="blog-featured" class="row mb-2">
-{% include posts.html id='featured' posts=posts %}
+{% include posts.html id='featured' posts=site.blog %}
 </div><!-- /#blog-featured -->
-{%- endcapture -%}
-
 
 <div id="blog-posts" class="col-md-8">
-	<h3 class="pb-4 mb-4 fst-italic border-bottom">Recent Posts</h3>
-	<p class="fs-5 col-md-8">Latest Posts in Blog Section</p>
-
-{% include posts.html id='blog' posts=posts %}
-
-{% include pagination.html %}
+	<h3 class="pb-4 mb-4 fst-italic border-bottom">Posts</h3>
+{% include posts.html id='blog' posts=site.blog %}
 </div><!-- /#blog-posts -->
 
-
-{%- capture content_foot -%}
 <div id="blog-meta" class="col-md-8">
 	<p><a href="{{ 'feed.xml' | relative_url }}">RSS Feed</a></p>
 </div><!-- /#blog-meta -->
-{%- endcapture -%}
