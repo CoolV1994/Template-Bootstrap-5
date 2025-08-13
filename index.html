@@ -26,7 +26,6 @@ posts:
 {%- assign posts = paginator.posts -%}
 
 {%- capture content_head -%}
-	{% if paginator.page == 1 %}
 <div id="blog-main">
 {% include posts.html id='main' posts=posts %}
 </div><!-- /#blog-main -->
@@ -34,7 +33,6 @@ posts:
 <div id="blog-featured" class="row mb-2">
 {% include posts.html id='featured' posts=posts %}
 </div><!-- /#blog-featured -->
-	{% endif %}
 {%- endcapture -%}
 
 
