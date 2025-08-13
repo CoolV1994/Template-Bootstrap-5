@@ -1,10 +1,11 @@
 {% assign posts = include.posts %}
 {% assign main_posts = include.posts %}
 {% assign featured_posts = include.posts %}
+{% assign category_posts = include.posts %}
 {% assign category = include.category | default: page.posts.category %}
 <!-- Category: {{ category }} -->
 {% if category %}
-	{% assign posts = posts | where_exp: "post", "post.categories contains category" %}
+	{% assign category_posts = category_posts | where_exp: "post", "post.categories contains category" %}
 	<!-- [2] Category: {{ category }} -->
 {% endif %}
 {% assign skip_categories = '' | split: ',' %}
