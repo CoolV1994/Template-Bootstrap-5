@@ -1,16 +1,13 @@
 ---
 layout: blog
-title: Featured Posts
-sidebar:
-  - posts
-  - categories
-  - tags
+title: Featured Posts - Blog
+description: Blog Featured Posts
+posts:
+  template: post_featured
+  category: featured
+  limit: 20
 ---
 
-<!-- Start Featured -->
-<div class="row mb-2">
-{% for post in site.categories['featured'] %}
-{% include post_featured.html post=post %}
-{% endfor %}
-</div>
-<!-- End Featured -->
+<div id="blog-featured" class="row mb-2">
+{% include posts.html posts=site.blog %}
+</div><!-- /#blog-featured -->
