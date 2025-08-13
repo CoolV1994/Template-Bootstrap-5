@@ -42,11 +42,12 @@ posts:
 
 {% include posts.html id='blog' posts=site.posts %}
 
+{% include pagination.html %}
 </div><!-- /#blog-posts -->
 
 
 {%- capture content_foot -%}
-<div id="blog-pages" class="col-md-8">
-{% include pagination.html %}
-</div><!-- /#blog-pages -->
+<div id="blog-meta" class="col-md-8">
+	<p><a href="{{ 'feed.xml' | relative_url }}">RSS Feed</a></p>
+</div><!-- /#blog-meta -->
 {%- endcapture -%}
