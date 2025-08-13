@@ -1,0 +1,32 @@
+{% assign collection = include.collection | default: 'posts' %}
+<!-- Collection: {{ collection }} -->
+{% assign category = include.category | default: 'featured' %}
+<!-- Category: {{ category }} -->
+{% assign posts = include.posts | default: site[collection]  %}
+<!-- Posts: {{ posts }} -->
+{% if category %}
+    <!-- Posts_Category: {{ posts }} -->
+	{% assign posts = posts.categories[category] %}
+{% endif %}
+
+<!-- Posts: {{ posts }} -->
+{% assign start = include.start | default: 0 %}
+{% assign limit = include.limit | default: 0 %}
+{% assign limit = limit | plus: start %}
+{% assign index = 0 %}
+<!-- Start: {{ start }} | Limit: {{ limit}} -->
+{% for post in posts %}
+  {% assign index = index | plus: 1 %}
+<!-- Index: {{ index }} | Skipped: {{ skipped }} | Post {{ post }} -->
+  {% if limit > 0 %}
+    {% if index > limit %}
+      {% break %}
+    {% endif %}
+  {% endif %}
+  {% if start > 0 %}
+    {% if index <= start %}
+      {% continue %}
+    {% endif %}
+  {% endif %}
+  {% include post_featured.html post=post %}
+{% endfor %}
