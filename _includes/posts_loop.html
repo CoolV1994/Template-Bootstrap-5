@@ -1,11 +1,20 @@
-{%- assign template = include.template | default: 'post' -%}
-{%- assign start = include.start | default: 0 -%}
-{%- assign limit = include.limit | default: 0 | plus: start -%}
+{%- assign config = page.posts[id] | default: page.posts -%}
 
-<!-- Template: {{ template }} -->
-<!-- Start: {{ start }} | Limit: {{ limit }} -->
-<!-- Skip: {{ skip }} -->
-{% for post in include.posts %}
+{%- assign id = include.id | default: 'posts' -%}
+{%- assign posts = include.posts -%}
+<!-- [{{ id }}] Posts: {{ posts.size }} -->
+{%- assign template = include.template | default: page.posts[id].template | default: 'posts' -%}
+<!-- [{{ id }}] Template: {{ template }} -->
+{%- assign start = include.start | default: page.posts[id].start | default: 0 -%}
+{%- assign limit = include.limit | default: page.posts[id].limit | default: 0 | plus: start -%}
+<!-- [{{ id }}] Start: {{ start }} / Limit: {{ limit }} -->
+{%- assign skip = include.skip | default: page.posts[id].skip | default: '' -%}
+<!-- [{{ id }}] Skip: [{{ skip.size }}] {{ skip }} -->
+{%- assign category = include.category | default: page.posts[id].category | default: null -%}
+{% if category %}{%- assign posts = include.posts | where_exp: "post", "post.categories contains category" -%}{% endif %}
+<!-- [{{ id }}] Posts: {{ posts.size }} | Category: {{ category }} -->
+
+{% for post in posts %}
 	{% if limit > 0 %}
 		{% if forloop.index > limit %}
 <!-- [{{ forloop.index }} / {{ limit }}] End -->
@@ -18,7 +27,7 @@
 			{% continue %}
 		{% endif %}
 	{% endif %}
-	{%- assign matches = include.skip | where_exp: "category", "post.categories contains category" -%}
+	{%- assign matches = skip | where_exp: "category", "post.categories contains category" -%}
 <!-- [{{ forloop.index }} / {{ limit }}] Matches: [{{ matches.size }}] {{ matches }} -->
 	{% if matches.size > 0 %}
 		{%- assign limit = limit | plus: 1 -%}
