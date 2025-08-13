@@ -17,7 +17,8 @@ posts:
 ---
 
 {% assign posts_skip = '' | split: ',' %}
-{% assign collection = page.posts.collection | default: page.collection | default: 'posts' %}
+
+{% assign collection = page.collection | default: 'posts' %}
 {% assign posts = site[collection] %}
 
 {% assign category = page.posts.category | default: '' %}
@@ -25,7 +26,7 @@ posts:
 	{% assign posts = posts | where_exp: "post", "post.categories contains category" %}
 {% endif %}
 
-{% if paginator.page == 1 %}
+{% comment %}{% if paginator.page == 1 %}{% endcomment %}
 <div id="posts-important">
 
 <!-- Start Main -->
@@ -85,16 +86,18 @@ posts:
 <!-- End Featured -->
 
 </div><!-- /#posts-important -->
-{% endif %}
+{% comment %}{% endif %}{% endcomment %}
 
 
 <div id="blog-posts" class="col-md-8">
 	<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
 
 <!-- Start Posts -->
+{% comment %}
 {% if page.posts.paginator %}
 	{% assign posts = paginator.posts %}
 {% endif %}
+{% endcomment %}
 
 {% assign start = page.posts.start | default: 0 %}
 {% assign limit = page.posts.limit | default: 0 %}
@@ -122,8 +125,10 @@ posts:
 {% endfor %}
 <!-- End Posts -->
 
+{% comment %}
 <!-- Start Paginator -->
 {% include pagination.html %}
 <!-- End Paginator -->
+{% endcomment %}
 
 </div><!-- /#blog-posts -->
