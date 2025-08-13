@@ -8,7 +8,6 @@ sidebar:
   - tags
   - authors
 posts:
-  category: news
   limit: 10
   main:
     category: announcement
@@ -18,4 +17,4 @@ posts:
     limit: 4
 ---
 
-{% include posts.html posts=site.posts %}
+{% include posts.html posts=site.categories['news'] %}
