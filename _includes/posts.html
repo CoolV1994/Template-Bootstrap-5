@@ -1,4 +1,6 @@
 {% assign posts = include.posts %}
+{% assign main_posts = include.posts %}
+{% assign featured_posts = include.posts %}
 {% assign category = include.category | default: page.posts.category %}
 <!-- Category: {{ category }} -->
 {% if category %}
@@ -10,7 +12,6 @@
 <!-- [1] Skip: {{ skip_categories }} -->
 <div id="blog-main">	
 {% assign main_category = include.main_category | default: page.posts.main.category | default: 'main' %}
-{% assign main_posts = posts %}
 {% assign main_posts = main_posts | where_exp: "post", "post.categories contains main_category" %}
 {% assign skip_categories = skip_categories | push: main_category %}
 {% assign main_start = include.start | default: page.posts.main.start | default: 0 %}
@@ -21,7 +22,6 @@
 <!-- [2] Skip: {{ skip_categories }} -->
 <div id="blog-featured" class="row mb-2">	
 {% assign featured_category = include.featured_category | default: page.posts.featured.category | default: 'featured' %}
-{% assign featured_posts = posts %}
 {% assign featured_posts = featured_posts | where_exp: "post", "post.categories contains featured_category" %}
 {% assign skip_categories = skip_categories | push: featured_category %}
 {% assign main_start = include.start | default: page.posts.featured.start | default: 0 %}
