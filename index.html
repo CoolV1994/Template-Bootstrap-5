@@ -1,48 +1,21 @@
 ---
-layout: sidebar
+layout: default
 title: Home
 description: Main Site Posts
 css:
   - '/assets/css/blog.css'
-sidebar:
-  left: []
-  right: []
 ---
-
-{% comment %}  List of Post IDs from Main & Featured Section  {% endcomment %}
-{% assign posts_skip = '' | split: ',' %}
-
-{% if paginator.page == 1 %}
-<div id="posts-important">
-
-<!-- Start Main -->
-{% assign posts_main = site.categories['main'] %}
-{% assign posts_skip = posts_skip | concat: posts_main %}
-{% include posts.html posts=posts_main template='post_main' %}
-<!-- End Main -->
-
-<!-- Start Featured -->
-<div class="row mb-2">
-{% assign posts_featured = site.categories['featured'] %}
-{% assign posts_skip = posts_skip | concat: posts_featured %}
-{% include posts.html posts=posts_featured template='post_featured' %}
-</div>
-<!-- End Featured -->
-
-</div><!-- /#posts-important -->
-{% endif %}
-
 
 <div id="blog-posts" class="col-md-8">
 	<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
 
-<!-- Start Posts -->
-{% assign posts_page = paginator.posts %}
+	<!-- Start Posts -->
+	{% assign posts_page = paginator.posts %}
 {% include posts.html posts=posts_page skip=posts_skip %}
-<!-- End Posts -->
+	<!-- End Posts -->
 
-<!-- Start Paginator -->
+	<!-- Start Paginator -->
 {% include pagination.html %}
-<!-- End Paginator -->
+	<!-- End Paginator -->
 
 </div><!-- /#blog-posts -->
