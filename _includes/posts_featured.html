@@ -9,6 +9,7 @@
 	{% assign posts = posts.categories[category] %}
 {% endif %}
 
+<div class="row mb-2">
 <!-- Posts: {{ posts }} -->
 {% assign start = include.start | default: 0 %}
 {% assign limit = include.limit | default: 0 %}
@@ -30,3 +31,4 @@
   {% endif %}
   {% include post_featured.html post=post %}
 {% endfor %}
+</div>
