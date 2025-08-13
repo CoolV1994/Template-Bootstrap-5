@@ -14,12 +14,12 @@ sidebar:
 
 <div id="page" class="row g-5">
 {% assign sidebar_left = page.sidebar.left | default: layout.sidebar.left %}
-{% if sidebar_left %}{% include sidebar.html modules=sidebar_left %}{% endif %}
+{% if sidebar_left.size > 0 %}{% include sidebar.html modules=sidebar_left %}{% endif %}
 
 {{ content }}
 
 {% assign sidebar_right = page.sidebar.right | default: layout.sidebar.right %}
-{% if sidebar_right %}{% include sidebar.html modules=sidebar_right %}{% endif %}
+{% if sidebar_right.size > 0 %}{% include sidebar.html modules=sidebar_right %}{% endif %}
 </div>
 
 {% if page.content_foot %}{{ page.content_foot }}{% endif %}
