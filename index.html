@@ -3,13 +3,18 @@ layout: BaseLayout
 title: Home
 css:
   - '/assets/css/blog.css'
+content:
+  top:
+    - posts_main
+    - posts_featured
+  bottom: []
 sidebar:
   left: []
   right:
-  - about
-  - posts
-  - categories
-  - tags
+    - about
+    - posts
+    - categories
+    - tags
 ---
 
 {% comment %}  List of Post IDs from Main & Featured Section  {% endcomment %}
@@ -19,20 +24,25 @@ sidebar:
 <!-- Start Main -->
 {% assign posts_main = site.categories['main'] %}
 {% assign posts_skip = posts_skip | concat: posts_main %}
+{% comment %}
 {% include posts_main.html posts=posts_main %}
-
+{% endcomment %}
 <!-- End Main -->
 
 <!-- Start Featured -->
-<div class="row mb-2">
+<!-- <div class="row mb-2"> -->
 {% assign posts_featured = site.categories['featured'] %}
 {% assign posts_skip = posts_skip | concat: posts_featured %}
+{% comment %}
 {% include posts_featured.html posts=posts_featured %}
-</div>
+{% endcomment %}
+<!-- </div> -->
 <!-- End Featured -->
 {% endif %}
 
+<!--
 <div id="blog" class="row g-5">
+-->
 	<div id="blog-posts" class="col-md-8">
 		<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
 
@@ -47,6 +57,5 @@ sidebar:
 
 	</div><!-- /#blog-posts -->
 
-{% include sidebar.html modules=page.sidebar %}
-
+<!--
 </div><!-- /#blog -->
