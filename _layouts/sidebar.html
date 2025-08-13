@@ -1,9 +1,17 @@
 ---
 layout: default
+content:
+  above: []
+  below: []
 sidebar:
   left: []
   right: []
 ---
+
+<div id="page-top" class="row g-5">
+{% assign content_above = page.content.above | default: layout.content.above %}
+{% for module in content_above %}{% include {{ module }}.html %}{% endfor %}
+</div>
 
 <div id="page" class="row g-5">
 {% assign sidebar_left = page.sidebar.left | default: layout.sidebar.left %}
@@ -13,4 +21,9 @@ sidebar:
 
 {% assign sidebar_right = page.sidebar.right | default: layout.sidebar.right %}
 {% if sidebar_right %}{% include sidebar.html modules=sidebar_right %}{% endif %}
+</div>
+
+<div id="page-bottom" class="row g-5">
+{% assign content_below = page.content.below | default: layout.content.below %}
+{% for module in content_below %}{% include {{ module }}.html %}{% endfor %}
 </div>
