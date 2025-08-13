@@ -4,10 +4,8 @@
 {%- assign template = include.template | default: 'post' -%}
 <!-- Template: {{ template }} -->
 {%- assign start = include.start | default: 0 -%}
-{%- assign limit = include.limit | default: 0 -%}
+{%- assign limit = include.limit | default: 0 | plus: start -%}
 <!-- Start: {{ start }} | Limit: {{ limit }} -->
-{%- assign limit = limit | plus: start -%}
-<!-- Limit + Start: {{ limit }} -->
 {% for post in include.posts %}
 	{% if limit > 0 %}
 		{% if forloop.index > limit %}
