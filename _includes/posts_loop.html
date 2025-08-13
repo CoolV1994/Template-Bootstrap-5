@@ -1,37 +1,33 @@
-{%- assign posts = '' | split: ',' -%}
-{%- assign posts = include.posts | default: posts -%}
-{%- assign skip = '' | split: ',' -%}
-{%- assign skip = include.skip | default: skip -%}
+{%- assign skip_categories = '' | split: ',' -%}
+{%- assign skip_categories = include.skip | default: skip_categories -%}
+<!-- Skip: {{ skip }} -->
 {%- assign template = include.template | default: 'post' -%}
-<!-- Skip: {{ skip }} | Template: {{ template }} -->
+<!-- Template: {{ template }} -->
 {%- assign start = include.start | default: 0 -%}
 {%- assign limit = include.limit | default: 0 -%}
 <!-- Start: {{ start }} | Limit: {{ limit }} -->
 {%- assign limit = limit | plus: start -%}
-{%- assign index = 0 -%}
-<!-- Index: {{ index }} | Limit: {{ limit }} -->
-{% for post in posts %}
-	{%- assign index = index | plus: 1 -%}
-	<!-- [{{ forloop.index }}] [{{ index }}/{{ limit }}] -->
+<!-- Limit + Start: {{ limit }} -->
+{% for post in include.posts %}
 	{% if limit > 0 %}
-		{% if index > limit %}
-			<!-- [{{ forloop.index }}] [{{ index }}/{{ limit }}] End -->
+		{% if forloop.index > limit %}
+			<!-- [{{ forloop.index }} / {{ limit }}] End -->
 			{% break %}
 		{% endif %}
 	{% endif %}
 	{% if start > 0 %}
-		{% if index < start %}
-			<!-- [{{ forloop.index }}] [{{ index }}/{{ limit }}] Pre -->
+		{% if forloop.index < start %}
+			<!-- [{{ forloop.index }} / {{ limit }}] Pre -->
 			{% continue %}
 		{% endif %}
 	{% endif %}
-	{%- assign matches = skip | where_exp: "category", "post.categories contains category" -%}
-	<!-- [{{ forloop.index }}] [{{ index }}/{{ limit }}] Matches: [{{ matches.size }}] {{ matches }} -->
+	{%- assign matches = skip_categories | where_exp: "category", "post.categories contains category" -%}
+	<!-- [{{ forloop.index }} / {{ limit }}] Matches: [{{ matches.size }}] {{ matches }} -->
 	{% if matches.size > 0 %}
 		{%- assign limit = limit | plus: 1 -%}
-		<!-- [{{ forloop.index }}] [{{ index }}/{{ limit }}] Skipped -->
+		<!-- [{{ forloop.index }} / {{ limit }}] Skipped -->
 		{% continue %}
 	{% endif %}
-	<!-- [{{ forloop.index }}] [{{ index }}/{{ limit }}] Post -->
+	<!-- [{{ forloop.index }} / {{ limit }}] Post -->
 	{% include {{ template }}.html post=post %}
 {% endfor %}
