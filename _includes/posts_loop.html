@@ -1,37 +1,38 @@
-{% assign posts_skip = '' | split: ',' %}
-{% assign posts_skip = include.skip | default: posts_skip %}
-<!-- Skip: {{ posts_skip }} -->
-
-{% assign posts = include.posts | default: posts_skip %}
+{% assign posts = '' | split: ',' %}
+{% assign posts = include.posts | default: posts %}
+{% assign skip = '' | split: ',' %}
+{% assign skip = include.skip | default: skip %}
 {% assign template = include.template | default: 'post' %}
-<!-- Template: {{ template }} | Posts: {{ posts }} -->
-
+<!-- Posts: {{ posts }} | Skip: {{ skip }} | Template: {{ template }} -->
 {% assign start = include.start | default: 0 %}
 {% assign limit = include.limit | default: 0 %}
 <!-- Start: {{ start }} | Limit: {{ limit }} -->
 {% assign limit = limit | plus: start %}
-
 {% assign index = 0 %}
 <!-- Index: {{ index }} | Limit: {{ limit }} -->
 {% for post in posts %}
 	{% assign index = index | plus: 1 %}
-	<!-- Loop {{ forloop.index }} | Index: {{ index }} | Limit {{ limit }} -->
+	<!-- [{{ forloop.index }}] [{{ index }}/{{ limit }}] -->
+	<!-- {{ post }} -->
 	{% if limit > 0 %}
 		{% if index > limit %}
+			<!-- [{{ forloop.index }}] [{{ index }}/{{ limit }}] End -->
 			{% break %}
 		{% endif %}
 	{% endif %}
 	{% if start > 0 %}
 		{% if index < start %}
+			<!-- [{{ forloop.index }}] [{{ index }}/{{ limit }}] Pre -->
 			{% continue %}
 		{% endif %}
 	{% endif %}
-	{% if posts_skip contains post.id %}
+	{% assign matches = skip | where_exp: "category", "post.categories contains category" %}
+	<!-- [{{ forloop.index }}] [{{ index }}/{{ limit }}] Matches: [{{ matches.size }}] {{ matches }} -->
+	{% if matches.size > 0 %}
 		{% assign limit = limit | plus: 1 %}
-		<!-- [Skipped] Loop: {{ forloop.index }} | Index: {{ index }} | Limit: {{ limit }} | Post ID: {{ post.id }} -->
+		<!-- [{{ forloop.index }}] [{{ index }}/{{ limit }}] Skipped -->
 		{% continue %}
 	{% endif %}
-	<!-- Loop: {{ forloop.index }} | Index: {{ index }} | Post ID: {{ post.id }} -->
-	<!-- Post {{ post }} -->
+	<!-- [{{ forloop.index }}] [{{ index }}/{{ limit }}] Post -->
 	{% include {{ template }}.html post=post %}
 {% endfor %}
