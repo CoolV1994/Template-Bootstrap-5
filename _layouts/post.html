@@ -2,24 +2,20 @@
 layout: default
 css:
   - /assets/css/blog.css
-sidebar:
-  left:
-    - post_meta
-    - post_files
-  right: []
 ---
 
-<div id="page" class="row g-5">
-{%- assign sidebar_left = page.sidebar.left | default: layout.sidebar.left -%}
-{% if sidebar_left.size > 0 %}{% include sidebar.html modules=sidebar_left %}{% endif %}
-
-	<div id="content" class="col-md-8">
+<div id="content" class="row g-5">
+	<div id="posts" class="col-md-8">
 		<article id="{{ page.id | replace: '/', '-' }}" class="blog-post">
 			<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
 {{ content }}
 		</article>
-	</div>
+	</div><!-- /#posts -->
 
-{%- assign sidebar_right = page.sidebar.right | default: layout.sidebar.right -%}
-{% if sidebar_right.size > 0 %}{% include sidebar.html modules=sidebar_right %}{% endif %}
-</div><!-- /#page -->
+	<div id="sidebar" class="col-md-3">
+		<div class="position-sticky" style="top: 2rem;">
+{% include sidebar_post_meta.html %}
+{% include sidebar_post_files.html %}
+		</div>
+	</div><!-- /#sidebar -->
+</div><!-- /#content -->
