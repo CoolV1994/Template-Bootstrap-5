@@ -1,5 +1,5 @@
 ---
-layout: blog
+layout: default
 title: Home
 description: Recent Posts
 sidebar:
@@ -23,31 +23,33 @@ posts:
     limit: 4
 ---
 
-{%- assign posts = paginator.posts -%}
+<h2 class="display-5 link-body-emphasis mb-1">{{ page.title }}</h2>
+{% if page.description %}<p class="fs-5 col-md-8">{{ page.description }}</p>{% endif %}
 
-{%- capture content_head -%}
 <div id="blog-main">
-{% include posts.html id='main' posts=posts %}
+{% include posts.html id='main' posts=paginator.posts %}
 </div><!-- /#blog-main -->
 
 <div id="blog-featured" class="row mb-2">
-{% include posts.html id='featured' posts=posts %}
+{% include posts.html id='featured' posts=paginator.posts %}
 </div><!-- /#blog-featured -->
-{%- endcapture -%}
 
+<div id="page" class="row g-5">
+{% if page.sidebar.left.size > 0 %}{% include sidebar.html modules=page.sidebar.left %}{% endif %}
 
-<div id="blog-posts" class="col-md-8">
-	<h3 class="pb-4 mb-4 fst-italic border-bottom">Recent Posts</h3>
-	<p class="fs-5 col-md-8">Latest Posts in Blog Section</p>
+	<div id="blog-posts" class="col-md-8">
+		<h3 class="pb-4 mb-4 fst-italic border-bottom">Posts</h3>
+		<p class="fs-5 col-md-8">Latest Posts</p>
 
-{% include posts.html id='blog' posts=posts %}
+{% include posts.html id='blog' posts=paginator.posts %}
 
 {% include pagination.html %}
-</div><!-- /#blog-posts -->
+	</div><!-- /#blog-posts -->
+
+{% if page.sidebar.right.size > 0 %}{% include sidebar.html modules=page.sidebar.right %}{% endif %}
+</div>
 
 
-{%- capture content_foot -%}
 <div id="blog-meta" class="col-md-8">
 	<p><a href="{{ 'feed.xml' | relative_url }}">RSS Feed</a></p>
 </div><!-- /#blog-meta -->
-{%- endcapture -%}
