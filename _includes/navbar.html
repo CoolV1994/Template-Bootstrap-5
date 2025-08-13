@@ -1,12 +1,12 @@
-{% assign navbar = include.links %}
+{%- assign navbar = include.links -%}
     <div class="navbar-collapse collapse" id="navbarCollapse" style="">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
-{% for navitem in navbar %}
-    {% if navitem[1].first %}
+{%- for navitem in navbar -%}
+    {%- if navitem[1].first -%}
 {% include navbar_menu.html menu=navitem %}
-    {% else %}
+    {%- else -%}
 {% include navbar_link.html link=navitem %}
-    {% endif %}
-{% endfor %}
+    {%- endif -%}
+{%- endfor -%}
       </ul>
     </div>
