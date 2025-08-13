@@ -5,27 +5,41 @@ description: Recent Posts
 css:
   - /assets/css/blog.css
 modules:
-  top: []
-  bottom:
-    - pagination
-  left: []
   right:
     - categories
     - tags
     - authors
 posts:
-  limit: 10
+  blog:
+    limit: 10
+    skip:
+      - main
+      - featured
   main:
+    category: main
+    template: post_main
     limit: 2
   featured:
+    category: featured
+    template: post_featured
     limit: 4
-  skip:
-    - main
-    - featured
 ---
 
-{% include posts_main.html posts=site.posts %}
+<div id="blog-main">
+{% include posts_loop.html id='main' posts=site.posts %}
+</div><!-- /#blog-main -->
 
-{% include posts_featured.html posts=site.posts %}
 
-{% include posts.html posts=site.posts skip=page.posts.skip %}
+<div id="blog-featured" class="row mb-2">
+{% include posts_loop.html id='featured' posts=site.posts %}
+</div><!-- /#blog-featured -->
+
+
+<div id="blog-posts" class="col-md-8">
+	<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
+	{% if page.description %}<p class="fs-5 col-md-8">{{ page.description }}</p>{% endif %}
+
+{% include posts_loop.html id='blog' posts=site.posts %}
+
+{% include pagination.html %}
+</div><!-- /#blog-posts -->
