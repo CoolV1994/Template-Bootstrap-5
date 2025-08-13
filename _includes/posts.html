@@ -2,7 +2,7 @@
 {% assign category = include.category | default: page.posts.category | default: '' %}
 <!-- Category: {{ category }} -->
 {% if category %}
-	{% assign posts = posts | where_exp: "post", "post.categories contains category" %}
+	{% assign test_posts = posts | where_exp: "post", "post.categories contains category" %}
 	<!-- [2] Category: {{ category }} -->
 {% endif %}
 {% assign skip_categories = '' | split: ',' %}
@@ -21,7 +21,7 @@
 <div id="blog-featured" class="row mb-2">	
 {% assign featured_category = include.featured_category | default: page.posts.featured.category | default: 'featured' %}
 {% assign featured_posts = posts | where_exp: "post", "post.categories contains featured_category" %}
-{% assign skip_categories = skip_categories | push: category_featured %}
+{% assign skip_categories = skip_categories | push: featured_category %}
 {% assign main_start = include.start | default: page.posts.featured.start | default: 0 %}
 {% assign main_limit = include.limit | default: page.posts.featured.limit | default: 0 %}
 {% include posts_loop.html template='post_featured' posts=featured_posts start=featured_start limit=featured_limit %}
