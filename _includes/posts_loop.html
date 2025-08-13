@@ -1,40 +1,46 @@
 
 {%- assign id = include.id | default: 'posts' -%}
+<!-- [{{ id }}] Page: {{ page.name }} | {% if include.id %}Set{% else %}Default{% endif %} -->
 {%- assign config = page.posts[id] | default: page.posts -%}
-<!-- [{{ id }}] Config: [{{ config.size }}] {{ config }} -->
-{%- assign posts = include.posts -%}
-<!-- [{{ id }}] Posts: {{ posts.size }} -->
-{%- assign template = include.template | default: config.template | default: 'posts' -%}
-<!-- [{{ id }}] Template: {{ template }} -->
+<!-- [{{ id }}] Config: [{{ config.size }}] {{ config }} | {% if page.posts[id] %}Config{% else %}Default{% endif %} -->
 {%- assign start = include.start | default: config.start | default: 0 -%}
+<!-- [{{ id }}] Start: {{ start }} | {% if include.start %}Set{% elsif config.start %}Config{% else %}Default{% endif %} -->
 {%- assign limit = include.limit | default: config.limit | default: 0 | plus: start -%}
-<!-- [{{ id }}] Start: {{ start }} / Limit: {{ limit }} -->
-{%- assign skip = include.skip | default: config.skip | default: '' -%}
-<!-- [{{ id }}] Skip: [{{ skip.size }}] {{ skip }} -->
+<!-- [{{ id }}] Limit: {{ limit }} | {% if include.limit %}Set: {{ include.limit }}{% elsif config.limit %}Config: {{ config.limit }}{% else %}Default: 0{% endif %} -->
+{%- assign template = include.template | default: config.template | default: 'post' -%}
+<!-- [{{ id }}] Template: {{ template }} | {% if include.template %}Set{% elsif config.template %}Config{% else %}Default{% endif %} -->
+{%- assign posts = include.posts | default: site.posts -%}
+<!-- [{{ id }}] Posts: {{ posts.size }} | {% if include.posts %}Set{% else %}Default{% endif %} -->
 {%- assign category = include.category | default: config.category | default: null -%}
+<!-- [{{ id }}] Category: {{ category }} | {% if include.category %}Set{% elsif config.category %}Config{% else %}Default{% endif %} -->
 {% if category %}{%- assign posts = include.posts | where_exp: "post", "post.categories contains category" -%}{% endif %}
-<!-- [{{ id }}] Posts: {{ posts.size }} | Category: {{ category }} -->
+<!-- [{{ id }}] Category: {{ category }} | Posts: {{ posts.size }} -->
+{%- assign skip_categories = include.skip | default: config.skip | default: null -%}
+<!-- [{{ id }}] Skip: [{{ skip.size }}] {{ skip }} | {% if include.skip %}Set{% elsif config.skip %}Config{% else %}Default{% endif %} -->
 
 {% for post in posts %}
 	{% if limit > 0 %}
 		{% if forloop.index > limit %}
-<!-- [{{ forloop.index }} / {{ limit }}] End -->
+			<!-- [{{ id }}] [{{ forloop.index }} / {{ limit }}] [{{ post.id }}] End -->
 			{% break %}
 		{% endif %}
 	{% endif %}
 	{% if start > 0 %}
 		{% if forloop.index < start %}
-			<!-- [{{ forloop.index }} / {{ limit }}] Pre -->
+			<!-- [{{ id }}] [{{ forloop.index }} / {{ limit }}] [{{ post.id }}] Pre -->
 			{% continue %}
 		{% endif %}
 	{% endif %}
-	{%- assign matches = skip | where_exp: "category", "post.categories contains category" -%}
-<!-- [{{ forloop.index }} / {{ limit }}] Matches: [{{ matches.size }}] {{ matches }} -->
-	{% if matches.size > 0 %}
-		{%- assign limit = limit | plus: 1 -%}
-<!-- [{{ forloop.index }} / {{ limit }}] Skipped -->
-		{% continue %}
+	{% if skip_categories %}
+		<!-- [{{ id }}] [{{ forloop.index }} / {{ limit }}] [{{ post.id }}] Categories: {{ post.categories }} -->
+		{%- assign matches = skip_categories | where_exp: "category", "post.categories contains category" -%}
+		<!-- [{{ id }}] [{{ forloop.index }} / {{ limit }}] [{{ post.id }}] Matches: [{{ matches.size }}] {{ matches }} -->
+		{% if matches.size > 0 %}
+			{%- assign limit = limit | plus: 1 -%}
+			<!-- [{{ id }}] [{{ forloop.index }} / {{ limit }}] [{{ post.id }}] Skipped -->
+			{% continue %}
+		{% endif %}
 	{% endif %}
-<!-- [{{ forloop.index }} / {{ limit }}] Post -->
+	<!-- [{{ id }}] [{{ forloop.index }} / {{ limit }}] [{{ post.id }}] Post: {{ template }} -->
 	{% include {{ template }}.html post=post %}
 {% endfor %}
