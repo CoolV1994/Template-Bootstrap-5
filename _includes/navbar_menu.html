@@ -1,19 +1,19 @@
-{% if include.submenu %}
-    {% assign menu = include.submenu %}
-{% else %}
-    {% assign menu = include.menu %}
-{% endif %}
-{% assign menuID = menu[0] | slugify %}
-{% assign activeLinks = menu[1] | where_exp: "menuLink", "menuLink == page.url" %}
+{%- if include.submenu -%}
+    {%- assign menu = include.submenu -%}
+{%- else -%}
+    {%- assign menu = include.menu -%}
+{%- endif -%}
+{%- assign menuID = menu[0] | slugify -%}
+{%- assign activeLinks = menu[1] | where_exp: "menuLink", "menuLink == page.url" -%}
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle {% if activeLinks > 0 %}active{% endif %}" href="#{{ menuID }}" id="dropdown_{{ menuID }}" data-bs-toggle="dropdown" aria-expanded="false">{{ menu[0] }}</a>
     <ul class="dropdown-menu dropdown-submenu" aria-labelledby="dropdown_{{ menuID }}">
-{% for sublink in menu[1] %}
-    {% if sublink[1].first %}
+{%- for sublink in menu[1] -%}
+    {%- if sublink[1].first -%}
 {% include navbar_menu.html submenu=sublink %}
-    {% else %}
+    {%- else -%}
 {% include navbar_link.html sublink=sublink %}
-    {% endif %}
-{% endfor %}
+    {%- endif -%}
+{%- endfor -%}
     </ul>
   </li>
