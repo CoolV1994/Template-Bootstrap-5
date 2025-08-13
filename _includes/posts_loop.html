@@ -1,5 +1,5 @@
 
-{%- assign id = include.id | default: 'posts' -%}
+{%- assign id = include.id | default: '' -%}
 <!-- [{{ id }}] Page: {{ page.name }} | {% if include.id %}Set{% else %}Default{% endif %} -->
 {%- assign config = page.posts[id] | default: page.posts -%}
 <!-- [{{ id }}] Config: [{{ config.size }}] {{ config }} | {% if page.posts[id] %}Config{% else %}Default{% endif %} -->
