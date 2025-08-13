@@ -1,15 +1,14 @@
-{%- assign skip_categories = '' | split: ',' -%}
-{%- assign skip_categories = include.skip | default: skip_categories -%}
-<!-- Skip: {{ skip }} -->
 {%- assign template = include.template | default: 'post' -%}
-<!-- Template: {{ template }} -->
 {%- assign start = include.start | default: 0 -%}
 {%- assign limit = include.limit | default: 0 | plus: start -%}
+
+<!-- Template: {{ template }} -->
 <!-- Start: {{ start }} | Limit: {{ limit }} -->
+<!-- Skip: {{ skip }} -->
 {% for post in include.posts %}
 	{% if limit > 0 %}
 		{% if forloop.index > limit %}
-			<!-- [{{ forloop.index }} / {{ limit }}] End -->
+<!-- [{{ forloop.index }} / {{ limit }}] End -->
 			{% break %}
 		{% endif %}
 	{% endif %}
@@ -19,13 +18,13 @@
 			{% continue %}
 		{% endif %}
 	{% endif %}
-	{%- assign matches = skip_categories | where_exp: "category", "post.categories contains category" -%}
-	<!-- [{{ forloop.index }} / {{ limit }}] Matches: [{{ matches.size }}] {{ matches }} -->
+	{%- assign matches = include.skip | where_exp: "category", "post.categories contains category" -%}
+<!-- [{{ forloop.index }} / {{ limit }}] Matches: [{{ matches.size }}] {{ matches }} -->
 	{% if matches.size > 0 %}
 		{%- assign limit = limit | plus: 1 -%}
-		<!-- [{{ forloop.index }} / {{ limit }}] Skipped -->
+<!-- [{{ forloop.index }} / {{ limit }}] Skipped -->
 		{% continue %}
 	{% endif %}
-	<!-- [{{ forloop.index }} / {{ limit }}] Post -->
+<!-- [{{ forloop.index }} / {{ limit }}] Post -->
 	{% include {{ template }}.html post=post %}
 {% endfor %}
