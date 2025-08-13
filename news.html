@@ -17,4 +17,5 @@ posts:
     limit: 4
 ---
 
-{% include posts.html posts=site.categories['news'] %}
+{%- assign posts = site.categories['news'] -%}
+{% include posts.html posts=posts %}
