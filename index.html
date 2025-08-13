@@ -5,7 +5,9 @@ description: Recent Posts
 css:
   - /assets/css/blog.css
 modules:
-  top: []
+  top:
+    - posts_main
+    - posts_featured
   bottom:
     - pagination
   left: []
@@ -19,6 +21,11 @@ posts:
     limit: 2
   featured:
     limit: 4
+  skip:
+    - main
+    - featured
 ---
 
-{% include posts.html posts=site.posts %}
+{%- assign posts_source = site.posts -%}
+
+{% include posts.html posts=site.posts skip=page.posts.skip %}
