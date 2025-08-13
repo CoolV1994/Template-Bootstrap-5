@@ -1,48 +1,34 @@
-{% assign posts = include.posts %}
-{% assign main_posts = include.posts %}
-{% assign featured_posts = include.posts %}
-{% assign category = include.category | default: page.posts.category %}
-<!-- Category: {{ category }} -->
-{% unless category == blank %}
-	{% assign posts = include.posts | where_exp: "post", "post.categories contains category" %}
-	{% assign main_posts = include.posts | where_exp: "post", "post.categories contains category" %}
-	{% assign featured_posts = include.posts | where_exp: "post", "post.categories contains category" %}
-	<!-- [2] Category: {{ category }} -->
-{% endunless %}
-{% assign skip_categories = '' | split: ',' %}
+{%- assign skip_categories = '' | split: ',' -%}
 
-<!-- [1] Skip: {{ skip_categories }} -->
 <div id="blog-main">	
-{% assign main_category = include.main_category | default: page.posts.main.category | default: 'main' %}
-{% assign main_posts = main_posts | where_exp: "post", "post.categories contains main_category" %}
-{% assign skip_categories = skip_categories | push: main_category %}
-{% assign main_start = include.start | default: page.posts.main.start | default: 0 %}
-{% assign main_limit = include.limit | default: page.posts.main.limit | default: 0 %}
+{%- assign main_category = include.main_category | default: page.posts.main.category | default: 'main' -%}
+{%- assign main_posts = include.posts | where_exp: "post", "post.categories contains main_category" -%}
+{%- assign skip_categories = skip_categories | push: main_category -%}
+{%- assign main_start = include.start | default: page.posts.main.start | default: 0 -%}
+{%- assign main_limit = include.limit | default: page.posts.main.limit | default: 0 -%}
 {% include posts_loop.html template='post_main' posts=main_posts start=main_start limit=main_limit %}
 </div><!-- /#blog-main -->
 
-<!-- [2] Skip: {{ skip_categories }} -->
 <div id="blog-featured" class="row mb-2">	
-{% assign featured_category = include.featured_category | default: page.posts.featured.category | default: 'featured' %}
-{% assign featured_posts = featured_posts | where_exp: "post", "post.categories contains featured_category" %}
-{% assign skip_categories = skip_categories | push: featured_category %}
-{% assign main_start = include.start | default: page.posts.featured.start | default: 0 %}
-{% assign main_limit = include.limit | default: page.posts.featured.limit | default: 0 %}
+{%- assign featured_category = include.featured_category | default: page.posts.featured.category | default: 'featured' -%}
+{%- assign featured_posts = include.posts | where_exp: "post", "post.categories contains featured_category" -%}
+{%- assign skip_categories = skip_categories | push: featured_category -%}
+{%- assign main_start = include.start | default: page.posts.featured.start | default: 0 -%}
+{%- assign main_limit = include.limit | default: page.posts.featured.limit | default: 0 -%}
 {% include posts_loop.html template='post_featured' posts=featured_posts start=featured_start limit=featured_limit %}
 </div><!-- /#blog-featured -->
 
-<!-- [3] Skip: {{ skip_categories }} -->
 <div id="blog-posts" class="col-md-8">
 	<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
 	{% if page.description %}<p class="fs-5 col-md-8">{{ page.description }}</p>{% endif %}
 
-	{% assign start = include.start | default: page.posts.start | default: 0 %}
-	{% assign limit = include.limit | default: page.posts.limit | default: 0 %}
-	{% include posts_loop.html template='post' posts=posts start=start limit=limit %}
+{%- assign start = include.start | default: page.posts.start | default: 0 -%}
+{%- assign limit = include.limit | default: page.posts.limit | default: 0 -%}
+{% include posts_loop.html template='post' posts=include.posts start=start limit=limit %}
 
-	{% assign pageination = include.pagination | default: page.posts.pageination %}
-	{% if pagination %}
-		{% include pagination.html %}
-	{% endif %}
+{%- assign pageination = include.pagination | default: page.posts.pageination -%}
+{% if pagination %}
+	{% include pagination.html %}
+{% endif %}
 
 </div><!-- /#blog-posts -->
