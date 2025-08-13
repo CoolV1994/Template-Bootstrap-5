@@ -1,0 +1,8 @@
+{%- assign category = include.category | default: page.posts.featured.category | default: 'featured' -%}
+{%- assign posts = include.posts | where_exp: "post", "post.categories contains category" -%}
+{%- assign start = include.start | default: page.posts.featured.start | default: 0 -%}
+{%- assign limit = include.limit | default: page.posts.featured.limit | default: 0 -%}
+
+<div id="blog-featured" class="row mb-2">
+{% include posts_loop.html template='post_featured' posts=posts start=start limit=limit %}
+</div><!-- /#blog-featured -->
