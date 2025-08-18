@@ -1,0 +1,75 @@
+{%- assign template = include.template | default: 'center' -%}
+
+{% if template == 'center' %}
+<!-- Section: Hero - Center {% if include.image %}Image{% endif %} -->
+<div class="px-4 py-5 my-5 text-center">
+  {% if include.icon %}<img class="d-block mx-auto mb-4" src="{{ include.icon }}" alt="" width="72" height="57">{% endif %}
+  <h1 class="display-5 fw-bold text-body-emphasis">{{ include.title }}</h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead mb-4">{{ include.content }}</p>
+    {% if include.buttons %}
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+    {% for button in include.buttons %}
+      {%- assign class = 'btn' -%}
+      {% if button.class includes 'outline' %}{%- assign class = class | append: '-outline' -%}{% endif %}
+      {% if button.class includes 'primary' %}{%- assign class = class | append: '-primary' -%}{% endif %}
+      {% if button.class includes 'secondary' %}{%- assign class = class | append: '-secondary' -%}{% endif %}
+      <a href="{{ button.link | default: '#' }}"><button type="button" class="btn btn-lg px-4 {{ class }}">{{ button.text }}</button></a>
+    {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+  {% if include.image %}
+  <div class="overflow-hidden" style="max-height: 30vh;">
+    <div class="container px-5">
+      <img class="img-fluid border rounded-3 shadow-lg mb-4" src="{{ include.image.src }}" alt="{{ include.image.alt }}" title="{{ include.image.title }}" width="{{ include.image.width | default: 700 }}" height="{{ include.image.height | default: 500 }}" loading="lazy">
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endif %}
+
+
+{% if template == 'left' %}
+<!-- Section: Hero - Left {% if include.image %}Image{% endif %} -->
+<div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+  <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+    <h1 class="display-4 fw-bold lh-1 text-body-emphasis">{{ include.title }}</h1>
+    <p class="lead">{{ include.content }}</p>
+    {% if include.buttons %}
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
+    {% for button in include.buttons %}
+      {%- assign class = 'btn' -%}
+      {% if button.class includes 'outline' %}{%- assign class = class | append: '-outline' -%}{% endif %}
+      {% if button.class includes 'primary' %}{%- assign class = class | append: '-primary' -%}{% endif %}
+      {% if button.class includes 'secondary' %}{%- assign class = class | append: '-secondary' -%}{% endif %}
+      <a href="{{ button.link | default: '#' }}"><button type="button" class="btn btn-lg px-4 {{ class }}">{{ button.text }}</button></a>
+    {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+  {% if include.image %}
+  <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
+    <img class="rounded-lg-3" src="{{ include.image.src }}" alt="{{ include.image.alt }}" title="{{ include.image.title }}" width="{{ include.image.width | default: 720 }}" height="{{ include.image.height | default: 500 }}">
+  </div>
+  {% endif %}
+</div>
+{% endif %}
+
+
+{% if template == 'custom' %}
+<!-- Section: Hero - Custom  [ {{ include.file }} ] -->
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+  <div class="row align-items-center g-lg-5 py-5">
+    <div class="col-lg-7 text-center text-lg-start">
+      <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">{{ include.title }}</h1>
+      <p class="col-lg-10 fs-4">{{ include.content }}</p>
+    </div>
+    {% if include.file %}
+    <div class="col-md-10 mx-auto col-lg-5">
+{% include {{ include.file }} %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
