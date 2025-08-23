@@ -1,0 +1,18 @@
+default:
+  social:
+    links:
+    . title: Social
+      links:
+        Facebook: https://facebook.com
+        Twitter: https://twitter.com
+  text:
+    custom:
+      title: Text
+      type: text
+      content: This is a sample sidebar text module.
+  html:
+    custom:
+      title: HTML
+      type: html
+      content: >
+        <p><b>This is a sample sidebar html module.</b></p>
