@@ -1,9 +1,11 @@
-{%- assign id = include.id -%}
-{%- assign data = include.data -%}
-{%- assign title = data['title'] -%}
+{%- assign id = include.id | default: 'sidebar_links' -%}
+{%- assign config = include.config | default: site.data.links -%}
+{%- assign data = include.data | default: config[id] -%}
+
+{%- assign title = data['title'] | default: id -%}
 {%- assign links = data['links'] -%}
 
-<div class="mb-3">
+<div id="sidebar_{{ id }}" class="mb-3">
 	<h4 class="fst-italic">{{ title }}</h4>
 	<ul class="list-unstyled">
   {% for link in links %}
