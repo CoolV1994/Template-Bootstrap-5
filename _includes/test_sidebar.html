@@ -1,7 +1,7 @@
-{%- assign id = include.id | default: 'default' -%}
-{%- assign config = include.config | default: site.data.sidebar -%}
-{%- assign modules  = include.modules | default: config[id] | default: page.sidebar[id] | default: layout.sidebar[id] -%}
-{%- assign class  = include.class | default: 'col-md-3' -%}
+{%- assign id = include.id | default: page.sidebar_id | default: layout.sidebar_id -%}
+{%- assign config = include.config | default: site.data[page.sidebar_cfg] | default: site.data[layout.sidebar_cfg] | default: site.data.sidebar -%}
+{%- assign modules = include.modules | default: config[id] | default: page.sidebar | default: layout.sidebar -%}
+{%- assign class = include.class | default: page.sidebar_class | default: layout.sidebar_class | default: 'col-md-3' -%}
 
 <div id="sidebar_{{ id }}" class="{{ class }}">
 	<div class="position-sticky" style="top: 2rem;">
