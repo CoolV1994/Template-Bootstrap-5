@@ -5,19 +5,21 @@
 
 <div id="sidebar_{{ id }}" class="{{ class }}">
 	<div class="position-sticky" style="top: 2rem;">
-    {% for module in modules %}
+{% for module in modules %}
+  {% for mod_data in module %}
 		{%- assign mod_template = module[0] -%}
 		{%- assign mod_data = module[1] -%}
 		{%- assign mod_title = mod_data[0] -%}
 		{%- assign mod_content = mod_data[1] -%}
 <pre>
 Module: {{ module }}
-Template: {{ module[0] }}
-Data: {{ module[1] }}
-Title: {{ module[1][0] }}
-Content: {{ module[1][1] }}
+Mod_Data: {{ mod_data }}
+Template: {{ mod_data[0] }}
+Data: {{ mod_data[1] }}
+Title: {{ mod_data[1][0] }}
+Content: {{ mod_data[1][1] }}
 </pre>
-
-    {% endfor %}
+  {% endfor %}
+{% endfor %}
 	</div>
 </div>
