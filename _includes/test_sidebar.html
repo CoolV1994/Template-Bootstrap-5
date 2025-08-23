@@ -1,48 +1,42 @@
----
+<!--
 sidebar:
-  about: custom:
-    title: About
-    text: >
-      This is a test module.
-  social: links:
-    title: Social
-    links:
-      Facebook: httls://facebook.com
-      Twitter: https://twitter.com
-  test: custom:
-    title: Test
-    text: >
-      This is a test module.
----
+  _class_:
+  default: 'col-md-3'
+  blog: ''
 
-{%- assign config = include.data | default: page.sidebar.data | default: layout.sidebar.data | default: '' -%}
+  blog:
+    about: custom:
+      title: About
+      content: >
+        This is a test module.
+    social: links:
+      title: Social
+      links:
+        Facebook: httls://facebook.com
+        Twitter: https://twitter.com
+    test: custom:
+      title: Test
+      type: html
+      content: >
+        <p><b>This is a test module.</b></p>
 
-{%- assign id = include.id | default: page.sidebar.id | default: layout.sidebar.id | default: 'sidebar' -%}
-{%- assign class = include.class | default: page.sidebar.class | default: layout.sidebar.class | default: 'col-md-3' -%}
-{%- assign modules  = include.modules | default: page.sidebar.modules | default: layout.sidebar.modules -%}
-{%- assign data  = include.data | default: page.sidebar.data | default: layout.sidebar.data | default: '' -%}
+{% include test_sidebar.html id='blog' %}
+-->
 
-<div id="{{ id }}" class="{{ class }}">
+
+{%- assign id = include.id | default: 'default' -%}
+{%- assign config = include.config | default: site.data.sidebar -%}
+{%- assign modules  = include.modules | default: config[id] | default: page.sidebar[id] | default: layout.sidebar[id] -%}
+{%- assign class  = include.class | default: config['_class_'][id] | default: page.sidebar['_class_'][id] | default: layout.sidebar['_class_'][id] | default: config['_class_']['default'] -%}
+
+<div id="sidebar-{{ id }}" class="{{ include.class | default: 'col-md-3' }}">
 	<div class="position-sticky" style="top: 2rem;">
 {% for module in modules %}
-{%- assign mod_id = module[0] -%}
-{%- assign mod_cfg = module[1] -%}
-{%- assign mod_template = mod_cfg[0] -%}
-{%- assign mod_data = mod_cfg[1] -%}
-{% include sidebar_{{ mod_template }}.html id=mod_id data=mod_data %}
+  {%- assign mod_id = module[0] -%}
+  {%- assign mod_cfg = module[1] -%}
+  {%- assign mod_template = mod_cfg[0] -%}
+  {%- assign mod_data = mod_cfg[1] -%}
+  {% include sidebar_{{ mod_template }}.html id=mod_id data=mod_data parent=id %}
 {% endfor %}
 	</div>
 </div>
-
-
-{% comment %}
-{%- assign id = include.id -%}
-{%- assign data = include.data -%}
-{%- assign title = data['title'] -%}
-{%- assign links = data['links'] -%}
-
-{% for link in links %}
-  {%- assign name = link[0] -%}
-  {%- assign url = link[1] -%}
-{% endfor %}
-{% endcomment %}
