@@ -1,8 +1,8 @@
-{%- assign id = include.id | default: 'sidebar_custom' -%}
-{%- assign config = include.config | default: site.data.sidebar_custom -%}
-{%- assign data = include.data | default: config[id] -%}
+{%- assign id = include.id | default: 'default' -%}
+{%- assign config = include.config | default: site.data.custom_text -%}
+{%- assign data = include.data | default: config[id] | default: config['default'] -%}
 
-<div id="sidebar_{{ id }}" class="p-4 mb-3 bg-body-tertiary rounded">
+<div id="sidebar_{{ include.parent }}_{{ id }}" class="p-4 mb-3 bg-body-tertiary rounded">
 	<h4 class="fst-italic">{{ data['title'] }}</h4>
 {% if data['type'] == 'html' %}
   {{ data['content'] }}
