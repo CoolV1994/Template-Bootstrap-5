@@ -1,22 +1,14 @@
-{%- assign id = include.id | default: 'sidebar_links' -%}
+{%- assign id = include.id | default: 'default' -%}
 {%- assign config = include.config | default: site.data.links -%}
-{%- assign data = include.data | default: config[id] -%}
+{%- assign data = include.data | default: config[id] | default: config['default'] -%}
 
-{%- assign title = data['title'] | default: id -%}
-{%- assign links = data['links'] -%}
-
-<div id="sidebar_{{ id }}" class="mb-3">
-	<h4 class="fst-italic">{{ title }}</h4>
+<div id="sidebar_{{ include.parent }}_{{ id }}" class="mb-3">
+	<h4 class="fst-italic">{{ data['title'] }}</h4>
 	<ul class="list-unstyled">
-  {% for link in links %}
-    {%- assign link_name = link[0] -%}
-    {%- assign link_url = link[1] -%}
-    {% unless link_url contains 'http' %}
-      {%- assign link_url = link_url | prepend: site.baseurl -%}
-    {% endunless %}
+    {% for link in data['links'] %}
 		<li>
-			<a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center link-body-emphasis" href="{{ link_url }}">{{ link_name }}</a>
+			<a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center link-body-emphasis" href="{% unless link[1] contains 'http' %}{{ site.baseurl }}{% endunless %}{{ link[1] }}">{{ link[0] }}</a>
 		</li>
-  {% endfor %}
+    {% endfor %}
 	</ul>
 </div>
