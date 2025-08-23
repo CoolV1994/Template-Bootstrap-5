@@ -2,18 +2,16 @@
 # Sample Config
 #
 # sidebar_id:
-#   module_id:
-#     module_template:
-#       Title: Content
+#   module_template:
+#     Title: Content
 #
 
 # Default Sidebar Modules
 default:
-  about:
-    text:
-      About Us: This is a sample sidebar text module.
-  social:
-    links:
-      Follow Us:
-        Facebook: https://facebook.com
-        Twitter: https://twitter.com
+- text:
+    About Us: >
+      This is a sample sidebar text module.
+- links:
+    Follow Us:
+      Facebook: https://facebook.com
+      Twitter: https://twitter.com
