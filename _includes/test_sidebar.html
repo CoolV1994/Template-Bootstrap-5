@@ -12,10 +12,10 @@
 		{%- assign mod_content = mod_data[1] -%}
 <pre>
 Module: {{ module }}
-Template: {{ mod_template }}
-Data: {{ mod_data }}
-Title: {{ mod_title }}
-Content: {{ mod_content }}
+Template: {{ module[0] }}
+Data: {{ module[1] }}
+Title: {{ module[1][0] }}
+Content: {{ module[1][1] }}
 </pre>
 
     {% endfor %}
