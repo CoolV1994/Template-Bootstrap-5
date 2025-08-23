@@ -1,0 +1,20 @@
+{%- assign id = include.id -%}
+{%- assign data = include.data -%}
+{%- assign title = data['title'] -%}
+{%- assign links = data['links'] -%}
+
+<div class="mb-3">
+	<h4 class="fst-italic">{{ title }}</h4>
+	<ul class="list-unstyled">
+  {% for link in links %}
+    {%- assign link_name = link[0] -%}
+    {%- assign link_url = link[1] -%}
+    {% unless link_url contains 'http' %}
+      {%- assign link_url = link_url | prepend: site.baseurl -%}
+    {% endunless %}
+		<li>
+			<a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center link-body-emphasis" href="{{ link_url }}">{{ link_name }}</a>
+		</li>
+  {% endfor %}
+	</ul>
+</div>
