@@ -1,0 +1,21 @@
+<div>
+{% for data in include.data %}
+  {%- assign title = data[0] -%}
+  {%- assign collection = data[1] -%}
+	<h4 class="fst-italic">{{ title }}</h4>
+	<ul class="list-unstyled">
+  {% for post in site[collection] limit:5 %}
+		<li>
+      <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="{{ post.url | prepend: site.baseurl }}">
+        {% if post.thumbnail %}<img height="96" width="96" src="{{ post.thumbnail }}" alt="Thumbnail">{% endif %}
+        <div class="col-lg-8">
+          <h6 class="mb-0">{{ post.title }}</h6>
+          <small class="text-body-secondary">{{ post.date | date: "%b %-d, %Y" }}</small>
+        </div>
+      </a>
+    </li>
+  {% endfor %}
+	</ul>
+{% endfor %}
+</div>
+    
