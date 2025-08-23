@@ -1,0 +1,35 @@
+---
+sidebar:
+  about: custom:
+    title: About
+    text: >
+      This is a test module.
+  social: links:
+    title: Social
+    links:
+      Facebook: httls://facebook.com
+      Twitter: https://twitter.com
+  test: custom:
+    title: Test
+    text: >
+      This is a test module.
+---
+
+{%- assign config = include.data | default: page.sidebar.data | default: layout.sidebar.data | default: '' -%}
+
+{%- assign id = include.id | default: page.sidebar.id | default: layout.sidebar.id | default: 'sidebar' -%}
+{%- assign class = include.class | default: page.sidebar.class | default: layout.sidebar.class | default: 'col-md-3' -%}
+{%- assign modules  = include.modules | default: page.sidebar.modules | default: layout.sidebar.modules -%}
+{%- assign data  = include.data | default: page.sidebar.data | default: layout.sidebar.data | default: '' -%}
+
+<div id="{{ id }}" class="{{ class }}">
+	<div class="position-sticky" style="top: 2rem;">
+{% for module in modules %}
+{%- assign mod_id = module[0] -%}
+{%- assign mod_cfg = module[1] -%}
+{%- assign mod_template = mod_cfg[0] -%}
+{%- assign mod_data = mod_cfg[1] -%}
+{% include sidebar_{{ mod_template }}.html id=mod_id data=mod_data %}
+{% endfor %}
+	</div>
+</div>
