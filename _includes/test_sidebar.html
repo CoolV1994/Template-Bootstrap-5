@@ -1,9 +1,5 @@
 <!--
 sidebar:
-  _class_:
-  default: 'col-md-3'
-  blog: ''
-
   blog:
     about: custom:
       title: About
@@ -27,9 +23,9 @@ sidebar:
 {%- assign id = include.id | default: 'default' -%}
 {%- assign config = include.config | default: site.data.sidebar -%}
 {%- assign modules  = include.modules | default: config[id] | default: page.sidebar[id] | default: layout.sidebar[id] -%}
-{%- assign class  = include.class | default: config['_class_'][id] | default: page.sidebar['_class_'][id] | default: layout.sidebar['_class_'][id] | default: config['_class_']['default'] -%}
+{%- assign class  = include.class | default: 'col-md-3' -%}
 
-<div id="sidebar-{{ id }}" class="{{ include.class | default: 'col-md-3' }}">
+<div id="sidebar-{{ id }}" class="{{ class }}">
 	<div class="position-sticky" style="top: 2rem;">
 {% for module in modules %}
   {%- assign mod_id = module[0] -%}
