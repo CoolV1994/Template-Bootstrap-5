@@ -1,38 +1,17 @@
-<!--
-sidebar:
-  blog:
-    about: custom:
-      title: About
-      content: >
-        This is a test module.
-    social: links:
-      title: Social
-      links:
-        Facebook: httls://facebook.com
-        Twitter: https://twitter.com
-    test: custom:
-      title: Test
-      type: html
-      content: >
-        <p><b>This is a test module.</b></p>
-
-{% include test_sidebar.html id='blog' %}
--->
-
-
 {%- assign id = include.id | default: 'default' -%}
 {%- assign config = include.config | default: site.data.sidebar -%}
 {%- assign modules  = include.modules | default: config[id] | default: page.sidebar[id] | default: layout.sidebar[id] -%}
 {%- assign class  = include.class | default: 'col-md-3' -%}
 
-<div id="sidebar-{{ id }}" class="{{ class }}">
+<div id="sidebar_{{ id }}" class="{{ class }}">
 	<div class="position-sticky" style="top: 2rem;">
-{% for module in modules %}
-  {%- assign mod_id = module[0] -%}
-  {%- assign mod_cfg = module[1] -%}
-  {%- assign mod_template = mod_cfg[0] -%}
-  {%- assign mod_data = mod_cfg[1] -%}
-  {% include sidebar_{{ mod_template }}.html id=mod_id data=mod_data parent=id %}
-{% endfor %}
+    {% for module in modules %}
+		{%- assign mod_id = module[0] -%}
+		{%- assign mod_cfg = module[1] -%}
+		{%- assign mod_template = mod_cfg[0] -%}
+		{%- assign mod_data = mod_cfg[1] -%}
+
+		{% include sidebar_{{ mod_template }}.html id=mod_id data=mod_data parent=id %}
+    {% endfor %}
 	</div>
 </div>
