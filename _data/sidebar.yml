@@ -66,10 +66,13 @@ Docs:
     collection: docs
 - posts:
     title: Featured Articles
-    show: recent
+    show: name
     collection: docs
     category: Featured
     limit: 5
+- navigation:
+    title: Information
+    data: Docs_Info
 
 
 Album:
@@ -102,7 +105,47 @@ News:
     limit: 5
 
 
-Shop:
-- navigation:
-    title: Navigation
+Author:
+- posts:
+    title: Recent Posts
+    show: recent
+    author: {{ page.author }}
+    limit: 5
+
+
+Shop_Left:
+- text:
+    content: >
+      ![Logo](shop_logo.png)
+      ## Shop
+- search:
+    title: Search
     collection: shop
+- navigation:
+    title: Categories
+    show: categories
+    collection: shop
+
+
+Shop_Right:
+- posts:
+    title: Featured Items
+    show: single
+    collection: shop
+    categories: Featured
+    limit: 3
+- posts:
+    title: Special Offer
+    show: single
+    collection: shop
+    categories: Sale
+    limit: 1
+- text:
+    title: Information
+    content: >
+      ### Open Hours:
+      Weekdays 9AM - 5PM
+      Weekends 10AM - 4PM
+
+      #### Phone
+      (555) 555-5555
