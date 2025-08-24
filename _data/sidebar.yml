@@ -1,9 +1,9 @@
 #
 # Sample Config
 #
-# sidebar_id:
-#   module_template:
-#     Title: Content
+# ID:
+# - Template:
+#     Key: Value
 #
 
 # Default Sidebar Modules
@@ -13,25 +13,27 @@ Default:
     content: >
       This is a sample sidebar text module.
 - posts:
-    title: Fratured Posts
-    show: recent
+    title: Featured Posts
+    show: list
     collection: posts
-    category: Fratured
+    category: Featured
     limit: 5
 - navigation:
     title: Social
     data: Social
 
 
-
 # Post Modules
 Post:
-- post_meta:
+- meta:
     title: Info
+- attachments:
+    title: Attachments
+    show: list
 - posts:
     title: Related Posts
-    show: related
-    collection: posts
+    show: list
+    collection: related
     limit: 5
 
 
@@ -39,78 +41,68 @@ Post:
 Article:
 - toc:
     title: Table Of Contents
-- post_meta:
+- meta:
     title: Info
+- posts:
+    title: Related Posts
+    show: list
+    collection: related
+    limit: 5
 
 
 # Blog Modules
 Blog:
 - posts:
     title: Recent Posts
-    show: recent
+    show: list
     collection: posts
     limit: 5
-- list:
+- index:
     title: Categories
     show: categories
     collection: posts
-- list:
+- index:
     title: Tags
     show: tags
     collection: posts
 
 
 Docs:
+- search:
+    title: Search
+    collection: docs
 - navigation:
-    title: Navigation
+    title: Articles
     collection: docs
-- posts:
-    title: Featured Articles
-    show: name
-    collection: docs
-    category: Featured
-    limit: 5
+    sort: name
 - navigation:
     title: Information
     data: Docs_Info
-
-
-Album:
-- posts:
-    title: Recent Posts
-    show: recent
-    collection: album
-    limit: 5
-- list:
+- index:
     title: Categories
     show: categories
     collection: album
-- list:
+- index:
     title: Tags
     show: tags
     collection: album
 
 
-News:
+Projects:
+- text:
+    title: Note
+    content: >
+      This is a sample note.
+- navigation:
+    title: Projects
+    collection: projects
+    sort: name
 - posts:
-    title: Featured News
-    show: recent
-    collection: news
+    title: Featured
+    show: preview
+    collection: projects
     category: Featured
-    limit: 5
-- posts:
-    title: Recent News
-    show: recent
-    collection: news
-    limit: 5
-
-
-Author:
-- posts:
-    title: Recent Posts
-    show: recent
-    author: {{ page.author }}
-    limit: 5
+    limit: 3
 
 
 Shop_Left:
@@ -130,13 +122,13 @@ Shop_Left:
 Shop_Right:
 - posts:
     title: Featured Items
-    show: single
+    show: preview
     collection: shop
     categories: Featured
     limit: 3
 - posts:
     title: Special Offer
-    show: single
+    show: preview
     collection: shop
     categories: Sale
     limit: 1
@@ -146,6 +138,5 @@ Shop_Right:
       ### Open Hours:
       Weekdays 9AM - 5PM
       Weekends 10AM - 4PM
-
       #### Phone
       (555) 555-5555
