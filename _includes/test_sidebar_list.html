@@ -9,38 +9,21 @@ sidebar:
 -->
 
 {%- assign entries = '' | split: ",' -%}
+{%- assign type = include.type -%}
+{%- assign collection = include.collection | default: 'posts' -%}
 
-
-{% for data in include.data $}
+{% for data in include.data %}
   {%- assign title = data[0] -%}
   {%- assign sources = data[1] -%}
 
-  {%- assign collection = source.collections | default: 'posts' -%}
-
-
   {% for source in sources %}
-    {%- assign collections = source[1] -%}
     {%- assign type = source[0] -%}
-    {% assign entries = entries | join: site[collection][type] -%}
-
-    {% for collection in collections %}
-      {%- assign entries = site[collection][type] -%}
-      {%- assign entries = site[collection] | where_exp: "post", "post[type] contains pi[type]" %}
-    {% endfor %}
-
+    {%- assign collection = source[1] -%}
+    {%- assign entries = entries | join: site[collection][type] -%}
   {% endfor %}
 
+  {%- assign id = type | append: '_' | append: collection -%}
 
+{% include index_list.html entries=entries id=id class="list-group mb-3 bg-body-tertiary" item_class="list-group-item d-flex justify-content-between" anchor_class="" %}
 
-  {%- assign collection = source.collection -%}
-  {%- assign categories = source.categories -%}
-  {%- assign tags = source.tags -%}
-  {%- assign authors = source.authors -%}
-
-
-  {% for post in site[collection] %}
-    {%- assign type = source[0] -%}
-    {%- assign collections = source[1] -%}
-    {% assign entries= site[collection] | where_exp: "page", "collections contains page[type]" %}
-
-    {% assign entries= site[collection] | where_exp: "page", "collections contains page[type]" %}
+{% endfor %}
