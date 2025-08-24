@@ -1,0 +1,10 @@
+{%- assign links = site.data.navigation[include.data.data] -%}
+
+<div class="mb-3">
+	<h4 class="fst-italic"include.data.title</h4>
+	<ul class="list-unstyled">
+{% for link in links %}
+		<li><a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center link-body-emphasis" href="{% unless link[1] contains 'http' %}{{ site.baseurl }}{% endunless %}{{ link[1] }}">{{ link[0] }}</a></li>
+{% endfor %}
+	</ul>
+</div>
