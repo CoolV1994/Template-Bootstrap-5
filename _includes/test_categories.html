@@ -1,12 +1,29 @@
-<div class="col-md-7 col-lg-8">
-{% for category in site[page.collection].categories %}
-	<article id="{{ category[0] }}" class="p-4 mb-3 rounded">
-		<h2 id="{{ category[0] }}-2" class="display-5 link-body-emphasis mb-1">
-				<span class="text-primary">{{ category[0] | capitalize }}</span>
+{%- assign group = include.group | default: '' -%}
+{%- assign collection = include.collection | default: 'posts' -%}
+{%- assign entries = include.entries | default: site[collection]['categories'] -%}
+
+{%- assign id = include.id | default: 'index' -%}
+
+{%- assign class = include.class | default: 'col-md-7 col-lg-8' -%}
+{%- assign article_class = include.article_class | default: 'p-4 mb-3 rounded' -%}
+{%- assign head_class = include.head_class | default: 'display-5 link-body-emphasis mb-1' -%}
+{%- assign title_class = include.title_class | default: 'text-primary' -%}
+{%- assign list_class = include.list_class | default: 'list-unstyled bg-body-tertiary' -%}
+{%- assign item_class = include.item_class | default: '' -%}
+{%- assign anchor_class = include.anchor_class | default: '' -%}
+
+
+<div id="{{ id }}" class="{{ class }}">
+{% for entry in entries %}
+	<article id="{{ entry[0] }}" class="{{ article_class }}">
+		<h2 id="{{ entry[0] }}-2" class="{{ head_class }}">
+			<span class="{{ title_class }}">{{ entry[0] | capitalize }}</span>
 		</h2>
-		<ul class="list-unstyled bg-body-tertiary">
-    {% for post in category[1] %}
-			<li><a href="{% unless link[1] contains 'http' %}{{ site.baseurl }}{% endunless %}{{ post.url }}">{{ post.title }}</a></li>
+		<ul class="{{ list_class }}">
+    {% for post in entry[1] %}
+			<li class="{{ item_class }}">
+				<a href="{% unless post.url contains 'http' %}{{ site.baseurl }}{% endunless %}{{ post.url }}" class="{{ anchor_class }}">{{ post.title }}</a>
+			</li>
     {% endfor %}
 		</ul>
 	</article>
