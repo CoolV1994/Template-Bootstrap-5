@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Sidebar Test
+title: Test Page
 sidebar:
 - text:
     title: About
@@ -23,12 +23,12 @@ sidebar:
 	<div id="content" class="col-md-8">
 		<article id="{{ page.id | replace: '/', '-' }}" class="blog-post">
 			<h3 class="pb-4 mb-4 fst-italic border-bottom">Sample Article</h3>
-      <p>
-        This is a sample article to use as a placeholder when testing changes.
-      </p>
+			<p>This is a sample article to use as a placeholder when testing changes.</p>
+<pre>
+{{ site.categories }}
+</pre>
 		</article>
-	</div><!-- /#posts -->
+	</div><!-- /#content -->
 
-
+	<!-- include sidebar.html id='' zz>
 </div>
-  
