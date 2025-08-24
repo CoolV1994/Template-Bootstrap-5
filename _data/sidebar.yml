@@ -7,22 +7,20 @@
 #
 
 # Default Sidebar Modules
-default:
+Default:
 - text:
     title: About
     content: >
       This is a sample sidebar text module.
-- text:
-    title: Social
-    content: >
-      [![Icon](icon_facebook.png) Facebook](https://facebook.com)
-      [![Icon](icon_twitter.png) Twitter](https://twitter.com)
-- navigation:
-    title: Navigation
-    collection: docs
+- posts:
+    title: Fratured Posts
+    show: recent
+    collection: posts
+    category: Fratured
+    limit: 5
 - navigation:
     title: Social
-    collection: docs
+    data: Social
 
 
 
@@ -66,6 +64,12 @@ Docs:
 - navigation:
     title: Navigation
     collection: docs
+- posts:
+    title: Featured Articles
+    show: recent
+    collection: docs
+    category: Featured
+    limit: 5
 
 
 Album:
@@ -84,11 +88,21 @@ Album:
     collection: album
 
 
-
 News:
+- posts:
+    title: Featured News
+    show: recent
+    collection: news
+    category: Featured
+    limit: 5
 - posts:
     title: Recent News
     show: recent
-    collection: posts
-    category: News
+    collection: news
     limit: 5
+
+
+Shop:
+- navigation:
+    title: Navigation
+    collection: shop
