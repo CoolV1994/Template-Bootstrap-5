@@ -1,8 +1,9 @@
 ---
 layout: sidebar
 title: Test Page
-sidebar_left:
-- doc_toc
+sidebar:
+  left:
+    - doc_toc
 ---
 
-{% include test_index.html id='cat' group='categories' %}
+{% include test_index.html entries=site.categories %}
