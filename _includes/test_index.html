@@ -1,8 +1,16 @@
 {%- assign group = include.group | default: '' -%}
 {%- assign collection = include.collection | default: 'posts' -%}
-{%- assign entries = include.entries | default: site[collection]['categories'] -%}
+{%- assign entries = include.entries | default: site[collection] -%}
 
-{%- assign id = include.id | default: 'index' -%}
+{% if group == 'categories' %}
+{%- assign entries = entries.categories -%}
+{% endif %}
+
+{% if group == 'tags' %}
+{%- assign entries = entries.tags -%}
+{% endif %}
+
+{%- assign id = include.id | default: group -%}
 
 {%- assign class = include.class | default: 'col-md-7 col-lg-8' -%}
 {%- assign article_class = include.article_class | default: 'p-4 mb-3 rounded' -%}
