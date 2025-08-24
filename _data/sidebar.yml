@@ -9,9 +9,86 @@
 # Default Sidebar Modules
 default:
 - text:
-    About Us: >
+    title: About
+    content: >
       This is a sample sidebar text module.
-- links:
-    Follow Us:
-      Facebook: https://facebook.com
-      Twitter: https://twitter.com
+- text:
+    title: Social
+    content: >
+      [![Icon](icon_facebook.png) Facebook](https://facebook.com)
+      [![Icon](icon_twitter.png) Twitter](https://twitter.com)
+- navigation:
+    title: Navigation
+    collection: docs
+- navigation:
+    title: Social
+    collection: docs
+
+
+
+# Post Modules
+Post:
+- post_meta:
+    title: Info
+- posts:
+    title: Related Posts
+    show: related
+    collection: posts
+    limit: 5
+
+
+# Article Modules
+Article:
+- toc:
+    title: Table Of Contents
+- post_meta:
+    title: Info
+
+
+# Blog Modules
+Blog:
+- posts:
+    title: Recent Posts
+    show: recent
+    collection: posts
+    limit: 5
+- list:
+    title: Categories
+    show: categories
+    collection: posts
+- list:
+    title: Tags
+    show: tags
+    collection: posts
+
+
+Docs:
+- navigation:
+    title: Navigation
+    collection: docs
+
+
+Album:
+- posts:
+    title: Recent Posts
+    show: recent
+    collection: album
+    limit: 5
+- list:
+    title: Categories
+    show: categories
+    collection: album
+- list:
+    title: Tags
+    show: tags
+    collection: album
+
+
+
+News:
+- posts:
+    title: Recent News
+    show: recent
+    collection: posts
+    category: News
+    limit: 5
