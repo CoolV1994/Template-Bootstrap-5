@@ -17,18 +17,24 @@ sidebar:
     data: Social
 ---
 
+{% capture posts %}
+{% include test_index.html id='cat' group='categories' %}
+{% endcapture %}
+
 <div id="page" class="row g-5">
   <h1 class="mb-1 pb-4 border-bottom">{{ page.title }}</h1>
 
-	<div id="content" class="col-md-8">
-		<article id="{{ page.id | replace: '/', '-' }}" class="blog-post">
-			<h3 class="pb-4 mb-4 fst-italic border-bottom">Sample Article</h3>
-			<p>This is a sample article to use as a placeholder when testing changes.</p>
-<pre>
-{{ site.categories }}
-</pre>
-		</article>
-	</div><!-- /#content -->
+<!-- Start Sidebar -->
+<div class="col-md-5 col-lg-4 order-md-last">
+  <h4 class="d-flex justify-content-between align-items-center mb-3">
+    <span class="text-primary">Table Of Contents</span>
+  </h4>
+{% include toc.html html=posts class="list-group mb-3 bg-body-tertiary" item_class="list-group-item d-flex justify-content-between" %}
+</div>
+<!-- End Sidebar -->
 
-	<!-- include sidebar.html id='' zz>
+<!-- Start Content -->
+{{ posts }}
+<!-- End Content -->
+
 </div>
