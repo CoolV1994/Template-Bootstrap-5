@@ -1,0 +1,14 @@
+{%- assign id = include.id | default: page.sidebar_id | default: layout.sidebar_id -%}
+{%- assign config = include.config | default: site.data[page.sidebar_cfg] | default: site.data[layout.sidebar_cfg] | default: site.data.sidebar -%}
+{%- assign modules = include.modules | default: config[id] | default: page.sidebar | default: layout.sidebar -%}
+{%- assign class = include.class | default: page.sidebar_class | default: layout.sidebar_class | default: 'col-md-3' -%}
+
+<div id="sidebar_{{ id }}" class="{{ class }}">
+	<div class="position-sticky" style="top: 2rem;">
+{% for module in modules %}
+{%- assign mod_template = module[0] -%}
+{%- assign mod_data = module[1] -%}
+{% include sidebar_mod_{{ mod_template }}.html data=mod_data %}
+{% endfor %}
+	</div>
+</div>
