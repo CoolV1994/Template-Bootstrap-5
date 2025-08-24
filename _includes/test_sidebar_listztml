@@ -1,0 +1,46 @@
+<!--
+sidebar:
+- list:
+  Categories:
+    collection: posts
+    categories: Featured
+    tags: News
+    authors: CoolV1994
+-->
+
+{%- assign entries = '' | split: ",' -%}
+
+
+{% for data in include.data $}
+  {%- assign title = data[0] -%}
+  {%- assign sources = data[1] -%}
+
+  {%- assign collection = source.collections | default: 'posts' -%}
+
+
+  {% for source in sources %}
+    {%- assign collections = source[1] -%}
+    {%- assign type = source[0] -%}
+    {% assign entries = entries | join: site[collection][type] -%}
+
+    {% for collection in collections %}
+      {%- assign entries = site[collection][type] -%}
+      {%- assign entries = site[collection] | where_exp: "post", "post[type] contains pi[type]" %}
+    {% endfor %}
+
+  {% endfor %}
+
+
+
+  {%- assign collection = source.collection -%}
+  {%- assign categories = source.categories -%}
+  {%- assign tags = source.tags -%}
+  {%- assign authors = source.authors -%}
+
+
+  {% for post in site[collection] %}
+    {%- assign type = source[0] -%}
+    {%- assign collections = source[1] -%}
+    {% assign entries= site[collection] | where_exp: "page", "collections contains page[type]" %}
+
+    {% assign entries= site[collection] | where_exp: "page", "collections contains page[type]" %}
