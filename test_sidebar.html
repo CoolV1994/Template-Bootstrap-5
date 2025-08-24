@@ -3,16 +3,18 @@ layout: default
 title: Sidebar Test
 sidebar:
 - text:
-    About Us: >
-      This is a test module.
-- links:
-    Follow Us:
-      Facebook: httls://facebook.com
-      Twitter: https://twitter.com
-- list:
-    Categories:
-      categories:
-        - posts
+    title: About
+    content: >
+      This is a sample sidebar text module.
+- posts:
+    title: Featured Posts
+    show: list
+    collection: posts
+    category: Featured
+    limit: 5
+- navigation:
+    title: Social
+    data: Social
 ---
 
 <div id="page" class="row g-5">
@@ -27,7 +29,6 @@ sidebar:
 		</article>
 	</div><!-- /#posts -->
 
-{% include test_sidebar.html id='blog' %}
 
 </div>
   
