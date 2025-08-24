@@ -1,0 +1,14 @@
+<div class="col-md-7 col-lg-8">
+{% for category in site[page.collection].categories %}
+	<article id="{{ category[0] }}" class="p-4 mb-3 rounded">
+		<h2 id="{{ category[0] }}-2" class="display-5 link-body-emphasis mb-1">
+				<span class="text-primary">{{ category[0] | capitalize }}</span>
+		</h2>
+		<ul class="list-unstyled bg-body-tertiary">
+    {% for post in category[1] %}
+			<li><a href="{% unless link[1] contains 'http' %}{{ site.baseurl }}{% endunless %}{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+		</ul>
+	</article>
+{% endfor %}
+</div>
