@@ -1,20 +1,26 @@
 ---
 layout: author
-title: Vinnie (CoolV1994)
-name: Vinnie
+
 author: CoolV1994
-avatar: 'https://0.gravatar.com/avatar/436b4893870d10a053990299616d8619c04448e5f3d800ca47e0d23419edf13b?size=256'
-date: 2025-07-01 00:00:00 -0400
+
+title: Vinnie (CoolV1994)
+
 info:
   - label: Birthday
     text: July 1st
   - label: Gender
     text: Male
+  - label: Work
+    text: Owner GawdTech
+
 contact:
-  - name: Website
-    url: '#'
-  - name: E-Mail
-    url: '#'
+  - label: Website
+    url: 'https:CoolV1994.github.io/'
+  - label: E-Mail
+    email: 'The.CoolV1994@gmail.com'
+  - label: Discord
+    user: CoolV1994
+
 ---
 
 #### About Me
