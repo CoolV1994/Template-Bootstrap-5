@@ -5,9 +5,11 @@ css:
   - '/assets/css/profile.css'
 ---
 
+{%- assign author = site.data.authors[page.author] -%}
+
 <div id="page" class="row g-5">
 	<div id="content" class="col-md-8">
-		<h3 class="pb-4 mb-4 fst-italic border-bottom">{{ page.title }}</h3>
+		<h3 class="pb-4 mb-4 fst-italic border-bottom">Author: {{ author.name }}</h3>
 		<div class="col col-9 d-flex flex-column align-items-start gap-2">
 
 			<div id="profile-tabs">
@@ -22,27 +24,51 @@ css:
 
 				<div class="tab-content" id="nav-tabContent">
 
-					<div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+					<div id="nav-home" class="tab-pane fade active show" role="tabpanel" aria-labelledby="nav-home-tab">
 {{ content }}
 					</div><!-- /#tab-home -->
 
-					<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+					<div id="nav-profile" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-profile-tab">
 						<h4 class="fst-italic">Profile</h4>
-{% for info in page.profile %}
-							<li>{{ info.label }}{{ info.text }}</a></li>
+{% for profile in page.profile %}
+	{% for info in profile %}
+							<p>
+								<label for="{{ info[0] }}"><u>{{ info[0] }}</u></label><br>
+								<span name="{{ info[0] }}">{{ info[1] }}</span>
+							</p>
+	{% endfor %}
 {% endfor %}
 					</div><!-- /#tab-profile -->
 
-					<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+					<div id="nav-contact" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-contact-tab">
 						<h4 class="fst-italic">Contact</h4>
 						<ul class="list-unstyled">
-{% for link in page.contact %}
-							<li><a href="{{ link.url }}">{{ link.name }}</a></li>
+{% for contact in page.contact %}
+	{% for link in contact %}
+		{%- assign label = link[0] %}
+		{%- assign username = link[1] %}
+		{%- assign url = link[1] %}
+
+		{% elsif label == "E-Mail" %}
+			{%- assign url = "mailto:" %}
+		{% elsif label == "Facebook" %}
+			{%- assign url = "https://facebook.com/" | append: username %}
+		{% elsif label == "Instagram" %}
+			{%- assign url = "https://instagram.com/" | append: username %}
+		{% elsif label == "X" %}
+			{%- assign url = "https://x.com/" | append: username %}
+		{% elsif label == "Discord" %}
+			{%- assign url = "discord:" | append: username %}
+		{% endif %}
+							<li>
+								<a href="#{{ baseURL }}{{ url }}">{{ label }}: {{ username }}</a>
+							</li>
+	{% endfor %}
 {% endfor %}
 						</ul>
 					</div><!-- /#tab-contact -->
 
-					<div class="tab-pane fade" id="nav-posts" role="tabpanel" aria-labelledby="nav-posts-tab">
+					<div id="nav-posts" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-posts-tab">
 						<h4 class="fst-italic">Posts</h4>
 						<ul class="list-unstyled">
 
@@ -69,10 +95,9 @@ css:
 		<div class="position-sticky" style="top: 2rem;">
 
 			<div class="p-4 mb-3 bg-body-tertiary rounded">
-				<h4 class="fst-italic">{{ page.name }}</h4>
+				<h4 class="fst-italic">{{ author.name }}</h4>
 				<img height="96" width="96" src="{{ page.avatar }}" alt="Avatar">
 				<p>Group: {{ author.group }}</p>
-				<p>Joined: {{ page.date }}</p>
 			</div><!-- /#sidebar-user -->
 
 			<div class="mb-3">
