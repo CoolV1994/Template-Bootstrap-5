@@ -5,15 +5,34 @@ title: Test Page
 
 <div id="page" class="row g-5">
 
+
+<div id="{{ id }}" class="{{ class }}">
+	<div class="position-sticky" style="top: 2rem;">
+
+<div class="mb-3">
+  <h4 class="d-flex justify-content-between align-items-center mb-3">
+    <span class="text-primary">Index</span>
+  </h4>
+{% include index_list.html entries=site.categories id="site_categories" class="list-group mb-3 bg-body-tertiary" item_class="list-group-item d-flex justify-content-between" anchor_class="" %}
+</div>
+
+
 <div class="mb-3">
   <h4 class="d-flex justify-content-between align-items-center mb-3">
     <span class="text-primary">Table Of Contents</span>
   </h4>
-{% include toc.html html=site.categories class="list-group mb-3 bg-body-tertiary" item_class="list-group-item d-flex justify-content-between" %}
+{% include toc.html html=site.categories id="index_categories" class="list-group mb-3 bg-body-tertiary" item_class="list-group-item d-flex justify-content-between" %}
 </div>
 
-<div id="content" class="col-md-8">
-{% include test_index.html entries=site.categories %}
+  </div>
 </div>
+
+
+
+
+<div id="content" class="col-md-8">
+{% include test_index.html entries=site.categories id="content_categories" %}
+</div>
+
 
 </div>
