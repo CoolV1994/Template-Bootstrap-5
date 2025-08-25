@@ -1,16 +1,19 @@
-default:
-  name: Default
-  group: user
-  avatar: images/author/default.png
+# Site Authors
+#
+# UserName:
+#   name: Display Name
+#   group: Group
+#   avatar: images/author/UserName.png
+#
+
 
 CoolV1994:
-    name: Vinnie
-    group: Owner
-    url: '/authors/CoolV1994.html'
-    avatar: 'https://0.gravatar.com/avatar/436b4893870d10a053990299616d8619c04448e5f3d800ca47e0d23419edf13b?size=256'
+  name: Vinnie
+  group: Owner
+  avatar: 'https://0.gravatar.com/avatar/436b4893870d10a053990299616d8619c04448e5f3d800ca47e0d23419edf13b?size=256'
+
 
 GawdTech:
-    name: GawdTech
-    group: Admin
-    url: '/authors/GawdTech.html'
-    avatar: 'https://coolv1994.github.io/Template-Bootstrap-5/images/GawdX-Gold-x512.png'
+  name: Gawd Tech
+  group: Admin
+  avatar: 'https://coolv1994.github.io/Template-Bootstrap-5/images/GawdX-Gold-x512.png'
