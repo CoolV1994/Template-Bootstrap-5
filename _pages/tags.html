@@ -1,0 +1,24 @@
+---
+layout: default
+title: Tags
+description: Tags Index
+---
+
+<div id="page" class="row g-5">
+
+	<div id="sidebar" class="">
+		<div class="position-sticky" style="top: 2rem;">
+			<div id="sidebar_toc" class="mb-3">
+				<h4 class="d-flex justify-content-between align-items-center mb-3">
+					<span class="text-primary">Tags</span>
+				</h4>
+{% include index_list.html entries=site.tags id='index_tags' class='list-group mb-3 bg-body-tertiary' item_class='list-group-item d-flex justify-content-between' anchor_class='' %}
+			</div><!-- /#sidebar_toc -->
+		</div>
+	</div><!-- /#sidebar -->
+
+	<div id="content" class="col-md-8">
+{% include test_index.html entries=site.tags id='content_tags' class='' item_class='' anchor_class='' %}
+	</div><!-- /#content -->
+
+</div><!-- /#page -->
