@@ -50,7 +50,7 @@ css:
 		{%- assign username = link[1] %}
 		{%- assign url = link[1] %}
 
-		{% elsif label == "E-Mail" %}
+		{% if label == "E-Mail" %}
 			{%- assign url = "mailto:" %}
 		{% elsif label == "Facebook" %}
 			{%- assign url = "https://facebook.com/" | append: username %}
