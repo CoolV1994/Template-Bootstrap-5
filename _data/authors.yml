@@ -1,3 +1,8 @@
+default:
+  name: Default
+  group: user
+  avatar: images/author/default.png
+
 CoolV1994:
     name: Vinnie
     group: Owner
