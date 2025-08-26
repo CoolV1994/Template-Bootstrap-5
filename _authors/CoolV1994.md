@@ -6,20 +6,22 @@ author: CoolV1994
 title: Vinnie (CoolV1994)
 
 info:
-  - label: Birthday
-    text: July 1st
-  - label: Gender
-    text: Male
-  - label: Work
-    text: Owner GawdTech
+- Birthday: July 1st
+- Gender: Male
+- Work: Owner GawdTech
 
 contact:
-  - label: Website
-    url: 'https:CoolV1994.github.io/'
-  - label: E-Mail
-    email: 'The.CoolV1994@gmail.com'
-  - label: Discord
-    user: CoolV1994
+- Website: https:CoolV1994.github.io/
+- E-Mail: The.CoolV1994@gmail.com
+- Discord: CoolV1994
+- Skype: CoolV1994
+- Facebook: CoolV1994
+- Instagram: CoolV1994
+- X: CoolV1994
+- YouTube: CoolV1994
+- Twitch: CoolV1994
+- GitHub: CoolV1994
+- GitLab: CoolV1994
 
 ---
 
