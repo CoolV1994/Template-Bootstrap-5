@@ -16,8 +16,8 @@ css:
 				<h6 class="fst-italic">{{ author.name }}</h6>
 				<img height="96" width="96" src="{{ author.avatar }}" alt="Avatar">
 				<br>
-			{% for item in author.info %}
-				{% for info in item %}
+				{% for item in author.info %}
+				    {% for info in item %}
 				    {%- assign label = info[0];
 				    {%- assign content = info[1];
 				<p>{{ label }}: {{ content }}</p>
@@ -28,7 +28,7 @@ css:
 			<div id="sidebar-info" class="mb-3">
 				<h4 class="fst-italic">Info</h4>
 				<ul class="list-unstyled">
-				{% for item in profile %}
+				{% for item author.info %}
 					{% for info in item %}
 					{%- assign label = info[0] -%}
 					{%- assign content = info[1] -%}
@@ -88,7 +88,7 @@ css:
 					<div id="nav-posts" class="tab-papne fade" role="tabpanel" aria-labelledby="nav-posts-tab">
 						<h4 class="fst-italic"{{ Contact }}" class.id÷
 						<ul class="list-unstyled">
-						{% for post in site.posts limit: 10 %}
+						{% for post in site.posts %}
 							{% if post.author contains page.author %}
 							<li>
 								<a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="{{ post.url | prepend: site.baseurl }}">
