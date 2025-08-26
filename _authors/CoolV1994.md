@@ -28,9 +28,6 @@ album:
 - Gawd Icon: /images/Gawd Icon.jpg
 - Gawd Icon: /images/Gawd Icon.jpg
 
-featured:
-  posts:
-    - /news/announcement/2025/07/17/Important-News
 
 ---
 
