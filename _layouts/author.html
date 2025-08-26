@@ -43,16 +43,33 @@ css:
 					</div><!-- /#tab-profile -->
 
 					<div id="nav-files" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-files-tab">
-						<h4 class="fst-italic">Files</h4>
-						<ul class="list-unstyled">
-						{% for file in site.static_files %}
-						    {% if file.path contains page.author %}
-							<li>
-								<a href="{{ file.path | append: site.baseurl }}">{{ file.path }}</a>
-							</li>
+						<h4 class="fst-italic">Album</h4>
+<div class="album py-5 bg-body-tertiary">
+		<div class="container">
+			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+						{% for item in page.album %}
+						    {% for file in item %}
+							    {%- assign name = file[0] -%}
+							    {%- assign path = file[1] -%}
+				<div class="col">
+					<div class="card shadow-sm">
+						<img src="{{ path | prepend: site.baseurl }}" alt="{{ name }}" width="100" height="100">
+						<div class="card-body">
+							<p class="card-text">{{ name }}</p>
+							<div class="d-flex justify-content-between align-items-center">
+								<!--<div class="btn-group">
+									<a href="{{ image.path | prepend: site.baseurl }}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+								</div>-->
+								<small class="text-body-secondary">{{ image.modified_time }}</small>
+							</div>
+						</div>
+					</div>
+				</div>
 							{% endif %}
 						{% endfor %}
-						</ul>
+		</div>
+	</div>
+</div>
 					</div><!-- /#tab-files -->
 
 					<div id="nav-posts" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-posts-tab">
