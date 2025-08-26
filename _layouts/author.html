@@ -18,8 +18,8 @@ css:
 				<br>
 				{% for item in author.info %}
 				    {% for info in item %}
-				    {%- assign label = info[0];
-				    {%- assign content = info[1];
+				    {%- assign label = info[0] %-}
+				    {%- assign content = info[1] -%}
 				<p>{{ label }}: {{ content }}</p>
 				{% endfor %}
 			{% endfor %}
@@ -32,7 +32,7 @@ css:
 					{% for info in item %}
 					{%- assign label = info[0] -%}
 					{%- assign content = info[1] -%}
-					<li>
+					<l!!i>
 						<label>{{ label }}</label>:
 						<span>{{ content }}</span>
 					</li>
