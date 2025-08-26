@@ -1,18 +1,15 @@
 ---
 layout: author
-
 author: CoolV1994
-
 title: Vinnie (CoolV1994)
 
-info:
-- Birthday: July 1st
-- Gender: Male
-- Work: Owner GawdTech
+email: The.CoolV1994@gmail.com
+
+websites:
+- CoolV1994: https://CoolV1994.github.io
+- GawdTech: https://GawdTech.github.io
 
 contact:
-- Website: https:CoolV1994.github.io/
-- E-Mail: The.CoolV1994@gmail.com
 - Discord: CoolV1994
 - Skype: CoolV1994
 - Facebook: CoolV1994
@@ -23,9 +20,14 @@ contact:
 - GitHub: CoolV1994
 - GitLab: CoolV1994
 
+profile:
+- Birthday: July 1st
+- Gender: Male
+- Work: Owner GawdTech
+
 ---
 
-#### About Me
+### About Me
 
 This is my about me profile bio.
 More content coming soon...
