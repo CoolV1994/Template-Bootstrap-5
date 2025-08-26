@@ -5,7 +5,6 @@ css:
   - '/assets/css/blog.css'
   - '/assets/css/profile.css'
 ---
-
 {%- assign author = site.data.authors[page.author] -%}
 
 <div id="page" class="row g-5">
@@ -33,9 +32,11 @@ css:
 						<h4 class="fst-italic">Profile</h4>
 {% for profile in page.profile %}
 	{% for info in profile %}
+		{%- assign label = info[0] %}
+		{%- assign content = info[1] %}
 							<p>
-								<label for="{{ info[0] }}"><u>{{ info[0] }}</u></label><br>
-								<span name="{{ info[0] }}">{{ info[1] }}</span>
+								<label><u>{{ label }}</u></label><br>
+								<span>{{ content }}</span>
 							</p>
 	{% endfor %}
 {% endfor %}
@@ -51,7 +52,7 @@ css:
 		{%- assign url = link[1] %}
 
 		{% if label == "E-Mail" %}
-			{%- assign url = "mailto:" %}
+			{%- assign url = "mailto:" | append: username %}
 		{% elsif label == "Facebook" %}
 			{%- assign url = "https://facebook.com/" | append: username %}
 		{% elsif label == "Instagram" %}
@@ -60,9 +61,12 @@ css:
 			{%- assign url = "https://x.com/" | append: username %}
 		{% elsif label == "Discord" %}
 			{%- assign url = "discord:" | append: username %}
+		{% elsif url contains "http" %}
+			{%- assign username = label %}
+			{%- assign label = "Website" %}
 		{% endif %}
 							<li>
-								<a href="#{{ baseURL }}{{ url }}">{{ label }}: {{ username }}</a>
+								<a href="{{ url }}">{{ label }}: {{ username }}</a>
 							</li>
 	{% endfor %}
 {% endfor %}
