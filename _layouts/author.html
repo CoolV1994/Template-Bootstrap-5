@@ -76,7 +76,8 @@ css:
 					<div id="nav-posts" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-posts-tab">
 						<h4 class="fst-italic">Posts</h4>
 						<ul class="list-unstyled">
-
+						{% for post in site.posts limit: 10 %}
+							{% if post.author contains page.author %}
 							<li>
 								<a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="{{ post.url | prepend: site.baseurl }}">
 									<img height="96" width="96" src="{{ post.thumbnail }}" alt="Thumbnail">
@@ -86,7 +87,8 @@ css:
 									</div>
 								</a>
 							</li>
-
+							{% endif %}
+						{% endfor %}
 						</ul>
 					</div><!-- /#tab-posts -->
 
@@ -99,20 +101,41 @@ css:
 	<div id="sidebar" class="col-md-4">
 		<div class="position-sticky" style="top: 2rem;">
 
-			<div class="p-4 mb-3 bg-body-tertiary rounded">
+			<div id="sidebar-user" class="p-4 mb-3 bg-body-tertiary rounded">
 				<h4 class="fst-italic">{{ author.name }}</h4>
-				<img height="96" width="96" src="{{ page.avatar }}" alt="Avatar">
+				<img height="96" width="96" src="{{ author.avatar }}" alt="Avatar">
 				<p>Group: {{ author.group }}</p>
 			</div><!-- /#sidebar-user -->
 
-			<div class="mb-3">
-				<h4 class="fst-italic">Stats</h4>
+			<div id="sidebar-contact" class="mb-3">
+				<h4 class="fst-italic">Contact</h4>
 				<ul class="list-unstyled">
-{% for stat in page.stats %}
-					<li>{{ stat.label }}{{ stat.text }}</li>
-{% endfor %}
+				{% for contact in page.contact %}
+					{% for link in contact %}
+					    {%- assign label = link[0] %}
+					    {%- assign username = link[1] %}
+					    {%- assign url = link[1] %}
+					{% if label == "E-Mail" %}
+					    {%- assign url = "mailto:" | append: username %}
+					{% elsif label == "Facebook" %}
+					    {%- assign url = "https://facebook.com/" | append: username %}
+					{% elsif label == "Instagram" %}
+					    {%- assign url = "https://instagram.com/" | append: username %}
+					{% elsif label == "X" %}
+					    {%- assign url = "https://x.com/" | append: username %}
+					{% elsif label == "Discord" %}
+					    {%- assign url = "discord:" | append: username %}
+					{% elsif url contains "http" %}
+					    {%- assign username = label %}
+					    {%- assign label = "Website" %}
+					{% endif %}
+					<li>
+						<a href="{{ url }}">{{ label }}: {{ username }}</a>
+					</li>
+					{% endfor %}
+				{% endfor %}
 				</ul>
-			</div><!-- /#sidebar-stats -->
+			</div><!-- /#sidebar-contact -->
 
 		</div>
 	</div><!-- /#sidebar -->
