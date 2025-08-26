@@ -2,7 +2,6 @@
 layout: default
 title: Author
 css:
-  - '/assets/css/blog.css'
   - '/assets/css/profile.css'
 ---
 {%- assign author = site.data.authors[page.author] -%}
@@ -65,7 +64,7 @@ css:
 						</div>
 					</div>
 				</div>
-							{% endif %}
+							{% endfor %}
 						{% endfor %}
 		</div>
 	</div>
