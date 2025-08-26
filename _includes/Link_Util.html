@@ -1,0 +1,20 @@
+{%- assign label = include.data[0] | default: include.label %}
+{%- assign link = include.data[1] | include.link %}
+{%- assign platforms = site.data.platforms %}
+
+{% if link contains "@" %}
+    {%- assign linkText = "E-Mail: " | append: label -%}
+    {%- assign linkURL = "mailto:" | append: link -%}
+{% endif %}
+
+{% if link contains "http" %}
+    {%- assign limkText = "Website: " | append: label -%}
+    {%- assign limkURL = link -%}
+{% endif %}
+
+{% if platforms[label] %}
+    {%- assign linkText = label | append: ": " -| append: link -%}
+    {%- assign linkURL = platforms[label] | append: link -%}
+{% endif %}
+
+<a id="" class="" href="{{ linkURL }}">linkText</a>
