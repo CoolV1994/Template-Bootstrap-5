@@ -2,18 +2,21 @@
 #
 # UserName:
 #   name: Display Name
-#   group: Group
+#   title: Staff
 #   avatar: images/author/UserName.png
+#   description: Author Bio
+#   contact:
+#   - E-Mail: user@mail.com
+#   - Website: https://site.com
+#   - Platform: Username
 #
 
 
 CoolV1994:
   name: Vinnie
-  group: Owner
+  title: Owner
   avatar: 'https://0.gravatar.com/avatar/436b4893870d10a053990299616d8619c04448e5f3d800ca47e0d23419edf13b?size=256'
   description: GawdTech Owner
-  info:
-  - Label: Text
   contact:
   - Website: https://CoolV1994.github.io
   - E-Mail: The.CoolV1994@gmail.com
@@ -21,11 +24,9 @@ CoolV1994:
 
 GawdTech:
   name: Gawd Tech
-  group: Admin
+  title: Staff
   avatar: 'https://coolv1994.github.io/Template-Bootstrap-5/images/GawdX-Gold-x512.png'
-  description: Default Author
-  info:
-    - Label: Text
+  description: Default Staff Author
   contact:
   - Website: https://GawdTech.github.io
   - E-Mail: GawdTechInc@gmail.com
