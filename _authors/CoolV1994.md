@@ -23,7 +23,10 @@ profile:
 - Work: Owner GawdTech
 
 album:
-- Gawd Icon: images/Gawd Icon.jpg
+- Gawd Icon: /images/Gawd Icon.jpg
+- Gawd Icon: /images/Gawd Icon.jpg
+- Gawd Icon: /images/Gawd Icon.jpg
+- Gawd Icon: /images/Gawd Icon.jpg
 
 ---
 
