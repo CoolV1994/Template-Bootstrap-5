@@ -7,6 +7,44 @@ css:
 {%- assign author = site.data.authors[page.author] -%}
 
 <div id="page" class="row g-5">
+
+	<div id="sidebar" class="col-md-4">
+		<div class="position-sticky" style="top: 2rem;">
+
+			<div id="sidebar-user" class="p-4 mb-3 bg-body-tertiary rounded">
+				<h4 class="fst-italic">{{ page.author }}</h4>
+				<h6 class="fst-italic">{{ author.name }}</h6>
+				<img height="96" width="96" src="{{ author.avatar }}" alt="Avatar">
+				<br>
+			{% for item in author.info %}
+				{% for info in item %}
+				    {%- assign label = info[0];
+				    {%- assign content = info[1];
+				<p>{{ label }}: {{ content }}</p>
+				{% endfor %}
+			{% endfor %}
+			</div><!-- /#sidebar-user -->
+
+			<div id="sidebar-info" class="mb-3">
+				<h4 class="fst-italic">Info</h4>
+				<ul class="list-unstyled">
+				{% for item in profile %}
+					{% for info in item %}
+					{%- assign label = info[0] -%}
+					{%- assign content = info[1] -%}
+					<li>
+						<label>{{ label }}</label>:
+						<span>{{ content }}</span>
+					</li>
+					{% endfor %}
+				{% endfor %}
+				</ul>
+			</div><!-- /#sidebar-contact -->
+
+		</div>
+	</div><!-- /#sidebar -->
+
+
 	<div id="content" class="col-md-8">
 		<h3 class="pb-4 mb-4 fst-italic border-bottom">Author: {{ author.name }}</h3>
 		<div class="col col-9 d-flex flex-column align-items-start gap-2">
@@ -14,77 +52,57 @@ css:
 			<div id="profile-tabs">
 				<nav>
 					<div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
-						<button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
-						<button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Featured</button>
-						<button class="nav-link" id="nav-album-tab" data-bs-toggle="tab" data-bs-target="#nav-album" type="button" role="tab" aria-controls="nav-album" aria-selected="false">Album</button>
+						<button class="nav-link active" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="true">Profile</button>
+						<button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</button>
 						<button class="nav-link" id="nav-posts-tab" data-bs-toggle="tab" data-bs-target="#nav-posts" type="button" role="tab" aria-controls="nav-posts" aria-selected="false">Posts</button>
 					</div>
 				</nav>
 
 				<div class="tab-content" id="nav-tabContent">
 
-					<div id="nav-home" class="tab-pane fade active show" role="tabpanel" aria-labelledby="nav-home-tab">
+					<div id="nav-profile" class="tab-pane fade active show" role="tabpanel" aria-labelledby="nav-profile-tab">
+						<h4 class="fst-italic">Profile</h4>
 {{ content }}
-					</div><!-- /#tab-home -->
+					</div><!-- /#tab-profile -->
 
-					<div id="nav-profile" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-profile-tab">
-						<h4 class="fst-italic">Featured Posts</h4>
-						<ul class="list-unstyled">
-						{% for collection in page.featured %}
-							{%- assign collection_id = collection -%}
-							{%- assign featured_ids = collection -%}
-							{% for post in site[collection_id] %}
-						        {% if collection_ids contains post.id %}
+					<div id="nav-contact" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-contact-tab">
+						<h4 class="fst-italic">Contact</h4>
+<div class="album py-5 bg-body-tertiary">
+		<div class="container">
+			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+						{% for contact in author.contact %}
+						    {% for link in contact %}
+							    {%- assign label = link[0] -%}
+							    {%- assign username = link[1] -%}
+							<ul class="list-unstyled">
+						{% for list in author.contacts %}
+								{% for link in list %}
+								{%- assign label = link[0] -%}
+								{%- assign url = link[1] -%A}
 							<li>
-								<a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="{{ post.url | prepend: site.baseurl }}">
+								<a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="{{ url | prepend: site.baseurl }}">
 									<!--{% if post.thumbnail %}
 									<img height="50" width="50" src="{{ post.thumbnail }}" alt="Thumbnail">
 									{% endif %}-->
 									<div class="col-lg-8">
-										<h6 class="mb-0">{{ post.title }}</h6>
+										<h6 class="mb-0">{{ label }}</h6>
 										<small class="text-body-secondary">{{ post.date | date: "%b %-d, %Y" }}</small>
 										<p>{{ post.excerpt }}</p>
 									</div>
 								</a>
 							</li>
-						        {% endif %}
-						    {% endfor %}
+							{% endif %}
 						{% endfor %}
 						</ul>
-					</div><!-- /#tab-profile -->
-
-					<div id="nav-album" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-album-tab">
-						<h4 class="fst-italic">Album</h4>
-<div class="album py-5 bg-body-tertiary">
-		<div class="container">
-			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-						{% for item in page.album %}
-						    {% for file in item %}
-							    {%- assign name = file[0] -%}
-							    {%- assign path = file[1] -%}
-				<div class="col">
-					<div class="card shadow-sm">
-						<img src="{{ path | prepend: site.baseurl }}" alt="{{ name }}" width="100" height="100">
-						<div class="card-body">
-							<p class="card-text"><a href="{{ path | prepend: site.baseurl }}">{{ name }}</a></p>
-							<div class="d-flex justify-content-between align-items-center">
-								<!--<div class="btn-group">
-									<a href="{{ path | prepend: site.baseurl }}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
-								</div>-->
-								<small class="text-body-secondary">{{ image.modified_time }}</small>
-							</div>
-						</div>
-					</div>
-				</div>
 							{% endfor %}
 						{% endfor %}
 		</div>
 	</div>
 </div>
-					</div><!-- /#tab-album -->
+					</div><!-- /#tab-contact -->
 
-					<div id="nav-posts" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-posts-tab">
-						<h4 class="fst-italic">Posts</h4>
+					<div id="nav-posts" class="tab-papne fade" role="tabpanel" aria-labelledby="nav-posts-tab">
+						<h4 class="fst-italic"{{ Contact }}" class.id÷
 						<ul class="list-unstyled">
 						{% for post in site.posts limit: 10 %}
 							{% if post.author contains page.author %}
@@ -111,47 +129,5 @@ css:
 		</div>
 	</div><!-- /#content -->
 
-	<div id="sidebar" class="col-md-4">
-		<div class="position-sticky" style="top: 2rem;">
-
-			<div id="sidebar-user" class="p-4 mb-3 bg-body-tertiary rounded">
-				<h4 class="fst-italic">{{ page.author }}</h4>
-				<h6 class="fst-italic">{{ author.name }}</h6>
-				<img height="96" width="96" src="{{ author.avatar }}" alt="Avatar">
-				<p>Group: {{ author.group }}</p>
-			</div><!-- /#sidebar-user -->
-
-			<div id="sidebar-contact" class="mb-3">
-				<h4 class="fst-italic">Contact</h4>
-				<ul class="list-unstyled">
-				{% for contact in page.contact %}
-					{% for link in contact %}
-					    {%- assign label = link[0] %}
-					    {%- assign username = link[1] %}
-					    {%- assign url = link[1] %}
-					{% if label == "E-Mail" %}
-					    {%- assign url = "mailto:" | append: username %}
-					{% elsif label == "Facebook" %}
-					    {%- assign url = "https://facebook.com/" | append: username %}
-					{% elsif label == "Instagram" %}
-					    {%- assign url = "https://instagram.com/" | append: username %}
-					{% elsif label == "X" %}
-					    {%- assign url = "https://x.com/" | append: username %}
-					{% elsif label == "Discord" %}
-					    {%- assign url = "discord:" | append: username %}
-					{% elsif url contains "http" %}
-					    {%- assign username = label %}
-					    {%- assign label = "Website" %}
-					{% endif %}
-					<li>
-						<a href="{{ url }}">{{ label }}: {{ username }}</a>
-					</li>
-					{% endfor %}
-				{% endfor %}
-				</ul>
-			</div><!-- /#sidebar-contact -->
-
-		</div>
-	</div><!-- /#sidebar -->
 
 </div><!-- /#page -->
