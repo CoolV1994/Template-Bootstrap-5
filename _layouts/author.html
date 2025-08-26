@@ -16,13 +16,7 @@ css:
 				<h6 class="fst-italic">{{ author.name }}</h6>
 				<img height="96" width="96" src="{{ author.avatar }}" alt="Avatar">
 				<br>
-				{% for item in author.info %}
-				    {% for info in item %}
-				    {%- assign label = info[0] %-}
-				    {%- assign content = info[1] -%}
-				<p>{{ label }}: {{ content }}</p>
-				{% endfor %}
-			{% endfor %}
+				<p>{{ author.description }}</p>
 			</div><!-- /#sidebar-user -->
 
 			<div id="sidebar-info" class="mb-3">
@@ -32,7 +26,7 @@ css:
 					{% for info in item %}
 					{%- assign label = info[0] -%}
 					{%- assign content = info[1] -%}
-					<l!!i>
+					<li>
 						<label>{{ label }}</label>:
 						<span>{{ content }}</span>
 					</li>
