@@ -22,6 +22,9 @@ profile:
 - Gender: Male
 - Work: Owner GawdTech
 
+album:
+- Gawd Icon: images/Gawd Icon.jpg
+
 ---
 
 ### About Me
