@@ -31,8 +31,8 @@ css:
 						<h4 class="fst-italic">Featured Posts</h4>
 						<ul class="list-unstyled">
 						{% for collection in page.featured %}
-							{%- assign collection_id = collection[0] -%}
-							{%- assign featured_ids = collection[1] -%}
+							{%- assign collection_id = collection -%}
+							{%- assign featured_ids = collection -%}
 							{% for post in site[collection_id] %}
 						        {% if collection_ids contains post.id %}
 							<li>
