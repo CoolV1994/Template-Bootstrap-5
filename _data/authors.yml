@@ -11,9 +11,14 @@ CoolV1994:
   name: Vinnie
   group: Owner
   avatar: 'https://0.gravatar.com/avatar/436b4893870d10a053990299616d8619c04448e5f3d800ca47e0d23419edf13b?size=256'
-
+  info:
+    - Label: Text
+  contact:
+    - Website: https://GawdTech.github.io 
 
 GawdTech:
   name: Gawd Tech
   group: Admin
   avatar: 'https://coolv1994.github.io/Template-Bootstrap-5/images/GawdX-Gold-x512.png'
+  info:
+    - Label: Text
