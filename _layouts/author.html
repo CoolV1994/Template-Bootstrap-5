@@ -71,16 +71,12 @@ css:
 							{% for list in author.contacts %}
 								{% for link in list %}
 								    {%- assign label = link[0] -%}
-								    {%- assign url = link[1] -%A}
+								    {%- assign url = link[1] -%}
 								<li>
 									<a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="{{ url | prepend: site.baseurl }}">
-									{% if post.thumbnail %}
-									<!--<img height="50" width="50" src="{{ post.thumbnail }}" alt="Thumbnail">-->
-									{% endif %}
 										<div class="col-lg-8">
 											<h6 class="mb-0">{{ label }}</h6>
-											<small class="text-body-secondary">{{ post.date | date: "%b %-d, %Y" }}</small>
-											<p>{{ post.excerpt }}</p>
+											<small class="text-body-secondary">{{ url }}</small>
 										</div>
 									</a>
 								</li>
