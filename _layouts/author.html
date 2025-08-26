@@ -2,7 +2,7 @@
 layout: default
 title: Author
 css:
-  - '/assets/css/profile.css'
+  - /assets/css/profile.css
 ---
 {%- assign author = site.data.authors[page.author] -%}
 
@@ -15,7 +15,7 @@ css:
 				<nav>
 					<div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
 						<button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
-						<button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
+						<button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Featured</button>
 						<button class="nav-link" id="nav-album-tab" data-bs-toggle="tab" data-bs-target="#nav-album" type="button" role="tab" aria-controls="nav-album" aria-selected="false">Album</button>
 						<button class="nav-link" id="nav-posts-tab" data-bs-toggle="tab" data-bs-target="#nav-posts" type="button" role="tab" aria-controls="nav-posts" aria-selected="false">Posts</button>
 					</div>
@@ -28,17 +28,29 @@ css:
 					</div><!-- /#tab-home -->
 
 					<div id="nav-profile" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-profile-tab">
-						<h4 class="fst-italic">Profile</h4>
-						{% for profile in page.profile %}
-						    {% for info in profile %}
-						        {%- assign label = info[0] %}
-						        {%- assign content = info[1] %}
-							<p>
-								<label><u>{{ label }}</u></label><br>
-								<span>{{ content }}</span>
-							</p>
+						<h4 class="fst-italic">Featured Posts</h4>
+						<ul class="list-unstyled">
+						{% for collection in page.featured %}
+							{%- assign collection_id = collection[0] -%}
+							{%- assign featured_ids = collection[1] -%}
+							{% for post in site[collection_id] %}
+						        {% if collection_ids contains post.id %}
+							<li>
+								<a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="{{ post.url | prepend: site.baseurl }}">
+									<!--{% if post.thumbnail %}
+									<img height="50" width="50" src="{{ post.thumbnail }}" alt="Thumbnail">
+									{% endif %}-->
+									<div class="col-lg-8">
+										<h6 class="mb-0">{{ post.title }}</h6>
+										<small class="text-body-secondary">{{ post.date | date: "%b %-d, %Y" }}</small>
+										<p>{{ post.excerpt }}</p>
+									</div>
+								</a>
+							</li>
+						        {% endif %}
 						    {% endfor %}
 						{% endfor %}
+						</ul>
 					</div><!-- /#tab-profile -->
 
 					<div id="nav-album" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-album-tab">
