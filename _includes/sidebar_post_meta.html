@@ -1,16 +1,20 @@
+{%- assign baseURL = site.baseurl -%}
+{% unless collection == "posts" %}
+    {%- assign baseURL = baseurl | prepend: collection -%}
+{% endunless %}
 <div class="p-4 mb-3 bg-body-tertiary rounded">
 	<h4 class="fst-italic">Posted</h4>
 	<p class="mb-0">{{ page.date | date: "%b %-d, %Y" }}</p>
 {% if page.author %}
 {%- assign author = site.data.authors[page.author] -%}
 	<h4 class="fst-italic">Author</h4>
-	<p class="mb-0"><a href="{{ page.author | prepend: "/authors/" | prepend: site.baseurl }}">{{ author.name }}</a></p>
+	<p class="mb-0"><a href="{{ baseURL }}/authors/{{ page.author }}">{{ author.name }}</a></p>
 {% endif %}
 {% if page.categories %}
 	<h4 class="fst-italic">Categories</h4>
 	<ul class="d-flex">
 	{% for category in page.categories %}
-		<li><a href="{{ category | prepend: '/categories.html#' | prepend: site.baseurl }}">{{ category }}</a></li>
+		<li><a href="{{ baseURL }}/categories.html#{{ category }}">{{ category }}</a></li>
 	{% endfor %}
 	</ul>
 {% endif %}
@@ -18,7 +22,7 @@
 	<h4 class="fst-italic">Tags</h4>
 	<ul class="d-flex">
 	{% for tag in page.tags %}
-		<li><a href="{{ tag | prepend: '/tags.html#' | prepend: site.baseurl }}">{{ tag }}</a></li>
+		<li><a href="{{ baseURL }}/tags.html#{{ category }}">{{ tag }}</a></li>
 	{% endfor %}
 	</ul>
 {% endif %}
