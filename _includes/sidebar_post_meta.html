@@ -1,6 +1,6 @@
 {%- assign baseURL = site.baseurl -%}
 {% unless collection == "posts" %}
-    {%- assign baseURL = baseurl | prepend: collection -%}
+    {%- assign baseURL = baseURL | append: "/" | append: collection -%}
 {% endunless %}
 <div class="p-4 mb-3 bg-body-tertiary rounded">
 	<h4 class="fst-italic">Posted</h4>
