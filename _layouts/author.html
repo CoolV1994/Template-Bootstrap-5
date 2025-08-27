@@ -8,6 +8,8 @@ css:
 
 <div id="page" class="row g-5">
 
+	<h3 class="pb-4 mb-4 fst-italic border-bottom">Author Profile</h3>
+
 	<div id="sidebar" class="col-md-4">
 		<div class="position-sticky" style="top: 2rem;">
 
@@ -17,17 +19,15 @@ css:
 				<img height="96" width="96" src="{{ author.avatar }}" alt="Avatar">
 				<br>
 				<p>{{ author.title }}</p>
+				<br>
 				<p>{{ author.description }}</p>
 			</div><!-- /#sidebar-user -->
 
 		</div>
 	</div><!-- /#sidebar -->
 
-
 	<div id="content" class="col-md-8">
-		<h3 class="pb-4 mb-4 fst-italic border-bottom">Author: {{ author.name }}</h3>
 		<div class="col col-8 d-flex flex-column align-items-start gap-2">
-
 			<div id="profile-tabs">
 				<nav>
 					<div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
@@ -89,6 +89,5 @@ css:
 
 		</div>
 	</div><!-- /#content -->
-
 
 </div><!-- /#page -->
