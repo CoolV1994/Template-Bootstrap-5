@@ -4,7 +4,7 @@
 {% if page.author %}
 	<h4 class="fst-italic">Author</h4>
 {% assign author = site.data.authors[page.author] %}
-	<p class="mb-0"><a href="{{ author.url | prepend: site.baseurl }}">{{ author.name }}</a></p>
+	<p class="mb-0"><a href="{{ page.author | prepend: "/authors/" | prepend: site.baseurl }}">{{ author.name }}</a></p>
 {% endif %}
 {% if page.categories %}
 	<h4 class="fst-italic">Categories</h4>
