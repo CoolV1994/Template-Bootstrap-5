@@ -66,7 +66,7 @@ test:
 
 {% assign table = page.table %}
 
-{% assign first_row = table | keys | first %}
+{% assign first_row = table | keys | first | first %}
 {% assign first_column = table[first_row] | keys | first %}
 
 {% assign last_row = table | keys | last %}
@@ -116,5 +116,54 @@ Row Head: {{ row_head }}
       </tr>
     {% endfor %}
     </tbody>
+  </table>
+</div>
+
+
+{% assign table = page.test %}
+
+<div class="table-responsive">
+  <table class="table text-center">
+  {% if table.head %}
+    <thead>
+    {% for row in table.head %}
+      <tr>
+      {% if row[0] %}
+        <th>{{ row[0] }}</th>
+      {% endif %}
+      {% for column in row[1] %}
+        <th>{{ column }}</th>
+      {% endfor %}
+      </tr>
+    {% endfor %}
+    </thead>
+  {% endif %}
+  {% if table.body %}
+    <tbody>
+    {% for row in table.body %}
+      <tr>
+      {% if row[0] %}
+        <th scope="row" class="text-start">{{ row[0] }}</th>
+      {% endif %}
+      {% for column in row[1] %}
+        <td>{{ column }}</td>
+      {% endfor %}
+      </tr>
+    {% endfor %}
+    </tbody>
+  {% endif %}
+  {% if table.foot %}
+    <tfoot>
+    {% for row in table.foot %}
+      <tr>
+      {% if row[0] %}
+        <th>{{ row[0] }}</th>
+      {% endif %}
+      {% for column in row[1] %}
+        <th>{{ column }}</th>
+      {% endfor %}
+      </tr>
+    {% endfor %}
+    </tfoot>
   </table>
 </div>
