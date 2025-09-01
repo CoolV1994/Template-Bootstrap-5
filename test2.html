@@ -39,7 +39,7 @@ test:
 #   - Cell Data
 #   - Cell Data
   head:
-  - ╔:
+  - '╔':
     - A
     - B
     - C
@@ -57,20 +57,24 @@ test:
     - B3
     - C3
   foot:
-  - ╚:
-    - ═
-    - ═
-    - ═
+  - '╚':
+    - '═'
+    - '═'
+    - '═'
 
 ---
 
 {% assign table = page.table %}
 
-{% assign first_row = table | keys | first | first %}
-{% assign first_column = table[first_row] | keys | first %}
+{% assign keys_rows = table | keys | first %}
 
-{% assign last_row = table | keys | last | last %}
-{% assign last_column = table[first_row] | keys | last %}
+{% assign first_row = keys_rows | first %}
+{% assign last_row = keys_rows | last %}
+
+{% assign keys_columnss = table[first_row] | keys | first %}
+
+{% assign first_column = keys_columnss | first %}
+{% assign last_column = keys_columnss | last %}
 
 
 {% assign row_head = false %}
