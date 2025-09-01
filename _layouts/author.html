@@ -25,19 +25,19 @@ css:
 			{% for item in author.info %}
 				{% for info in item %}
 					{%- assign label = info[0] -%}
-					{%- assign content = info[1] -%}
+					{%- assign text = info[1] -%}
 					<li>
 						<a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="{{ url | prepend: site.baseurl }}">
 							<div class="col-lg-8">
 								<h6 class="mb-0">{{ label }}</h6>
-							{% if content | first %}
+							{% if text.size %}
 								<ul>
-								{% for listItem in content %}
+								{% for listItem in text %}
 									<li>{{ listItem }}</li>
 								{% endfor %}
 								</ul>
 							{% else %}
-								<small class="text-body-secondary">{{ content }}</small>
+								<small class="text-body-secondary">{{ text }}</small>
 							{% endif %}
 							</div>
 						</a>
@@ -52,9 +52,9 @@ css:
 
 	<div id="content" class="col-md-8">
 		<h3 class="pb-4 mb-4 border-bottom">{{ author.name }}</h3>
-		<div class="col col-8 d-flex flex-column align-items-start gap-2">
+		<div class="col col-12 d-flex flex-column align-items-start gap-2">
 
-			<div id="profile-tabs">
+			<div id="profile-tabs" class="col col-12">
 				<nav>
 					<div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
 						<button class="nav-link active" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="true">Profile</button>
