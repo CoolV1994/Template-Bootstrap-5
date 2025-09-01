@@ -90,7 +90,7 @@ test:
 {% assign keys_rows = table | keys %}
 
 {% assign first_row = keys_rows | first | first %}
-{% assign last_row = keys_rows | first %}
+{% assign last_row = keys_rows | last %}
 
 {% assign keys_columns = table[first_row] | keys %}
 
@@ -148,6 +148,8 @@ Row Head: {{ row_head }}
 </div>
 
 
+<br><br><hr><br><br>
+
 {% assign table = page.test %}
 
 <div class="table-responsive">
@@ -155,7 +157,7 @@ Row Head: {{ row_head }}
     <thead>
     {% for row in table.head %}
       <tr>
-      {% if row[0] %}
+      {% if row.first == nil and row.size == nil %}
         <th>{{ row[0] == blank }}</th>
       {% endif %}
       {% for column in row[1] %}
@@ -167,7 +169,7 @@ Row Head: {{ row_head }}
     <tbody>
     {% for row in table.body %}
       <tr>
-      {% if row[0] == blank %}
+      {% if row.first == nil and row.size == nil %}
         <th scope="row" class="text-start">{{ row[0] }}</th>
       {% endif %}
       {% for column in row[1] %}
@@ -179,7 +181,7 @@ Row Head: {{ row_head }}
     <tfoot>
     {% for row in table.foot %}
       <tr>
-      {% if row[0] == blank %}
+      {% if row.first == nil and row.size == nil %}
         <th>{{ row[0] }}</th>
       {% endif %}
       {% for column in row[1] %}
