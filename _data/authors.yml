@@ -17,6 +17,22 @@ CoolV1994:
   title: Owner
   avatar: 'https://0.gravatar.com/avatar/436b4893870d10a053990299616d8619c04448e5f3d800ca47e0d23419edf13b?size=256'
   description: GawdTech Owner
+  info:
+  - Staff: Owner
+  - Skills:
+    - Programming
+    - Web Design
+    - Graphic Design
+    - Networking
+    - System Admin
+    - Security
+  - Languages:
+    - Java
+    - JavaScrpit
+    - PHP
+    - HTML / CSS
+    - Shell / Batch
+    - MySQL
   contact:
   - Website: https://CoolV1994.github.io
   - E-Mail: The.CoolV1994@gmail.com
