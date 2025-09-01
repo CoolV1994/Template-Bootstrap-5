@@ -69,7 +69,7 @@ test:
 {% assign first_row = table | keys | first | first %}
 {% assign first_column = table[first_row] | keys | first %}
 
-{% assign last_row = table | keys | last %}
+{% assign last_row = table | keys | last | last %}
 {% assign last_column = table[first_row] | keys | last %}
 
 
