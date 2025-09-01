@@ -34,10 +34,16 @@ table:
 
 
 test:
-# body:
-# - Row Header:
-#   - Cell Data
-#   - Cell Data
+#
+# # Row (Head)
+# - Row:
+#   - Cell 1
+#   - Cell 2
+#
+# # Row (No Head)
+# - - Cell 1
+#   - Cell 2
+#
   head:
   - '':
     - A
@@ -69,7 +75,7 @@ test:
 {% assign keys_rows = table | keys %}
 
 {% assign first_row = keys_rows | first | first %}
-{% assign last_row = keys_rows | first | last %}
+{% assign last_row = keys_rows | last | first %}
 
 {% assign keys_columns = table[first_row] | keys %}
 
@@ -131,12 +137,11 @@ Row Head: {{ row_head }}
 
 <div class="table-responsive">
   <table class="table text-center">
-  {% if table.head %}
     <thead>
     {% for row in table.head %}
       <tr>
       {% if row[0] %}
-        <th>{{ row[0] }}</th>
+        <th>{{ row[0] == blank }}</th>
       {% endif %}
       {% for column in row[1] %}
         <th>{{ column }}</th>
@@ -144,12 +149,10 @@ Row Head: {{ row_head }}
       </tr>
     {% endfor %}
     </thead>
-  {% endif %}
-  {% if table.body %}
     <tbody>
     {% for row in table.body %}
       <tr>
-      {% if row[0] %}
+      {% if row[0] == blank %}
         <th scope="row" class="text-start">{{ row[0] }}</th>
       {% endif %}
       {% for column in row[1] %}
@@ -158,12 +161,10 @@ Row Head: {{ row_head }}
       </tr>
     {% endfor %}
     </tbody>
-  {% endif %}
-  {% if table.foot %}
     <tfoot>
     {% for row in table.foot %}
       <tr>
-      {% if row[0] %}
+      {% if row[0] == blank %}
         <th>{{ row[0] }}</th>
       {% endif %}
       {% for column in row[1] %}
@@ -172,6 +173,5 @@ Row Head: {{ row_head }}
       </tr>
     {% endfor %}
     </tfoot>
-  {% endif %}
   </table>
 </div>
