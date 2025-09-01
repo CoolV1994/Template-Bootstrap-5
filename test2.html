@@ -22,6 +22,8 @@ table:
   3:
     0: 3
     3: C3
+  4:
+    0: 4
   5:
     0: 5
     2: B5
@@ -34,17 +36,14 @@ table:
 ---
 
 {% assign table = page.table %}
-{% assign last_row = table | last %}
-{% assign last_column = table[0] | last %}
+{% assign last_row = table.last %}
+{% assign last_column = table[0].last %}
 
 <pre>
 Last Row: {{ last_row }}
 Last Column: {{ last_column }}
 </pre>
 <br><br><br>
-
-{% assign last_row = 6 %}
-{% assign last_column = 3 %}
 
 {% if table[0][0] %}
   {% assign row_head = true %}
