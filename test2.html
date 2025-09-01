@@ -45,11 +45,23 @@ test:
 #   - Cell 2
 #
   head:
+  - - _A_
+    - _B_
+    - _C_
   - '':
     - A
     - B
     - C
   body:
+  - - _A1_
+    - _B1_
+    - _C1_
+  - - _A2_
+    - _B2_
+    - _C2_
+  - - _A3_
+    - _B3_
+    - _C3_
   - 1:
     - A1
     - B1
@@ -63,6 +75,9 @@ test:
     - B3
     - C3
   foot:
+  - - _
+    - _
+    - _
   - '':
     - '-'
     - '-'
@@ -75,7 +90,7 @@ test:
 {% assign keys_rows = table | keys %}
 
 {% assign first_row = keys_rows | first | first %}
-{% assign last_row = keys_rows | last %}
+{% assign last_row = keys_rows | first %}
 
 {% assign keys_columns = table[first_row] | keys %}
 
