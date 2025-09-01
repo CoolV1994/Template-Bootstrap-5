@@ -66,9 +66,9 @@ test:
 
 {% assign table = page.table %}
 
-{% assign keys_rows = table | keys %}
+{% assign keys_rows = table | keys | first %}
 
-{% assign first_row = keys_rows | first | first %}
+{% assign first_row = keys_rows | first %}
 {% assign last_row = keys_rows | last | first %}
 
 {% assign keys_columns = table[first_row] | keys %}
