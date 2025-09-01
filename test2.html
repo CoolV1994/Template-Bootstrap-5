@@ -47,11 +47,13 @@ table:
 {% assign last_column = table[0] | last %}
 
 <pre>
-Last Row: {{ last_row[0] }}
-Last Column: {{ last_column[0] }}
+Last Row: {{ last_row }}
+Last Column: {{ last_column }}
 </pre>
 <br><br><br>
 
+{% assign last_row = 6 %}
+{% assign last_column = 3 %}
 
 {% if table[0][0] %}
   {% assign row_head = true %}
