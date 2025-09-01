@@ -90,7 +90,7 @@ test:
 {% assign keys_rows = table | keys %}
 
 {% assign first_row = keys_rows | first | first %}
-{% assign last_row = keys_rows | last %}
+{% assign last_row = keys_rows %}
 
 {% assign keys_columns = table[first_row] | keys %}
 
@@ -154,6 +154,7 @@ Row Head: {{ row_head }}
 
 <div class="table-responsive">
   <table class="table text-center">
+
     <thead>
     {% for row in table.head %}
       <tr>
@@ -170,6 +171,7 @@ Row Head: {{ row_head }}
       </tr>
     {% endfor %}
     </thead>
+
     <tbody>
     {% for row in table.body %}
       <tr>
@@ -186,6 +188,7 @@ Row Head: {{ row_head }}
       </tr>
     {% endfor %}
     </tbody>
+
     <tfoot>
     {% for row in table.foot %}
       <tr>
@@ -194,7 +197,7 @@ Row Head: {{ row_head }}
         {% for column in row[1] %}
           <th>{{ column }}</th>
         {% endfor %}
-      {% endif %}
+      {% else %}
         {% for column in row %}
           <th>{{ column }}</th>
         {% endfor %}
@@ -202,5 +205,6 @@ Row Head: {{ row_head }}
       </tr>
     {% endfor %}
     </tfoot>
+
   </table>
 </div>
