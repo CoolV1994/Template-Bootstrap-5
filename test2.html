@@ -33,25 +33,61 @@ table:
     1: A6
 
 
+test:
+# body:
+# - Row Header:
+#   - Cell Data
+#   - Cell Data
+  head:
+  - ╔:
+    - A
+    - B
+    - C
+  body:
+  - 1:
+    - A1
+    - B1
+    - C1
+  - 2:
+    - A2
+    - B2
+    - C2
+  - 3:
+    - A3
+    - B3
+    - C3
+  foot:
+  - ╚:
+    - ═
+    - ═
+    - ═
+
 ---
 
 {% assign table = page.table %}
-{% assign last_row = table.last %}
-{% assign last_column = table[0].last %}
+
+{% assign first_row = table | keys | first %}
+{% assign first_column = table[first_row] | keys | first %}
+
+{% assign last_row = table | keys | last %}
+{% assign last_column = table[first_row] | keys | last %}
+
+
+{% assign row_head = false %}
+{% if table[first_row][0] %}
+  {% assign row_head = true %}
+{% endif %}
+
 
 <pre>
+First Row: {{ first_row }}
+First Column: {{ first_column }}
 Last Row: {{ last_row }}
 Last Column: {{ last_column }}
+Row Head: {{ row_head }}
 </pre>
 <br><br><br>
 
-{% if table[0][0] %}
-  {% assign row_head = true %}
-{% elsif table[1][0] %}
-  {% assign row_head = true %}
-{% else %}
-  {% assign row_head = false %}
-{% endif %}
 
 
 <div class="table-responsive">
