@@ -155,10 +155,11 @@ Row Head: {{ row_head }}
 <div class="table-responsive">
   <table class="table text-center">
 
+    {% assign keys_rows = table.head | keys %}
     <thead>
     {% for row in table.head %}
       <tr>
-      {% if row.first == nil and row.size == nil %}
+      {% if keys_rows %}
         <th>{{ row[0] }}</th>
         {% for column in row[1] %}
         <th>{{ column }}</th>
@@ -173,9 +174,10 @@ Row Head: {{ row_head }}
     </thead>
 
     <tbody>
+    {% assign keys_rows = table.body | keys %}
     {% for row in table.body %}
       <tr>
-      {% if row.first == nil and row.size == nil %}
+      {% if keys_rows %}
         <th scope="row" class="text-start">{{ row[0] }}</th>
         {% for column in row[1] %}
           <td>{{ column }}</td>
@@ -190,9 +192,10 @@ Row Head: {{ row_head }}
     </tbody>
 
     <tfoot>
+    {% assign keys_rows = table.foot | keys %}
     {% for row in table.foot %}
       <tr>
-      {% if row.first == nil and row.size == nil %}
+      {% if keys_rows %}
         <th>{{ row[0] }}</th>
         {% for column in row[1] %}
           <th>{{ column }}</th>
