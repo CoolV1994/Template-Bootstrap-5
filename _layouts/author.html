@@ -8,7 +8,7 @@ css:
 
 <div id="page" class="row g-5">
 
-	<div id="sidebar" class="col-md-2">
+	<div id="sidebar" class="col-md-3">
 		<div class="position-sticky" style="top: 2rem;">
 
 			<div id="sidebar-user" class="p-4 mb-3 bg-body-tertiary rounded">
@@ -18,28 +18,33 @@ css:
 				<img height="128" width="128" src="{{ author.avatar }}" alt="Avatar">
 			</div><!-- /#sidebar-user -->
 
-			<div id="sidebar-contact" class="p-4 mb-3 bg-body-tertiary rounded">
-				<h4 class="">Contact</h4>
+			<div id="sidebar-info" class="p-4 mb-3 bg-body-tertiary rounded">
+				<h4 class="">Info</h4>
 				<br>
 				<ul class="list-unstyled">
-				{% for item in author.contact %}
-					{% for contact in item %}
-						{%- assign label = contact[0] -%}
-						{%- assign url = contact[1] -%}
-						{% if url contains "@" %}
-							{%- assign url = url | prepend: "mailto:" -%}
-						{% endif %}
+			{% for item in author.info %}
+				{% for info in item %}
+					{%- assign label = info[0] -%}
+					{%- assign content = info[1] -%}
 					<li>
 						<a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="{{ url | prepend: site.baseurl }}">
 							<div class="col-lg-8">
 								<h6 class="mb-0">{{ label }}</h6>
-								<small class="text-body-secondary">{{ url }}</small>
+							{% if content | first %}
+								<ul>
+								{% for listItem in content %}
+									<li>{{ listItem }}</li>
+								{% endfor %}
+								</ul>
+							{% else %}
+								<small class="text-body-secondary">{{ content }}</small>
+							{% endif %}
 							</div>
 						</a>
 					</li>
 				{% endfor %}
 			{% endfor %}
-			</ul>
+				</ul>
 			</div><!-- /#sidebar-contact -->
 
 		</div>
