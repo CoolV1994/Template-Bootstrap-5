@@ -2,6 +2,90 @@
 layout: default
 title: Test Page
 description: Test Page for Templates
+
+table:
+  0:
+    0: ''
+    1: A
+    2: B
+    3: C
+  1:
+    0: 1
+    1: A1
+    2: B1
+    3: C1
+  2:
+    0: 2
+    1: A2
+    2: B2
+    3: C2
+  3:
+    0: 3
+    1: A3
+    2: B3
+    3: C3
+  4:
+    0: 4
+    1: A4
+    2: B4
+    3: C4
+  5:
+    0: 5
+    1: A5
+    2: B5
+    3: C5
+  6:
+    0: 6
+    1: A6
+    2: B6
+    3: C6
+
 ---
 
-{% include hero.html title='Hero' content='Sample Text' %}
+{% assign last_row = table | last %}
+{% assign last_column = table[0] | last %}
+
+<pre>
+Last Row: {{ last_row }}
+Last Column: {{ last_column }}
+</pre>
+<br><br><br>
+
+
+{% if table[0][0] %}
+  {% assign row_head = true %}
+{% elsif table[1][0] %}
+  {% assign row_head = true %}
+{% else %}
+  {% assign row_head = false %}
+{% endif %}
+
+
+<div class="table-responsive">
+  <table class="table text-center">
+  {% if table[0] %}
+    <thead>
+      <tr>
+      {% if row_head %}
+        <th>{{ table[0][0] }}</th>
+      {% endif %}
+      {% for h in (1..last_column) %}
+        <th>{{ table[0][h] }}</th>
+      {% endfor %}
+      </tr>
+    </thead>
+  {% endif %}
+    <tbody>
+    {% for r in (1..last_row) %}
+      <tr>
+      {% if row_head %}
+        <th scope="row" class="text-start">{{ table[r][0] }}</th>
+      {% endif %}
+      {% for c in (1..last_column) %}
+        <td>{{ table[r][c] }}</td>
+      {% endfor %}
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
