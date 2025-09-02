@@ -1,0 +1,135 @@
+---
+layout: product
+title: Sample Product
+categories: Sample
+tags: Sample Features Pricing Info
+
+pricing:
+- name: Free
+  price: $0
+  rate: mo
+  details: >
+    - 10 users included
+    - 2 GB of storage
+    - Email support
+    - Help center access
+  button:
+    text: Sign up for free
+    url: '#free'
+- name: Pro
+  price: $15
+  rate: mo
+  details: >
+    - 20 users included
+    - 10 GB of storage
+    - Priority email support
+    - Help center access
+  button:
+    text: Get started
+    url: '#pro'
+- name: Enterprise
+  price: $29
+  rate: mo
+  details: >
+    - 30 users included
+    - 15 GB of storage
+    - Phone and email support
+    - Help center access
+  button:
+    text: Contact us
+    url: '#enterprise'
+
+compare:
+  columns:
+    - 
+    - Free
+    - Pro
+    - Enterprise
+  rows:
+    - Public: [✓, ✓, ✓]
+    - Private: [ , ✓, ✓]
+    - Permissions: [✓, ✓, ✓]
+    - Sharing: [ , ✓, ✓]
+    - Unlimited members: [ , ✓, ✓]
+    - Extra security: [ ,  , ✓]
+
+
+# table:
+# # Table Head
+#  0:  # Column Header (Optional)
+#   0: ''
+#   1: A
+#   2: B
+# # Table Body
+#  1:
+#   0: 1 # Row Header (Optional)
+#   1: A1
+#   2: B1
+#  2:
+#   0: 2
+#   1: A2
+#   2: B2
+
+#  0: [A, B, C, D]
+#  1: [A1, B1, C1, D1]
+#  2: [A2, B2, C2, D2]
+#  3: [A3, B3, C3, D3]
+#  4: [A4, B4, C4, D4]
+
+table:
+  0:
+    0: ''
+    1: Free
+    2: Pro
+    3: Enterprise
+  1:
+    0: Public
+    1: ✓
+    2: ✓
+    3: ✓
+  2:
+    0: Private
+    1: ''
+    2: ✓
+    3: ✓
+  3:
+    0: Permissions
+    1: ✓
+    2: ✓
+    3: ✓
+  4:
+    0: Sharing
+    1: ''
+    2: ✓
+    3: ✓
+  5:
+    0: Unlimited members
+    1: ''
+    2: ✓
+    3: ✓
+  6:
+    0: Extra security
+    1: ''
+    2: ''
+    3: ✓
+
+---
+
+
+<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+  <h1 class="display-4 fw-normal text-body-emphasis">Pricing</h1>
+  <p class="fs-5 text-body-secondary">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization.</p>
+</div>
+
+{% include pricing.html plans=pricing %}
+
+
+<h2 class="display-6 text-center mb-4">Compare plans</h2>
+
+{% include table.html table=compare %}
+
+
+
+
+
+
