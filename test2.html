@@ -294,15 +294,15 @@ Row Head: {{ row_head }}
     {% for row in table.body %}
       <tr>
       {% if row[0] | keys %}
-        {% for column in row %}
-          <td>{{ column }}</td>
-        {% endfor %}
-      {% else %}
           <th scope="row" class="text-start">{{ row[0] }}</th>
         {% for column in row[1] %}
           <td>{{ column }}</td>
         {% endfor %}
-    {% endif %}
+      {% else %}
+        {% for column in row %}
+          <td>{{ column }}</td>
+        {% endfor %}
+      {% endif %}
       </tr>
     {% endfor %}
     </tbody>
