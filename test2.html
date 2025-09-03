@@ -48,10 +48,6 @@ test:
   - - _A_
     - _B_
     - _C_
-  - '':
-    - A
-    - B
-    - C
   body:
   - - _A1_
     - _B1_
@@ -62,23 +58,42 @@ test:
   - - _A3_
     - _B3_
     - _C3_
-  - 1:
-    - A1
-    - B1
-    - C1
-  - 2:
-    - A2
-    - B2
-    - C2
-  - 3:
-    - A3
-    - B3
-    - C3
   foot:
   - - _
     - _
     - _
-  - '':
+
+test_head:
+#
+# # Row (Head)
+# - Row:
+#   - Cell 1
+#   - Cell 2
+#
+# # Row (No Head)
+# - - Cell 1
+#   - Cell 2
+#
+  head:
+  - 'Head':
+    - A
+    - B
+    - C
+  body:
+  - '1':
+    - A1
+    - B1
+    - C1
+  - '2':
+    - A2
+    - B2
+    - C2
+  - '3':
+    - A3
+    - B3
+    - C3
+  foot:
+  - Foot:
     - '-'
     - '-'
     - '-'
@@ -159,6 +174,7 @@ Row Head: {{ row_head }}
     <thead>
     {% assign keys_rows = table.head | keys %}
 <pre>
+  -- HEAD --
   Keys: {{ keys_rows }}
   Row: {{ table.head }}
   Key: {{ table.head[0] }}
@@ -183,6 +199,7 @@ Row Head: {{ row_head }}
     <tbody>
     {% assign keys_rows = table.body | keys %}
 <pre>
+  -- BODY --
   Keys: {{ keys_rows }}
   Row: {{ table.body }}
   Key: {{ table.body[0] }}
@@ -207,6 +224,7 @@ Row Head: {{ row_head }}
     <tfoot>
     {% assign keys_rows = table.foot | keys %}
 <pre>
+  -- FOOT --
   Keys: {{ keys_rows }}
   Row: {{ table.foot }}
   Key: {{ table.foot[0] }}
@@ -230,3 +248,90 @@ Row Head: {{ row_head }}
 
   </table>
 </div>
+
+
+<br><br><hr><br><br>
+
+{% assign table = page.test_head %}
+
+<div class="table-responsive">
+  <table class="table text-center">
+
+    <thead>
+    {% assign keys_rows = table.head | keys %}
+<pre>
+  -- HEAD --
+  Keys: {{ keys_rows }}
+  Row: {{ table.head }}
+  Key: {{ table.head[0] }}
+  Value: {{ table.head[1] }}
+</pre>
+    {% for row in table.head %}
+      <tr>
+      {% if keys_rows %}
+        <th>{{ row[0] }}</th>
+        {% for column in row[1] %}
+        <th>{{ column }}</th>
+        {% endfor %}
+      {% else %}
+        {% for column in row %}
+        <th>{{ column }}</th>
+        {% endfor %}
+      {% endif %}
+      </tr>
+    {% endfor %}
+    </thead>
+
+    <tbody>
+    {% assign keys_rows = table.body | keys %}
+<pre>
+  -- BODY --
+  Keys: {{ keys_rows }}
+  Row: {{ table.body }}
+  Key: {{ table.body[0] }}
+  Value: {{ table.body[1] }}
+</pre>
+    {% for row in table.body %}
+      <tr>
+      {% if keys_rows %}
+        <th scope="row" class="text-start">{{ row[0] }}</th>
+        {% for column in row[1] %}
+          <td>{{ column }}</td>
+        {% endfor %}
+      {% else %}
+        {% for column in row %}
+          <td>{{ column }}</td>
+        {% endfor %}
+      {% endif %}
+      </tr>
+    {% endfor %}
+    </tbody>
+
+    <tfoot>
+    {% assign keys_rows = table.foot | keys %}
+<pre>
+  -- FOOT --
+  Keys: {{ keys_rows }}
+  Row: {{ table.foot }}
+  Key: {{ table.foot[0] }}
+  Value: {{ table.foot[1] }}
+</pre>
+    {% for row in table.foot %}
+      <tr>
+      {% if keys_rows %}
+        <th>{{ row[0] }}</th>
+        {% for column in row[1] %}
+          <th>{{ column }}</th>
+        {% endfor %}
+      {% else %}
+        {% for column in row %}
+          <th>{{ column }}</th>
+        {% endfor %}
+      {% endif %}
+      </tr>
+    {% endfor %}
+    </tfoot>
+
+  </table>
+</div>
+
