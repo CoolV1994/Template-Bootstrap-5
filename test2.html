@@ -107,7 +107,8 @@ test:
 <pre>
 First Row: {{ first_row }}
 First Column: {{ first_column }}
-Last Row: {{ last_row }}
+Last Row: {{ last_row | last }}
+Last Row: {{ last_row.last }}
 Last Column: {{ last_column }}
 Row Head: {{ row_head }}
 </pre>
