@@ -34,13 +34,15 @@ table:
 
   {% if table.head.size > 0 %}
     <thead>
-    {% for row in table.head %}
+    {% for entry in table.head %}
+      {% for row in entry %}
       <tr>
-        <th>{{ row }}</th>
-      {% for column in row %}
+        <th>{{ row[0] }}</th>
+        {% for column in row[1] %}
         <td>{{ column }}</td>
-      {% endfor %}
+        {% endfor %}
       </tr>
+      {% endfor %}
     {% endfor %}
     </thead>
   {% endif %}
@@ -49,21 +51,23 @@ table:
 Data: {{ table.data }}
 -->
     <tbody>
-    {% for row in table.data %}
+    {% for entry in table.data %}
+      {% for row in entry %}
 <!--
 Row: {{ row }}
 0: {{ row[0] }}
 1: {{ row[1] }}
 -->
       <tr>
-        <th scope="row" class="text-start">{{ row }}</th>
-      {% for column in row %}
+        <th scope="row" class="text-start">{{ row[0] }}</th>
+        {% for column in row[1] %}
 <!--
 Column: {{ column }}
 -->
         <td>{{ column }}</td>
-      {% endfor %}
+        {% endfor %}
       </tr>
+      {% endfor %}
     {% endfor %}
     </tbody>
 
