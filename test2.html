@@ -45,11 +45,22 @@ table:
     </thead>
   {% endif %}
 
+<!--
+Data: {{ table.data }}
+-->
     <tbody>
     {% for row in table.data %}
+<!--
+Row: {{ row }}
+0: {{ row[0] }}
+1: {{ row[1] }}
+-->
       <tr>
         <th scope="row" class="text-start">{{ row[0] }}</th>
       {% for column in row[1] %}
+<!--
+Column: {{ column }}
+-->
         <td>{{ column }}</td>
       {% endfor %}
       </tr>
