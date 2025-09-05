@@ -36,8 +36,8 @@ table:
     <thead>
     {% for row in table.head %}
       <tr>
-        <th>{{ row[0] }}</th>
-      {% for column in row[1] %}
+        <th>{{ row }}</th>
+      {% for column in row %}
         <td>{{ column }}</td>
       {% endfor %}
       </tr>
@@ -56,8 +56,8 @@ Row: {{ row }}
 1: {{ row[1] }}
 -->
       <tr>
-        <th scope="row" class="text-start">{{ row[0] }}</th>
-      {% for column in row[1] %}
+        <th scope="row" class="text-start">{{ row }}</th>
+      {% for column in row %}
 <!--
 Column: {{ column }}
 -->
