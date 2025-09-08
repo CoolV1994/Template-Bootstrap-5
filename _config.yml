@@ -6,6 +6,16 @@ author: CoolV1994
 #baseurl: "/Template-Bootstrap-5"
 #url: "https://coolv1994.github.io"
 
+
+# Theme Settings
+# theme: light | dark | auto
+theme: dark
+# theme-color: HEX_COLOR
+theme-color: 712cf9
+# theme-rtl: true | false
+theme-rtl: false
+
+
 # Build Settings
 markdown: kramdown
 
