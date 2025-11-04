@@ -2,4 +2,4 @@
 layout: null
 ---
 
-{{ site.categories | jsonify | escape }}
+{{ site.categories | jsonify }}
