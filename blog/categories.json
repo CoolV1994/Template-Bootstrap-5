@@ -1,0 +1,5 @@
+---
+layout: null
+---
+
+{{ site.categories | jsonify | escape }}
