@@ -31,6 +31,7 @@ table:
 <thead>
 {% for row in page.table.head %}
   <!-- Row [{{ forloop.index }}] -->
+  <tr>
   {% for column in row %}
     <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] -->
     {% assign cell_tag = "td" %}
@@ -56,12 +57,14 @@ table:
 </{{ cell_tag }}>
 
   {% endfor %}
+  </tr>
 {% endfor %}
 </thead>
 
 <tbody>
 {% for row in page.table.body %}
   <!-- Row [{{ forloop.index }}] -->
+  <tr>
   {% for column in row %}
     <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] -->
     {% assign cell_tag = "td" %}
@@ -87,12 +90,14 @@ table:
 </{{ cell_tag }}>
 
   {% endfor %}
+  </tr>
 {% endfor %}
 </tbody>
 
 <tfoot>
 {% for row in page.table.foot %}
   <!-- Row [{{ forloop.index }}] -->
+  <tr>
   {% for column in row %}
     <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] -->
     {% assign cell_tag = "td" %}
@@ -118,6 +123,7 @@ table:
 </{{ cell_tag }}>
 
   {% endfor %}
+  </tr>
 {% endfor %}
 </tfoot>
 
