@@ -29,7 +29,7 @@ table:
 <table>
 
 <thead>
-{% for row in table.head %}
+{% for row in page.table.head %}
   <!-- Row [{{ forloop.index }}] -->
   {% for column in row %}
     <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] -->
@@ -60,7 +60,7 @@ table:
 </thead>
 
 <tbody>
-{% for row in table.body %}
+{% for row in page.table.body %}
   <!-- Row [{{ forloop.index }}] -->
   {% for column in row %}
     <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] -->
@@ -91,7 +91,7 @@ table:
 </tbody>
 
 <tfoot>
-{% for row in table.foot %}
+{% for row in page.table.foot %}
   <!-- Row [{{ forloop.index }}] -->
   {% for column in row %}
     <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] -->
