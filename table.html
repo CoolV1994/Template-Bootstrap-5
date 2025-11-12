@@ -1,0 +1,124 @@
+---
+layout: null
+table:
+  head:
+  - - th: "#"
+    - th: A
+    - th: B
+    - th: C
+  body:
+  - - th: 1
+    - td: A1
+    - td: B1
+    - td: C1
+  - - th: 2
+    - td: A2
+    - td: B2
+    - td: C2
+  - - th: 3
+    - td: A3
+    - td: B3
+    - td: C3
+  foot:
+  - - th: Total
+    - td: ABC
+      colspan: 3
+      align: center
+---
+
+<table>
+
+<thead>
+{% for row in table.head %}
+  <!-- Row [{{ forloop.index }}] -->
+  {% for column in row %}
+    <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] -->
+    {% assign cell_tag = "td" %}
+    {% assign cell_content = "" %}
+    {% assign cell_attributes = "" %}
+    {% if column.td or column.th %}
+      <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] | Attributes -->
+      {% for attribute in column %}
+        {% if attribute[0] == "td" or attribute[0] == "th" %}
+          {% assign cell_tag = attribute[0] %}
+          {% assign cell_content = attribute[1] %}
+          {% continue %}
+        {% endif %}
+        {% assign cell_attributes = cell_attributes | append: ' {{ attribute[0] }}="{{ attribute[1] }}"' %}
+      {% endfor %}
+    {% else %}
+      <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] | Default -->
+      {% assign cell_content = column %}
+    {% endif %}
+
+<{{ cell_tag }}{{ cell_attributes }}>
+{{ cell_content }}
+</{{ cell_tag }}>
+
+  {% endfor %}
+{% endfor %}
+</thead>
+
+<tbody>
+{% for row in table.body %}
+  <!-- Row [{{ forloop.index }}] -->
+  {% for column in row %}
+    <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] -->
+    {% assign cell_tag = "td" %}
+    {% assign cell_content = "" %}
+    {% assign cell_attributes = "" %}
+    {% if column.td or column.th %}
+      <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] | Attributes -->
+      {% for attribute in column %}
+        {% if attribute[0] == "td" or attribute[0] == "th" %}
+          {% assign cell_tag = attribute[0] %}
+          {% assign cell_content = attribute[1] %}
+          {% continue %}
+        {% endif %}
+        {% assign cell_attributes = cell_attributes | append: ' {{ attribute[0] }}="{{ attribute[1] }}"' %}
+      {% endfor %}
+    {% else %}
+      <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] | Default -->
+      {% assign cell_content = column %}
+    {% endif %}
+
+<{{ cell_tag }}{{ cell_attributes }}>
+{{ cell_content }}
+</{{ cell_tag }}>
+
+  {% endfor %}
+{% endfor %}
+</tbody>
+
+<tfoot>
+{% for row in table.foot %}
+  <!-- Row [{{ forloop.index }}] -->
+  {% for column in row %}
+    <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] -->
+    {% assign cell_tag = "td" %}
+    {% assign cell_content = "" %}
+    {% assign cell_attributes = "" %}
+    {% if column.td or column.th %}
+      <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] | Attributes -->
+      {% for attribute in column %}
+        {% if attribute[0] == "td" or attribute[0] == "th" %}
+          {% assign cell_tag = attribute[0] %}
+          {% assign cell_content = attribute[1] %}
+          {% continue %}
+        {% endif %}
+        {% assign cell_attributes = cell_attributes | append: ' {{ attribute[0] }}="{{ attribute[1] }}"' %}
+      {% endfor %}
+    {% else %}
+      <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] | Default -->
+      {% assign cell_content = column %}
+    {% endif %}
+
+<{{ cell_tag }}{{ cell_attributes }}>
+{{ cell_content }}
+</{{ cell_tag }}>
+
+  {% endfor %}
+{% endfor %}
+</tfoot>
+
+</table>
