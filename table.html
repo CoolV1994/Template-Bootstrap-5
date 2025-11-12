@@ -45,7 +45,7 @@ table:
           {% assign cell_content = attribute[1] %}
           {% continue %}
         {% endif %}
-        {% assign cell_attributes = cell_attributes | append: ' {{ attribute[0] }}="{{ attribute[1] }}"' %}
+        {% assign cell_attributes = cell_attributes | append: ' ' | append: attribute[0] | append: '="' | append: attribute[1] | append: '"' %}
       {% endfor %}
     {% else %}
       <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] | Default -->
@@ -78,7 +78,7 @@ table:
           {% assign cell_content = attribute[1] %}
           {% continue %}
         {% endif %}
-        {% assign cell_attributes = cell_attributes | append: ' {{ attribute[0] }}="{{ attribute[1] }}"' %}
+        {% assign cell_attributes = cell_attributes | append: ' ' | append: attribute[0] | append: '="' | append: attribute[1] | append: '"' %}
       {% endfor %}
     {% else %}
       <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] | Default -->
