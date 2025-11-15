@@ -45,31 +45,37 @@ table:
       {% assign table_sections = table_sections | push: table_attribute %}
       {% continue %}
     {% endif %}
-    {% assign table_attributes = table_attributes | append: ' ' | append: table_attribute[0] | append: '="' | append: table_attribute[1] | append: '"' %}
+    {% assign old_table_attributes = table_attributes | append: ' ' | append: table_attribute[0] | append: '="' | append: table_attribute[1] | append: '"' %}
+    {% assign table_attributes = table_attributes | append: ' {{ table_attribute[0] }}="{{ table_attribute[1] }}"' %}
   {% endfor %}
 {% else %}
   <!-- Table | Default -->
   {% assign table_sections = table %}
 {% endif %}
+<!-- [Sections] {{ table_sections }} -->
 <{{ table_tag }}{{ table_attributes }}>
 
 {% for section in table_sections %}
   {% assign section_tag = section[0] %}
   {% assign section_rows = "" | split: "," %}
   {% assign section_attributes = "" %}
-  {% if section.tr %}
+  {% if section[1].tr %}
   <!-- Table | Attributes -->
   {% for section_attribute in section[1] %}
     {% if section_attribute[0] == "tr" %}
       {% assign section_rows = section_attribute[1] %}
       {% continue %}
     {% endif %}
-    {% assign section_attributes = section_attributes | append: ' ' | append: section_attribute[0] | append: '="' | append: section_attribute[1] | append: '"' %}
+    {% assign old_section_attributes = section_attributes | append: ' ' | append: section_attribute[0] | append: '="' | append: section_attribute[1] | append: '"' %}
+    {% assign section_attributes = section_attributes | append: ' {{ section_attribute[0] }}="{{ section_attribute[1] }}"' %}
   {% endfor %}
 {% else %}
   <!-- Table | Default -->
   {% assign section_rows = section %}
 {% endif %}
+
+<!-- [Rows] [{{ section_tag }}] {{ section_rows }} -->
+
 {% if section_tag %}
 <{{ section_tag }}{{ section_attributes }}>
 {% endif %}
@@ -90,7 +96,8 @@ table:
           {% assign cell_content = cell_attribute[1] %}
           {% continue %}
         {% endif %}
-        {% assign cell_attributes = cell_attributes | append: ' ' | append: cell_attribute[0] | append: '="' | append: cell_attribute[1] | append: '"' %}
+        {% assign old_cell_attributes = cell_attributes | append: ' ' | append: cell_attribute[0] | append: '="' | append: cell_attribute[1] | append: '"' %}
+        {% assign cell_attributes = cell_attributes | append: ' {{ cell_attribute[0] }}="{{ cell_attribute[1] }}"' %}
       {% endfor %}
     {% else %}
       <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] | Default -->
