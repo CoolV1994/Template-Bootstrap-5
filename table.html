@@ -1,5 +1,6 @@
 ---
 layout: null
+empty_array: []
 table:
   id: table
   thead:
@@ -35,7 +36,7 @@ table:
 {% assign table = page.table %}
 
 {% assign table_tag = "table" %}
-{% assign table_sections = "" %}
+{% assign table_sections = page.empty_array %}
 {% assign table_attributes = "" %}
 {% if table.tbody or table.thead or table.tfoot %}
   <!-- Table | Attributes -->
