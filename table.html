@@ -1,35 +1,80 @@
 ---
 layout: null
 table:
-  head:
-  - - th: "#"
-    - th: A
-    - th: B
-    - th: C
-  body:
-  - - th: 1
-    - td: A1
-    - td: B1
-    - td: C1
-  - - th: 2
-    - td: A2
-    - td: B2
-    - td: C2
-  - - th: 3
-    - A3
-    - B3
-    - C3
-  foot:
-  - - th: Total
-    - td: ABC
-      colspan: 3
-      align: center
+  id: table
+  thead:
+    id: table_head
+    tr:
+    - - th: "#"
+      - th: A
+      - th: B
+      - th: C
+  tbody:
+    id: table_body
+    tr:
+    - - th: 1
+      - td: A1
+      - td: B1
+      - td: C1
+    - - th: 2
+      - td: A2
+      - td: B2
+      - td: C2
+    - - th: 3
+      - A3
+      - B3
+      - C3
+  tfoot:
+    id: table_foot
+    tr:
+    - - th: Total
+      - td: ABC
+        colspan: 3
+        align: center
 ---
+{% assign table = page.table %}
 
-<table>
+{% assign table_tag = "table" %}
+{% assign table_sections = "" %}
+{% assign table_attributes = "" %}
+{% if table.tbody or table.thead or table.tfoot %}
+  <!-- Table | Attributes -->
+  {% for table_attribute in table %}
+    {% if table_attribute[0] == "tbody" or table_attribute[0] == "thead" or table_attribute[0] == "tfoot"
+          or table_attribute[0] == "tr" or table_attribute[0] == "th" %}
+      {% assign table_sections = table_sections | push: table_attribute %}
+      {% continue %}
+    {% endif %}
+    {% assign table_attributes = table_attributes | append: ' ' | append: table_attribute[0] | append: '="' | append: table_attribute[1] | append: '"' %}
+  {% endfor %}
+{% else %}
+  <!-- Table | Default -->
+  {% assign table_sections = table %}
+{% endif %}
+<{{ table_tag }}{{ table_attributes }}>
 
-<thead>
-{% for row in page.table.head %}
+{% for section in table_sections %}
+  {% assign section_tag = section[0] %}
+  {% assign section_rows = "" %}
+  {% assign section_attributes = "" %}
+  {% if section.tr %}
+  <!-- Table | Attributes -->
+  {% for section_attribute in section[1] %}
+    {% if section_attribute[0] == "tr" %}
+      {% assign section_rows = section_attribute[1] %}
+      {% continue %}
+    {% endif %}
+    {% assign section_attributes = section_attributes | append: ' ' | append: section_attribute[0] | append: '="' | append: section_attribute[1] | append: '"' %}
+  {% endfor %}
+{% else %}
+  <!-- Table | Default -->
+  {% assign section_rows = section %}
+{% endif %}
+{% if section_tag %}
+<{{ section_tag }}{{ section_attributes }}>
+{% endif %}
+
+{% for row in section_rows %}
   <!-- Row [{{ forloop.index }}] -->
   <tr>
   {% for column in row %}
@@ -39,92 +84,28 @@ table:
     {% assign cell_attributes = "" %}
     {% if column.td or column.th %}
       <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] | Attributes -->
-      {% for attribute in column %}
+      {% for cell_attribute in column %}
         {% if attribute[0] == "td" or attribute[0] == "th" %}
-          {% assign cell_tag = attribute[0] %}
-          {% assign cell_content = attribute[1] %}
+          {% assign cell_tag = cell_attribute[0] %}
+          {% assign cell_content = cell_attribute[1] %}
           {% continue %}
         {% endif %}
-        {% assign cell_attributes = cell_attributes | append: ' ' | append: attribute[0] | append: '="' | append: attribute[1] | append: '"' %}
+        {% assign cell_attributes = cell_attributes | append: ' ' | append: cell_attribute[0] | append: '="' | append: cell_attribute[1] | append: '"' %}
       {% endfor %}
     {% else %}
       <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] | Default -->
       {% assign cell_content = column %}
     {% endif %}
-
 <{{ cell_tag }}{{ cell_attributes }}>
 {{ cell_content }}
 </{{ cell_tag }}>
-
   {% endfor %}
   </tr>
 {% endfor %}
-</thead>
 
-<tbody>
-{% for row in page.table.body %}
-  <!-- Row [{{ forloop.index }}] -->
-  <tr>
-  {% for column in row %}
-    <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] -->
-    {% assign cell_tag = "td" %}
-    {% assign cell_content = "" %}
-    {% assign cell_attributes = "" %}
-    {% if column.td or column.th %}
-      <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] | Attributes -->
-      {% for attribute in column %}
-        {% if attribute[0] == "td" or attribute[0] == "th" %}
-          {% assign cell_tag = attribute[0] %}
-          {% assign cell_content = attribute[1] %}
-          {% continue %}
-        {% endif %}
-        {% assign cell_attributes = cell_attributes | append: ' ' | append: attribute[0] | append: '="' | append: attribute[1] | append: '"' %}
-      {% endfor %}
-    {% else %}
-      <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] | Default -->
-      {% assign cell_content = column %}
-    {% endif %}
-
-<{{ cell_tag }}{{ cell_attributes }}>
-{{ cell_content }}
-</{{ cell_tag }}>
-
-  {% endfor %}
-  </tr>
+{% if section_tag %}
+</{{ section_tag }}>
+{% endif %}
 {% endfor %}
-</tbody>
 
-<tfoot>
-{% for row in page.table.foot %}
-  <!-- Row [{{ forloop.index }}] -->
-  <tr>
-  {% for column in row %}
-    <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] -->
-    {% assign cell_tag = "td" %}
-    {% assign cell_content = "" %}
-    {% assign cell_attributes = "" %}
-    {% if column.td or column.th %}
-      <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] | Attributes -->
-      {% for attribute in column %}
-        {% if attribute[0] == "td" or attribute[0] == "th" %}
-          {% assign cell_tag = attribute[0] %}
-          {% assign cell_content = attribute[1] %}
-          {% continue %}
-        {% endif %}
-        {% assign cell_attributes = cell_attributes | append: ' ' | append: attribute[0] | append: '="' | append: attribute[1] | append: '"' %}
-      {% endfor %}
-    {% else %}
-      <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] | Default -->
-      {% assign cell_content = column %}
-    {% endif %}
-
-<{{ cell_tag }}{{ cell_attributes }}>
-{{ cell_content }}
-</{{ cell_tag }}>
-
-  {% endfor %}
-  </tr>
-{% endfor %}
-</tfoot>
-
-</table>
+</{{ table_tag }}>
