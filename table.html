@@ -1,6 +1,5 @@
 ---
 layout: null
-empty_array: []
 table:
   id: table
   thead:
@@ -36,7 +35,7 @@ table:
 {% assign table = page.table %}
 
 {% assign table_tag = "table" %}
-{% assign table_sections = page.empty_array %}
+{% assign table_sections = "" | split: "," %}
 {% assign table_attributes = "" %}
 {% if table.tbody or table.thead or table.tfoot %}
   <!-- Table | Attributes -->
@@ -56,7 +55,7 @@ table:
 
 {% for section in table_sections %}
   {% assign section_tag = section[0] %}
-  {% assign section_rows = "" %}
+  {% assign section_rows = "" | split: "," %}
   {% assign section_attributes = "" %}
   {% if section.tr %}
   <!-- Table | Attributes -->
