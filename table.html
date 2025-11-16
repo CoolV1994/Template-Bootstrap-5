@@ -199,5 +199,23 @@ table:
 {{ table_html }}
 
 
-{{ capture test_cap }} This is a "test".{{ endcapture }}
+<br><br><hr><br><br>
+
+
+{% capture test_cap %} This is "test 1".{% endcapture %}
+<pre>{{ test_cap }}</pre>
+
+{% capture test_cap %}
+  This is "test 2".
+{% endcapture %}
+<pre>{{ test_cap }}</pre>
+
+{% capture test_cap %}
+{{ test_cap }}
+  This is "test 3".
+{% endcapture %}
+<pre>{{ test_cap }}</pre>
+
+{%- capture test_cap -%}{{ test_cap }}
+This is "test 4".{%- endcapture -%}
 <pre>{{ test_cap }}</pre>
