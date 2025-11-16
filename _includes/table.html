@@ -3,37 +3,37 @@
 {%- assign table_sections = "" | split: "," -%}
 {%- assign table_attributes = "" -%}
 {%- assign table_content = "" -%}
-{% if table.tbody or table.thead or table.tfoot %}
+{%- if table.tbody or table.thead or table.tfoot -%}
   {% for table_attribute in table %}
-    {% if table_attribute[0] == "tbody" or table_attribute[0] == "thead" or table_attribute[0] == "tfoot"
-          or table_attribute[0] == "tr" or table_attribute[0] == "th" %}
+    {%- if table_attribute[0] == "tbody" or table_attribute[0] == "thead" or table_attribute[0] == "tfoot"
+          or table_attribute[0] == "tr" or table_attribute[0] == "th" -%}
       {%- assign table_sections = table_sections | push: table_attribute -%}
       {% continue %}
-    {% endif %}
+    {%- endif -%}
 {% capture table_attributes_html %} {{ table_attribute[0] }}="{{ table_attribute[1] }}"{% endcapture %}
     {%- assign table_attributes = table_attributes | append: table_attributes_html -%}
   {% endfor %}<!-- / for table_attribute in table -->
-{% else %}
+{%- else -%}
   {%- assign table_sections = table -%}
-{% endif %}
+{%- endif -%}
 
 {% for section in table_sections %}
   {%- assign section_tag = section[0] -%}
   {%- assign section_rows = "" | split: "," -%}
   {%- assign section_attributes = "" -%}
   {%- assign section_content = "" -%}
-  {% if section[1].tr %}
+  {%- if section[1].tr -%}
     {% for section_attribute in section[1] %}
-      {% if section_attribute[0] == "tr" %}
+      {%- if section_attribute[0] == "tr" -%}
         {%- assign section_rows = section_attribute[1] -%}
         {% continue %}
-      {% endif %}
+      {%- endif -%}
 {% capture section_attributes_html %} {{ section_attribute[0] }}="{{ section_attribute[1] }}"{% endcapture %}
       {%- assign section_attributes = section_attributes | append: section_attributes_html -%}
     {% endfor %}<!-- / for section_attribute in section[1] -->
-  {% else %}
+  {%- else -%}
     {%- assign section_rows = section -%}
-  {% endif %}
+  {%- endif -%}
 
   {% for row in section_rows %}
     {%- assign row_tag = "tr" -%}
@@ -43,26 +43,26 @@
       {%- assign cell_tag = "td" -%}
       {%- assign cell_content = "" -%}
       {%- assign cell_attributes = "" -%}
-      {% if column.tr %}
+      {%- if column.tr -%}
         {% for row_attribute in column.tr %}
 {% capture row_attributes_html %} {{ row_attribute[0] }}="{{ row_attribute[1] }}"{% endcapture %}
           {%- assign row_attributes = row_attributes | append: row_attributes_html -%}
         {% endfor %}<!-- / row_attribute in column.tr -->
         {% continue %}
-      {% endif %}
-      {% if column.td or column.th %}
+      {%- endif -%}
+      {%- if column.td or column.th -%}
         {% for cell_attribute in column %}
-          {% if attribute[0] == "td" or attribute[0] == "th" %}
+          {%- if cell_attribute[0] == "td" or cell_attribute[0] == "th" -%}
             {%- assign cell_tag = cell_attribute[0] -%}
             {%- assign cell_content = cell_attribute[1] -%}
             {% continue %}
-          {% endif %}
+          {%- endif -%}
 {% capture cell_attributes_html %} {{ cell_attribute[0] }}="{{ cell_attribute[1] }}"{% endcapture %}
           {%- assign cell_attributes = cell_attributes | append: cell_attributes_html -%}
         {% endfor %}<!-- / for cell_attribute in column -->
-      {% else %}
+      {%- else -%}
         {%- assign cell_content = column -%}
-      {% endif %}
+      {%- endif -%}
 
 {% capture cell_html %}
       <{{ cell_tag }}{{ cell_attributes }}>
@@ -80,17 +80,17 @@
     {%- assign section_content = section_content | append: row_html -%}
   {% endfor %}<!-- / for section in table_sections -->
 
-  {% if section_tag %}
+  {%- if section_tag -%}
 {% capture section_html %}
   <{{ section_tag }}{{ section_attributes }}>
 {{ section_content }}
   </{{ section_tag }}>
 {% endcapture %}
-  {% else %}
+  {%- else -%}
 {% capture section_html %}
 {{ section_content }}
 {% endcapture %}
-  {% endif %}
+  {%- endif -%}
   {%- assign table_content = table_content | append: section_html -%}
 {% endfor %}<!-- / for section in table_sections -->
 
