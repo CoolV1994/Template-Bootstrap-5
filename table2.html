@@ -1,41 +1,15 @@
 ---
 layout: null
-space_indent: "  "
-table:
-  id: table
-  thead:
-    id: table_head
-    tr:
-    - - th: "#"
-      - th: A
-      - th: B
-      - th: C
-  tbody:
-    id: table_body
-    tr:
-    - - th: 1
-      - td: A1
-      - td: B1
-      - td: C1
-    - - th: 2
-      - td: A2
-      - td: B2
-      - td: C2
-    - - th: 3
-      - A3
-      - B3
-      - C3
-  tfoot:
-    id: table_foot
-    tr:
-    - - tr:
-          id: row_footer
-      - th: Total
-      - td: ABC
-        colspan: 3
-        align: center
 ---
 
-<!-- Include Table Start -->
-{% include table.html table=page.table %}
-<!-- Include Table End -->
+<h1>Table Sample</h1>
+<!-- Table Sample Start -->
+{% include table.html table=site.data.examples.tables.table_sample %}
+<!-- Table Sample End -->
+
+<br><br><hr><br><br>
+
+<h1>Table Simple</h1>
+<!-- Table Simple Start -->
+{% include table.html table=site.data.examples.tables.table_simple %}
+<!-- Table Simple End -->
