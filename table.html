@@ -1,5 +1,6 @@
 ---
 layout: null
+space_indent: "  "
 table:
   id: table
   thead:
@@ -32,12 +33,14 @@ table:
         colspan: 3
         align: center
 ---
+{% assign indent = page.space_indent %}
+
 {% assign table = page.table %}
 
 {% assign table_tag = "table" %}
 {% assign table_sections = "" | split: "," %}
 {% assign table_attributes = "" %}
-{% assign new_table_attributes = "" %}
+{% assign old_table_attributes = "" %}
 {% assign table_content = "" %}
 {% if table.tbody or table.thead or table.tfoot %}
   <!-- Table | Attributes -->
@@ -47,25 +50,24 @@ table:
       {% assign table_sections = table_sections | push: table_attribute %}
       {% continue %}
     {% endif %}
-    {% assign old_table_attributes = table_attributes | append: ' ' | append: table_attribute[0] | append: '="' | append: table_attribute[1] | append: '"' %}
-    {% assign new_table_attributes = new_table_attributes | append: " {{ table_attribute[0] }}='{{ table_attribute[1] }}'" %}
+    {% assign old_table_attributes = old_table_attributes | append: ' ' | append: table_attribute[0] | append: '="' | append: table_attribute[1] | append: '"' %}
 {% capture table_attributes_html %}
     {{ table_attribute[0] }}="{{ table_attribute[1] }}"
 {% endcapture %}
     {% assign table_attributes = table_attributes | append: table_attributes_html %}
-  {% endfor %}
+  {% endfor %}<!-- / for table_attribute in table -->
 {% else %}
   <!-- Table | Default -->
   {% assign table_sections = table %}
 {% endif %}
 <!-- [Sections] {{ table_sections }} -->
-<{{ table_tag }}{{ new_table_attributes }}>
+<{{ table_tag }}{{ old_table_attributes }}>
 
 {% for section in table_sections %}
   {% assign section_tag = section[0] %}
   {% assign section_rows = "" | split: "," %}
   {% assign section_attributes = "" %}
-  {% assign new_section_attributes = "" %}
+  {% assign old_section_attributes = "" %}
   {% assign section_content = "" %}
   {% if section[1].tr %}
   <!-- Table | Attributes -->
@@ -74,13 +76,12 @@ table:
       {% assign section_rows = section_attribute[1] %}
       {% continue %}
     {% endif %}
-    {% assign old_section_attributes = section_attributes | append: ' ' | append: section_attribute[0] | append: '="' | append: section_attribute[1] | append: '"' %}
-    {% assign new_section_attributes = new_section_attributes | append: " {{ section_attribute[0] }}='{{ section_attribute[1] }}'" %}
+    {% assign old_section_attributes = old_section_attributes | append: ' ' | append: section_attribute[0] | append: '="' | append: section_attribute[1] | append: '"' %}
 {% capture section_attributes_html %}
         {{ section_attribute[0] }}="{{ section_attribute[1] }}"
 {% endcapture %}
         {% assign section_attributes = section_attributes | append: section_attributes_html %}
-  {% endfor %}
+  {% endfor %}<!-- / for section_attribute in section[1] -->
 {% else %}
   <!-- Table | Default -->
   {% assign section_rows = section %}
@@ -89,7 +90,7 @@ table:
 <!-- [Rows] [{{ section_tag }}] {{ section_rows }} -->
 
 {% if section_tag %}
-<{{ section_tag }}{{ new_section_attributes }}>
+<{{ section_tag }}{{ old_section_attributes }}>
 {% endif %}
 
 {% for row in section_rows %}
@@ -104,7 +105,7 @@ table:
     {% assign cell_tag = "td" %}
     {% assign cell_content = "" %}
     {% assign cell_attributes = "" %}
-    {% assign new_cell_attributes = "" %}
+    {% assign old_cell_attributes = "" %}
     {% if column.td or column.th %}
       <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] | Attributes -->
       {% for cell_attribute in column %}
@@ -113,71 +114,90 @@ table:
           {% assign cell_content = cell_attribute[1] %}
           {% continue %}
         {% endif %}
-        {% assign old_cell_attributes = cell_attributes | append: ' ' | append: cell_attribute[0] | append: '="' | append: cell_attribute[1] | append: '"' %}
-        {% assign new_cell_attributes = new_cell_attributes | append: " {{ cell_attribute[0] }}='{{ cell_attribute[1] }}'" %}
+        {% assign old_cell_attributes = old_cell_attributes | append: ' ' | append: cell_attribute[0] | append: '="' | append: cell_attribute[1] | append: '"' %}
 {% capture cell_attributes_html %}
           {{ cell_attribute[0] }}="{{ cell_attribute[1] }}"
 {% endcapture %}
         {% assign cell_attributes = cell_attributes | append: cell_attributes_html %}
-      {% endfor %}
+      {% endfor %}<!-- / for cell_attribute in column -->
+
     {% else %}
       <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] | Default -->
       {% assign cell_content = column %}
     {% endif %}
-<{{ cell_tag }}{{ new_cell_attributes }}>
+<{{ cell_tag }}{{ old_cell_attributes }}>
 {{ cell_content }}
 </{{ cell_tag }}>
 
-    {% capture cell_html %}
-      <{{ cell_tag }}
-{{ cell_attributes }}
-      >
+{% capture cell_html %}
+      <!-- [Section] '{{ section_tag }}' | [Row] #{{ forloop.parentloop.index }} | [Column] #{{ forloop.index }} | [Cell] '{{ cell_tag }}' -->
+      <!-- {{ column }} -->
+
+      <{{ cell_tag }}{{ cell_attributes }}>
 {{ cell_content }}
       </{{ cell_tag }}>
-    {% endcapture %}
+{% endcapture %}
     {% assign row_content = row_content | append: cell_html %}
 
-  {% endfor %}
+  {% endfor %}<!-- / for column in row -->
 
-  {% capture row_html %}
-    <{{ row_tag }}
-{{ row_attributes }}
-    >
+{% capture row_html %}
+    <!-- [Section] '{{ section_tag }}' | [Row] #{{ forloop.index }} | [Columns] #{{ row | size }} -->
+    <!-- {{ row }} -->
+
+    <{{ row_tag }}{{ row_attributes }}>
 {{ row_content }}
     </{{ row_tag }}>
-  {% endcapture %}
+{% endcapture %}
   {% assign section_content = section_content | append: row_html %}
 
   </{{ row_tag }}>
-{% endfor %}
+{% endfor %}<!-- / for section in table_sections -->
 
 {% if section_tag %}
 </{{ section_tag }}>
 {% endif %}
 
 {% if section_tag %}
-  {% capture section_html %}
+{% capture section_html %}
+  <!-- [Section] '{{ section_tag }}' | [Rows] #{{ section_rows | size }} -->
+  <!-- {{ section_rows }} -->
+
   <{{ section_tag }}{{ section_attributes }}>
 {{ section_content }}
   </{{ section_tag }}>
-  {% endcapture %}
+{% endcapture %}
 {% else %}
-  {% capture section_html %}
+{% capture section_html %}
+  <!-- [Section] '{{ section_tag }}' | [Rows] #{{ section_rows | size }} -->
+  <!-- {{ section_rows }} -->
+
 {{ section_content }}
-  {% endcapture %}
+{% endcapture %}
 {% endif %}
 {% assign table_content = table_content | append: section_html %}
 
-{% endfor %}
+{% endfor %}<!-- / for section in table_sections -->
 
 </{{ table_tag }}>
 
 {% capture table_html %}
-<{{ table_tag }}
-{{ table_attributes }}
->
+<!-- [Sections] #{{ table_sections | size }} -->
+<!-- {{ table_sections }} -->
+
+<{{ table_tag }}{{ table_attributes }}>
 {{ table_content }}
 </{{ table_tag }}>
 {% endcapture %}
 
+
+<br><br><hr><br><br>
+
+<!-- [Table] #{{ table | size }} -->
+<!-- {{ table }} -->
+
 {{ table_html }}
+
+
+{{ capture test_cap }} This is a "test".{{ endcapture }}
+<pre>{{ test_cap }}</pre>
