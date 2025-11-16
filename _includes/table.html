@@ -1,68 +1,67 @@
-{% assign attributes = include.attributes %}
-{% assign table = include.table %}
-{% assign table_tag = "table" %}
-{% assign table_sections = "" | split: "," %}
-{% assign table_attributes = attributes.table | default: "" %}
-{% assign table_content = "" %}
+{%- assign table = include.table -%}
+{%- assign table_tag = "table" -%}
+{%- assign table_sections = "" | split: "," -%}
+{%- assign table_attributes = "" -%}
+{%- assign table_content = "" -%}
 {% if table.tbody or table.thead or table.tfoot %}
   {% for table_attribute in table %}
     {% if table_attribute[0] == "tbody" or table_attribute[0] == "thead" or table_attribute[0] == "tfoot"
           or table_attribute[0] == "tr" or table_attribute[0] == "th" %}
-      {% assign table_sections = table_sections | push: table_attribute %}
+      {%- assign table_sections = table_sections | push: table_attribute -%}
       {% continue %}
     {% endif %}
 {% capture table_attributes_html %} {{ table_attribute[0] }}="{{ table_attribute[1] }}"{% endcapture %}
-    {% assign table_attributes = table_attributes | append: table_attributes_html %}
+    {%- assign table_attributes = table_attributes | append: table_attributes_html -%}
   {% endfor %}<!-- / for table_attribute in table -->
 {% else %}
-  {% assign table_sections = table %}
+  {%- assign table_sections = table -%}
 {% endif %}
 
 {% for section in table_sections %}
-  {% assign section_tag = section[0] %}
-  {% assign section_rows = "" | split: "," %}
-  {% assign section_attributes = attributes[section_tag] | default: "" %}
-  {% assign section_content = "" %}
+  {%- assign section_tag = section[0] -%}
+  {%- assign section_rows = "" | split: "," -%}
+  {%- assign section_attributes = "" -%}
+  {%- assign section_content = "" -%}
   {% if section[1].tr %}
     {% for section_attribute in section[1] %}
       {% if section_attribute[0] == "tr" %}
-        {% assign section_rows = section_attribute[1] %}
+        {%- assign section_rows = section_attribute[1] -%}
         {% continue %}
       {% endif %}
 {% capture section_attributes_html %} {{ section_attribute[0] }}="{{ section_attribute[1] }}"{% endcapture %}
-      {% assign section_attributes = section_attributes | append: section_attributes_html %}
+      {%- assign section_attributes = section_attributes | append: section_attributes_html -%}
     {% endfor %}<!-- / for section_attribute in section[1] -->
   {% else %}
-    {% assign section_rows = section %}
+    {%- assign section_rows = section -%}
   {% endif %}
 
   {% for row in section_rows %}
-    {% assign row_tag = "tr" %}
-    {% assign row_attributes = attributes.tr | default: "" %}
-    {% assign row_content = "" %}
+    {%- assign row_tag = "tr" -%}
+    {%- assign row_attributes = "" -%}
+    {%- assign row_content = "" -%}
     {% for column in row %}
-      {% assign cell_tag = "td" %}
-      {% assign cell_content = "" %}
-      {% assign cell_attributes = attributes.td | default: "" %}
+      {%- assign cell_tag = "td" -%}
+      {%- assign cell_content = "" -%}
+      {%- assign cell_attributes = "" -%}
       {% if column.tr %}
         {% for row_attribute in column.tr %}
 {% capture row_attributes_html %} {{ row_attribute[0] }}="{{ row_attribute[1] }}"{% endcapture %}
-          {% assign row_attributes = row_attributes | append: row_attributes_html %}
+          {%- assign row_attributes = row_attributes | append: row_attributes_html -%}
         {% endfor %}<!-- / row_attribute in column.tr -->
         {% continue %}
       {% endif %}
       {% if column.td or column.th %}
         {% for cell_attribute in column %}
           {% if attribute[0] == "td" or attribute[0] == "th" %}
-            {% assign cell_tag = cell_attribute[0] %}
-            {% assign cell_content = cell_attribute[1] %}
+            {%- assign cell_tag = cell_attribute[0] -%}
+            {%- assign cell_content = cell_attribute[1] -%}
             {% continue %}
           {% endif %}
 {% capture cell_attributes_html %} {{ cell_attribute[0] }}="{{ cell_attribute[1] }}"{% endcapture %}
-          {% assign cell_attributes = cell_attributes | append: cell_attributes_html %}
+          {%- assign cell_attributes = cell_attributes | append: cell_attributes_html -%}
         {% endfor %}<!-- / for cell_attribute in column -->
       {% else %}
-        {% assign cell_content = column %}
+        {%- assign cell_content = column -%}
       {% endif %}
 
 {% capture cell_html %}
@@ -70,7 +69,7 @@
 {{ cell_content }}
       </{{ cell_tag }}>
 {% endcapture %}
-      {% assign row_content = row_content | append: cell_html %}
+      {%- assign row_content = row_content | append: cell_html -%}
     {% endfor %}<!-- / for column in row -->
 
 {% capture row_html %}
@@ -78,7 +77,7 @@
 {{ row_content }}
     </{{ row_tag }}>
 {% endcapture %}
-    {% assign section_content = section_content | append: row_html %}
+    {%- assign section_content = section_content | append: row_html -%}
   {% endfor %}<!-- / for section in table_sections -->
 
   {% if section_tag %}
@@ -92,7 +91,7 @@
 {{ section_content }}
 {% endcapture %}
   {% endif %}
-  {% assign table_content = table_content | append: section_html %}
+  {%- assign table_content = table_content | append: section_html -%}
 {% endfor %}<!-- / for section in table_sections -->
 
 {% capture table_html %}
