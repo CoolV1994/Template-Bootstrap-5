@@ -37,6 +37,7 @@ table:
 {% assign table_tag = "table" %}
 {% assign table_sections = "" | split: "," %}
 {% assign table_attributes = "" %}
+{% assign new_table_attributes = "" %}
 {% assign table_content = "" %}
 {% if table.tbody or table.thead or table.tfoot %}
   <!-- Table | Attributes -->
@@ -47,19 +48,24 @@ table:
       {% continue %}
     {% endif %}
     {% assign old_table_attributes = table_attributes | append: ' ' | append: table_attribute[0] | append: '="' | append: table_attribute[1] | append: '"' %}
-    {% assign table_attributes = table_attributes | append: " {{ table_attribute[0] }}=\"{{ table_attribute[1] }}"\" %}
+    {% assign new_table_attributes = new_table_attributes | append: " {{ table_attribute[0] }}='{{ table_attribute[1] }}'" %}
+{% capture table_attributes_html %}
+    {{ table_attribute[0] }}="{{ table_attribute[1] }}"
+{% endcapture %}
+    {% assign table_attributes = table_attributes | append: table_attributes_html %}
   {% endfor %}
 {% else %}
   <!-- Table | Default -->
   {% assign table_sections = table %}
 {% endif %}
 <!-- [Sections] {{ table_sections }} -->
-<{{ table_tag }}{{ table_attributes }}>
+<{{ table_tag }}{{ new_table_attributes }}>
 
 {% for section in table_sections %}
   {% assign section_tag = section[0] %}
   {% assign section_rows = "" | split: "," %}
   {% assign section_attributes = "" %}
+  {% assign new_section_attributes = "" %}
   {% assign section_content = "" %}
   {% if section[1].tr %}
   <!-- Table | Attributes -->
@@ -69,7 +75,11 @@ table:
       {% continue %}
     {% endif %}
     {% assign old_section_attributes = section_attributes | append: ' ' | append: section_attribute[0] | append: '="' | append: section_attribute[1] | append: '"' %}
-    {% assign section_attributes = section_attributes | append: " {{ section_attribute[0] }}=\"{{ section_attribute[1] }}\"" %}
+    {% assign new_section_attributes = new_section_attributes | append: " {{ section_attribute[0] }}='{{ section_attribute[1] }}'" %}
+{% capture section_attributes_html %}
+        {{ section_attribute[0] }}="{{ section_attribute[1] }}"
+{% endcapture %}
+        {% assign section_attributes = section_attributes | append: section_attributes_html %}
   {% endfor %}
 {% else %}
   <!-- Table | Default -->
@@ -79,7 +89,7 @@ table:
 <!-- [Rows] [{{ section_tag }}] {{ section_rows }} -->
 
 {% if section_tag %}
-<{{ section_tag }}{{ section_attributes }}>
+<{{ section_tag }}{{ new_section_attributes }}>
 {% endif %}
 
 {% for row in section_rows %}
@@ -87,12 +97,14 @@ table:
   {% assign row_tag = "tr" %}
   {% assign row_attributes = "" %}
   {% assign row_content = "" %}
-  <tr>
+  <{{ row_tag }}{{ row_attributes }}>
+
   {% for column in row %}
     <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] -->
     {% assign cell_tag = "td" %}
     {% assign cell_content = "" %}
     {% assign cell_attributes = "" %}
+    {% assign new_cell_attributes = "" %}
     {% if column.td or column.th %}
       <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] | Attributes -->
       {% for cell_attribute in column %}
@@ -102,18 +114,24 @@ table:
           {% continue %}
         {% endif %}
         {% assign old_cell_attributes = cell_attributes | append: ' ' | append: cell_attribute[0] | append: '="' | append: cell_attribute[1] | append: '"' %}
-        {% assign cell_attributes = cell_attributes | append: " {{ cell_attribute[0] }}=\"{{ cell_attribute[1] }}\"" %}
+        {% assign new_cell_attributes = new_cell_attributes | append: " {{ cell_attribute[0] }}='{{ cell_attribute[1] }}'" %}
+{% capture cell_attributes_html %}
+          {{ cell_attribute[0] }}="{{ cell_attribute[1] }}"
+{% endcapture %}
+        {% assign cell_attributes = cell_attributes | append: cell_attributes_html %}
       {% endfor %}
     {% else %}
       <!-- Row [{{ forloop.parentloop.index }} | Column [{{ forloop.index }}] | Default -->
       {% assign cell_content = column %}
     {% endif %}
-<{{ cell_tag }}{{ cell_attributes }}>
+<{{ cell_tag }}{{ new_cell_attributes }}>
 {{ cell_content }}
 </{{ cell_tag }}>
 
     {% capture cell_html %}
-      <{{ cell_tag }}{{ cell_attributes }}>
+      <{{ cell_tag }}
+{{ cell_attributes }}
+      >
 {{ cell_content }}
       </{{ cell_tag }}>
     {% endcapture %}
@@ -122,13 +140,15 @@ table:
   {% endfor %}
 
   {% capture row_html %}
-    <{{ row_tag }}{{ row_attributes }}>
+    <{{ row_tag }}
+{{ row_attributes }}
+    >
 {{ row_content }}
     </{{ row_tag }}>
   {% endcapture %}
   {% assign section_content = section_content | append: row_html %}
 
-  </tr>
+  </{{ row_tag }}>
 {% endfor %}
 
 {% if section_tag %}
@@ -153,7 +173,9 @@ table:
 </{{ table_tag }}>
 
 {% capture table_html %}
-<{{ table_tag }}{{ table_attributes }}>
+<{{ table_tag }}
+{{ table_attributes }}
+>
 {{ table_content }}
 </{{ table_tag }}>
 {% endcapture %}
