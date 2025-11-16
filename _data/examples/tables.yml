@@ -1,0 +1,68 @@
+--- # Table Sample
+table_sample:
+  id: table
+  thead:
+    id: table_head
+    tr:
+    - - tr:
+          id: row_header
+      - th: "#"
+      - th: A
+      - th: B
+      - th: C
+  tbody:
+    id: table_body
+    tr:
+    - - th: 1
+      - td: A1
+      - td: B1
+      - td: C1
+    - - th: 2
+      - td: A2
+      - td: B2
+      - td: C2
+    - - th: 3
+      - A3
+      - B3
+      - C3
+  tfoot:
+    id: table_foot
+    tr:
+    - - tr:
+          id: row_footer
+      - th: Total
+      - td: ABC
+        colspan: 3
+        align: center
+
+
+--- # Table Simple
+table_simple:
+  tr:
+  - - A1
+    - B1
+    - C1
+  - - A2
+    - B2
+    - C2
+  - - A3
+    - B3
+    - C3
+
+
+--- # Table Test
+table_test:
+- - tr:
+      border: 2
+  - th: A
+  - th: B
+  - th: C
+- - A1
+  - B1
+  - C1
+- - A2
+  - B2
+  - C2
+- - A3
+  - B3
+  - C3
