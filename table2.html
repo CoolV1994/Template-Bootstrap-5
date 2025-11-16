@@ -1,0 +1,39 @@
+---
+layout: null
+space_indent: "  "
+table:
+  id: table
+  thead:
+    id: table_head
+    tr:
+    - - th: "#"
+      - th: A
+      - th: B
+      - th: C
+  tbody:
+    id: table_body
+    tr:
+    - - th: 1
+      - td: A1
+      - td: B1
+      - td: C1
+    - - th: 2
+      - td: A2
+      - td: B2
+      - td: C2
+    - - th: 3
+      - A3
+      - B3
+      - C3
+  tfoot:
+    id: table_foot
+    tr:
+    - - th: Total
+      - td: ABC
+        colspan: 3
+        align: center
+---
+
+<!-- Include Table Start -->
+{% include table.html table=page.table %}
+<!-- Include Table End -->
