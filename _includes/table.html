@@ -72,17 +72,13 @@
       {% endif %}
 
 {% capture cell_html %}
-      <{{ cell_tag }}{{ cell_attributes }}>
-{{ cell_content }}
-      </{{ cell_tag }}>
+      <{{ cell_tag }}{{ cell_attributes }}>{{ cell_content }}</{{ cell_tag }}>
 {% endcapture %}
       {% assign row_content = row_content | append: cell_html %}
     {% endfor %}{% comment %}<!-- / for column in row -->{% endcomment %}
 
 {% capture row_html %}
-    <{{ row_tag }}{{ row_attributes }}>
-{{ row_content }}
-    </{{ row_tag }}>
+    <{{ row_tag }}{{ row_attributes }}>{{ row_content }}</{{ row_tag }}>
 {% endcapture %}
     {% assign section_content = section_content | append: row_html %}
   {% endfor %}{% comment %}<!-- / for section in table_sections -->{% endcomment %}
