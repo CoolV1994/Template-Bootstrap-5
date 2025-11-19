@@ -1,15 +1,62 @@
 ---
 layout: null
+title: Table Demo
+
+# YAML Front Matter for Table
+table_test:
+  id: table_test
+  tr:
+  - - tr:
+        border: 2
+    - th: A
+    - th: B
+    - th: C
+  - - A1
+    - B1
+    - C1
+  - - A2
+    - B2
+    - C2
+  - - A3
+    - B3
+    - C3
+
 ---
 
+<!doctype html>
+<html>
+<head>
+<title>{{ page.title }}</title>
+</head>
+<body>
+
+
 <h1>Table Sample</h1>
+<p>Table Example using data from <i>_data/examples/tables.yml</i> section <i>table_sample</i></p>
 <!-- Table Sample Start -->
 {% include table.html table=site.data.examples.tables.table_sample %}
 <!-- Table Sample End -->
 
+
 <br><br><hr><br><br>
 
+
 <h1>Table Simple</h1>
+<p>Table Example using data from <i>_data/examples/tables.yml</i> section <i>table_simple</i></p>
 <!-- Table Simple Start -->
 {% include table.html table=site.data.examples.tables.table_simple %}
 <!-- Table Simple End -->
+
+
+<br><br><hr><br><br>
+
+
+<h1>Table Test</h1>
+<p>Table Example using data from page front matter <i>page.table_test</i></p>
+<!-- Table Test Start -->
+{% include table.html table=page.table_test %}
+<!-- Table Test End -->
+
+
+</body>
+</html>
