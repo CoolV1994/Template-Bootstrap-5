@@ -43,10 +43,9 @@
 {% assign table_attributes = "" %}
 {% assign table_content = "" %}
 
-{% if table.tbody or table.thead or table.tfoot %}
+{% if table.tbody or table.thead or table.tfoot or table.tr %}
   {% for table_attribute in table %}
-    {% if table_attribute[0] == "tbody" or table_attribute[0] == "thead" or table_attribute[0] == "tfoot"
-          or table_attribute[0] == "tr" or table_attribute[0] == "th" %}
+    {% if table_attribute[0] == "tbody" or table_attribute[0] == "thead" or table_attribute[0] == "tfoot" or table_attribute[0] == "tr" %}
       {% assign table_sections = table_sections | push: table_attribute %}
       {% continue %}
     {% endif %}
