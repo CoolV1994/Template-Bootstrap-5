@@ -79,8 +79,8 @@
     {% assign section_rows = section %}
   {% endif %}
 
-  {% if section.tr %}
-    {% assign section_rows = section.tr %}
+  {% if section[0] == "tr" %}
+    {% assign section_rows = section[1] %}
   {% endif %}
 
   {% for row in section_rows %}
