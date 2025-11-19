@@ -66,6 +66,10 @@
     {% assign section_tag = section[0] %}
   {% endif %}
 
+  {% if section[0] == "tr" %}
+    {% assign section_rows = section[1] %}
+  {% endif %}
+
   {% if section[1].tr %}
     {% for section_attribute in section[1] %}
       {% if section_attribute[0] == "tr" %}
