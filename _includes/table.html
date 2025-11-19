@@ -127,7 +127,7 @@
 {% capture section_html %}
 {{ section_content }}
 {% endcapture %}
-  {% if section_tag %}
+  {% if section_tag != "" %}
 {% capture section_html %}
   <{{ section_tag }}{{ section_attributes }}>{{ section_content }}</{{ section_tag }}>
 {% endcapture %}
