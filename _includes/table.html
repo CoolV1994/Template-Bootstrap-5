@@ -58,10 +58,14 @@
 {% endif %}
 
 {% for section in table_sections %}
-  {% assign section_tag = section[0] %}
+  {% assign section_tag = "" %}
   {% assign section_rows = "" | split: "," %}
   {% assign section_attributes = "" %}
   {% assign section_content = "" %}
+
+  {% if section[0] == "thead" or section[0] == "tbody" or section[0] == "tfoot" %}
+    {% assign section_tag = section[0] %}
+  {% endif %}
 
   {% if section[1].tr %}
     {% for section_attribute in section[1] %}
