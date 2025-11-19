@@ -1,6 +1,7 @@
 --- # Table Sample
 table_sample:
-  id: table
+  id: table_sample
+  class: style_table
   thead:
     id: table_head
     tr:
@@ -38,6 +39,7 @@ table_sample:
 
 --- # Table Simple
 table_simple:
+  id: table_simple
   tr:
   - - A1
     - B1
