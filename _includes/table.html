@@ -132,6 +132,8 @@
 
   {% endif %}
 
+
+                    {% comment %}
   {% if section[0] == "tr" %}
     {% assign section_rows = section[1] %}
 
@@ -141,6 +143,8 @@
 {% assign debugLog = debugLog | append: logText | append: "\n" %}
 
   {% endif %}
+                    {% endcomment %}
+
 
   {% for row in section_rows %}
     {% assign row_tag = "tr" %}
