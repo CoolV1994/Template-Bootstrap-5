@@ -48,11 +48,20 @@ table_test:
 
 
 <h1>Table Test</h1>
-<p>Table Example using data from page front matter <i>page.table_test</i></p>
+<p>Table Example using data from <i>_data/examples/tables.yml</i> section <i>table_test</i></p>
 <!-- Table Test Start -->
-{% include table.html table=page.table_test %}
+{% include table.html table=site.data.examples.tables.table_test %}
 <!-- Table Test End -->
 
+  
+<br><br><hr><br><br>
+
+
+<h1>(Page) Table Test</h1>
+<p>Table Example using data from page front matter <i>page.table_test</i></p>
+<!-- Table Page Start -->
+{% include table.html table=page.table_test %}
+<!-- Table Page End -->
 
 </body>
 </html>
