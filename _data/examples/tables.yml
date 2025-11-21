@@ -54,11 +54,14 @@ table_simple:
 
 # Table Test
 table_test:
+  id: table_test
 - - tr:
       border: 2
   - th: A
   - th: B
   - th: C
+- - th: "- - -"
+      colspan: 3
 - - A1
   - B1
   - C1
