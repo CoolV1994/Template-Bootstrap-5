@@ -54,7 +54,6 @@ table_simple:
 
 # Table Test
 table_test:
-  id: table_test
 - - tr:
       border: 2
   - th: A
