@@ -150,6 +150,13 @@
 
   {% endif %}
 
+
+{% capture logText %}
+[Section #{{ forloop.index }}] [{{ section[0] }}] Rows: {{ section_rows.size }}
+{% endcapture %}
+{% assign debugLog = debugLog | append: logText | append: "\n" %}
+
+
   {% for row in section_rows %}
     {% assign row_tag = "tr" %}
     {% assign row_attributes = "" %}
