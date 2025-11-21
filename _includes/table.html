@@ -37,11 +37,24 @@
             HTML Table generated from YAML input. (Page Front Matter / Site Data File)
 {% endcomment %}
 
+{% assign debugLog = "" %}
+
+{% capture logText %}{% endcapture %}
+{% assign debugLog = debugLog | append: logText | append: "\n" %}
+
+
 {% assign table = include.table %}
 {% assign table_tag = "table" %}
 {% assign table_sections = "" | split: "," %}
 {% assign table_attributes = "" %}
 {% assign table_content = "" %}
+
+
+{% capture logText %}
+[Table] {{ table }}
+{% endcapture %}
+{% assign debugLog = debugLog | append: logText | append: "\n" %}
+
 
 {% if table.tbody or table.thead or table.tfoot or table.tr %}
   {% for table_attribute in table %}
@@ -56,20 +69,54 @@
   {% assign table_sections = table %}
 {% endif %}
 
+
+{% capture logText %}
+[Sections] ({{ table_sections.size }}) {{ table_sections }}
+{% endcapture %}
+{% assign debugLog = debugLog | append: logText | append: "\n" %}
+
+
 {% for section in table_sections %}
   {% assign section_tag = "" %}
   {% assign section_rows = "" | split: "," %}
   {% assign section_attributes = "" %}
   {% assign section_content = "" %}
 
+
+{% capture logText %}
+[Section #{{ forloop.index }}] {{ section }}
+[Section #{{ forloop.index }}] [{{ section[0] }}] {{ section[1] }}
+{% endcapture %}
+{% assign debugLog = debugLog | append: logText | append: "\n" %}
+
+
   {% if section[0] == "thead" or section[0] == "tbody" or section[0] == "tfoot" %}
     {% assign section_tag = section[0] %}
   {% endif %}
 
   {% if section[1].tr %}
+
+{% capture logText %}
+[Section #{{ forloop.index }}] [{{ section[0] }}] (TRUE) section[1].tr
+{% endcapture %}
+{% assign debugLog = debugLog | append: logText | append: "\n" %}
+
     {% for section_attribute in section[1] %}
+
+{% capture logText %}
+[Section #{{ forloop.parent.index }}] [{{ section[0] }}] [Attribute #{{ forloop.index }}] {{ section_attribute }}
+[Section #{{ forloop.parent.index }}] [{{ section[0] }}] [Attribute #{{ forloop.index }}] [{{ section_attribute[0] }}] {{ section_attribute[1] }}
+{% endcapture %}
+{% assign debugLog = debugLog | append: logText | append: "\n" %}
+
       {% if section_attribute[0] == "tr" %}
         {% assign section_rows = section_attribute[1] %}
+
+{% capture logText %}
+[Section #{{ forloop.parent.index }}] [{{ section[0] }}] [Attribute #{{ forloop.index }}] [{{ section_attribute[0] }}] (TRUE) section_attribute[0] == "tr"
+{% endcapture %}
+{% assign debugLog = debugLog | append: logText | append: "\n" %}
+
         {% continue %}
       {% endif %}
 {% capture section_attributes_html %} {{ section_attribute[0] }}="{{ section_attribute[1] }}"{% endcapture %}
@@ -77,10 +124,22 @@
     {% endfor %}{% comment %}<!-- / for section_attribute in section[1] -->{% endcomment %}
   {% else %}
     {% assign section_rows = section %}
+
+{% capture logText %}
+[Section #{{ forloop.index }}] [{{ section[0] }}] (FALSE) section[1].tr
+{% endcapture %}
+{% assign debugLog = debugLog | append: logText | append: "\n" %}
+
   {% endif %}
 
   {% if section[0] == "tr" %}
     {% assign section_rows = section[1] %}
+
+{% capture logText %}
+[Section #{{ forloop.index }}] [{{ section[0] }}] (TRUE) section[0] == "tr"
+{% endcapture %}
+{% assign debugLog = debugLog | append: logText | append: "\n" %}
+
   {% endif %}
 
   {% for row in section_rows %}
@@ -88,12 +147,30 @@
     {% assign row_attributes = "" %}
     {% assign row_content = "" %}
 
+
+{% capture logText %}
+[Section #{{ forloop.parent.index }}] [{{ section[0] }}] [Row #{{ forloop.index }}] {{ row }}
+{% endcapture %}
+{% assign debugLog = debugLog | append: logText | append: "\n" %}
+
+
     {% for column in row %}
       {% assign cell_tag = "td" %}
       {% assign cell_content = "" %}
       {% assign cell_attributes = "" %}
 
+{% capture logText %}
+[Section #{{ forloop.parent.parent.index }}] [{{ section[0] }}] [Row #{{ forloop.parent.index }}] [Column #{{ forloop.index }}] {{ column }}
+{% endcapture %}
+{% assign debugLog = debugLog | append: logText | append: "\n" %}
+
       {% if column.tr %}
+
+{% capture logText %}
+[Section #{{ forloop.parent.parent.index }}] [{{ section[0] }}] [Row #{{ forloop.parent.index }}] [Column #{{ forloop.index }}] (TRUE) column.tr
+{% endcapture %}
+{% assign debugLog = debugLog | append: logText | append: "\n" %}
+
         {% for row_attribute in column.tr %}
 {% capture row_attributes_html %} {{ row_attribute[0] }}="{{ row_attribute[1] }}"{% endcapture %}
           {% assign row_attributes = row_attributes | append: row_attributes_html %}
@@ -102,10 +179,29 @@
       {% endif %}
 
       {% if column.td or column.th %}
+
+{% capture logText %}
+[Section #{{ forloop.parent.parent.index }}] [{{ section[0] }}] [Row #{{ forloop.parent.index }}] [Column #{{ forloop.index }}] (TRUE) column.td or column.th
+{% endcapture %}
+{% assign debugLog = debugLog | append: logText | append: "\n" %}
+
         {% for cell_attribute in column %}
+
+{% capture logText %}
+[Section #{{ forloop.parent.parent.parent.index }}] [{{ section[0] }}] [Row #{{ forloop.parent.parent.index }}] [Column #{{ forloop.parent.index }}] [Attribute #{{ forloop.index }}] {{ cell_attribute }}
+[Section #{{ forloop.parent.parent.parent.index }}] [{{ section[0] }}] [Row #{{ forloop.parent.parent.index }}] [Column #{{ forloop.parent.index }}] [Attribute #{{ forloop.index }}] [{{ cell_attribute[0] }}] {{ cell_attribute[1] }}
+{% endcapture %}
+{% assign debugLog = debugLog | append: logText | append: "\n" %}
+
           {% if cell_attribute[0] == "td" or cell_attribute[0] == "th" %}
             {% assign cell_tag = cell_attribute[0] %}
             {% assign cell_content = cell_attribute[1] %}
+
+{% capture logText %}
+[Section #{{ forloop.parent.parent.parent.index }}] [{{ section[0] }}] [Row #{{ forloop.parent.parent.index }}] [Column #{{ forloop.parent.index }}] [Attribute #{{ forloop.index }}] [{{ cell_attribute[0] }}] (TRUE) cell_attribute[0] == "td" or cell_attribute[0] == "th"
+{% endcapture %}
+{% assign debugLog = debugLog | append: logText | append: "\n" %}
+
             {% continue %}
           {% endif %}
 {% capture cell_attributes_html %} {{ cell_attribute[0] }}="{{ cell_attribute[1] }}"{% endcapture %}
@@ -113,6 +209,12 @@
         {% endfor %}{% comment %}<!-- / for cell_attribute in column -->{% endcomment %}
       {% else %}
         {% assign cell_content = column %}
+
+{% capture logText %}
+[Section #{{ forloop.parent.parent.index }}] [{{ section[0] }}] [Row #{{ forloop.parent.index }}] [Column #{{ forloop.index }}] (FALSE) column.td or column.th
+{% endcapture %}
+{% assign debugLog = debugLog | append: logText | append: "\n" %}
+
       {% endif %}
 
 {% capture cell_html %}
@@ -143,4 +245,7 @@
 {% endcapture %}
 
 {% endcapture %}{% assign tableWorkspace = '' %}
+<!-- Debug
+{{ debugLog }}
+-->
 {{ table_html }}
