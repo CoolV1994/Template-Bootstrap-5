@@ -61,7 +61,7 @@ table_test:
   - th: B
   - th: C
 - - th: "- - -"
-      colspan: 3
+    colspan: 3
 - - A1
   - B1
   - C1
