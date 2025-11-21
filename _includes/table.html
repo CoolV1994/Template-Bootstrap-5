@@ -132,8 +132,6 @@
 
   {% endif %}
 
-
-                    {% comment %}
   {% if section[0] == "tr" %}
     {% assign section_rows = section[1] %}
 
@@ -142,9 +140,15 @@
 {% endcapture %}
 {% assign debugLog = debugLog | append: logText | append: "\n" %}
 
-  {% endif %}
-                    {% endcomment %}
+  {% else %}
+    {% assign section_rows = section %}
 
+{% capture logText %}
+[Section #{{ forloop.index }}] [{{ section[0] }}] (FALSE) section[0] == "tr"
+{% endcapture %}
+{% assign debugLog = debugLog | append: logText | append: "\n" %}
+
+  {% endif %}
 
   {% for row in section_rows %}
     {% assign row_tag = "tr" %}
