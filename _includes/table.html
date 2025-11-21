@@ -141,7 +141,7 @@
 {% assign debugLog = debugLog | append: logText | append: "\n" %}
 
   {% else %}
-    {% assign section_rows = section %}
+    {% assign section_rows = section[0] %}
 
 {% capture logText %}
 [Section #{{ forloop.index }}] [{{ section[0] }}] (FALSE) section[0] == "tr"
