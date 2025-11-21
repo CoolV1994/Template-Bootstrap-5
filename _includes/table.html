@@ -152,7 +152,7 @@
 
 
 {% capture logText %}
-[Section #{{ forloop.index }}] [{{ section[0] }}] Rows: {{ section_rows.size }}
+[Section #{{ forloop.index }}] [{{ section[0] }}] [Rows] ({{ section_rows.size }}) {{ section_rows }}
 {% endcapture %}
 {% assign debugLog = debugLog | append: logText | append: "\n" %}
 
