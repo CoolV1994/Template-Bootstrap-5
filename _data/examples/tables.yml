@@ -1,4 +1,4 @@
---- # Table Sample
+# Table Sample
 table_sample:
   id: table_sample
   class: style_table
@@ -37,7 +37,7 @@ table_sample:
         align: center
 
 
---- # Table Simple
+# Table Simple
 table_simple:
   id: table_simple
   tr:
@@ -52,7 +52,7 @@ table_simple:
     - C3
 
 
---- # Table Test
+# Table Test
 table_test:
 - - tr:
       border: 2
