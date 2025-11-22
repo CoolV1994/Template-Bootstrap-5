@@ -67,7 +67,10 @@
     {% assign table_attributes = table_attributes | append: table_attributes_html %}
   {% endfor %}{% comment %}<!-- / for table_attribute in table -->{% endcomment %}
 {% else %}
+{% comment %}
   {% assign table_sections = table %}
+{% endcomment %}
+  {% assign table_sections = table_sections | merge: { "tr": table } %}
 {% endif %}
 
 
@@ -124,7 +127,6 @@
       {% assign section_attributes = section_attributes | append: section_attributes_html %}
     {% endfor %}{% comment %}<!-- / for section_attribute in section[1] -->{% endcomment %}
 
-{% comment %}
   {% else %}
     {% assign section_rows = section %}
 
@@ -132,12 +134,13 @@
 [Section #{{ forloop.index }}] [{{ section[0] }}] (FALSE) section[1].tr
 {% endcapture %}
 {% assign debugLog = debugLog | append: logText | append: "\n" %}
-{% endcomment %}
 
   {% endif %}
 
+{% comment %}
   {% unless table.thead and table.tbody and table.tfoot and table.tr %}
     {% assign section_rows = table %}
+    {% assign table_sections = table_sections | merge: { "new_key": new_key_value } %}
 
 {% capture logText %}
 [Section #{{ forloop.index }}] [{{ section[0] }}] (FALSE) section[0] == "tr"
@@ -145,6 +148,7 @@
 {% assign debugLog = debugLog | append: logText | append: "\n" %}
 
   {% endunless %}
+{% endcomment %}
 
   {% if section[0] == "tr" %}
     {% assign section_rows = section[1] %}
@@ -276,7 +280,7 @@
 {% endfor %}{% comment %}<!-- / for section in table_sections -->{% endcomment %}
 
 
-{% capture table_debug %}  <!-- [Table] ({{ table.size }}) {{ table }} -->{% endcapture %}
+{% capture table_debug %}<!-- [Table] ({{ table.size }}) {{ table }} -->{% endcapture %}
 {% capture table_html %}
 {% if debug %}{{ table_debug }}{% endif %}
 <{{ table_tag }}{{ table_attributes }}>{{ table_content }}</{{ table_tag }}>
