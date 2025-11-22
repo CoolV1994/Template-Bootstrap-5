@@ -45,12 +45,17 @@
 {% assign debug = include.debug | default: true %}
 
 
+{% assign attributes = include.attributes %}
+
 {% assign table = include.table %}
 {% assign table_tag = "table" %}
 {% assign table_sections = "" | split: "," %}
 {% assign table_attributes = "" %}
 {% assign table_content = "" %}
 
+{% assign table_attributes_tr = "" %}
+{% assign table_attributes_td = "" %}
+{% assign table_attributes_th = "" %}
 
 {% capture logText %}
 [Table] {{ table }}
@@ -84,6 +89,13 @@
   {% assign section_rows = "" | split: "," %}
   {% assign section_attributes = "" %}
   {% assign section_content = "" %}
+  {% assign section_attributes = "" %}
+  {% assign section_row_attributes = "" %}
+
+  {% assign section_attributes_tr = "" %}
+  {% assign section_attributes_td = "" %}
+  {% assign section_attributes_th = "" %}
+
 
 
 {% capture logText %}
