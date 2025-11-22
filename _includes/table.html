@@ -147,7 +147,6 @@
   {% endif %}
 
 
-{% comment %}
   {% unless table.thead and table.tbody and table.tfoot and table.tr %}
     {% assign section_rows = table %}
 
@@ -157,7 +156,6 @@
 {% assign debugLog = debugLog | append: logText | append: "\n" %}
 
   {% endunless %}
-{% endcomment %}
 
 
 
