@@ -70,7 +70,7 @@
 {% comment %}
   {% assign table_sections = table %}
 {% endcomment %}
-  {% assign table_sections = table_sections | merge: { "tr": table } %}
+  {% assign table_sections = { "tr": table } %}
 {% endif %}
 
 
