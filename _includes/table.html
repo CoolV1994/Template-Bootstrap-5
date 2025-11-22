@@ -42,6 +42,7 @@
 {% capture logText %}{% endcapture %}
 {% assign debugLog = debugLog | append: logText | append: "\n" %}
 
+{% assign debug = include.debug | default: true %}
 
 {% assign table = include.table %}
 {% assign table_tag = "table" %}
@@ -140,7 +141,10 @@
 {% endcapture %}
 {% assign debugLog = debugLog | append: logText | append: "\n" %}
 
-  {% else %}
+  {% endif %}
+
+
+  {% unless table.thead and table.tbody and table.tfoot and table.tr %}
     {% assign section_rows = table %}
 
 {% capture logText %}
@@ -148,7 +152,8 @@
 {% endcapture %}
 {% assign debugLog = debugLog | append: logText | append: "\n" %}
 
-  {% endif %}
+  {% endunless %}
+
 
 
 {% capture logText %}
@@ -232,30 +237,46 @@
 
       {% endif %}
 
+
+{% capture cell_debug %}
+      <!-- [Column #{{ forloop.index }}] [{{ cell_tag }}] ({{ column.size }}) {{ column }} -->
+{% endcapture %}
+
 {% capture cell_html %}
+{% if debug %}{{ cell_debug }}{% endif %}
       <{{ cell_tag }}{{ cell_attributes }}>{{ cell_content }}</{{ cell_tag }}>
 {% endcapture %}
       {% assign row_content = row_content | append: cell_html %}
     {% endfor %}{% comment %}<!-- / for column in row -->{% endcomment %}
 
+
+{% capture row_debug %}    <!-- [Row #{{ forloop.index }}] ({{ row.size }}) {{ row }} -->{% endcapture %}
 {% capture row_html %}
+{% if debug %}{{ row_debug }}{% endif %}
     <{{ row_tag }}{{ row_attributes }}>{{ row_content }}</{{ row_tag }}>
 {% endcapture %}
     {% assign section_content = section_content | append: row_html %}
   {% endfor %}{% comment %}<!-- / for section in table_sections -->{% endcomment %}
 
+
+{% capture section_debug %}  <!-- [Section #{{ forloop.index }}] [{{ section[0] }}] ({{ section.size }}) {{ section }} -->{% endcapture %}
 {% capture section_html %}
+{% if debug %}{{ section_debug }}{% endif %}
 {{ section_content }}
 {% endcapture %}
   {% if section_tag != "" %}
 {% capture section_html %}
+{% if debug %}{{ section_debug }}{% endif %}
   <{{ section_tag }}{{ section_attributes }}>{{ section_content }}</{{ section_tag }}>
 {% endcapture %}
   {% endif %}
   {% assign table_content = table_content | append: section_html %}
 {% endfor %}{% comment %}<!-- / for section in table_sections -->{% endcomment %}
 
+
+{% capture table_debug %}  <!-- [Table] ({{ table.size }}) {{ table }} -->{% endcapture %}
 {% capture table_html %}
+{% if debug %}{{ table_debug }}{% endif %}
 <{{ table_tag }}{{ table_attributes }}>{{ table_content }}</{{ table_tag }}>
 {% endcapture %}
 
