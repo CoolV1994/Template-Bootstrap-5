@@ -57,9 +57,9 @@
 {% assign debugLog = debugLog | append: logText | append: "\n" %}
 
 
-{% if table.tbody or table.thead or table.tfoot or table.tr %}
+{% if table.tbody or table.thead or table.tfoot or table.data %}
   {% for table_attribute in table %}
-    {% if table_attribute[0] == "tbody" or table_attribute[0] == "thead" or table_attribute[0] == "tfoot" or table_attribute[0] == "tr" %}
+    {% if table_attribute[0] == "tbody" or table_attribute[0] == "thead" or table_attribute[0] == "tfoot" or table_attribute[0] == "data" %}
       {% assign table_sections = table_sections | push: table_attribute %}
       {% continue %}
     {% endif %}
@@ -69,14 +69,6 @@
 {% else %}
   {% assign table_rows = "": table %}
   {% assign table_sections = table_sections | push: table %}
-
-{% comment %}
-  {% assign table_sections = "" | split: "," %}
-  {% assign table_sections = table %}
-  {% assign table_json = table | jsonify %}
-  {% assign table_rows_json = '{ "": ' | append: table_json | append: '}' %}
-  {% assign table_sections = table_rows_json | parse_json %}
-{% endcomment %}
 {% endif %}
 
 
@@ -104,10 +96,10 @@
     {% assign section_tag = section[0] %}
   {% endif %}
 
-  {% if section[1].tr %}
+  {% if section[1].data %}
 
 {% capture logText %}
-[Section #{{ forloop.index }}] [{{ section[0] }}] (TRUE) section[1].tr
+[Section #{{ forloop.index }}] [{{ section[0] }}] (TRUE) section[1].data
 {% endcapture %}
 {% assign debugLog = debugLog | append: logText | append: "\n" %}
 
@@ -119,11 +111,11 @@
 {% endcapture %}
 {% assign debugLog = debugLog | append: logText | append: "\n" %}
 
-      {% if section_attribute[0] == "tr" %}
+      {% if section_attribute[0] == "data" %}
         {% assign section_rows = section_attribute[1] %}
 
 {% capture logText %}
-[Section #{{ forloop.parentloop.index }}] [{{ section[0] }}] [Attribute #{{ forloop.index }}] [{{ section_attribute[0] }}] (TRUE) section_attribute[0] == "tr"
+[Section #{{ forloop.parentloop.index }}] [{{ section[0] }}] [Attribute #{{ forloop.index }}] [{{ section_attribute[0] }}] (TRUE) section_attribute[0] == "data"
 {% endcapture %}
 {% assign debugLog = debugLog | append: logText | append: "\n" %}
 
@@ -137,35 +129,22 @@
     {% assign section_rows = section %}
 
 {% capture logText %}
-[Section #{{ forloop.index }}] [{{ section[0] }}] (FALSE) section[1].tr
+[Section #{{ forloop.index }}] [{{ section[0] }}] (FALSE) section[1].data
 {% endcapture %}
 {% assign debugLog = debugLog | append: logText | append: "\n" %}
 
   {% endif %}
 
-{% comment %}
-  {% unless table.thead and table.tbody and table.tfoot and table.tr %}
-    {% assign section_rows = table %}
-    {% assign table_sections = table_sections | merge: { "new_key": new_key_value } %}
 
-{% capture logText %}
-[Section #{{ forloop.index }}] [{{ section[0] }}] (FALSE) section[0] == "tr"
-{% endcapture %}
-{% assign debugLog = debugLog | append: logText | append: "\n" %}
-
-  {% endunless %}
-{% endcomment %}
-
-  {% if section[0] == "tr" %}
+  {% if section[0] == "data" %}
     {% assign section_rows = section[1] %}
 
 {% capture logText %}
-[Section #{{ forloop.index }}] [{{ section[0] }}] (TRUE) section[0] == "tr"
+[Section #{{ forloop.index }}] [{{ section[0] }}] (TRUE) section[0] == "data"
 {% endcapture %}
 {% assign debugLog = debugLog | append: logText | append: "\n" %}
 
   {% endif %}
-
 
 
 {% capture logText %}
@@ -192,7 +171,7 @@
       {% assign cell_attributes = "" %}
 
 {% capture logText %}
-[Section #{{ forloop.parentloop.parentloop.index }}] [{{ section[0] }}] [Row #{{ forloop.parentloop.index }}] [Column #{{ forloop.index }}] {{ column }}
+[Section #{{ forloop.parentloop.parentloop.index }}] [{{ section[0] }}] [Row #{{ forloop.parentloop.index }}] [Column #{{ forloop.index }}] ({{ column.size }}) {{ column }}
 {% endcapture %}
 {% assign debugLog = debugLog | append: logText | append: "\n" %}
 
