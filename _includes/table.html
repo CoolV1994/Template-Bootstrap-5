@@ -71,7 +71,7 @@
   {% assign table_sections = table %}
 {% endcomment %}
   {% assign table_json = table | jsonify %}
-  {% assign table_rows_json = '{ "tr"=>' | append: table_json | append: '}' %}
+  {% assign table_rows_json = '{ "tr": ' | append: table_json | append: '}' %}
   {% assign table_sections = table_rows_json | parse_json %}
 {% endif %}
 
