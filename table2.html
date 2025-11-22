@@ -3,7 +3,9 @@ layout: null
 title: Table Demo
 
 # YAML Front Matter for Table
-table_test:
+table_data:
+- - tr:
+      class: table-row-head
 - - th: A
   - th: B
   - th: C
@@ -16,6 +18,21 @@ table_test:
 - - A3
   - B3
   - C3
+
+table_attributes:
+  table:
+    id: page_table
+    class: table
+  thead:
+    class: table-head
+  tbody:
+    class: table-body
+  tr:
+    class: table-row
+  th:
+    class: table-col-head
+  td:
+    class: table-col
 
 ---
 
@@ -58,9 +75,9 @@ table_test:
 
 
 <h1>(Page) Table Test</h1>
-<p>Table Example using data from page front matter <i>page.table_test</i></p>
+<p>Table Example using data from page front matter <i>table_data</i> and <i>table_attributes</i></p>
 <!-- Table Page Start -->
-{% include table.html table=page.table_test %}
+{% include table.html table=page.table_data attributes=page.table_attributes %}
 <!-- Table Page End -->
 
 </body>
