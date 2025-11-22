@@ -44,10 +44,12 @@
 
 {% assign debug = include.debug | default: true %}
 
+{% assign attributes = include.attributes %}
+
 {% assign table = include.table %}
 {% assign table_tag = "table" %}
 {% assign table_sections = "" | split: "," %}
-{% assign table_attributes = "" %}
+{% assign table_attributes = attributes.table | default: "" %}
 {% assign table_content = "" %}
 
 
@@ -94,6 +96,7 @@
 
   {% if section[0] == "thead" or section[0] == "tbody" or section[0] == "tfoot" %}
     {% assign section_tag = section[0] %}
+    {% assign section_attributes = attributes[section_tag] | default: "" %}
   {% endif %}
 
   {% if section[1].data %}
@@ -155,7 +158,7 @@
 
   {% for row in section_rows %}
     {% assign row_tag = "tr" %}
-    {% assign row_attributes = "" %}
+    {% assign row_attributes = attributes[section_tag].tr | default: attributes.tr | default: "" %}
     {% assign row_content = "" %}
 
 
@@ -168,7 +171,7 @@
     {% for column in row %}
       {% assign cell_tag = "td" %}
       {% assign cell_content = "" %}
-      {% assign cell_attributes = "" %}
+      {% assign cell_attributes = attributes[section_tag].td | attributes.td | default: "" %}
 
 {% capture logText %}
 [Section #{{ forloop.parentloop.parentloop.index }}] [{{ section[0] }}] [Row #{{ forloop.parentloop.index }}] [Column #{{ forloop.index }}] ({{ column.size }}) {{ column }}
@@ -207,6 +210,7 @@
           {% if cell_attribute[0] == "td" or cell_attribute[0] == "th" %}
             {% assign cell_tag = cell_attribute[0] %}
             {% assign cell_content = cell_attribute[1] %}
+            {% assign cell_attributes = attributes[section_tag][cell_tag] | attributes[cell_tag] | default: cell_attributes %}
 
 {% capture logText %}
 [Section #{{ forloop.parentloop.parentloop.parentloop.index }}] [{{ section[0] }}] [Row #{{ forloop.parentloop.parentloop.index }}] [Column #{{ forloop.parentloop.index }}] [Attribute #{{ forloop.index }}] [{{ cell_attribute[0] }}] (TRUE) cell_attribute[0] == "td" or cell_attribute[0] == "th"
