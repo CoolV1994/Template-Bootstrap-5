@@ -70,7 +70,9 @@
 {% comment %}
   {% assign table_sections = table %}
 {% endcomment %}
-  {% assign table_sections = { "tr": table } %}
+  {% assign table_json = table | jsonify %}
+  {% assign table_sections_json = '{ "tr": ' | append: table_json | append: '}' %}
+  {% assign table_sections = table_sections_json | parse_json %}
 {% endif %}
 
 
