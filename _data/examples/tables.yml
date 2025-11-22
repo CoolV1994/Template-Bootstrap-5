@@ -4,7 +4,7 @@ table_sample:
   class: style_table
   thead:
     id: table_head
-    tr:
+    data:
     - - tr:
           id: row_header
       - th: "#"
@@ -13,7 +13,7 @@ table_sample:
       - th: C
   tbody:
     id: table_body
-    tr:
+    data:
     - - th: 1
       - td: A1
       - td: B1
@@ -28,7 +28,7 @@ table_sample:
       - C3
   tfoot:
     id: table_foot
-    tr:
+    data:
     - - tr:
           id: row_footer
       - th: Total
@@ -40,7 +40,7 @@ table_sample:
 # Table Simple
 table_simple:
   id: table_simple
-  tr:
+  data:
   - - A1
     - B1
     - C1
