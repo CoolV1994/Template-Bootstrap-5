@@ -104,8 +104,8 @@
     {% for section_attribute in section[1] %}
 
 {% capture logText %}
-[Section #{{ forloop.parent.index }}] [{{ section[0] }}] [Attribute #{{ forloop.index }}] {{ section_attribute }}
-[Section #{{ forloop.parent.index }}] [{{ section[0] }}] [Attribute #{{ forloop.index }}] [{{ section_attribute[0] }}] {{ section_attribute[1] }}
+[Section #{{ forloop.parentloop.index }}] [{{ section[0] }}] [Attribute #{{ forloop.index }}] {{ section_attribute }}
+[Section #{{ forloop.parentloop.index }}] [{{ section[0] }}] [Attribute #{{ forloop.index }}] [{{ section_attribute[0] }}] {{ section_attribute[1] }}
 {% endcapture %}
 {% assign debugLog = debugLog | append: logText | append: "\n" %}
 
@@ -113,7 +113,7 @@
         {% assign section_rows = section_attribute[1] %}
 
 {% capture logText %}
-[Section #{{ forloop.parent.index }}] [{{ section[0] }}] [Attribute #{{ forloop.index }}] [{{ section_attribute[0] }}] (TRUE) section_attribute[0] == "tr"
+[Section #{{ forloop.parentloop.index }}] [{{ section[0] }}] [Attribute #{{ forloop.index }}] [{{ section_attribute[0] }}] (TRUE) section_attribute[0] == "tr"
 {% endcapture %}
 {% assign debugLog = debugLog | append: logText | append: "\n" %}
 
@@ -141,7 +141,7 @@
 {% assign debugLog = debugLog | append: logText | append: "\n" %}
 
   {% else %}
-    {% assign section_rows = section[0] %}
+    {% assign section_rows = table %}
 
 {% capture logText %}
 [Section #{{ forloop.index }}] [{{ section[0] }}] (FALSE) section[0] == "tr"
@@ -164,7 +164,7 @@
 
 
 {% capture logText %}
-[Section #{{ forloop.parent.index }}] [{{ section[0] }}] [Row #{{ forloop.index }}] {{ row }}
+[Section #{{ forloop.parentloop.index }}] [{{ section[0] }}] [Row #{{ forloop.index }}] {{ row }}
 {% endcapture %}
 {% assign debugLog = debugLog | append: logText | append: "\n" %}
 
@@ -175,14 +175,14 @@
       {% assign cell_attributes = "" %}
 
 {% capture logText %}
-[Section #{{ forloop.parent.parent.index }}] [{{ section[0] }}] [Row #{{ forloop.parent.index }}] [Column #{{ forloop.index }}] {{ column }}
+[Section #{{ forloop.parentloop.parentloop.index }}] [{{ section[0] }}] [Row #{{ forloop.parentloop.index }}] [Column #{{ forloop.index }}] {{ column }}
 {% endcapture %}
 {% assign debugLog = debugLog | append: logText | append: "\n" %}
 
       {% if column.tr %}
 
 {% capture logText %}
-[Section #{{ forloop.parent.parent.index }}] [{{ section[0] }}] [Row #{{ forloop.parent.index }}] [Column #{{ forloop.index }}] (TRUE) column.tr
+[Section #{{ forloop.parentloop.parentloop.index }}] [{{ section[0] }}] [Row #{{ forloop.parentloop.index }}] [Column #{{ forloop.index }}] (TRUE) column.tr
 {% endcapture %}
 {% assign debugLog = debugLog | append: logText | append: "\n" %}
 
@@ -196,15 +196,15 @@
       {% if column.td or column.th %}
 
 {% capture logText %}
-[Section #{{ forloop.parent.parent.index }}] [{{ section[0] }}] [Row #{{ forloop.parent.index }}] [Column #{{ forloop.index }}] (TRUE) column.td or column.th
+[Section #{{ forloop.parentloop.parentloop.index }}] [{{ section[0] }}] [Row #{{ forloop.parentloop.index }}] [Column #{{ forloop.index }}] (TRUE) column.td or column.th
 {% endcapture %}
 {% assign debugLog = debugLog | append: logText | append: "\n" %}
 
         {% for cell_attribute in column %}
 
 {% capture logText %}
-[Section #{{ forloop.parent.parent.parent.index }}] [{{ section[0] }}] [Row #{{ forloop.parent.parent.index }}] [Column #{{ forloop.parent.index }}] [Attribute #{{ forloop.index }}] {{ cell_attribute }}
-[Section #{{ forloop.parent.parent.parent.index }}] [{{ section[0] }}] [Row #{{ forloop.parent.parent.index }}] [Column #{{ forloop.parent.index }}] [Attribute #{{ forloop.index }}] [{{ cell_attribute[0] }}] {{ cell_attribute[1] }}
+[Section #{{ forloop.parentloop.parentloop.parentloop.index }}] [{{ section[0] }}] [Row #{{ forloop.parentloop.parentloop.index }}] [Column #{{ forloop.parentloop.index }}] [Attribute #{{ forloop.index }}] {{ cell_attribute }}
+[Section #{{ forloop.parentloop.parentloop.parentloop.index }}] [{{ section[0] }}] [Row #{{ forloop.parentloop.parentloop.index }}] [Column #{{ forloop.parentloop.index }}] [Attribute #{{ forloop.index }}] [{{ cell_attribute[0] }}] {{ cell_attribute[1] }}
 {% endcapture %}
 {% assign debugLog = debugLog | append: logText | append: "\n" %}
 
@@ -213,7 +213,7 @@
             {% assign cell_content = cell_attribute[1] %}
 
 {% capture logText %}
-[Section #{{ forloop.parent.parent.parent.index }}] [{{ section[0] }}] [Row #{{ forloop.parent.parent.index }}] [Column #{{ forloop.parent.index }}] [Attribute #{{ forloop.index }}] [{{ cell_attribute[0] }}] (TRUE) cell_attribute[0] == "td" or cell_attribute[0] == "th"
+[Section #{{ forloop.parentloop.parentloop.parentloop.index }}] [{{ section[0] }}] [Row #{{ forloop.parentloop.parentloop.index }}] [Column #{{ forloop.parentloop.index }}] [Attribute #{{ forloop.index }}] [{{ cell_attribute[0] }}] (TRUE) cell_attribute[0] == "td" or cell_attribute[0] == "th"
 {% endcapture %}
 {% assign debugLog = debugLog | append: logText | append: "\n" %}
 
@@ -226,7 +226,7 @@
         {% assign cell_content = column %}
 
 {% capture logText %}
-[Section #{{ forloop.parent.parent.index }}] [{{ section[0] }}] [Row #{{ forloop.parent.index }}] [Column #{{ forloop.index }}] (FALSE) column.td or column.th
+[Section #{{ forloop.parentloop.parentloop.index }}] [{{ section[0] }}] [Row #{{ forloop.parentloop.index }}] [Column #{{ forloop.index }}] (FALSE) column.td or column.th
 {% endcapture %}
 {% assign debugLog = debugLog | append: logText | append: "\n" %}
 
