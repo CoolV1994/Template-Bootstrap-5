@@ -136,17 +136,6 @@
 
   {% endif %}
 
-  {% if section[0] == "tr" %}
-    {% assign section_rows = section[1] %}
-
-{% capture logText %}
-[Section #{{ forloop.index }}] [{{ section[0] }}] (TRUE) section[0] == "tr"
-{% endcapture %}
-{% assign debugLog = debugLog | append: logText | append: "\n" %}
-
-  {% endif %}
-
-
   {% unless table.thead and table.tbody and table.tfoot and table.tr %}
     {% assign section_rows = table %}
 
@@ -156,6 +145,16 @@
 {% assign debugLog = debugLog | append: logText | append: "\n" %}
 
   {% endunless %}
+
+  {% if section[0] == "tr" %}
+    {% assign section_rows = section[1] %}
+
+{% capture logText %}
+[Section #{{ forloop.index }}] [{{ section[0] }}] (TRUE) section[0] == "tr"
+{% endcapture %}
+{% assign debugLog = debugLog | append: logText | append: "\n" %}
+
+  {% endif %}
 
 
 
