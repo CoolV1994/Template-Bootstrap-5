@@ -1,0 +1,33 @@
+---
+layout: default
+title: Albums
+description: Albums Index
+style: ".image-container {width: 400px;height: 300px;display: block;} .image-container img {width: 100%;height: 100%;object-fit: contain;}"
+---
+
+{% for post in site.albums %}
+				<div class="col">
+					<div class="card shadow-sm">
+						<div class="image-container">
+{% if post.thumbnail %}
+							<img src="{{ post.thumbnail | prepend: site.baseurl }}" alt="{{ post.title }}">
+{% else %}
+							<svg aria-label="Placeholder: Thumbnail" class="bd-placeholder-img card-img-top" height="225" preserveAspectRatio="xMidYMid slice" role="img" width="100%" xmlns="http://www.w3.org/2000/svg">
+								<title>Album Thumbnail</title>
+								<rect width="100%" height="100%" fill="#55595c"></rect>
+								<text x="50%" y="50%" fill="#eceeef" dy=".3em">{{ post.title }}</text>
+							</svg>
+{% endif %}
+						</div>
+						<div class="card-body">
+							<p class="card-text">{{ post.excerpt }}</p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group">
+									<a href="{{ post.url | prepend: site.baseurl }}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+								</div>
+								<small class="text-body-secondary">{{ post.author }}</small>
+							</div>
+						</div>
+					</div>
+				</div><!-- / #album -->
+{% endfor %}
