@@ -1,0 +1,14 @@
+{%- assign id = include.buttons -%}
+{%- assign class = include.buttons -%}
+{%- assign button_class = include.button_class | default: "btn" -%}
+{%- assign buttons = include.buttons -%}
+
+<div id="{{ id }}" class="{{ class }}">
+{% for button in include.buttons %}
+    {%- assign class = 'btn' -%}
+    {% if button.class includes 'outline' %}{%- assign class = class | append: '-outline' -%}{% endif %}
+    {% if button.class includes 'primary' %}{%- assign class = class | append: '-primary' -%}{% endif %}
+    {% if button.class includes 'secondary' %}{%- assign class = class | append: '-secondary' -%}{% endif %}
+    <a href="{{ button.link | default: '#' }}"><button type="button" class="btn btn-lg px-4 {{ class }}">{{ button.text }}</button></a>
+{% endfor %}
+</div>
